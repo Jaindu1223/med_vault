@@ -19,59 +19,6 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
           child:Column(
             children: [
-              //app bar
-              /*Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.10,vertical: 40),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    //name
-                    Container(
-                      color: Colors.lightBlueAccent,
-                      height: 200,
-                      width: 340,
-                      alignment: Alignment.bottomLeft,
-
-                      child: const Column(
-
-                        children: [
-
-                          Text(
-                              'Welcome to ',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                          ),
-                          Text(
-                            'MedVault',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24,
-                            ),
-                          ),
-                          *//*Text(
-                            'Monday 23rd, July, 2060 3:21:59pm',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                            ),
-                          ),*//*
-                        ],
-
-                      ),
-
-
-                      ),
-                    //profile photo
-
-                  ],
-                ),
-              ),*/
-
-
-          //card how you feel
-
               Container(
 
                 decoration: BoxDecoration(
@@ -370,47 +317,3 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-
-
-/*
-class MedVaultHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('MedVault'),
-      ),
-      body: Center(
-        child: Card(
-          color: Colors.blue,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset('path/to/image.png'),
-                SizedBox(height: 16),
-                Text(
-                  'Welcome to MedVault',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(height: 16),
-                Text(
-                  'Monday 23rd, July, 2060 3:21:59pm',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}*/

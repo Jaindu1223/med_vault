@@ -16,58 +16,6 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
         body: SafeArea(
           child:Column(
             children: [
-              //app bar
-              /*Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.10,vertical: 40),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    //name
-                    Container(
-                      color: Colors.lightBlueAccent,
-                      height: 200,
-                      width: 340,
-                      alignment: Alignment.bottomLeft,
-
-                      child: const Column(
-
-                        children: [
-
-                          Text(
-                              'Welcome to ',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                          ),
-                          Text(
-                            'MedVault',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24,
-                            ),
-                          ),
-                          *//*Text(
-                            'Monday 23rd, July, 2060 3:21:59pm',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                            ),
-                          ),*//*
-                        ],
-
-                      ),
-
-
-                      ),
-                    //profile photo
-
-                  ],
-                ),
-              ),*/
-
-
-              //card how you feel
 
               Container(
                 decoration: const BoxDecoration(color: Colors.lightBlue),
@@ -86,10 +34,18 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
                         ),
                       ),
                       const Text(
-                        'MedVault',
+                        'Pharmacy Finder',
                         style: TextStyle(
                           fontWeight: FontWeight.w900,
                           fontSize: 29,
+                        ),
+
+                      ),
+                      const Text(
+                        'Of MedVault',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w900,
+                          fontSize:20,
                         ),
 
                       ),
@@ -119,7 +75,7 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
                       ),
                     ],
                   ),
-                  const SizedBox(width: 86,),
+                  const SizedBox(width: 26,),
 
 
                   Container(
