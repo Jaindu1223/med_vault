@@ -11,17 +11,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   title: Align(
-        //     alignment: Alignment.center,
-        //     child: Text(
-        //       'Sign Up',
-        //       style: TextStyle(
-        //         fontSize: 34.0,
-        //       ),
-        //     ),
-        //   ),
-        // ),
+
         body: Stack(
           children: [
             Image.asset(
