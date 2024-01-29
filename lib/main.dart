@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:med_vault/pages/catergory.dart';
 
-import 'package:med_vault/pages/home_page.dart';
-import 'package:med_vault/pages/sign_in.dart';
+import 'package:med_vault/pages/patient/home_page.dart';
+import 'package:med_vault/pages/patient/sign_in.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignIn(),
+      home: Category(),
     );
   }
 }

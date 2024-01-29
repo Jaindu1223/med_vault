@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:med_vault/pages/medical_record.dart';
+import 'package:med_vault/pages/patient/medical_record.dart';
 
 class MyQR extends StatefulWidget {
   const MyQR({super.key});
@@ -126,7 +126,7 @@ class _MyQRState extends State<MyQR> {
                     children: [
 
                       const Text(
-                        'Available At:',
+                        'MY QR',
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 14,
@@ -134,7 +134,7 @@ class _MyQRState extends State<MyQR> {
                         ),
                       ),
                       const Text(
-                        '<<Display Map>> ',
+                        '<<Display QR>> ',
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 11,
@@ -142,7 +142,7 @@ class _MyQRState extends State<MyQR> {
                       ),
                       const SizedBox(height: 330,),
                       const Text(
-                        '<<Display Pharmacy Address >>',
+                        '<<Test >>',
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 11,
@@ -155,7 +155,7 @@ class _MyQRState extends State<MyQR> {
                         child: Center(
                           child: InkWell(
                             onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const MedicalRecord()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const MedicalRecords()));
                             },
 
                             child: Container(
@@ -171,7 +171,7 @@ class _MyQRState extends State<MyQR> {
                               ),
                               child: const Center(
                                 child: Text(
-                                    'Continue With Maps',
+                                    'View Details',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 11)

@@ -1,18 +1,20 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:med_vault/pages/doctor/home_pageD.dart';
+import 'package:med_vault/pages/patient/fog_pw.dart';
 
-import 'package:med_vault/pages/home_page.dart';
-import 'package:med_vault/pages/sign_up.dart';
-import 'fog_pw.dart';
+import 'package:med_vault/pages/patient/home_page.dart';
+import 'package:med_vault/pages/patient/sign_up.dart';
+//import 'package:med_vault/pages/doctor/fog_pw.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+class SignInDoc extends StatefulWidget {
+  const SignInDoc({super.key});
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignInDoc> createState() => _SignInDocState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignInDocState extends State<SignInDoc> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   @override
@@ -106,7 +108,7 @@ class _SignInState extends State<SignIn> {
                       Center(
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePageDoc()));
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,

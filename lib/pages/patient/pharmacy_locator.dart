@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:med_vault/pages/medical_record.dart';
+import 'package:med_vault/pages/patient/medical_record.dart';
 
 class PharmacyLocator extends StatefulWidget {
   const PharmacyLocator({super.key});
@@ -162,7 +162,7 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
                             child: Center(
                               child: InkWell(
                                 onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const MedicalRecord()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const MedicalRecords()));
                                 },
 
                                 child: Container(

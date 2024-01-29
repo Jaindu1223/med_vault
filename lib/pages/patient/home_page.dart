@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:med_vault/pages/medical_record.dart';
-import 'package:med_vault/pages/my_qr.dart';
-import 'package:med_vault/pages/pharmacy_locator.dart';
+import 'package:med_vault/pages/patient/medical_record.dart';
+import 'package:med_vault/pages/patient/my_qr.dart';
+import 'package:med_vault/pages/patient/pharmacy_locator.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}):super(key:key);
@@ -111,14 +111,19 @@ class _HomePageState extends State<HomePage> {
             //const SizedBox(height: 5),
             Padding(
               padding: const EdgeInsets.only(left: 0,top: 0,right: 30,bottom: 10),
+
               child: Row(
 
                 mainAxisAlignment: MainAxisAlignment.end,
 
                 children: [
                   Container(
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const MedicalRecords()));
+                      },
                       child: Icon(Icons.person,)),
-                ],
+                  )],
               ),
             ),
 
@@ -242,7 +247,7 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(height: 17),
                         InkWell(
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>const MedicalRecord()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>const MedicalRecords()));
                           },
                           child: Container(
                             padding: const EdgeInsets.all(4),

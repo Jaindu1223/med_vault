@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:med_vault/pages/sign_in.dart';
+import 'package:med_vault/pages/patient/sign_in.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
