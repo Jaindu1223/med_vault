@@ -177,7 +177,7 @@ class _SignUpDocState extends State<SignUpDoc> {
                             ),
                             child: const Center(
                               child: Text(
-                                  'Continue',
+                                  'Continue.',
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 15)
