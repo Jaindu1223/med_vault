@@ -12,7 +12,6 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-
     );
   }
 }
