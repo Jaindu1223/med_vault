@@ -1,7 +1,7 @@
 
-import 'package:flutter/material.dart';
+//import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
+/*class HomePage extends StatefulWidget {
   const HomePage({Key? key}):super(key:key);
 
   @override
@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
           child:Column(
             children: [
               //app bar
-              /*Padding(
+Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.10,vertical: 40),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,15 +45,19 @@ class _HomePageState extends State<HomePage> {
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 24,
-                            ),
-                          ),
-                          *//*Text(
+                            ),*/
+
+                          /*
+
+/*Text(
                             'Monday 23rd, July, 2060 3:21:59pm',
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.white,
                             ),
                           ),*//*
+*/
+/*
                         ],
 
                       ),
@@ -64,7 +68,8 @@ class _HomePageState extends State<HomePage> {
 
                   ],
                 ),
-              ),*/
+              ),*//*
+
 
 
               //card how you feel
@@ -190,7 +195,7 @@ class _HomePageState extends State<HomePage> {
 
 
 
-/*
+
 class MedVaultHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -231,4 +236,5 @@ class MedVaultHomePage extends StatelessWidget {
       ),
     );
   }
-}*/
+}
+

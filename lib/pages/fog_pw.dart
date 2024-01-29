@@ -23,7 +23,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         body: Stack(
             children: [
               Image.asset(
-                'assets/bg_2.png',
+                'lib/images/bg_2.png',
                 fit: BoxFit.cover,
                 height: double.infinity,
                 width: double.infinity,
@@ -40,7 +40,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         padding: const EdgeInsets.only(top: 100.0), // Add padding at the top
                         child: Center(
                           child: Image.asset(
-                            'assets/fog.png',
+                            'lib/images/fog.png',
                             height: 260,
                             width: 260,
                           ),

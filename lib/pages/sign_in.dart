@@ -1,5 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+import 'package:med_vault/pages/home_page.dart';
 import 'fog_pw.dart';
 
 class SignIn extends StatefulWidget {
@@ -18,7 +20,7 @@ class _SignInState extends State<SignIn> {
         body: Stack(
             children: [
               Image.asset(
-                'assets/bg_2.png',
+                'lib/images/bg_2.png',
                 fit: BoxFit.cover,
                 height: double.infinity,
                 width: double.infinity,
@@ -34,7 +36,7 @@ class _SignInState extends State<SignIn> {
                         padding: const EdgeInsets.only(top: 80.0), // Add padding at the top
                         child: Center(
                           child: Image.asset(
-                            'assets/welcome.png',
+                            'lib/images/welcome.png',
                             height: 300,
                             width: 300,
                           ),
@@ -102,7 +104,9 @@ class _SignInState extends State<SignIn> {
                       SizedBox(height: 56),
                       Center(
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage()));
+                          },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
                               fixedSize: Size(260, 28),
