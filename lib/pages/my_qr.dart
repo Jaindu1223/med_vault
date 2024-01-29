@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:med_vault/pages/medical_record.dart';
 
 class MyQR extends StatefulWidget {
   const MyQR({super.key});
@@ -101,34 +102,91 @@ class _MyQRState extends State<MyQR> {
 
           //categories(horizontal list)
           const SizedBox(height: 25),
-          Container(
-            child: Row(
-              children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.limeAccent,
-                ),
-                const Column(
-                  children: [Text('Welcome to '), Text('MedVault')],
-                )
-              ],
-            ),
-          ),
-          const SizedBox(height: 25),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 35.0),
+            child: Container(
 
-          Container(
-            child: Row(
-              children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.limeAccent,
-                ),
-                const Column(
-                  children: [Text('Welcome to '), Text('MedVault')],
-                ),
-              ],
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(9)),
+              child: Row(children: [
+
+                /*SizedBox(
+
+                      height: 400,
+                      width: 100,
+                      child: Image.asset(
+                        'lib/images/prescription.png',),
+                      //color: Colors.blue,
+                    ),*/
+                //const SizedBox(height: 35,width: 10,),
+
+                Expanded(
+                  child:Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+
+                      const Text(
+                        'Available At:',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                            color: Colors.black87
+                        ),
+                      ),
+                      const Text(
+                        '<<Display Map>> ',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 11,
+                        ),
+                      ),
+                      const SizedBox(height: 330,),
+                      const Text(
+                        '<<Display Pharmacy Address >>',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 11,
+                        ),
+                      ),
+                      const SizedBox(height: 17),
+
+                      Padding(
+                        padding: const EdgeInsets.only(left: 150),
+                        child: Center(
+                          child: InkWell(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const MedicalRecord()));
+                            },
+
+                            child: Container(
+
+                              //padding: const EdgeInsets.only(left: 20,top: 20,right: 20,bottom: 20),
+                              padding: const EdgeInsets.all(4),
+                              width: 150,
+
+
+                              decoration: BoxDecoration(
+                                color: Colors.blueAccent,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                    'Continue With Maps',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 11)
+
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
+                )
+              ],),
             ),
           ),
           //doctor list
