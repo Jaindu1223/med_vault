@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:med_vault/pages/medical_record.dart';
 
 class PharmacyLocator extends StatefulWidget {
   const PharmacyLocator({super.key});
@@ -106,27 +107,84 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
 
               //categories(horizontal list)
               const SizedBox(height: 25),
-              Container(
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 45.0),
+                child: Container(
 
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(9)),
+                  child: Row(children: [
+                    SizedBox(
 
-                child: Row(children: [
-                  Container(
-                    height: 100,
-                    width: 100,
-                    color: Colors.limeAccent,
-                  ),
+                      height: 400,
+                      width: 100,
+                      child: Image.asset(
+                        'lib/images/prescription.png',),
+                      //color: Colors.blue,
+                    ),
+                    const SizedBox(height: 35,width: 10,),
 
-                  const Column(
-                    children: [
-                      Text('Welcome to '),
-                      Text('MedVault')
-                    ],
-                  )
-                ],),
+                    Expanded(
+                      child:Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+
+                          const Text(
+                            'Medical Record',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                                color: Colors.black87
+                            ),
+                          ),
+                          const Text(
+                            'Stores your previous reports, ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 11,
+                            ),
+                          ),
+                          const Text(
+                            'Prescriptions',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 11,
+                            ),
+                          ),
+                          const SizedBox(height: 17),
+                          InkWell(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const MedicalRecord()));
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(4),
+
+                              decoration: BoxDecoration(
+                                  color: Colors.blueAccent,
+                                  borderRadius: BorderRadius.circular(8)
+                              ),
+                              child: const Center(
+                                child: Text(
+                                    'View Record Book',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 11)
+
+                                ),
+                              ),
+                            ),
+                          ),
+
+                        ],
+                      ),
+                    )
+                  ],),
+                ),
               ),
+
               const SizedBox(height: 25),
 
-              Container(
+              /*Container(
 
                 child: Row(children: [
                   Container(
@@ -143,7 +201,7 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
                   ),
 
                 ],),
-              ),
+              ),*/
               //doctor list
 
             ],
