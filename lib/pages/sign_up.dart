@@ -23,7 +23,6 @@ class _SignUpState extends State<SignUp> {
           ),
         ),
         body: Stack(
-          // padding: EdgeInsets.all(26.0),
           children: [
             Image.asset(
               'lib/images/signup_img.png',
@@ -31,9 +30,12 @@ class _SignUpState extends State<SignUp> {
               height: double.infinity,
               width: double.infinity,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+            SingleChildScrollView(
+              child: Padding(
+                  padding: const EdgeInsets.all(26.0), // Add the padding here
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                 Text('Full name'),
                 TextField(
                   decoration: InputDecoration(
@@ -163,8 +165,10 @@ class _SignUpState extends State<SignUp> {
                 ),
               ],
             ),
-          ]),
+              )
+            )
+            ],
+        )
         );
-
   }
 }
