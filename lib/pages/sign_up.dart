@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:med_vault/pages/sign_in.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -22,7 +23,7 @@ class _SignUpState extends State<SignUp> {
             ),
             SingleChildScrollView(
               child: Padding(
-                  padding: const EdgeInsets.all(26.0), // Add the padding here
+                  padding: const EdgeInsets.fromLTRB(26.0, 50.0, 26.0, 26.0), // Add the padding here
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -30,7 +31,11 @@ class _SignUpState extends State<SignUp> {
                   'Sign Up',
                   style: TextStyle(
                     fontSize: 34.0,
-                  ),),
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+                  SizedBox(height: 30.0),
+
                 Text('Full name'),
                 TextField(
                   decoration: InputDecoration(
@@ -156,9 +161,39 @@ class _SignUpState extends State<SignUp> {
                       ),
                       obscureText: true,
                     ),
+                    SizedBox(height: 40.0),
+
+                    Padding(
+                      padding: const EdgeInsets.only(right: 200),
+                      child: InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignIn()));
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          width: 150,
+
+                          decoration: BoxDecoration(
+                              color: Colors.blue[200],
+                              borderRadius: BorderRadius.circular(8)
+                          ),
+                          child: const Center(
+                            child: Text(
+                                'Continue',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15)
+
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
                   ],
                 ),
               ],
+
             ),
               )
             )
