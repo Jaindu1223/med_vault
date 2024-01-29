@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:med_vault/pages/home_page.dart';
+import 'package:med_vault/pages/sign_up.dart';
 import 'fog_pw.dart';
 
 class SignIn extends StatefulWidget {
@@ -127,7 +128,9 @@ class _SignInState extends State<SignIn> {
                         children: [
                           Text('Don\'t have an account ?'),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignUp()));
+                            },
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.blue,
                             ),

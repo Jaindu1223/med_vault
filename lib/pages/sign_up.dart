@@ -22,9 +22,9 @@ class _SignUpState extends State<SignUp> {
             ),
           ),
         ),
-        body: Container(
-          padding: EdgeInsets.all(26.0),
-          child: Column(children: [
+        body: Stack(
+          // padding: EdgeInsets.all(26.0),
+          children: [
             Image.asset(
               'lib/images/signup_img.png',
               fit: BoxFit.cover,
@@ -164,7 +164,7 @@ class _SignUpState extends State<SignUp> {
               ],
             ),
           ]),
-        )
-    );
+        );
+
   }
 }
