@@ -78,7 +78,7 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
                       ),
                       const SizedBox(height: 2),
                       const Text(
-                        'Monday 23rd, July, 2060 3:21:59pm',
+                        '3:21:59pm',
                         style: TextStyle(
                           fontSize: 10,
                           color: Colors.white,
@@ -107,22 +107,25 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
 
               //categories(horizontal list)
               const SizedBox(height: 25),
+
+              //box
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 45.0),
+                padding: const EdgeInsets.symmetric(horizontal: 35.0),
                 child: Container(
 
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(9)),
                   child: Row(children: [
-                    SizedBox(
+
+                    /*SizedBox(
 
                       height: 400,
                       width: 100,
                       child: Image.asset(
                         'lib/images/prescription.png',),
                       //color: Colors.blue,
-                    ),
-                    const SizedBox(height: 35,width: 10,),
+                    ),*/
+                    //const SizedBox(height: 35,width: 10,),
 
                     Expanded(
                       child:Column(
@@ -130,46 +133,58 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
                         children: [
 
                           const Text(
-                            'Medical Record',
+                            'Available At:',
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
-                                fontSize: 18,
+                                fontSize: 14,
                                 color: Colors.black87
                             ),
                           ),
                           const Text(
-                            'Stores your previous reports, ',
+                            '<<Display Map>> ',
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 11,
                             ),
                           ),
+                          const SizedBox(height: 330,),
                           const Text(
-                            'Prescriptions',
+                            '<<Display Pharmacy Address>>',
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 11,
                             ),
                           ),
                           const SizedBox(height: 17),
-                          InkWell(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const MedicalRecord()));
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.all(4),
 
-                              decoration: BoxDecoration(
-                                  color: Colors.blueAccent,
-                                  borderRadius: BorderRadius.circular(8)
-                              ),
-                              child: const Center(
-                                child: Text(
-                                    'View Record Book',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 11)
+                          Padding(
+                            padding: const EdgeInsets.only(left: 150),
+                            child: Center(
+                              child: InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const MedicalRecord()));
+                                },
 
+                                child: Container(
+
+                                  //padding: const EdgeInsets.only(left: 20,top: 20,right: 20,bottom: 20),
+                                  padding: const EdgeInsets.all(4),
+                                  width: 150,
+
+
+                                  decoration: BoxDecoration(
+                                      color: Colors.blueAccent,
+                                      borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                        'Continue With Maps',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 11)
+
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
