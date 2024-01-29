@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.only(left: 20,top: 30, right: 3, bottom: 7),
               child: Row(children: [
 
-                const SizedBox(width: 6,height: 190,),
+                const SizedBox(width:1,height: 190,),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
 
@@ -102,16 +102,27 @@ class _HomePageState extends State<HomePage> {
 
                   //color: Colors.limeAccent,
                 ),
-
-
               ],),
             ),
 
         //search bar
 
         //categories(horizontal list)
-            const SizedBox(height: 45),
+            //const SizedBox(height: 5),
+            Padding(
+              padding: const EdgeInsets.only(left: 0,top: 0,right: 30,bottom: 10),
+              child: Row(
 
+                mainAxisAlignment: MainAxisAlignment.end,
+
+                children: [
+                  Container(
+                      child: Icon(Icons.person,)),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 5),
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 45.0),
