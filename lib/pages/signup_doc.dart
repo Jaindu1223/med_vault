@@ -161,24 +161,27 @@ class _SignUpDocState extends State<SignUpDoc> {
                       ),
                       SizedBox(height: 40.0),
 
-                      InkWell(
-                        // onTap: (){
-                        //   Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignIn()));
-                        // },
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          width: 150,
+                      Padding(
+                        padding: const EdgeInsets.only(right: 200),
+                        child: InkWell(
+                          // onTap: (){
+                          //   Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignIn()));
+                          // },
+                          child: Container(
+                            padding: const EdgeInsets.all(10),
+                            width: 150,
 
-                          decoration: BoxDecoration(
-                              color: Colors.blue[200],
-                              borderRadius: BorderRadius.circular(8)
-                          ),
-                          child: const Center(
-                            child: Text(
-                                'Continue',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15)
+                            decoration: BoxDecoration(
+                                color: Colors.blue[200],
+                                borderRadius: BorderRadius.circular(8)
+                            ),
+                            child: const Center(
+                              child: Text(
+                                  'Continue',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15)
+                              ),
                             ),
                           ),
                         ),
