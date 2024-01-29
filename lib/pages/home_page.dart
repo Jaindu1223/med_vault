@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     const SizedBox(height: 2),
                     const Text(
-                      'Monday 23rd, July, 2060 3:21:59pm',
+                      '3:21:59pm',
                       style: TextStyle(
                         fontSize: 10,
                         color: Colors.white,
