@@ -12,16 +12,32 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blue[100],
-        body: SafeArea(
-          child:Column(
+        //backgroundColor: Colors.blue[100],
+        body: Stack(
+            children:[
+              Container(
+                decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                  'lib/images/6 Pharmacy locater-2.png'),
+                  fit: BoxFit.cover,
+                  //height: double.infinity,
+                  //width: double.infinity,
+              ),
+              ),
+            ),
+          Column(
             children: [
 
               Container(
-                decoration: const BoxDecoration(color: Colors.lightBlue),
+
+                /*decoration: BoxDecoration(
+                color: Colors.lightBlue
+              ),*/
                 padding: const EdgeInsets.only(left: 20,top: 30, right: 3, bottom: 7),
                 child: Row(children: [
-                  const SizedBox(width: 6,),
+
+                  const SizedBox(width: 6,height: 190,),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
 
@@ -31,33 +47,27 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 20,
+                          color: Colors.white,
                         ),
                       ),
                       const Text(
-                        'Pharmacy Finder',
+                        'MedVault',
                         style: TextStyle(
                           fontWeight: FontWeight.w900,
                           fontSize: 29,
+                          color: Colors.white,
                         ),
 
                       ),
-                      const Text(
-                        'Of MedVault',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          fontSize:20,
-                        ),
-
-                      ),
-                      Container(
+                      SizedBox(
                         height: 40,
-                        width: 40,
+                        width: 20,
                         child: Image.asset(
                             'lib/images/Group 2085662530.png'),
 
                         //color: Colors.limeAccent,
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 1),
                       const Text(
                         'Monday 23rd, July, 2060',
                         style: TextStyle(
@@ -75,10 +85,11 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
                       ),
                     ],
                   ),
-                  const SizedBox(width: 26,),
+                  const SizedBox(width: 86,),
 
 
-                  Container(
+
+                  SizedBox(
                     height: 140,
                     width: 100,
                     child: Image.asset(
@@ -139,7 +150,7 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
           ),
 
 
-        )
+        ])
     );
   }
 }
