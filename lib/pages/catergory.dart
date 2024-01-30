@@ -64,7 +64,7 @@ class _CategoryState extends State<Category> {
                       ),
 
                       RadioListTile<String>(
-                          value: 'Patient',
+                          value: '.Patient',
                           groupValue: _userType,
                           onChanged: (value){
                             setState(() {
