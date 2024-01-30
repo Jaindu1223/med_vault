@@ -15,7 +15,7 @@ class _MyQRState extends State<MyQR> {
         //backgroundColor: Colors.blue[100],
         body: Stack(children: [
       Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('lib/images/6 Pharmacy locater-2.png'),
             fit: BoxFit.cover,

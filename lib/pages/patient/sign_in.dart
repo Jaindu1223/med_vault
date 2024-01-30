@@ -53,38 +53,38 @@ class _SignInState extends State<SignIn> {
                           decoration: InputDecoration(
                             hintText: 'bla@gmail.com',
                             hintStyle: TextStyle(color: Colors.grey[500]),
-                            enabledBorder: OutlineInputBorder(
+                            enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.grey),
                             ),
-                            focusedBorder: OutlineInputBorder(
+                            focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blue),
                             ),
                             fillColor: Colors.grey.shade100,
                             filled: true,
-                            contentPadding: EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                            contentPadding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
                           ),
                         ),
                       ),
 
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       TextField(
                         controller: _passwordController,
                         // obscureText: true,
                         decoration: InputDecoration(
                           hintText: 'NIC',
                           hintStyle: TextStyle(color: Colors.grey[500]),
-                          enabledBorder: OutlineInputBorder(
+                          enabledBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey),
                           ),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.blue),
                           ),
                           fillColor: Colors.grey.shade100,
                           filled: true,
-                          contentPadding: EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                          contentPadding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
                         ),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
 
                       TextField(
                         controller: _passwordController,
@@ -92,18 +92,18 @@ class _SignInState extends State<SignIn> {
                         decoration: InputDecoration(
                           hintText: 'Password',
                           hintStyle: TextStyle(color: Colors.grey[500]),
-                          enabledBorder: OutlineInputBorder(
+                          enabledBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey),
                           ),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.blue),
                           ),
                           fillColor: Colors.grey.shade100,
                           filled: true,
-                          contentPadding: EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                          contentPadding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
                         ),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       Align(
                         alignment: Alignment.bottomRight,
                         child: GestureDetector(
@@ -113,7 +113,7 @@ class _SignInState extends State<SignIn> {
                               MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
                             );
                           },
-                          child: Text(
+                          child: const Text(
                             'Forgot Password?',
                             style: TextStyle(
                               fontSize: 13,
@@ -121,7 +121,7 @@ class _SignInState extends State<SignIn> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 50),
+                      const SizedBox(height: 50),
                       Center(
                         child: ElevatedButton(
                           onPressed: () {
@@ -129,23 +129,23 @@ class _SignInState extends State<SignIn> {
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
-                              fixedSize: Size(260, 28),
+                              fixedSize: const Size(260, 28),
                               foregroundColor: Colors.white,
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                 fontSize: 18,
                               ),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5.0),
                               )
                           ),
-                          child: Text('Sign in'),
+                          child: const Text('Sign in'),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Don\'t have an account ?'),
+                          const Text('Don\'t have an account ?'),
                           TextButton(
                             onPressed: () {
                               Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignUp()));
@@ -153,18 +153,18 @@ class _SignInState extends State<SignIn> {
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.blue,
                             ),
-                            child: Text('Sign Up'),
+                            child: const Text('Sign Up'),
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text.rich(
                         TextSpan(
                             text: 'By signing in, you agree to our ',
                             children: [
                               TextSpan(
                                 text: 'Terms and Conditions',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   decoration: TextDecoration.underline,
                                 ),
                                 recognizer: TapGestureRecognizer()
@@ -189,7 +189,7 @@ class _SignInState extends State<SignIn> {
                               // ),
                             ]
                         ),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 13,
                           color: Colors.black,
                         ),

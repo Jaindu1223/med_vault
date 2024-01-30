@@ -18,7 +18,7 @@ class _PatientHistoryState extends State<PatientHistory> {
         body: Stack(
             children:[
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
                         'lib/images/6 Pharmacy locater-2.png'),

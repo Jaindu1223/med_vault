@@ -19,7 +19,7 @@ class _QrScanState extends State<QrScan> {
         body: Stack(
             children:[
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
                         'lib/images/6 Pharmacy locater-2.png'),
@@ -191,7 +191,7 @@ class _QrScanState extends State<QrScan> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 5),
+                              const SizedBox(height: 5),
 
                               Padding(
                                 padding: const EdgeInsets.only(left: 100),

@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children:[
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
                     'lib/images/6 Pharmacy locater-2.png'),
@@ -122,7 +122,7 @@ class _HomePageState extends State<HomePage> {
                       onTap: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>const MedicalRecords()));
                       },
-                      child: Icon(Icons.person,)),
+                      child: const Icon(Icons.person,)),
                   )],
               ),
             ),
