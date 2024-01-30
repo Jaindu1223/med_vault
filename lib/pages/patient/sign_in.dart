@@ -35,7 +35,7 @@ class _SignInState extends State<SignIn> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 80.0), // Add padding at the top
+                        padding: const EdgeInsets.only(top: 60.0), // Add padding at the top
                         child: Center(
                           child: Image.asset(
                             'lib/images/welcome.png',
@@ -66,7 +66,25 @@ class _SignInState extends State<SignIn> {
                         ),
                       ),
 
-                      SizedBox(height: 26),
+                      SizedBox(height: 16),
+                      TextField(
+                        controller: _passwordController,
+                        // obscureText: true,
+                        decoration: InputDecoration(
+                          hintText: 'NIC',
+                          hintStyle: TextStyle(color: Colors.grey[500]),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.blue),
+                          ),
+                          fillColor: Colors.grey.shade100,
+                          filled: true,
+                          contentPadding: EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                        ),
+                      ),
+                      SizedBox(height: 16),
 
                       TextField(
                         controller: _passwordController,
@@ -103,7 +121,7 @@ class _SignInState extends State<SignIn> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 56),
+                      SizedBox(height: 50),
                       Center(
                         child: ElevatedButton(
                           onPressed: () {
@@ -123,7 +141,7 @@ class _SignInState extends State<SignIn> {
                           child: Text('Sign in'),
                         ),
                       ),
-                      SizedBox(height: 30),
+                      SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
