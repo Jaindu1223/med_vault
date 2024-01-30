@@ -134,7 +134,7 @@ class _PatientProfileState extends State<PatientProfile> {
                             children: [
 
                               const Text(
-                                'Patient History',
+                                '<Edit......>',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 14,
