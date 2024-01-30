@@ -3,6 +3,7 @@ import 'package:med_vault/pages/catergory.dart';
 
 import 'package:med_vault/pages/patient/home_page.dart';
 import 'package:med_vault/pages/patient/sign_in.dart';
+import 'package:med_vault/pages/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Category(),
+      home: SplashScreen(),
     );
   }
 }
