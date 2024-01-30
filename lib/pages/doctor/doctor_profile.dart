@@ -213,7 +213,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                       ),
                                       child: const Center(
                                         child: Text(
-                                            'New Prescription',
+                                            'Save Details',
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 11)
