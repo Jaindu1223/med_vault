@@ -46,42 +46,42 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 40),
-                      Text(
+                      const SizedBox(height: 40),
+                      const Text(
                         'Forgot Password?',
                         style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 40),
-                      Text(
+                      const SizedBox(height: 40),
+                      const Text(
                         'Don\'t worry! it happens. Please enter the email address associated with your account.',
                         style: TextStyle(fontSize: 14),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 40),
+                      const SizedBox(height: 40),
                       TextField(
                         controller: _emailController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Email',
                           border: OutlineInputBorder(),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () {
                           // Handle email submission here
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,
-                            fixedSize: Size(260, 28),
+                            fixedSize: const Size(260, 28),
                             foregroundColor: Colors.white,
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                               fontSize: 18,
                             )
                         ),
-                        child: Text('Submit'),
+                        child: const Text('Submit'),
                       ),
                     ],//children
                   ),

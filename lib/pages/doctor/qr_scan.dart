@@ -19,7 +19,7 @@ class _QrScanState extends State<QrScan> {
         body: Stack(
             children:[
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
                         'lib/images/6 Pharmacy locater-2.png'),
@@ -46,7 +46,7 @@ class _QrScanState extends State<QrScan> {
 
                         children: [
                           const Text(
-                            'Welcome to ',
+                            'Digital ',
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 20,
@@ -54,7 +54,7 @@ class _QrScanState extends State<QrScan> {
                             ),
                           ),
                           const Text(
-                            'MedVault',
+                            'Prescription',
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
                               fontSize: 29,
@@ -96,7 +96,7 @@ class _QrScanState extends State<QrScan> {
                         height: 140,
                         width: 100,
                         child: Image.asset(
-                          'lib/images/image 9326.png',),
+                          'lib/images/qr.png',),
 
                         //color: Colors.limeAccent,
                       ),
@@ -191,7 +191,7 @@ class _QrScanState extends State<QrScan> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 5),
+                              const SizedBox(height: 5),
 
                               Padding(
                                 padding: const EdgeInsets.only(left: 100),

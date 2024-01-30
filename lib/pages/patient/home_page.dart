@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:med_vault/pages/doctor/patient_history.dart';
 import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:med_vault/pages/patient/my_qr.dart';
+import 'package:med_vault/pages/patient/patient_profile.dart';
 import 'package:med_vault/pages/patient/pharmacy_locator.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,7 +21,7 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children:[
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
                     'lib/images/6 Pharmacy locater-2.png'),
@@ -120,9 +122,9 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     child: InkWell(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const MedicalRecords()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const PatientProfile()));
                       },
-                      child: Icon(Icons.person,)),
+                      child: const Icon(Icons.person,)),
                   )],
               ),
             ),
