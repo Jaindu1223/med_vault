@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:med_vault/pages/doctor/patient_history.dart';
 import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:med_vault/pages/patient/my_qr.dart';
+import 'package:med_vault/pages/patient/patient_profile.dart';
 import 'package:med_vault/pages/patient/pharmacy_locator.dart';
 
 class HomePage extends StatefulWidget {
@@ -120,7 +122,7 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     child: InkWell(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const MedicalRecords()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const PatientProfile()));
                       },
                       child: const Icon(Icons.person,)),
                   )],

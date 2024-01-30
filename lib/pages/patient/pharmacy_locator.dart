@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:med_vault/pages/patient/home_page.dart';
 import 'package:med_vault/pages/patient/medical_record.dart';
 
 class PharmacyLocator extends StatefulWidget {
@@ -44,18 +45,18 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
 
                     children: [
                       const Text(
-                        'Welcome to ',
+                        'Medicine Spotter',
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          fontSize: 20,
+                          fontSize: 25,
                           color: Colors.white,
                         ),
                       ),
                       const Text(
-                        'MedVault',
+                        '<<caption>>',
                         style: TextStyle(
                           fontWeight: FontWeight.w900,
-                          fontSize: 29,
+                          fontSize: 13,
                           color: Colors.white,
                         ),
 
@@ -86,7 +87,7 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
                       ),
                     ],
                   ),
-                  const SizedBox(width: 86,),
+                  const SizedBox(width: 46,),
 
 
 
@@ -94,7 +95,7 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
                     height: 140,
                     width: 100,
                     child: Image.asset(
-                      'lib/images/image 9326.png',),
+                      'lib/images/medicine.png',),
 
                     //color: Colors.limeAccent,
                   ),
@@ -162,7 +163,7 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
                             child: Center(
                               child: InkWell(
                                 onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const MedicalRecords()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage()));
                                 },
 
                                 child: Container(

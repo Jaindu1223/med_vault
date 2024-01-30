@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:med_vault/pages/doctor/home_pageD.dart';
 import 'package:med_vault/pages/patient/medical_record.dart';
 
 class NewPrescription extends StatefulWidget {
@@ -94,7 +95,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                         height: 140,
                         width: 100,
                         child: Image.asset(
-                          'lib/images/image 9326.png',),
+                          'lib/images/doctor.png',),
 
                         //color: Colors.limeAccent,
                       ),
@@ -196,7 +197,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                 child: Center(
                                   child: InkWell(
                                     onTap: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const MedicalRecords()));
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePageDoc()));
                                     },
 
                                     child: Container(

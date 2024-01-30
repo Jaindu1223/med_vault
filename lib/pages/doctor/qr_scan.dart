@@ -46,7 +46,7 @@ class _QrScanState extends State<QrScan> {
 
                         children: [
                           const Text(
-                            'Welcome to ',
+                            'Digital ',
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 20,
@@ -54,7 +54,7 @@ class _QrScanState extends State<QrScan> {
                             ),
                           ),
                           const Text(
-                            'MedVault',
+                            'Prescription',
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
                               fontSize: 29,
@@ -96,7 +96,7 @@ class _QrScanState extends State<QrScan> {
                         height: 140,
                         width: 100,
                         child: Image.asset(
-                          'lib/images/image 9326.png',),
+                          'lib/images/qr.png',),
 
                         //color: Colors.limeAccent,
                       ),

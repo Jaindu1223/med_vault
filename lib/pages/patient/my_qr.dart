@@ -42,23 +42,23 @@ class _MyQRState extends State<MyQR> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Welcome to ',
+                      'My QR',
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
-                        fontSize: 20,
+                        fontSize: 29,
                         color: Colors.white,
                       ),
                     ),
-                    const Text(
+                    /*const Text(
                       'MedVault',
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize: 29,
                         color: Colors.white,
                       ),
-                    ),
+                    ),*/
                     SizedBox(
-                      height: 40,
+                      height: 60,
                       width: 20,
                       child: Image.asset('lib/images/Group 2085662530.png'),
 
@@ -83,13 +83,13 @@ class _MyQRState extends State<MyQR> {
                   ],
                 ),
                 const SizedBox(
-                  width: 86,
+                  width: 100,
                 ),
                 SizedBox(
-                  height: 140,
-                  width: 100,
+                  height: 120,
+                  width: 70,
                   child: Image.asset(
-                    'lib/images/image 9326.png',
+                    'lib/images/qr-code-blue.png',
                   ),
 
                   //color: Colors.limeAccent,

@@ -100,7 +100,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                       height: 140,
                       width: 100,
                       child: Image.asset(
-                        'lib/images/image 9326.png',),
+                        'lib/images/doctor.png',),
 
                       //color: Colors.limeAccent,
                     ),
