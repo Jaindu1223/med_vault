@@ -67,7 +67,7 @@ class _SignInState extends State<SignIn> {
                       ),
 
                       const SizedBox(height: 16),
-                      TextField(
+                      /*TextField(
                         controller: _passwordController,
                         // obscureText: true,
                         decoration: InputDecoration(
@@ -83,7 +83,7 @@ class _SignInState extends State<SignIn> {
                           filled: true,
                           contentPadding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
                         ),
-                      ),
+                      ),*/
                       const SizedBox(height: 16),
 
                       TextField(
