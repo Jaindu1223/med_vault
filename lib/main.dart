@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_vault/pages/catergory.dart';
+import 'package:med_vault/pages/doctor/qrScanner.dart';
 
 import 'package:med_vault/pages/patient/home_page.dart';
 import 'package:med_vault/pages/patient/sign_in.dart';

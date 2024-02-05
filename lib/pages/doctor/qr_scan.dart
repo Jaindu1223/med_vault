@@ -12,6 +12,7 @@ class QrScan extends StatefulWidget {
 }
 
 class _QrScanState extends State<QrScan> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,14 +30,11 @@ class _QrScanState extends State<QrScan> {
                   ),
                 ),
               ),
+
               Column(
                 children: [
 
                   Container(
-
-                    /*decoration: BoxDecoration(
-                color: Colors.lightBlue
-              ),*/
                     padding: const EdgeInsets.only(left: 20,top: 30, right: 3, bottom: 7),
                     child: Row(children: [
 
@@ -119,14 +117,6 @@ class _QrScanState extends State<QrScan> {
                       decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(9)),
                       child: Row(children: [
 
-                        /*SizedBox(
-
-                      height: 400,
-                      width: 100,
-                      child: Image.asset(
-                        'lib/images/prescription.png',),
-                      //color: Colors.blue,
-                    ),*/
                         //const SizedBox(height: 35,width: 10,),
 
                         Expanded(
@@ -150,13 +140,7 @@ class _QrScanState extends State<QrScan> {
                                 ),
                               ),
                               const SizedBox(height: 330,),
-                              /*const Text(
-                                '<<Display Pharmacy Address>>',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 11,
-                                ),
-                              ),*/
+
                               const SizedBox(height: 17),
 
                               Padding(
@@ -235,24 +219,7 @@ class _QrScanState extends State<QrScan> {
 
                   const SizedBox(height: 25),
 
-                  /*Container(
 
-                child: Row(children: [
-                  Container(
-                    height: 100,
-                    width: 100,
-                    color: Colors.limeAccent,
-                  ),
-
-                  const Column(
-                    children: [
-                      Text('Welcome to '),
-                      Text('MedVault')
-                    ],
-                  ),
-
-                ],),
-              ),*/
                   //doctor list
 
                 ],
