@@ -327,7 +327,7 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
               },
             )
                 : Center(
-              child: Text('No pharmacies found'),
+                  child: Text('No pharmacies found'),
             ),
           ),
         ],
