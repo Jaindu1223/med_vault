@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:med_vault/pages/catergory.dart';
 import 'package:med_vault/pages/doctor/qrScanner.dart';
 import 'package:med_vault/pages/mongodb.dart';
-
 import 'package:med_vault/pages/patient/home_page.dart';
 import 'package:med_vault/pages/patient/qr_generator.dart';
 import 'package:med_vault/pages/patient/sign_in.dart';
 import 'package:med_vault/pages/splash_screen.dart';
 
-Future<void> main() async {
+
+/*Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await MongoDatabase.connect();
   runApp(const MyApp());
+}*/
+void main(){
+  runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
