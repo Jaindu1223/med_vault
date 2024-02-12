@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:med_vault/pages/catergory.dart';
 import 'package:med_vault/pages/doctor/qrScanner.dart';
+import 'package:med_vault/pages/mongodb.dart';
 
 import 'package:med_vault/pages/patient/home_page.dart';
 import 'package:med_vault/pages/patient/qr_generator.dart';
 import 'package:med_vault/pages/patient/sign_in.dart';
 import 'package:med_vault/pages/splash_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await MongoDatabase.connect();
   runApp(const MyApp());
 }
 
