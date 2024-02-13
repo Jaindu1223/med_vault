@@ -45,18 +45,18 @@ class _NewPrescriptionState extends State<NewPrescription> {
 
                         children: [
                           const Text(
-                            'Welcome to ',
+                            'New Prescription',
                             style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 20,
+                              fontWeight: FontWeight.w900,
+                              fontSize: 26,
                               color: Colors.white,
                             ),
                           ),
                           const Text(
-                            'MedVault',
+                            'Digital',
                             style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 29,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 13,
                               color: Colors.white,
                             ),
 
@@ -73,7 +73,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                           const Text(
                             'Monday 23rd, July, 2060',
                             style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 12,
                               color: Colors.white,
                             ),
                           ),
@@ -87,7 +87,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                           ),
                         ],
                       ),
-                      const SizedBox(width: 86,),
+                      const SizedBox(width: 46,),
 
 
 

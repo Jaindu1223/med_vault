@@ -45,22 +45,22 @@ class _PatientHistoryState extends State<PatientHistory> {
 
                         children: [
                           const Text(
-                            'Welcome to ',
+                            'Patients History',
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              fontSize: 20,
+                              fontSize: 25,
                               color: Colors.white,
                             ),
                           ),
-                          const Text(
+                          /*const Text(
                             'MedVault',
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
-                              fontSize: 29,
+                              fontSize: 12,
                               color: Colors.white,
                             ),
 
-                          ),
+                          ),*/
                           SizedBox(
                             height: 40,
                             width: 20,
@@ -87,7 +87,7 @@ class _PatientHistoryState extends State<PatientHistory> {
                           ),
                         ],
                       ),
-                      const SizedBox(width: 86,),
+                      const SizedBox(width: 56,),
 
 
 
