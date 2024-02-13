@@ -36,7 +36,7 @@ class _homepage1State extends State<homepage1> {
             return SignInDoc();
           }
           return const Center(
-              child: CircularProgressIndicator()
+              child: CircularProgressIndicator(),
           );
         },
       ),
@@ -49,18 +49,15 @@ class SignInDoc extends StatefulWidget {
   const SignInDoc({super.key});
 
   @override
-  State<SignInDoc> createState() => _SignInDocState();
+  _SignInDocState  createState() => _SignInDocState();
 }
 
 class _SignInDocState extends State<SignInDoc> {
 
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+
 
   static Future<User?> loggingUsingEmailPassword(
-  {required String email,
-  required String password,
-  required BuildContext context}) async{
+      {required String email, required String password, required BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
     try {
@@ -77,8 +74,9 @@ class _SignInDocState extends State<SignInDoc> {
 
   @override
   Widget build(BuildContext context) {
-
-    return  Scaffold(
+    TextEditingController _emailController = TextEditingController();
+    TextEditingController _passwordController = TextEditingController();
+    return Scaffold(
         body: Stack(
             children: [
               Image.asset(
@@ -95,7 +93,8 @@ class _SignInDocState extends State<SignInDoc> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 80.0), // Add padding at the top
+                        padding: const EdgeInsets.only(top: 80.0),
+                        // Add padding at the top
                         child: Center(
                           child: Image.asset(
                             'lib/images/welcome.png',
@@ -107,7 +106,8 @@ class _SignInDocState extends State<SignInDoc> {
 
 
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0), // Add padding here
+                        padding: const EdgeInsets.only(top: 10.0),
+                        // Add padding here
                         child: TextField(
                           controller: _emailController,
                           decoration: InputDecoration(
@@ -121,7 +121,8 @@ class _SignInDocState extends State<SignInDoc> {
                             ),
                             fillColor: Colors.grey.shade100,
                             filled: true,
-                            contentPadding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                            contentPadding: const EdgeInsets.fromLTRB(
+                                16.0, 10.0, 16.0, 10.0),
                           ),
                         ),
                       ),
@@ -142,7 +143,8 @@ class _SignInDocState extends State<SignInDoc> {
                           ),
                           fillColor: Colors.grey.shade100,
                           filled: true,
-                          contentPadding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                          contentPadding: const EdgeInsets.fromLTRB(
+                              16.0, 10.0, 16.0, 10.0),
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -152,7 +154,8 @@ class _SignInDocState extends State<SignInDoc> {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
+                              MaterialPageRoute(builder: (context) =>
+                                  ForgotPasswordPage()),
                             );
                           },
                           child: const Text(
@@ -171,8 +174,7 @@ class _SignInDocState extends State<SignInDoc> {
                           elevation: 0.0,
                           padding: const EdgeInsets.symmetric(vertical: 20.0),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                            ),
+                            borderRadius: BorderRadius.circular(5.0),),
                           onPressed: () async {
                             User? user = await loggingUsingEmailPassword(
                                 email: _emailController.text,
@@ -180,13 +182,14 @@ class _SignInDocState extends State<SignInDoc> {
                                 context: context);
                             print(user);
                             if (user != null) {
-                              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomePageDoc()));
+                              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>HomePageDoc()));
+
                             }
                           },
                           child: const Text('Sign in',
                               style: TextStyle(
-                                  color: Colors.blue,
-                                  fontSize: 18,
+                                color: Colors.blue,
+                                fontSize: 18,
                               )),
                         ),
                       ),
@@ -198,7 +201,8 @@ class _SignInDocState extends State<SignInDoc> {
                           const Text('Don\'t have an account ?'),
                           TextButton(
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignUpDoc()));
+                              Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) => const SignUpDoc()));
                             },
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.blue,
@@ -218,7 +222,7 @@ class _SignInDocState extends State<SignInDoc> {
                                   decoration: TextDecoration.underline,
                                 ),
                                 recognizer: TapGestureRecognizer()
-                                  ..onTap=(){
+                                  ..onTap = () {
                                     //the link to the page
                                   },
                               ),
@@ -244,7 +248,7 @@ class _SignInDocState extends State<SignInDoc> {
                           color: Colors.black,
                         ),
                       ),
-                    ],//children
+                    ], //children
                   ),
                 ),
               ),
