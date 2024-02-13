@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:med_vault/pages/doctor/signin_doc.dart';
 import 'package:med_vault/pages/patient/sign_in.dart';
 
 class SignUpDoc extends StatefulWidget {
@@ -164,9 +165,9 @@ class _SignUpDocState extends State<SignUpDoc> {
                       Padding(
                         padding: const EdgeInsets.only(right: 200),
                         child: InkWell(
-                          // onTap: (){
-                          //   Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignIn()));
-                          // },
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignInDoc()));
+                          },
                           child: Container(
                             padding: const EdgeInsets.all(10),
                             width: 150,

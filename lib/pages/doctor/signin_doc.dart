@@ -1,11 +1,49 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:med_vault/pages/doctor/home_pageD.dart';
+import 'package:med_vault/pages/doctor/signup_doc.dart';
 import 'package:med_vault/pages/patient/fog_pw.dart';
 
 import 'package:med_vault/pages/patient/home_page.dart';
 import 'package:med_vault/pages/patient/sign_up.dart';
+
+import '../catergory.dart';
 //import 'package:med_vault/pages/doctor/fog_pw.dart';
+
+class homepage1 extends StatefulWidget {
+  const homepage1({super.key});
+
+  @override
+  State<homepage1> createState() => _homepage1State();
+}
+
+class _homepage1State extends State<homepage1> {
+
+  Future<FirebaseApp> _initializeFirebase() async {
+    FirebaseApp firebaseApp = await Firebase.initializeApp();
+    return firebaseApp;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: FutureBuilder(
+        future: _initializeFirebase(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return SignInDoc();
+          }
+          return const Center(
+              child: CircularProgressIndicator()
+          );
+        },
+      ),
+    );
+  }
+}
+
 
 class SignInDoc extends StatefulWidget {
   const SignInDoc({super.key});
@@ -15,10 +53,31 @@ class SignInDoc extends StatefulWidget {
 }
 
 class _SignInDocState extends State<SignInDoc> {
+
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  static Future<User?> loggingUsingEmailPassword(
+  {required String email,
+  required String password,
+  required BuildContext context}) async{
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
+    try {
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      user = userCredential.user;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "user-not-found") {
+        print("No user found for that email.");
+      }
+    }
+    return user;
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return  Scaffold(
         body: Stack(
             children: [
@@ -105,33 +164,41 @@ class _SignInDocState extends State<SignInDoc> {
                         ),
                       ),
                       const SizedBox(height: 56),
-                      Center(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePageDoc()));
+                      Container(
+                        width: double.infinity,
+                        child: RawMaterialButton(
+                          fillColor: const Color(0xFF0069FE),
+                          elevation: 0.0,
+                          padding: const EdgeInsets.symmetric(vertical: 20.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                            ),
+                          onPressed: () async {
+                            User? user = await loggingUsingEmailPassword(
+                                email: _emailController.text,
+                                password: _passwordController.text,
+                                context: context);
+                            print(user);
+                            if (user != null) {
+                              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomePageDoc()));
+                            }
                           },
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue,
-                              fixedSize: const Size(260, 28),
-                              foregroundColor: Colors.white,
-                              textStyle: const TextStyle(
-                                fontSize: 18,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                              )
-                          ),
-                          child: const Text('Sign in'),
+                          child: const Text('Sign in',
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 18,
+                              )),
                         ),
                       ),
                       const SizedBox(height: 30),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text('Don\'t have an account ?'),
                           TextButton(
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignUp()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignUpDoc()));
                             },
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.blue,
