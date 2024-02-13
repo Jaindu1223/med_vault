@@ -238,3 +238,86 @@ class MedVaultHomePage extends StatelessWidget {
   }
 }
 
+//qr black
+
+import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'package:uuid/uuid.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'QR Code Generator',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('QR Code Generator'),
+      ),
+      body: StreamBuilder<User?>(
+        stream: _auth.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          } else if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          } else if (snapshot.hasData) {
+            String qrData = snapshot.data!.email!;
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: QrImage(
+                    qrData,
+                    version: QrVersions.auto,
+                    size: 200.0,
+                  ),
+                ),
+                SizedBox(height: 20.0),
+                ElevatedButton(
+                  onPressed: () async {
+                    String qrCodeId = const Uuid().v4();
+                    await _firestore.collection('qr_codes').doc(qrCodeId).set({
+                      'user_email': qrData,
+                      'created_at': Timestamp.now(),
+                    });
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('QR code saved to Firestore'),
+                      ),
+                    );
+                  },
+                  child: Text('Save QR Code'),
+                ),
+              ],
+            );
+          } else {
+            return Text('No user signed in');
+          }
+        },
+      ),
+    );
+  }
+}
