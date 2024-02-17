@@ -40,10 +40,11 @@ dependencies:
   http: ^1.2.0
   qr_code_scanner: ^1.0.1
   url_launcher: ^6.2.4
-  qr_flutter: ^4.1.0
+  qr_flutter: ^4.0.0
   mongo_dart: ^0.10.0
   firebase_core: ^2.25.4
   firebase_auth: ^4.17.4
+
 
 dev_dependencies:
   flutter_test:

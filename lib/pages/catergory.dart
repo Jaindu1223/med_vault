@@ -1,4 +1,5 @@
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:med_vault/pages/doctor/new_prescription.dart';
 import 'package:med_vault/pages/doctor/patient_history.dart';
@@ -16,6 +17,7 @@ class Category extends StatefulWidget {
 }
 
 class _CategoryState extends State<Category> {
+
   String? _userType;
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class _CategoryState extends State<Category> {
       body: Stack(
         children:[
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
                     'lib/images/welc.png'),
@@ -41,7 +43,7 @@ class _CategoryState extends State<Category> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.symmetric(vertical: 10.0),
 
 
@@ -56,11 +58,11 @@ class _CategoryState extends State<Category> {
                       if(_userType=='Doctor'){
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context)=> SignInDoc()),
+                          MaterialPageRoute(builder: (context)=> homepage1()),
                         );
                       }//if
                     },
-                    title: Text('Doctor'),
+                    title: const Text('Doctor'),
                   ),
 
                   RadioListTile<String>(
@@ -77,7 +79,7 @@ class _CategoryState extends State<Category> {
                         );
                       }//if
                     },
-                    title: Text('Patient'),
+                    title: const Text('Patient'),
                   )
                 ],
               ),
@@ -93,5 +95,8 @@ class _CategoryState extends State<Category> {
     );
   }
 }
+
+
+
 
 
