@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const app = express();
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/pharmacy');
+
+///mongoose.connect('mongodb://localhost/pharmacy');
 //mongoose.connect("mongodb+srv://cluster0.ys7cny6.mongodb.net/" --apiVersion 1 --username user1)
 
 // Pharmacy schema definition
@@ -13,7 +14,7 @@ const pharmacySchema = new mongoose.Schema({
   location: String,
   medicines: [{ name: String, stock: Number }],
 });
-const Pharmacy = mongoose.model('Pharmacy', pharmacySchema);
+//const Pharmacy = mongoose.model('Pharmacy', pharmacySchema);
 
 // REST API
 app.get('/pharmacies', async (req, res) => {

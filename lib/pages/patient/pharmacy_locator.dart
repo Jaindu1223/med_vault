@@ -254,18 +254,18 @@ class _PharmacyLocatorState extends State<PharmacyLocator> {
   }
 
   Future<void> _fetchPharmacies() async {
-    const url = 'http://localhost:3000/pharmacies';
-    final response = await http.get(Uri.parse(url));
-
-    if (response.statusCode == 200) {
-      setState(() {
-        _pharmacies = (jsonDecode(response.body) as List)
-            .map((json) => Pharmacy.fromJson(json))
-            .toList();
-      });
-    } else {
-      throw Exception('Failed to load pharmacies');
-    }
+    // const url = 'http://localhost:3000/pharmacies';
+    // final response = await http.get(Uri.parse(url));
+    //
+    // if (response.statusCode == 200) {
+    //   setState(() {
+    //     _pharmacies = (jsonDecode(response.body) as List)
+    //         .map((json) => Pharmacy.fromJson(json))
+    //         .toList();
+    //   });
+    // } else {
+    //   throw Exception('Failed to load pharmacies');
+    // }
   }
 
   @override
