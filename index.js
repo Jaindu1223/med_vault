@@ -36,7 +36,7 @@ const express = require('express');
 //const routes = require('./src/routes/testRoute')
 
 const app = express();
-const PORT = 4000;
+const PORT = 3000;
 
 app.use(bodyParser.json());
 
@@ -104,4 +104,4 @@ async function run() {
     await client.close();
   }
 }
-run().catch(console.dir);
+run().catch(console.dir); 
