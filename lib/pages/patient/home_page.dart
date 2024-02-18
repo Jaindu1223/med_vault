@@ -4,6 +4,7 @@ import 'package:med_vault/pages/doctor/patient_history.dart';
 import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:med_vault/pages/patient/my_qr.dart';
 import 'package:med_vault/pages/patient/patient_profile.dart';
+import 'package:med_vault/pages/patient/pharmacy_finder.dart';
 import 'package:med_vault/pages/patient/pharmacy_locator.dart';
 
 class HomePage extends StatefulWidget {
@@ -169,7 +170,7 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(height: 17),
                         InkWell(
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>const PharmacyLocator()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> PharmacySearchScreen()));
                           },
                           child: Container(
                             padding: const EdgeInsets.all(4),
