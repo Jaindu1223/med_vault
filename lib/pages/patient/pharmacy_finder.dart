@@ -15,7 +15,7 @@ class _PharmacySearchScreenState extends State<PharmacySearchScreen> {
   Future<void> searchPharmacy() async {
     final response = await http.post(
       // Uri.parse('https://127.0.0.1:27017/searchPharmacies'),
-      Uri.parse('http://localhost:4000/searchPharmacies '),
+      Uri.parse('http://localhost:4000/searchPharmacies'),
       headers: <String, String>{
         'Content-Type': 'application/json',
       },
