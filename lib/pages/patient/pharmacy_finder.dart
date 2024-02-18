@@ -64,7 +64,7 @@ class _PharmacySearchScreenState extends State<PharmacySearchScreen> {
               child: Text('Search Pharmacy'),
             ),
             SizedBox(height: 20),
-            PharmacySearchScreen Text('Pharmacy Name: $_pharmacyName'),
+            Text('Pharmacy Name: $_pharmacyName'),
           ],
         ),
       ),
