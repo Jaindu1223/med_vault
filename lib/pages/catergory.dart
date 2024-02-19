@@ -1,6 +1,7 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:med_vault/pages/doctor/home_pageD.dart';
 import 'package:med_vault/pages/doctor/new_prescription.dart';
 import 'package:med_vault/pages/doctor/patient_history.dart';
 import 'package:med_vault/pages/doctor/signin_doc.dart';
@@ -58,7 +59,7 @@ class _CategoryState extends State<Category> {
                       if(_userType=='Doctor'){
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context)=> homepage1()),
+                          MaterialPageRoute(builder: (context)=> HomePageDoc()),
                         );
                       }//if
                     },

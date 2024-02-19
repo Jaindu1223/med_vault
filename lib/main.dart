@@ -5,7 +5,6 @@ import 'package:med_vault/pages/doctor/qrScanner.dart';
 import 'package:med_vault/pages/doctor/signin_doc.dart';
 import 'package:med_vault/pages/mongodb.dart';
 import 'package:med_vault/pages/patient/home_page.dart';
-import 'package:med_vault/pages/patient/qr_bla.dart';
 import 'package:med_vault/pages/patient/qr_generator.dart';
 import 'package:med_vault/pages/patient/sign_in.dart';
 import 'package:med_vault/pages/splash_screen.dart';

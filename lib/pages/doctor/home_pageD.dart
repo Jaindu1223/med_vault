@@ -2,11 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:med_vault/pages/doctor/customize_prescription.dart';
 import 'package:med_vault/pages/doctor/doctor_profile.dart';
+import 'package:med_vault/pages/doctor/patient_history.dart';
 import 'package:med_vault/pages/doctor/qrScanner.dart';
 import 'package:med_vault/pages/doctor/qr_scan.dart';
 import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:med_vault/pages/patient/my_qr.dart';
 import 'package:med_vault/pages/patient/pharmacy_locator.dart';
+
+import 'new_prescription.dart';
 
 class HomePageDoc extends StatefulWidget {
   const HomePageDoc({Key? key}):super(key:key);
@@ -171,7 +174,7 @@ class _HomePageDocState extends State<HomePageDoc> {
 
                             InkWell(
                               onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>const qrScanner()));
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>const QrScan()));
                               },
                               child: Container(
                                 padding: const EdgeInsets.all(4),
