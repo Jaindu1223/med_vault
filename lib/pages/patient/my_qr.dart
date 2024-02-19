@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -11,9 +13,38 @@ class MyQR extends StatefulWidget {
 
 class _MyQRState extends State<MyQR> {
 
+  String? userEmail; // Store user's email fetched from the backend
   final TextEditingController _textController = TextEditingController(text: '');
   String data = '';
-  final GlobalKey _qrkey = GlobalKey();
+  GlobalKey _qrkey = GlobalKey();
+
+  // Function to fetch user's email from backend
+  Future<void> fetchUserEmail() async {
+    final response = await http.get(
+        //Uri.parse('https://your-backend-api/user/${userId}/email')); // Replace with your actual backend endpoint
+      Uri.parse('http://localhost:4000/searchPharmacies'),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(<String, String>{
+        'medicineName': _medicineController.text,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      setState(() {
+        userEmail = response.body['email'];
+      });
+    } else {
+      print('Failed to fetch user email: ${response.reasonPhrase}');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUserEmail(); // Fetch user's email when the widget is initialized
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -150,26 +181,26 @@ class _MyQRState extends State<MyQR> {
                 ),
               ),
               const SizedBox(height: 25,),
-        
+
               Center(
-                child: RepaintBoundary(
-                  key: _qrkey,
-                  child: QrImageView(
-                    data: data,
+                child: userEmail == null
+                    ? CircularProgressIndicator() // Show loading indicator while fetching email
+                : QrImageView(
+                    data: userEmail!,
                     version: QrVersions.auto,
                     size: 250.0,
                     gapless: true,
                     errorStateBuilder: (ctx, err) {
                       return const Center(
                         child: Text(
-                          'Something went wrong!!!',
+                          'Something went wrong!',
                           textAlign: TextAlign.center,
                         ),
                       );
                     },
                   ),
                 ),
-              ),
+
             ],
           ),
         ],),
