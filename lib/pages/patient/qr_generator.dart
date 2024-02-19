@@ -42,11 +42,11 @@ class _QrGeneratorState extends State<QrGenerator> {
             ? Container(
           width: 200.0,
           height: 200.0,
-          /*child: QrImage(
+          child: QrImageView(
             data: _qrCodeData!,
             version: QrVersions.auto,
             size: 200.0,
-          ),*/
+          ),
         )
             : CircularProgressIndicator(),
       ),
