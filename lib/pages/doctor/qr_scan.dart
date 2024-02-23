@@ -325,42 +325,38 @@ class _QrScanState extends State<QrScan> {
                   child: Text("Create a new prescription"),
                 ),
 
-      const SizedBox(height: 5),
-
-      Padding(
-        padding: const EdgeInsets.only(left: 100),
-        child: Center(
-          child: InkWell(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>const NewPrescription()));
-            },
-
-            child: Container(
-
-              //padding: const EdgeInsets.only(left: 20,top: 20,right: 20,bottom: 20),
-              padding: const EdgeInsets.all(6),
-              width: 170,
-
-
-              decoration: BoxDecoration(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Center(
-                child: Text(
-                    'New Prescription',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 11)
-
-                ),
-              ),
-            ),),),),
-
-
               ],
             ),
-          )
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 50),
+            child: Center(
+              child: InkWell(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const NewPrescription()));
+                },
+
+                child: Container(
+
+                  //padding: const EdgeInsets.only(left: 20,top: 20,right: 20,bottom: 20),
+                  padding: const EdgeInsets.all(6),
+                  width: 150,
+
+
+                  decoration: BoxDecoration(
+                    color: Colors.blueAccent,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Center(
+                    child: Text(
+                        'New Prescription',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 11)
+
+                    ),
+                  ),
+                ),),),),
         ],
       ),
     );
