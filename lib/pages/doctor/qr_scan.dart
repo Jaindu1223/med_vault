@@ -237,6 +237,7 @@ class _QrScanState extends State<QrScan> {
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:med_vault/pages/doctor/new_prescription.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -323,6 +324,40 @@ class _QrScanState extends State<QrScan> {
                   },
                   child: Text("Create a new prescription"),
                 ),
+
+      const SizedBox(height: 5),
+
+      Padding(
+        padding: const EdgeInsets.only(left: 100),
+        child: Center(
+          child: InkWell(
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>const NewPrescription()));
+            },
+
+            child: Container(
+
+              //padding: const EdgeInsets.only(left: 20,top: 20,right: 20,bottom: 20),
+              padding: const EdgeInsets.all(6),
+              width: 170,
+
+
+              decoration: BoxDecoration(
+                color: Colors.blueAccent,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Center(
+                child: Text(
+                    'New Prescription',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 11)
+
+                ),
+              ),
+            ),),),),
+
+
               ],
             ),
           )

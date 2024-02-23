@@ -19,32 +19,33 @@ class _MyQRState extends State<MyQR> {
   GlobalKey _qrkey = GlobalKey();
 
   // Function to fetch user's email from backend
-  Future<void> fetchUserEmail() async {
-    final response = await http.get(
-        //Uri.parse('https://your-backend-api/user/${userId}/email')); // Replace with your actual backend endpoint
-      Uri.parse('http://localhost:4000/searchPharmacies'),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(<String, String>{
-        'medicineName': _medicineController.text,
-      }),
-    );
+  // Future<void> fetchUserEmail() async {
+  //
+  //   final response = await http.get(
+  //       //Uri.parse('https://your-backend-api/user/${userId}/email')); // Replace with your actual backend endpoint
+  //     Uri.parse('http://localhost:3000/users'),
+  //     headers: <String, String>{
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: jsonEncode(<String, String>{
+  //       'email': _medicineController.text,
+  //     }),
+  //   );
+  //
+  //   if (response.statusCode == 200) {
+  //     setState(() {
+  //       userEmail = response.body['email'];
+  //     });
+  //   } else {
+  //     print('Failed to fetch user email: ${response.reasonPhrase}');
+  //   }
+  // }
 
-    if (response.statusCode == 200) {
-      setState(() {
-        userEmail = response.body['email'];
-      });
-    } else {
-      print('Failed to fetch user email: ${response.reasonPhrase}');
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    fetchUserEmail(); // Fetch user's email when the widget is initialized
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   fetchUserEmail(); // Fetch user's email when the widget is initialized
+  // }
 
   @override
   Widget build(BuildContext context) {
