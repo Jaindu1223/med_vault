@@ -40,7 +40,7 @@ class _MyQRState extends State<MyQR> {
   //     print('Failed to fetch user email: ${response.reasonPhrase}');
   //   }
   // }
-
+  //
   // @override
   // void initState() {
   //   super.initState();
@@ -184,10 +184,10 @@ class _MyQRState extends State<MyQR> {
               const SizedBox(height: 25,),
 
               Center(
-                child: userEmail == null
-                    ? CircularProgressIndicator() // Show loading indicator while fetching email
-                : QrImageView(
-                    data: userEmail!,
+                child: RepaintBoundary(
+                  key: _qrkey,
+                  child: QrImageView(
+                    data: data,
                     version: QrVersions.auto,
                     size: 250.0,
                     gapless: true,
@@ -200,7 +200,10 @@ class _MyQRState extends State<MyQR> {
                       );
                     },
                   ),
-                ),
+                )
+
+
+              ),
 
             ],
           ),
