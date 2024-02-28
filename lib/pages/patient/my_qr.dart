@@ -1,8 +1,10 @@
-import 'dart:convert';
+// import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:http/http.dart' as http;
+import 'dart:ui';
 
 class MyQR extends StatefulWidget {
   const MyQR({super.key});
@@ -13,10 +15,11 @@ class MyQR extends StatefulWidget {
 
 class _MyQRState extends State<MyQR> {
 
-  String? userEmail; // Store user's email fetched from the backend
-  final TextEditingController _textController = TextEditingController(text: '');
+  // String? userEmail; // Store user's email fetched from the backend  *****
+  // final TextEditingController _textController = TextEditingController(text: '');***
+
   String data = '';
-  GlobalKey _qrkey = GlobalKey();
+  // GlobalKey _qrkey = GlobalKey(); ****
 
   // Function to fetch user's email from backend
   // Future<void> fetchUserEmail() async {
@@ -40,12 +43,31 @@ class _MyQRState extends State<MyQR> {
   //     print('Failed to fetch user email: ${response.reasonPhrase}');
   //   }
   // }
-
+  //
   // @override
   // void initState() {
   //   super.initState();
   //   fetchUserEmail(); // Fetch user's email when the widget is initialized
   // }
+
+
+  Future<void> fetchDataFromDatabase() async {
+    try {
+      // Replace 'YOUR_API_ENDPOINT' with the actual API endpoint to fetch NIC number
+      var url = Uri.parse('/userEmails');
+      var response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        setState(() {
+          data = response.body; // Assign the NIC number fetched from the database
+        });
+      } else {
+        throw Exception('Failed to fetch data from the database');
+      }
+    } catch (e) {
+      print('Error fetching data: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -143,11 +165,11 @@ class _MyQRState extends State<MyQR> {
         
               const SizedBox(height: 25),
         
-              Padding(
-                padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+              const Padding(
+                padding: EdgeInsets.only(left: 16.0, right: 16.0),
                 child: TextField(
-                  controller: _textController,
-                  decoration: const InputDecoration(
+                  // controller: _textController,
+                  decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(10),
                     labelText: 'Enter Text',
                     labelStyle: TextStyle(color: Colors.white),
@@ -165,16 +187,24 @@ class _MyQRState extends State<MyQR> {
               const SizedBox(height: 15,),
         
               RawMaterialButton(
-                onPressed: () {
-                  setState(() {
-                    data = _textController.text;
-                  });
-                },
+
+                onPressed: fetchDataFromDatabase,
+
+                // onPressed: () {
+                //   setState(() {
+                //     data = _textController.text;
+                //   });
+                // },
+
                 fillColor: Colors.cyan,
                 shape: const StadiumBorder(),
                 padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
                 child: const Text(
-                  'Generate',
+
+                  'Fetch NIC from Database',
+
+                  // 'Generate',
+
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -184,10 +214,10 @@ class _MyQRState extends State<MyQR> {
               const SizedBox(height: 25,),
 
               Center(
-                child: userEmail == null
-                    ? CircularProgressIndicator() // Show loading indicator while fetching email
-                : QrImageView(
-                    data: userEmail!,
+                child: RepaintBoundary(
+                  // key: _qrkey,
+                  child: QrImageView(
+                    data: data,
                     version: QrVersions.auto,
                     size: 250.0,
                     gapless: true,
@@ -200,7 +230,10 @@ class _MyQRState extends State<MyQR> {
                       );
                     },
                   ),
-                ),
+                )
+
+
+              ),
 
             ],
           ),
