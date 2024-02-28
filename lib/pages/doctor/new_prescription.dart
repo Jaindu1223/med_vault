@@ -133,30 +133,98 @@ class _NewPrescriptionState extends State<NewPrescription> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
 
+
                               const Text(
-                                'New  .Prescription',
+                                'Medical Center',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 14,
                                     color: Colors.black87
                                 ),
                               ),
+                              const SizedBox(height: 1),
                               const Text(
-                                '<<edit>> ',
+                                'MD.Amber Smith',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 11,
+                                ),
+                              ),
+
+                              const Text(
+                                'Physiotherapist',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 11,
+                                ),
+                              ),
+                              const Text(
+                                'ID NO.236678',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 11,
+                                ),
+                              ),
+
+                              const SizedBox(height: 5),
+
+                              const TextField(
+                                decoration:  InputDecoration(labelText: 'Patient Name'),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 10,
+                                ),
+                              ),
+                              const TextField(
+                                decoration:  InputDecoration(labelText: 'Age'),
+                                keyboardType: TextInputType.number,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 11,
+                                ),
+                              ),
+                              const TextField(
+                                decoration:  InputDecoration(labelText: 'Address'),
+                                maxLines: null,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 11,
+                                ),
+                              ),
+                              const TextField(
+                                decoration:  InputDecoration(labelText: 'Medication Name'),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 11,
+                                ),
+                              ),
+                              const TextField(
+                                decoration: InputDecoration(labelText: 'Dosage'),
+                                keyboardType: TextInputType.number,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 11,
+                                ),
+                              ),
+                              const TextField(
+                                decoration:  InputDecoration(labelText: 'Instructions'),
                                 style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 11,
                                 ),
                               ),
                               const SizedBox(height: 330,),
-                              /*const Text(
+
+                              const Text(
                                 '<<Display Pharmacy Address>>',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 11,
                                 ),
-                              ),*/
+                              ),
+
                               const SizedBox(height: 17),
+
 
                               /*Padding(
                                 padding: const EdgeInsets.only(left: 100),
@@ -232,9 +300,10 @@ class _NewPrescriptionState extends State<NewPrescription> {
                     ),
                   ),
 
+
                   const SizedBox(height: 25),
 
-                  /*Container(
+                  /* Container(
 
                 child: Row(children: [
                   Container(
@@ -262,4 +331,6 @@ class _NewPrescriptionState extends State<NewPrescription> {
     );
   }
 }
+
+
 
