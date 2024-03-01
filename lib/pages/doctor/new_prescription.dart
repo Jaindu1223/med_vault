@@ -35,7 +35,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
     }
 
     final response = await http.post(
-      Uri.parse('http://localhost:3000/saveprescription'),
+      Uri.parse('http://10.0.2.2:3000/saveprescription'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -255,18 +255,20 @@ class _NewPrescriptionState extends State<NewPrescription> {
                         padding: const EdgeInsets.only(left: 100),
                         child: Center(
                           child: InkWell(
-                            onTap:(){
-                              _submitForm;
+                            onTap: () async {
+                              await _submitForm();
                               Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                      const HomePageDoc()));
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const HomePageDoc(),
+                                ),
+                              );
                             },
                             child: Container(
                               //padding: const EdgeInsets.only(left: 20,top: 20,right: 20,bottom: 20),
                               padding: const EdgeInsets.all(6),
                               width: 170,
+
                               decoration: BoxDecoration(
                                 color: Colors.blueAccent,
                                 borderRadius: BorderRadius.circular(8),
