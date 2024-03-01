@@ -28,16 +28,21 @@ class _NewPrescriptionState extends State<NewPrescription> {
                   ),
                 ),
               ),
-              Column(
-                children: [
+              SafeArea(
+                child:SingleChildScrollView(
+                 child:Column(
+                   children: [
 
                   Container(
 
                     /*decoration: BoxDecoration(
                 color: Colors.lightBlue
               ),*/
+
+
                     padding: const EdgeInsets.only(left: 20,top: 30, right: 3, bottom: 7),
-                    child: Row(children: [
+                    child: Row(
+                      children: [
 
                       const SizedBox(width: 6,height: 190,),
                       Column(
@@ -94,7 +99,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                       SizedBox(
                         height: 140,
                         width: 100,
-                        child: Image.asset(
+                         child: Image.asset(
                           'lib/images/doctor.png',),
 
                         //color: Colors.limeAccent,
@@ -303,7 +308,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
 
                   const SizedBox(height: 25),
 
-                  /* Container(
+                   Container(
 
                 child: Row(children: [
                   Container(
@@ -320,15 +325,19 @@ class _NewPrescriptionState extends State<NewPrescription> {
                   ),
 
                 ],),
-              ),*/
+              ),
                   //doctor list
 
                 ],
               ),
 
 
-            ])
+    )
+    )
+  ]
+    )
     );
+
   }
 }
 
