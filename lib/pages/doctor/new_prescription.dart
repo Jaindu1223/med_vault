@@ -255,7 +255,14 @@ class _NewPrescriptionState extends State<NewPrescription> {
                         padding: const EdgeInsets.only(left: 100),
                         child: Center(
                           child: InkWell(
-                            onTap: _submitForm,
+                            onTap:(){
+                              _submitForm;
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                      const HomePageDoc()));
+                            },
                             child: Container(
                               //padding: const EdgeInsets.only(left: 20,top: 20,right: 20,bottom: 20),
                               padding: const EdgeInsets.all(6),
