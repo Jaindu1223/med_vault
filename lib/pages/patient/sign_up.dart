@@ -1,204 +1,586 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:med_vault/pages/patient/sign_in.dart';
+import 'package:http/http.dart' as http;
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+// class SignUp extends StatefulWidget {
+//   const SignUp({super.key});
+//
+//   @override
+//   State<SignUp> createState() => _SignUpState();
+// }
+//
+// class _SignUpState extends State<SignUp> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//
+//         body: Stack(
+//           children: [
+//             Image.asset(
+//               'lib/images/signup_img.png',
+//               fit: BoxFit.cover,
+//               height: double.infinity,
+//               width: double.infinity,
+//             ),
+//             SingleChildScrollView(
+//               child: Padding(
+//                   padding: const EdgeInsets.fromLTRB(26.0, 50.0, 26.0, 26.0), // Add the padding here
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                 Text(
+//                   'Sign Up',
+//                   style: TextStyle(
+//                     fontSize: 34.0,
+//                     fontWeight: FontWeight.bold
+//                   ),
+//                 ),
+//                   SizedBox(height: 30.0),
+//
+//                 Text('Full name'),
+//                 TextField(
+//                   decoration: InputDecoration(
+//                     hintText: 'Enter your full name',
+//                     hintStyle: TextStyle(color: Colors.grey[500]),
+//                     enabledBorder: OutlineInputBorder(
+//                         borderSide: BorderSide(color: Colors.grey)),
+//                     focusedBorder: OutlineInputBorder(
+//                         borderSide: BorderSide(color: Colors.blue)),
+//                     fillColor: Colors.grey.shade100,
+//                     filled: true,
+//                     contentPadding: EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+//                   ),
+//                 ),
+//                 SizedBox(height: 20.0),
+//
+//                 Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     Text('Email Address'),
+//                     TextField(
+//                       decoration: InputDecoration(
+//                         hintText: 'Enter the Email Address',
+//                         hintStyle: TextStyle(color: Colors.grey[500]),
+//                         enabledBorder: OutlineInputBorder(
+//                             borderSide: BorderSide(color: Colors.grey)),
+//                         focusedBorder: OutlineInputBorder(
+//                             borderSide: BorderSide(color: Colors.blue)),
+//                         fillColor: Colors.grey.shade100,
+//                         filled: true,
+//                         contentPadding:
+//                         EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//                 SizedBox(height: 20.0),
+//
+//                 Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     Text('Phone Number'),
+//                     TextField(
+//                       decoration: InputDecoration(
+//                         hintText: 'Enter your phone number',
+//                         hintStyle: TextStyle(color: Colors.grey[500]),
+//                         enabledBorder: OutlineInputBorder(
+//                             borderSide: BorderSide(color: Colors.grey)),
+//                         focusedBorder: OutlineInputBorder(
+//                             borderSide: BorderSide(color: Colors.blue)),
+//                         fillColor: Colors.grey.shade100,
+//                         filled: true,
+//                         contentPadding:
+//                         EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//                 SizedBox(height: 20.0),
+//
+//                 Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     Text('NIC'),
+//                     TextField(
+//                       decoration: InputDecoration(
+//                         hintText: 'Enter your NIC',
+//                         hintStyle: TextStyle(color: Colors.grey[500]),
+//                         enabledBorder: OutlineInputBorder(
+//                             borderSide: BorderSide(color: Colors.grey)),
+//                         focusedBorder: OutlineInputBorder(
+//                             borderSide: BorderSide(color: Colors.blue)),
+//                         fillColor: Colors.grey.shade100,
+//                         filled: true,
+//                         contentPadding:
+//                         EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//                 SizedBox(height: 20.0),
+//
+//                 Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     Text('Password'),
+//                     TextField(
+//                       decoration: InputDecoration(
+//                         hintText: 'Enter your password',
+//                         hintStyle: TextStyle(color: Colors.grey[500]),
+//                         enabledBorder: OutlineInputBorder(
+//                             borderSide: BorderSide(color: Colors.grey)),
+//                         focusedBorder: OutlineInputBorder(
+//                             borderSide: BorderSide(color: Colors.blue)),
+//                         fillColor: Colors.grey.shade100,
+//                         filled: true,
+//                         contentPadding:
+//                         EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+//                       ),
+//                       obscureText: true,
+//                     ),
+//                   ],
+//                 ),
+//                 SizedBox(height: 20.0),
+//
+//                 Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     Text('Confirm password'),
+//                     TextField(
+//                       decoration: InputDecoration(
+//                         hintText: 'Enter your confirm password',
+//                         hintStyle: TextStyle(color: Colors.grey[500]),
+//                         enabledBorder: OutlineInputBorder(
+//                             borderSide: BorderSide(color: Colors.grey)
+//                         ),
+//                         focusedBorder: OutlineInputBorder(
+//                             borderSide: BorderSide(color: Colors.blue)
+//                         ),
+//                         fillColor: Colors.grey.shade100,
+//                         filled: true,
+//                         contentPadding: EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+//                       ),
+//                       obscureText: true,
+//                     ),
+//                     SizedBox(height: 40.0),
+//
+//                     Padding(
+//                       padding: const EdgeInsets.only(right: 200),
+//                       child: InkWell(
+//                         onTap: (){
+//                           Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignIn()));
+//                         },
+//                         child: Container(
+//                           padding: const EdgeInsets.all(10),
+//                           width: 150,
+//
+//                           decoration: BoxDecoration(
+//                               color: Colors.blue[200],
+//                               borderRadius: BorderRadius.circular(8)
+//                           ),
+//                           child: const Center(
+//                             child: Text(
+//                                 'Continue',
+//                                 style: TextStyle(
+//                                     color: Colors.black,
+//                                     fontSize: 15)
+//
+//                             ),
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+//
+//                   ],
+//                 ),
+//               ],
+//
+//             ),
+//               )
+//             )
+//             ],
+//         )
+//         );
+//   }
+// }
 
+class SignUpPage extends StatefulWidget {
   @override
-  State<SignUp> createState() => _SignUpState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignUpPageState extends State<SignUpPage> {
+  final _formKey = GlobalKey<FormState>();
+  late String fullName, email, nic, phoneNumber, password, confirmPassword;
+
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneNumberController = TextEditingController();
+  final _nicController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+  bool _isNotValidate = false;
+
+  void registerUser() async {
+    if (_nameController.text.isNotEmpty &&
+        _emailController.text.isNotEmpty &&
+        _phoneNumberController.text.isNotEmpty &&
+        _nicController.text.isNotEmpty &&
+        _passwordController.text.isNotEmpty &&
+        _confirmPasswordController.text.isNotEmpty) {
+      var regBody = {
+        "name": _nameController.text,
+        "email": _emailController.text,
+        "phonenumber": _phoneNumberController.text,
+        "NIC": _nicController.text,
+        "password": _passwordController.text
+      };
+
+      var response = await http.post(
+        Uri.parse('http://10.0.2.2:3000/userRegistration'),
+        body: json.encode(regBody),
+        headers: {'Content-Type': 'application/json'},
+      );
+      var jsonResponse = jsonDecode(response.body);
+      print(jsonResponse['status']);
+      if (jsonResponse['status']) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => SignIn()));
+      } else {
+        print("SomeThing Went Wrong");
+      }
+    } else {
+      setState(() {
+        _isNotValidate = true;
+      });
+    }
+  }
+
+  // Future<void> _submitForm() async {
+  //   if (_formKey.currentState!.validate()) {
+  //     _formKey.currentState!.save();
+  //
+  //     final formData = {
+  //       'name': _nameController.text,
+  //       'email': _emailController.text,
+  //       'phoneNumber': _phoneNumberController.text,
+  //       'nic': _nicController.text,
+  //       'password': _passwordController.text,
+  //     };
+  //
+  //     try {
+  //       final response = await http.post(
+  //         Uri.parse('http://10.0.2.2:3000/userRegistration'),
+  //         body: json.encode(formData),
+  //         headers: {'Content-Type': 'application/json'},
+  //       );
+  //
+  //       if (response.statusCode == 200) {
+  //         // Registration successful
+  //         ScaffoldMessenger.of(context).showSnackBar(
+  //           const SnackBar(content: Text('Registration successful')),
+  //         );
+  //       } else {
+  //         // Registration failed
+  //         ScaffoldMessenger.of(context).showSnackBar(
+  //           const SnackBar(content: Text('Registration failed')),
+  //         );
+  //       }
+  //     } catch (e) {
+  //       // Handle any errors
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         SnackBar(content: Text('Error: $e')),
+  //       );
+  //     }
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-        body: Stack(
-          children: [
-            Image.asset(
-              'lib/images/signup_img.png',
-              fit: BoxFit.cover,
-              height: double.infinity,
-              width: double.infinity,
-            ),
-            SingleChildScrollView(
-              child: Padding(
-                  padding: const EdgeInsets.fromLTRB(26.0, 50.0, 26.0, 26.0), // Add the padding here
+      body: Stack(
+        children: [
+          Image.asset(
+            'lib/images/signup_img.png',
+            fit: BoxFit.cover,
+            height: double.infinity,
+            width: double.infinity,
+          ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(26.0, 50.0, 26.0, 26.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                Text(
-                  'Sign Up',
-                  style: TextStyle(
-                    fontSize: 34.0,
-                    fontWeight: FontWeight.bold
+                  const Text(
+                    'Sign Up',
+                    style:
+                        TextStyle(fontSize: 34.0, fontWeight: FontWeight.bold),
                   ),
-                ),
-                  SizedBox(height: 30.0),
-
-                Text('Full name'),
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Enter your full name',
-                    hintStyle: TextStyle(color: Colors.grey[500]),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue)),
-                    fillColor: Colors.grey.shade100,
-                    filled: true,
-                    contentPadding: EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                  const SizedBox(height: 30.0),
+                  const Text('Full name'),
+                  TextFormField(
+                    controller: _nameController,
+                    decoration: InputDecoration(
+                      // labelText: 'Full name',
+                      hintText: 'Enter your full name',
+                      hintStyle: TextStyle(color: Colors.grey[500]),
+                      enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey)),
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue)),
+                      fillColor: Colors.grey.shade100,
+                      filled: true,
+                      contentPadding:
+                          const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your full name';
+                      }
+                      if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+                        return 'Please enter a valid full name';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      fullName = value!;
+                    },
                   ),
-                ),
-                SizedBox(height: 20.0),
-
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Email Address'),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Enter the Email Address',
-                        hintStyle: TextStyle(color: Colors.grey[500]),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blue)),
-                        fillColor: Colors.grey.shade100,
-                        filled: true,
-                        contentPadding:
-                        EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
-                      ),
+                  const SizedBox(height: 20.0),
+                  const Text('Email Address'),
+                  TextFormField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      errorStyle: const TextStyle(color: Colors.white),
+                      errorText: _isNotValidate ? "Enter Proper Info" : null,
+                      hintText: 'davidsmith@gmail.com',
+                      hintStyle: TextStyle(color: Colors.grey[500]),
+                      enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey)),
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue)),
+                      fillColor: Colors.grey.shade100,
+                      filled: true,
+                      contentPadding:
+                          const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
                     ),
-                  ],
-                ),
-                SizedBox(height: 20.0),
-
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Phone Number'),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Enter your phone number',
-                        hintStyle: TextStyle(color: Colors.grey[500]),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blue)),
-                        fillColor: Colors.grey.shade100,
-                        filled: true,
-                        contentPadding:
-                        EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
-                      ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your email address';
+                      }
+                      if (!RegExp(
+                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                          .hasMatch(value)) {
+                        return 'Please enter a valid email address';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      email = value!;
+                    },
+                  ),
+                  const SizedBox(height: 20.0),
+                  const Text('Phone Number'),
+                  TextFormField(
+                    controller: _phoneNumberController,
+                    decoration: InputDecoration(
+                      //    labelText: 'Phone Number',
+                      hintText: '+94 762 090 212',
+                      hintStyle: TextStyle(color: Colors.grey[500]),
+                      enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey)),
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue)),
+                      fillColor: Colors.grey.shade100,
+                      filled: true,
+                      contentPadding:
+                          const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
                     ),
-                  ],
-                ),
-                SizedBox(height: 20.0),
-
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('NIC'),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Enter your NIC',
-                        hintStyle: TextStyle(color: Colors.grey[500]),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blue)),
-                        fillColor: Colors.grey.shade100,
-                        filled: true,
-                        contentPadding:
-                        EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
-                      ),
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(11),
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your phone number';
+                      } else if (value.length != 11) {
+                        return 'Phone number must be 11 digits long';
+                      } else if (!_isNumeric(value)) {
+                        return 'Please enter a valid phone number';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      phoneNumber = value!;
+                    },
+                  ),
+                  const SizedBox(height: 20.0),
+                  const Text('NIC'),
+                  TextFormField(
+                    controller: _nicController,
+                    decoration: InputDecoration(
+                      //     labelText: 'NIC',
+                      hintText: 'Enter your NIC',
+                      hintStyle: TextStyle(color: Colors.grey[500]),
+                      enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey)),
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue)),
+                      fillColor: Colors.grey.shade100,
+                      filled: true,
+                      contentPadding:
+                          const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
                     ),
-                  ],
-                ),
-                SizedBox(height: 20.0),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your NIC';
+                      }
+                      // Check if NIC is old format (8 digits + 'V' at the end) or new format (12 digits)
+                      if (!((value.length == 9 && value.endsWith('V')) ||
+                          value.length == 12)) {
+                        return 'Enter a valid NIC number';
+                      }
 
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Password'),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Enter your password',
-                        hintStyle: TextStyle(color: Colors.grey[500]),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blue)),
-                        fillColor: Colors.grey.shade100,
-                        filled: true,
-                        contentPadding:
-                        EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
-                      ),
-                      obscureText: true,
+                      // Check if NIC is old format (8 digits + 'V' at the end)
+                      if (value.length == 9 &&
+                          !RegExp(r'^[0-9]{8}V$').hasMatch(value)) {
+                        return 'Enter a valid NIC number';
+                      }
+
+                      // Check if NIC is new format (12 digits)
+                      if (value.length == 12 &&
+                          !RegExp(r'^[0-9]{12}$').hasMatch(value)) {
+                        return 'Enter a valid NIC number';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      nic = value!;
+                    },
+                  ),
+                  const SizedBox(height: 20.0),
+                  const Text('Password'),
+                  TextFormField(
+                    controller: _passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      errorStyle: const TextStyle(color: Colors.white),
+                      errorText: _isNotValidate ? "Enter Proper Info" : null,
+                      hintText: 'Password',
+                      hintStyle: TextStyle(color: Colors.grey[500]),
+                      enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey)),
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue)),
+                      fillColor: Colors.grey.shade100,
+                      filled: true,
+                      contentPadding:
+                          const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
                     ),
-                  ],
-                ),
-                SizedBox(height: 20.0),
-
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Confirm password'),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Enter your confirm password',
-                        hintStyle: TextStyle(color: Colors.grey[500]),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey)
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blue)
-                        ),
-                        fillColor: Colors.grey.shade100,
-                        filled: true,
-                        contentPadding: EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
-                      ),
-                      obscureText: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      password = value!;
+                    },
+                  ),
+                  const SizedBox(height: 20.0),
+                  const Text('Confirm password'),
+                  TextFormField(
+                    controller: _confirmPasswordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      //  labelText: 'Confirm Password',
+                      hintText: 'Confirm password',
+                      hintStyle: TextStyle(color: Colors.grey[500]),
+                      enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey)),
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue)),
+                      fillColor: Colors.grey.shade100,
+                      filled: true,
+                      contentPadding:
+                          const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
                     ),
-                    SizedBox(height: 40.0),
-
-                    Padding(
-                      padding: const EdgeInsets.only(right: 200),
-                      child: InkWell(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignIn()));
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          width: 150,
-
-                          decoration: BoxDecoration(
-                              color: Colors.blue[200],
-                              borderRadius: BorderRadius.circular(8)
-                          ),
-                          child: const Center(
-                            child: Text(
-                                'Continue',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15)
-
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please confirm your password';
+                      }
+                      if (value != _passwordController.text) {
+                        return 'Passwords do not match';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      confirmPassword = value!;
+                    },
+                  ),
+                  const SizedBox(height: 30.0),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 200),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                _formKey.currentState!.save();
+                                registerUser();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const SignIn()));
+                              }
+                            },
+                            child: Container(
+                              child: InkWell(
+                                onTap: () {
+                                  registerUser();
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const SignIn()));
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  width: 150,
+                                  decoration: BoxDecoration(
+                                      color: Colors.blue[200],
+                                      borderRadius: BorderRadius.circular(8)),
+                                  child: const Center(
+                                    child: Text('Continue',
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 15)),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
-
-                  ],
-                ),
-              ],
-
+                  ),
+                ],
+              ),
             ),
-              )
-            )
-            ],
-        )
-        );
+          ),
+        ],
+      ),
+    );
   }
+}
+
+bool _isNumeric(String? value) {
+  if (value == null) {
+    return false;
+  }
+  return double.tryParse(value) != null;
 }
