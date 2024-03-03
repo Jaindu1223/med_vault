@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:med_vault/pages/doctor/signin_doc.dart';
-import 'package:med_vault/pages/patient/sign_in.dart';
+// import 'package:med_vault/pages/patient/sign_in.dart';
+import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
+import 'package:email_validator/email_validator.dart';
+import 'dart:convert';
 
 class SignUpDoc extends StatefulWidget {
   const SignUpDoc({super.key});
@@ -186,3 +190,8 @@ class _SignUpDocState extends State<SignUpDoc> {
     ));
   }
 }
+
+
+
+
+

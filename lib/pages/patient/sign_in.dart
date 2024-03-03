@@ -1,7 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:med_vault/pages/doctor/home_pageD.dart';
-
 import 'package:med_vault/pages/patient/home_page.dart';
 import 'package:med_vault/pages/patient/sign_up.dart';
 import 'fog_pw.dart';
@@ -148,7 +146,7 @@ class _SignInState extends State<SignIn> {
                           const Text('Don\'t have an account ?'),
                           TextButton(
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignUp()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpPage()));
                             },
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.blue,
