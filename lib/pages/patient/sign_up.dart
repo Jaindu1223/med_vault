@@ -237,7 +237,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
       try {
         var response = await http.post(
-          Uri.parse('http://10.0.2.2:3000/userRegistration'),
+          Uri.parse('http://10.0.2.2:4000/userRegistration'),
           body: json.encode(regBody),
           headers: {'Content-Type': 'application/json'},
         );
