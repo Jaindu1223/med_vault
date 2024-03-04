@@ -227,6 +227,10 @@ class _SignUpPageState extends State<SignUpPage> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
 
+      setState(() {
+        _isNotValidate = false;
+      });
+
       var regBody = {
         "name": _nameController.text,
         "email": _emailController.text,
@@ -302,7 +306,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   TextFormField(
                     controller: _nameController,
                     decoration: InputDecoration(
-                      // labelText: 'Full name',
+                      errorStyle: const TextStyle(color: Colors.black),
+                      errorText: _isNotValidate ? "Please enter your full name" : null,
                       hintText: 'Enter your full name',
                       hintStyle: TextStyle(color: Colors.grey[500]),
                       enabledBorder: const OutlineInputBorder(
@@ -332,7 +337,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   TextFormField(
                     controller: _emailController,
                     decoration: InputDecoration(
-                      errorStyle: const TextStyle(color: Colors.white),
+                      errorStyle: const TextStyle(color: Colors.black),
                       errorText: _isNotValidate ? "Enter Proper Info" : null,
                       hintText: 'davidsmith@gmail.com',
                       hintStyle: TextStyle(color: Colors.grey[500]),
@@ -365,7 +370,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   TextFormField(
                     controller: _phoneNumberController,
                     decoration: InputDecoration(
-                      //    labelText: 'Phone Number',
                       hintText: '+94 762 090 212',
                       hintStyle: TextStyle(color: Colors.grey[500]),
                       enabledBorder: const OutlineInputBorder(
@@ -380,14 +384,13 @@ class _SignUpPageState extends State<SignUpPage> {
                     inputFormatters: [
                       LengthLimitingTextInputFormatter(11),
                       FilteringTextInputFormatter.digitsOnly,
+                      TelephoneInputFormatter(),
                     ],
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your phone number';
                       } else if (value.length != 11) {
                         return 'Phone number must be 11 digits long';
-                      } else if (!_isNumeric(value)) {
-                        return 'Please enter a valid phone number';
                       }
                       return null;
                     },
@@ -461,6 +464,18 @@ class _SignUpPageState extends State<SignUpPage> {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';
+                      }
+                      if (value.length < 8) {
+                        return 'Password must be at least 8 characters long';
+                      }
+                      if (!RegExp(r'[A-Z]').hasMatch(value)) {
+                        return 'Password must contain at least one uppercase letter';
+                      }
+                      if (!RegExp(r'[a-z]').hasMatch(value)) {
+                        return 'Password must contain at least one lowercase letter';
+                      }
+                      if (!RegExp(r'[0-9]').hasMatch(value)) {
+                        return 'Password must contain at least one digit';
                       }
                       return null;
                     },
@@ -538,6 +553,33 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class TelephoneInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    if (newValue.selection.baseOffset == 0) {
+      return newValue;
+    }
+
+    String value = newValue.text.replaceAll(RegExp(r'\s+'), '');
+    String formattedValue = '+94 ';
+
+    if (value.length > 4) {
+      formattedValue += value.substring(0, 3) + ' ';
+      value = value.substring(3);
+    }
+
+    if (value.isNotEmpty) {
+      formattedValue += value.substring(0, 7);
+    }
+
+    return TextEditingValue(
+      text: formattedValue,
+      selection: TextSelection.collapsed(offset: formattedValue.length),
     );
   }
 }

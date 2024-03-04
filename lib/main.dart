@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:med_vault/pages/catergory.dart';
-import 'package:med_vault/pages/doctor/qrScanner.dart';
-import 'package:med_vault/pages/doctor/signin_doc.dart';
-import 'package:med_vault/pages/mongodb.dart';
-import 'package:med_vault/pages/patient/home_page.dart';
-import 'package:med_vault/pages/patient/qr_generator.dart';
-import 'package:med_vault/pages/patient/sign_in.dart';
+// import 'package:flutter/services.dart';
+// import 'package:med_vault/pages/catergory.dart';
+// import 'package:med_vault/pages/doctor/qrScanner.dart';
+// import 'package:med_vault/pages/doctor/signin_doc.dart';
+// import 'package:med_vault/pages/mongodb.dart';
+// import 'package:med_vault/pages/patient/home_page.dart';
+// import 'package:med_vault/pages/patient/qr_generator.dart';
+// import 'package:med_vault/pages/patient/sign_in.dart';
 import 'package:med_vault/pages/splash_screen.dart';
-
 
 /*Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -77,3 +76,10 @@ class MedVaultHomePage extends StatelessWidget {
     );
   }
 }*/
+
+
+
+
+
+
+
