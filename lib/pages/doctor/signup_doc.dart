@@ -37,6 +37,7 @@ class _SignUpDocState extends State<SignUpDoc> {
                 style: TextStyle(fontSize: 34.0, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 30.0),
+
               const Text('Full name'),
               TextField(
                 decoration: InputDecoration(
@@ -53,6 +54,7 @@ class _SignUpDocState extends State<SignUpDoc> {
                 ),
               ),
               const SizedBox(height: 20.0),
+
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -74,6 +76,7 @@ class _SignUpDocState extends State<SignUpDoc> {
                 ],
               ),
               const SizedBox(height: 20.0),
+
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -95,6 +98,7 @@ class _SignUpDocState extends State<SignUpDoc> {
                 ],
               ),
               const SizedBox(height: 20.0),
+
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -116,6 +120,7 @@ class _SignUpDocState extends State<SignUpDoc> {
                 ],
               ),
               const SizedBox(height: 20.0),
+
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -138,6 +143,7 @@ class _SignUpDocState extends State<SignUpDoc> {
                 ],
               ),
               const SizedBox(height: 20.0),
+
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
