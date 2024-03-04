@@ -218,7 +218,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                   fontSize: 11,
                                 ),
                               ),
-                              const SizedBox(height: 330,),
+                              const SizedBox(height: 50,),
 
                               const Text(
                                 '<<Display Pharmacy Address>>',
