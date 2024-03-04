@@ -171,7 +171,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                 ),
                               ),
 
-                              const SizedBox(height: 5),
+
 
                               const TextField(
                                 decoration:  InputDecoration(labelText: 'Patient Name'),
@@ -180,6 +180,8 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                   fontSize: 10,
                                 ),
                               ),
+
+
                               const TextField(
                                 decoration:  InputDecoration(labelText: 'Age'),
                                 keyboardType: TextInputType.number,
@@ -188,6 +190,8 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                   fontSize: 11,
                                 ),
                               ),
+
+
                               const TextField(
                                 decoration:  InputDecoration(labelText: 'Address'),
                                 maxLines: null,
@@ -196,6 +200,8 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                   fontSize: 11,
                                 ),
                               ),
+
+
                               const TextField(
                                 decoration:  InputDecoration(labelText: 'Medication Name'),
                                 style: TextStyle(
@@ -203,6 +209,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                   fontSize: 11,
                                 ),
                               ),
+
                               const TextField(
                                 decoration: InputDecoration(labelText: 'Dosage'),
                                 keyboardType: TextInputType.number,
@@ -211,6 +218,10 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                   fontSize: 11,
                                 ),
                               ),
+
+
+
+
                               const TextField(
                                 decoration:  InputDecoration(labelText: 'Instructions'),
                                 style: TextStyle(
@@ -218,7 +229,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                   fontSize: 11,
                                 ),
                               ),
-                              const SizedBox(height: 330,),
+                              const SizedBox(height: 50,),
 
                               const Text(
                                 '<<Display Pharmacy Address>>',
