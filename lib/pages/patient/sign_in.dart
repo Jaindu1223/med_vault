@@ -161,13 +161,14 @@ class _SignInState extends State<SignIn> {
                       Center(
                         child: ElevatedButton(
                           onPressed: () {
+                            loginUser();
                             if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
                               // Show error message or toast here
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(content: Text('Email and Password are required')),
                               );
                             } else {
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage()));
+                              // Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage()));
                             }
                           },
                           style: ElevatedButton.styleFrom(
@@ -212,7 +213,7 @@ class _SignInState extends State<SignIn> {
                                 ),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap=(){
-                                      loginUser();
+
                                   },
                               ),
                             ]
