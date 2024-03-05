@@ -527,7 +527,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               if (success) {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => const SignIn()),
+                                  MaterialPageRoute(builder: (context) => SignIn()),
                                 );
                               }
                             });

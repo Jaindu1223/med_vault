@@ -2,13 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:med_vault/pages/doctor/customize_prescription.dart';
 import 'package:med_vault/pages/doctor/doctor_profile.dart';
-import 'package:med_vault/pages/doctor/patient_history.dart';
-import 'package:med_vault/pages/doctor/qrScanner.dart';
 import 'package:med_vault/pages/doctor/qr_scan.dart';
-import 'package:med_vault/pages/patient/medical_record.dart';
-import 'package:med_vault/pages/patient/my_qr.dart';
-import 'package:med_vault/pages/patient/pharmacy_locator.dart';
 
+
+
+import '../patient/pharmacy_spotter.dart';
 import 'new_prescription.dart';
 
 class HomePageDoc extends StatefulWidget {
@@ -22,7 +20,6 @@ class _HomePageDocState extends State<HomePageDoc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.blue,
       body: Stack(
           children:[
             Container(
@@ -31,28 +28,18 @@ class _HomePageDocState extends State<HomePageDoc> {
                   image: AssetImage(
                       'lib/images/6 Pharmacy locater-2.png'),
                   fit: BoxFit.cover,
-                  //height: double.infinity,
-                  //width: double.infinity,
                 ),
               ),
             ),
 
             Column(
-
               children: [
-
                 Container(
-
-                  /*decoration: BoxDecoration(
-                color: Colors.lightBlue
-              ),*/
                   padding: const EdgeInsets.only(left: 20,top: 30, right: 3, bottom: 7),
                   child: Row(children: [
-
                     const SizedBox(width:1,height: 190,),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-
                       children: [
                         const Text(
                           'Welcome to ',
@@ -69,15 +56,12 @@ class _HomePageDocState extends State<HomePageDoc> {
                             fontSize: 29,
                             color: Colors.white,
                           ),
-
                         ),
                         SizedBox(
                           height: 40,
                           width: 20,
                           child: Image.asset(
                               'lib/images/Group 2085662530.png'),
-
-                          //color: Colors.limeAccent,
                         ),
                         const SizedBox(height: 1),
                         const Text(
@@ -106,23 +90,14 @@ class _HomePageDocState extends State<HomePageDoc> {
                       width: 100,
                       child: Image.asset(
                         'lib/images/doctor.png',),
-
-                      //color: Colors.limeAccent,
                     ),
                   ],),
                 ),
 
-                //search bar
-
-                //categories(horizontal list)
-                //const SizedBox(height: 5),
                 Padding(
                   padding: const EdgeInsets.only(left: 0,top: 0,right: 30,bottom: 10),
-
                   child: Row(
-
                     mainAxisAlignment: MainAxisAlignment.end,
-
                     children: [
                       Container(
                         child: InkWell(
@@ -147,7 +122,6 @@ class _HomePageDocState extends State<HomePageDoc> {
                         width: 90,
                         child: Image.asset(
                           'lib/images/qr.png',),
-                        //color: Colors.green,
                       ),
                       const SizedBox(height: 35,width: 10,),
 
@@ -213,7 +187,6 @@ class _HomePageDocState extends State<HomePageDoc> {
                         width: 90,
                         child: Image.asset(
                           'lib/images/pharmacy.png',),
-                        //color: Colors.limeAccent,
                       ),
                       const SizedBox(width: 10,),
 
@@ -240,7 +213,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                             const SizedBox(height: 17),
                             InkWell(
                               onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>const PharmacyLocator()));
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>PharmacySearchPage()));
                               },
                               child: Container(
                                 padding: const EdgeInsets.all(4),
@@ -276,17 +249,14 @@ class _HomePageDocState extends State<HomePageDoc> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 45.0),
                   child: Container(
-
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(9)),
                     child: Row(children: [
                       SizedBox(
-
                         height: 100,
                         width: 90,
                         child: Image.asset(
                           'lib/images/prescription.png',),
-                        //color: Colors.blue,
                       ),
                       const SizedBox(height: 35,width: 10,),
 
@@ -294,7 +264,6 @@ class _HomePageDocState extends State<HomePageDoc> {
                         child:Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
                             const Text(
                               'Customize Prescription',
                               style: TextStyle(
@@ -318,7 +287,6 @@ class _HomePageDocState extends State<HomePageDoc> {
                               },
                               child: Container(
                                 padding: const EdgeInsets.all(4),
-
                                 decoration: BoxDecoration(
                                     color: Colors.blueAccent,
                                     borderRadius: BorderRadius.circular(8)
@@ -329,27 +297,21 @@ class _HomePageDocState extends State<HomePageDoc> {
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 11)
-
                                   ),
                                 ),
                               ),
                             ),
-
                           ],
                         ),
                       )
                     ],),
                   ),
                 ),
-
-
-                //doctor list
-
               ],
             ),
-
-
-          ]),);
+          ]
+      ),
+    );
   }
 }
 
