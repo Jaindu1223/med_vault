@@ -1,11 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:med_vault/pages/doctor/patient_history.dart';
 import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:med_vault/pages/patient/my_qr.dart';
 import 'package:med_vault/pages/patient/patient_profile.dart';
-import 'package:med_vault/pages/patient/pharmacy_finder.dart';
-import 'package:med_vault/pages/patient/pharmacy_locator.dart';
 import 'package:med_vault/pages/patient/pharmacy_spotter.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,8 +25,6 @@ class _HomePageState extends State<HomePage> {
                 image: AssetImage(
                     'lib/images/6 Pharmacy locater-2.png'),
                 fit: BoxFit.cover,
-                //height: double.infinity,
-                //width: double.infinity,
             ),
             ),
           ),
@@ -39,17 +34,12 @@ class _HomePageState extends State<HomePage> {
           children: [
 
             Container(
-
-              /*decoration: BoxDecoration(
-                color: Colors.lightBlue
-              ),*/
               padding: const EdgeInsets.only(left: 20,top: 30, right: 3, bottom: 7),
               child: Row(children: [
 
                 const SizedBox(width:1,height: 190,),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-
                   children: [
                     const Text(
                       'Welcome to ',
@@ -66,15 +56,12 @@ class _HomePageState extends State<HomePage> {
                         fontSize: 29,
                         color: Colors.white,
                       ),
-
                     ),
                     SizedBox(
                       height: 40,
                       width: 20,
                       child: Image.asset(
                           'lib/images/Group 2085662530.png'),
-
-                      //color: Colors.limeAccent,
                     ),
                     const SizedBox(height: 1),
                     const Text(
@@ -103,8 +90,6 @@ class _HomePageState extends State<HomePage> {
                   width: 100,
                   child: Image.asset(
                       'lib/images/image 9326.png',),
-
-                  //color: Colors.limeAccent,
                 ),
               ],),
             ),
@@ -112,11 +97,8 @@ class _HomePageState extends State<HomePage> {
 
             Padding(
               padding: const EdgeInsets.only(left: 0,top: 0,right: 30,bottom: 10),
-
               child: Row(
-
                 mainAxisAlignment: MainAxisAlignment.end,
-
                 children: [
                   Container(
                     child: InkWell(
@@ -141,7 +123,6 @@ class _HomePageState extends State<HomePage> {
                     width: 100,
                     child: Image.asset(
                       'lib/images/pharmacy.png',),
-                    //color: Colors.limeAccent,
                   ),
                   const SizedBox(width: 10,),
 
@@ -162,7 +143,6 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 11,
-
                           ),
                         ),
                         const SizedBox(height: 17),
@@ -172,7 +152,6 @@ class _HomePageState extends State<HomePage> {
                           },
                           child: Container(
                             padding: const EdgeInsets.all(4),
-
                             decoration: BoxDecoration(
                                 color: Colors.blueAccent,
                                 borderRadius: BorderRadius.circular(8)
@@ -183,20 +162,16 @@ class _HomePageState extends State<HomePage> {
                                 style: TextStyle(
                                   color: Colors.white,
                                     fontSize: 11)
-
                               ),
                             ),
                           ),
                         ),
-
                       ],
                     ),
                   ),
-
-
-                ],),
+                ],
+                ),
               ),
-
             ),
             const SizedBox(height: 25),
 
@@ -204,17 +179,14 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 45.0),
               child: Container(
-
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(9)),
                 child: Row(children: [
                   SizedBox(
-
                     height: 100,
                     width: 100,
                     child: Image.asset(
                       'lib/images/prescription.png',),
-                    //color: Colors.blue,
                   ),
                   const SizedBox(height: 35,width: 10,),
 
@@ -252,7 +224,6 @@ class _HomePageState extends State<HomePage> {
                           },
                           child: Container(
                             padding: const EdgeInsets.all(4),
-
                             decoration: BoxDecoration(
                                 color: Colors.blueAccent,
                                 borderRadius: BorderRadius.circular(8)
@@ -263,12 +234,10 @@ class _HomePageState extends State<HomePage> {
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 11)
-
                               ),
                             ),
                           ),
                         ),
-
                       ],
                     ),
                   )
@@ -276,6 +245,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(height: 25),
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 45.0),
               child: Container(
@@ -318,7 +288,6 @@ class _HomePageState extends State<HomePage> {
                           },
                           child: Container(
                             padding: const EdgeInsets.all(4),
-
                             decoration: BoxDecoration(
                                 color: Colors.blueAccent,
                                 borderRadius: BorderRadius.circular(8)
@@ -329,7 +298,6 @@ class _HomePageState extends State<HomePage> {
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 11)
-
                               ),
                             ),
                           ),
@@ -340,13 +308,11 @@ class _HomePageState extends State<HomePage> {
                 ],),
               ),
             ),
-        //doctor list
-
           ],
         ),
-
-
-            ]),);
+        ]
+      ),
+    );
   }
 }
 
