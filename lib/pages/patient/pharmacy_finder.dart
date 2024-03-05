@@ -72,3 +72,6 @@ class _PharmacySearchScreenState extends State<PharmacySearchScreen> {
   }
 }
 
+
+
+
