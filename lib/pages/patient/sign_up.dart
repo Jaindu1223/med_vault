@@ -223,13 +223,14 @@ class _SignUpPageState extends State<SignUpPage> {
   final _confirmPasswordController = TextEditingController();
   bool _isNotValidate = false;
 
-  void registerUser() async {
-    if (_nameController.text.isNotEmpty &&
-        _emailController.text.isNotEmpty &&
-        _phoneNumberController.text.isNotEmpty &&
-        _nicController.text.isNotEmpty &&
-        _passwordController.text.isNotEmpty &&
-        _confirmPasswordController.text.isNotEmpty) {
+  Future<bool> registerUser() async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+
+      setState(() {
+        _isNotValidate = false;
+      });
+
       var regBody = {
         "name": _nameController.text,
         "email": _emailController.text,
@@ -238,64 +239,45 @@ class _SignUpPageState extends State<SignUpPage> {
         "password": _passwordController.text
       };
 
-      var response = await http.post(
-        Uri.parse('http://10.0.2.2:3000/userRegistration'),
-        body: json.encode(regBody),
-        headers: {'Content-Type': 'application/json'},
-      );
-      var jsonResponse = jsonDecode(response.body);
-      print(jsonResponse['status']);
-      if (jsonResponse['status']) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SignIn()));
-      } else {
-        print("SomeThing Went Wrong");
+      try {
+        var response = await http.post(
+          Uri.parse('http://10.0.2.2:4000/userRegistration'),
+          body: json.encode(regBody),
+          headers: {'Content-Type': 'application/json'},
+        );
+
+        if (response.statusCode == 200) {
+          // Registration successful
+          var jsonResponse = jsonDecode(response.body);
+          if (jsonResponse['status']) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Registration successful')),
+            );
+            return true;
+          } else {
+            // Registration failed
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Registration failed: ${jsonResponse['message']}')),
+            );
+          }
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Error ${response.statusCode}: ${response.reasonPhrase}')),
+          );
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: $e')),
+        );
       }
     } else {
       setState(() {
         _isNotValidate = true;
       });
     }
-  }
 
-  // Future<void> _submitForm() async {
-  //   if (_formKey.currentState!.validate()) {
-  //     _formKey.currentState!.save();
-  //
-  //     final formData = {
-  //       'name': _nameController.text,
-  //       'email': _emailController.text,
-  //       'phoneNumber': _phoneNumberController.text,
-  //       'nic': _nicController.text,
-  //       'password': _passwordController.text,
-  //     };
-  //
-  //     try {
-  //       final response = await http.post(
-  //         Uri.parse('http://10.0.2.2:3000/userRegistration'),
-  //         body: json.encode(formData),
-  //         headers: {'Content-Type': 'application/json'},
-  //       );
-  //
-  //       if (response.statusCode == 200) {
-  //         // Registration successful
-  //         ScaffoldMessenger.of(context).showSnackBar(
-  //           const SnackBar(content: Text('Registration successful')),
-  //         );
-  //       } else {
-  //         // Registration failed
-  //         ScaffoldMessenger.of(context).showSnackBar(
-  //           const SnackBar(content: Text('Registration failed')),
-  //         );
-  //       }
-  //     } catch (e) {
-  //       // Handle any errors
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         SnackBar(content: Text('Error: $e')),
-  //       );
-  //     }
-  //   }
-  // }
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -324,7 +306,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   TextFormField(
                     controller: _nameController,
                     decoration: InputDecoration(
-                      // labelText: 'Full name',
+                      errorStyle: const TextStyle(color: Colors.black),
+                      errorText: _isNotValidate ? "Please enter your full name" : null,
                       hintText: 'Enter your full name',
                       hintStyle: TextStyle(color: Colors.grey[500]),
                       enabledBorder: const OutlineInputBorder(
@@ -354,7 +337,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   TextFormField(
                     controller: _emailController,
                     decoration: InputDecoration(
-                      errorStyle: const TextStyle(color: Colors.white),
+                      errorStyle: const TextStyle(color: Colors.black),
                       errorText: _isNotValidate ? "Enter Proper Info" : null,
                       hintText: 'davidsmith@gmail.com',
                       hintStyle: TextStyle(color: Colors.grey[500]),
@@ -387,7 +370,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   TextFormField(
                     controller: _phoneNumberController,
                     decoration: InputDecoration(
-                      //    labelText: 'Phone Number',
                       hintText: '+94 762 090 212',
                       hintStyle: TextStyle(color: Colors.grey[500]),
                       enabledBorder: const OutlineInputBorder(
@@ -402,14 +384,13 @@ class _SignUpPageState extends State<SignUpPage> {
                     inputFormatters: [
                       LengthLimitingTextInputFormatter(11),
                       FilteringTextInputFormatter.digitsOnly,
+                      TelephoneInputFormatter(),
                     ],
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your phone number';
                       } else if (value.length != 11) {
                         return 'Phone number must be 11 digits long';
-                      } else if (!_isNumeric(value)) {
-                        return 'Please enter a valid phone number';
                       }
                       return null;
                     },
@@ -484,6 +465,18 @@ class _SignUpPageState extends State<SignUpPage> {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';
                       }
+                      if (value.length < 8) {
+                        return 'Password must be at least 8 characters long';
+                      }
+                      if (!RegExp(r'[A-Z]').hasMatch(value)) {
+                        return 'Password must contain at least one uppercase letter';
+                      }
+                      if (!RegExp(r'[a-z]').hasMatch(value)) {
+                        return 'Password must contain at least one lowercase letter';
+                      }
+                      if (!RegExp(r'[0-9]').hasMatch(value)) {
+                        return 'Password must contain at least one digit';
+                      }
                       return null;
                     },
                     onSaved: (value) {
@@ -526,45 +519,31 @@ class _SignUpPageState extends State<SignUpPage> {
                     padding: const EdgeInsets.only(right: 200),
                     child: Form(
                       key: _formKey,
-                      child: Column(
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                _formKey.currentState!.save();
-                                registerUser();
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            _formKey.currentState!.save();
+                            registerUser().then((success) {
+                              if (success) {
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const SignIn()));
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const SignIn()),
+                                );
                               }
-                            },
-                            child: Container(
-                              child: InkWell(
-                                onTap: () {
-                                  registerUser();
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const SignIn()));
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.all(10),
-                                  width: 150,
-                                  decoration: BoxDecoration(
-                                      color: Colors.blue[200],
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: const Center(
-                                    child: Text('Continue',
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 15)),
-                                  ),
-                                ),
-                              ),
-                            ),
+                            });
+                          }
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          width: 150,
+                          decoration: BoxDecoration(
+                            color: Colors.blue[200],
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                        ],
+                          child: const Center(
+                            child: Text('Continue', style: TextStyle(color: Colors.black, fontSize: 15)),
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -574,6 +553,33 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class TelephoneInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    if (newValue.selection.baseOffset == 0) {
+      return newValue;
+    }
+
+    String value = newValue.text.replaceAll(RegExp(r'\s+'), '');
+    String formattedValue = '+94 ';
+
+    if (value.length > 4) {
+      formattedValue += value.substring(0, 3) + ' ';
+      value = value.substring(3);
+    }
+
+    if (value.isNotEmpty) {
+      formattedValue += value.substring(0, 7);
+    }
+
+    return TextEditingValue(
+      text: formattedValue,
+      selection: TextSelection.collapsed(offset: formattedValue.length),
     );
   }
 }
