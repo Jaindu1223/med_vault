@@ -9,6 +9,7 @@ import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:med_vault/pages/patient/my_qr.dart';
 import 'package:med_vault/pages/patient/pharmacy_locator.dart';
 
+import '../patient/pharmacy_spotter.dart';
 import 'new_prescription.dart';
 
 class HomePageDoc extends StatefulWidget {
@@ -240,7 +241,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                             const SizedBox(height: 17),
                             InkWell(
                               onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>const PharmacyLocator()));
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>PharmacySearchPage()));
                               },
                               child: Container(
                                 padding: const EdgeInsets.all(4),

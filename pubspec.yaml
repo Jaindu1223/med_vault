@@ -54,7 +54,7 @@ dev_dependencies:
 
 
 #  google_maps_flutter: ^2.0.10
-  geolocator: ^8.0.1
+  geolocator: ^11.0.0
 
 
   # The "flutter_lints" package below contains a set of recommended lints to
