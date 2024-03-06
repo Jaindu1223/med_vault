@@ -220,15 +220,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                               ),
                               const SizedBox(height: 50,),
 
-                              const Text(
-                                '<<Display Pharmacy Address>>',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 11,
-                                ),
-                              ),
 
-                              const SizedBox(height: 17),
 
 
                               /*Padding(
@@ -308,24 +300,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
 
                   const SizedBox(height: 25),
 
-                   Container(
 
-                child: Row(children: [
-                  Container(
-                    height: 100,
-                    width: 100,
-                    color: Colors.limeAccent,
-                  ),
-
-                  const Column(
-                    children: [
-                      Text('Welcome to '),
-                      Text('MedVault')
-                    ],
-                  ),
-
-                ],),
-              ),
                   //doctor list
 
                 ],
