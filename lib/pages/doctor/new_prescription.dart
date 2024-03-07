@@ -604,12 +604,12 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                         child: InkWell(
                                           onTap: () async {
                                             await _submitForm();
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) => const HomePageDoc(),
-                                              ),
-                                            );
+                                            // Navigator.push(
+                                            //   context,
+                                            //   MaterialPageRoute(
+                                            //     builder: (context) => const HomePageDoc(),
+                                            //   ),
+                                            // );
                                           },
                                           child: Container(
                                             //padding: const EdgeInsets.only(left: 20,top: 20,right: 20,bottom: 20),
