@@ -172,8 +172,6 @@ class _NewPrescriptionState extends State<NewPrescription> {
                               ),
                               const SizedBox(width: 46,),
 
-
-
                               SizedBox(
                                 height: 140,
                                 width: 100,
@@ -205,8 +203,6 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                 child:Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-
-
                                     const Text(
                                       'Medical Center',
                                       style: TextStyle(
