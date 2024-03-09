@@ -120,6 +120,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 
 class PharmacySearchPage extends StatefulWidget {
@@ -204,6 +205,15 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
     }
   }
 
+  void launchMapURL(String mapLink)async{
+    Uri map = Uri.parse(mapLink);
+    if(await canLaunchUrl(map)){
+      await launchUrl(map);
+    }else{
+      throw 'Could not launch map';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -227,10 +237,15 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
               child: isLoading ? CircularProgressIndicator() : Text('Search Nearest Pharmacy'),
             ),
             SizedBox(height: 16.0),
-            Text(
-              'Nearest Pharmacy: $nearestPharmacyName\nMap Link: $mapLink',
-              style: TextStyle(fontSize: 16.0),
-            ),
+            GestureDetector(
+              onTap: ()=> launchMapURL(mapLink),
+              child: Text(
+                'Nearest Pharmacy: $nearestPharmacyName\nMap Link: $mapLink',
+                style: TextStyle(fontSize: 16.0),
+              ),
+            )
+
+
           ],
         ),
       ),
