@@ -156,6 +156,12 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
       }
     }
 
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    final double userLatitude = position.latitude;
+    final double userLongitude = position.longitude;
+
+    print('User latitude: $userLatitude, User longitude: $userLongitude');
+
 
     final Uri url = Uri.parse('http://10.0.2.2:9000/searchPharmacies?medicineName=$medicineName');
 
