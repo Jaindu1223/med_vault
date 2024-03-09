@@ -1,7 +1,7 @@
 // import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:med_vault/pages/patient/medical_record.dart';
+// import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:ui';
@@ -54,7 +54,7 @@ class _MyQRState extends State<MyQR> {
   Future<void> fetchDataFromDatabase() async {
     try {
       // Replace 'YOUR_API_ENDPOINT' with the actual API endpoint to fetch NIC number
-      var url = Uri.parse('/userEmails');
+      var url = Uri.parse('http://10.0.2.2:4000/:id/email');
       var response = await http.get(url);
 
       if (response.statusCode == 200) {
@@ -121,7 +121,7 @@ class _MyQRState extends State<MyQR> {
                           height: 60,
                           width: 20,
                           child: Image.asset('lib/images/Group 2085662530.png'),
-        
+
                           //color: Colors.limeAccent,
                         ),
                         const SizedBox(height: 1),
@@ -151,20 +151,20 @@ class _MyQRState extends State<MyQR> {
                       child: Image.asset(
                         'lib/images/qr-code-blue.png',
                       ),
-        
+
                       //color: Colors.limeAccent,
                     ),
                   ],
                 ),
               ),
-        
-        
+
+
               //search bar
-        
+
               //categories(horizontal list)
-        
+
               const SizedBox(height: 25),
-        
+
               const Padding(
                 padding: EdgeInsets.only(left: 16.0, right: 16.0),
                 child: TextField(
@@ -183,9 +183,9 @@ class _MyQRState extends State<MyQR> {
                   ),
                 ),
               ),
-        
+
               const SizedBox(height: 15,),
-        
+
               RawMaterialButton(
 
                 onPressed: fetchDataFromDatabase,
