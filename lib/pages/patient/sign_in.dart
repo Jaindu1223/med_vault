@@ -1,10 +1,10 @@
+import 'dart:convert';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:med_vault/pages/doctor/home_pageD.dart';
-
 import 'package:med_vault/pages/patient/home_page.dart';
 import 'package:med_vault/pages/patient/sign_up.dart';
 import 'fog_pw.dart';
+import 'package:http/http.dart' as http;
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -14,8 +14,44 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _isNotValidate = false;
+
+
+  void loginUser() async {
+    if (_emailController.text.isNotEmpty &&
+        _passwordController.text.isNotEmpty) {
+
+      setState(() {
+        _isNotValidate = false;
+      });
+
+      var regBody = {
+        "email": _emailController.text,
+        "password": _passwordController.text
+      };
+
+      var response = await http.post(
+        Uri.parse('http://10.0.2.2:4000/userLogin'),
+        body: json.encode(regBody),
+        headers: {'Content-Type': 'application/json'},
+      );
+      var jsonResponse = jsonDecode(response.body);
+      // print(jsonResponse['status']);
+      if (jsonResponse['status']) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
+      } else {
+        print("Incorrect Email or Password ");
+      }
+    } else {
+      setState(() {
+        _isNotValidate = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -48,62 +84,60 @@ class _SignInState extends State<SignIn> {
 
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0), // Add padding here
-                        child: TextField(
+                        child:
+                        TextField(
                           controller: _emailController,
                           decoration: InputDecoration(
                             hintText: 'bla@gmail.com',
                             hintStyle: TextStyle(color: Colors.grey[500]),
-                            enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey),
-                            ),
-                            focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.blue),
-                            ),
+                            enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey),),
+                            focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue),),
                             fillColor: Colors.grey.shade100,
                             filled: true,
                             contentPadding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                            errorText: _isNotValidate ? "Email is required" : null,
+                            // errorText: _emailController.text.isEmpty ? 'Email is required' : null,
                           ),
                         ),
                       ),
+                      const SizedBox(height: 16),
 
-                      const SizedBox(height: 16),
-                      /*TextField(
-                        controller: _passwordController,
-                        // obscureText: true,
-                        decoration: InputDecoration(
-                          hintText: 'NIC',
-                          hintStyle: TextStyle(color: Colors.grey[500]),
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
-                          ),
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blue),
-                          ),
-                          fillColor: Colors.grey.shade100,
-                          filled: true,
-                          contentPadding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
-                        ),
-                      ),*/
-                      const SizedBox(height: 16),
+
+                      // TextField(
+                      //   controller: _passwordController,
+                      //   obscureText: true,
+                      //   decoration: InputDecoration(
+                      //     hintText: 'NIC',
+                      //     hintStyle: TextStyle(color: Colors.grey[500]),
+                      //     enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey),),
+                      //     focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue),),
+                      //     fillColor: Colors.grey.shade100,
+                      //     filled: true,
+                      //     contentPadding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                      //     errorText: _isNotValidate ? "NIC is required" : null,
+                      //   ),
+                      // ),
+                      // const SizedBox(height: 16),
+
 
                       TextField(
                         controller: _passwordController,
                         obscureText: true,
+                        keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                           hintText: 'Password',
                           hintStyle: TextStyle(color: Colors.grey[500]),
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
-                          ),
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blue),
-                          ),
+                          enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey),),
+                          focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue),),
                           fillColor: Colors.grey.shade100,
                           filled: true,
                           contentPadding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                          errorText: _passwordController.text.isEmpty && _isNotValidate ? "Password is required" : null,
+                          errorStyle: const TextStyle(color: Colors.black),
                         ),
                       ),
                       const SizedBox(height: 16),
+
                       Align(
                         alignment: Alignment.bottomRight,
                         child: GestureDetector(
@@ -125,7 +159,15 @@ class _SignInState extends State<SignIn> {
                       Center(
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage()));
+                            loginUser();
+                            if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
+                              // Show error message or toast here
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text('Email and Password are required')),
+                              );
+                            } else {
+                              // Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage()));
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
@@ -148,7 +190,7 @@ class _SignInState extends State<SignIn> {
                           const Text('Don\'t have an account ?'),
                           TextButton(
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignUp()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpPage()));
                             },
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.blue,
@@ -169,24 +211,9 @@ class _SignInState extends State<SignIn> {
                                 ),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap=(){
-                                    //the link to the page
+
                                   },
                               ),
-
-                              // TextSpan(
-                              //   text: ' and ',
-                              // ),
-                              //
-                              // TextSpan(
-                              //   text: 'Privacy Statement',
-                              //   style: TextStyle(
-                              //     decoration: TextDecoration.underline,
-                              //   ),
-                              //   recognizer: TapGestureRecognizer()
-                              //     ..onTap=(){
-                              //       //the link to the page
-                              //     },
-                              // ),
                             ]
                         ),
                         style: const TextStyle(

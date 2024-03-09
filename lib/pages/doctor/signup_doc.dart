@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:med_vault/pages/doctor/signin_doc.dart';
-import 'package:med_vault/pages/patient/sign_in.dart';
+// import 'package:med_vault/pages/patient/sign_in.dart';
+import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
+import 'package:email_validator/email_validator.dart';
+import 'dart:convert';
 
 class SignUpDoc extends StatefulWidget {
   const SignUpDoc({super.key});
@@ -33,6 +37,7 @@ class _SignUpDocState extends State<SignUpDoc> {
                 style: TextStyle(fontSize: 34.0, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 30.0),
+
               const Text('Full name'),
               TextField(
                 decoration: InputDecoration(
@@ -49,6 +54,7 @@ class _SignUpDocState extends State<SignUpDoc> {
                 ),
               ),
               const SizedBox(height: 20.0),
+
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -70,6 +76,7 @@ class _SignUpDocState extends State<SignUpDoc> {
                 ],
               ),
               const SizedBox(height: 20.0),
+
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -91,6 +98,7 @@ class _SignUpDocState extends State<SignUpDoc> {
                 ],
               ),
               const SizedBox(height: 20.0),
+
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -112,6 +120,7 @@ class _SignUpDocState extends State<SignUpDoc> {
                 ],
               ),
               const SizedBox(height: 20.0),
+
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -134,6 +143,7 @@ class _SignUpDocState extends State<SignUpDoc> {
                 ],
               ),
               const SizedBox(height: 20.0),
+
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -186,3 +196,8 @@ class _SignUpDocState extends State<SignUpDoc> {
     ));
   }
 }
+
+
+
+
+

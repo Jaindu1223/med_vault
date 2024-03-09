@@ -14,7 +14,6 @@ class _MedicalRecordsState extends State<MedicalRecords> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.blue[100],
         body: Stack(
             children:[
               Container(
@@ -23,8 +22,6 @@ class _MedicalRecordsState extends State<MedicalRecords> {
                     image: AssetImage(
                         'lib/images/6 Pharmacy locater-2.png'),
                     fit: BoxFit.cover,
-                    //height: double.infinity,
-                    //width: double.infinity,
                   ),
                 ),
               ),
