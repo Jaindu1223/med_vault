@@ -163,7 +163,7 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
     print('User latitude: $userLatitude, User longitude: $userLongitude');
 
 
-    final Uri url = Uri.parse('http://10.0.2.2:9000/searchPharmacies?medicineName=$medicineName');
+    final Uri url = Uri.parse('http://10.0.2.2:9000/searchPharmacies?medicineName=$medicineName&latitude=$userLatitude&longitude=$userLongitude');
 
     try {
       final http.Response response = await http.get(url);
