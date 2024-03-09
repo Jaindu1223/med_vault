@@ -118,7 +118,9 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 
 class PharmacySearchPage extends StatefulWidget {
@@ -131,6 +133,7 @@ class PharmacySearchPage extends StatefulWidget {
 class _PharmacySearchPageState extends State<PharmacySearchPage> {
   TextEditingController medicineNameController = TextEditingController();
   String nearestPharmacyName = '';
+  String mapLink = '';
   bool isLoading = false;
 
   Future<void> searchNearestPharmacy() async {
@@ -141,7 +144,28 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
     final String medicineName = medicineNameController.text.toLowerCase();
 
     print('medicine name: $medicineName');
-    final Uri url = Uri.parse('http://10.0.2.2:9000/searchPharmacies?medicineName=$medicineName');
+
+    LocationPermission permission = await Geolocator.checkPermission();
+    if(permission == LocationPermission.denied){
+      permission = await Geolocator.requestPermission();
+      if(permission == LocationPermission.denied){
+        print('Location permissions are denied');
+        setState(() {
+          nearestPharmacyName = 'Location permissions are denied';
+          isLoading = false;
+        });
+        return;
+      }
+    }
+
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    final double userLatitude = position.latitude;
+    final double userLongitude = position.longitude;
+
+    print('User latitude: $userLatitude, User longitude: $userLongitude');
+
+
+    final Uri url = Uri.parse('http://10.0.2.2:9000/searchPharmacies?medicineName=$medicineName&latitude=$userLatitude&longitude=$userLongitude');
 
     try {
       final http.Response response = await http.get(url);
@@ -150,15 +174,25 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
         final Map<String, dynamic> responseData = jsonDecode(response.body);
         print(responseData);
         final dynamic nearestPharmacyValue = responseData['nearestPharmacyName'];
+        final dynamic mapLinkValue = responseData['mapLink'];
         // final pharmacyName = nearestPharmacyValue['pharmacy'];
-        if (nearestPharmacyValue is String) {
+        if (nearestPharmacyValue== null || nearestPharmacyValue is! String) {
           setState(() {
-            nearestPharmacyName = nearestPharmacyValue;
+            nearestPharmacyName = '$medicineName is not available';
             isLoading = false;
           });
-        } else {
-          throw Exception('Unexpected data type for nearestPharmacy');
-        }
+          return;
+
+        }else{
+          setState(() {
+            nearestPharmacyName = nearestPharmacyValue;
+            mapLink = mapLinkValue;
+            isLoading = false;
+          });
+        };
+        // } else {
+        //   throw Exception('Unexpected data type for nearestPharmacy');
+        // }
       } else {
         throw Exception('Failed to load data');
       }
@@ -168,6 +202,15 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
         nearestPharmacyName = 'Error occurred';
         isLoading = false;
       });
+    }
+  }
+
+  void launchMapURL(String mapLink)async{
+    Uri map = Uri.parse(mapLink);
+    if(await canLaunchUrl(map)){
+      await launchUrl(map);
+    }else{
+      throw 'Could not launch map';
     }
   }
 
@@ -194,10 +237,15 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
               child: isLoading ? CircularProgressIndicator() : Text('Search Nearest Pharmacy'),
             ),
             SizedBox(height: 16.0),
-            Text(
-              'Nearest Pharmacy: $nearestPharmacyName',
-              style: TextStyle(fontSize: 16.0),
-            ),
+            GestureDetector(
+              onTap: ()=> launchMapURL(mapLink),
+              child: Text(
+                'Nearest Pharmacy: $nearestPharmacyName\nMap Link: $mapLink',
+                style: TextStyle(fontSize: 16.0),
+              ),
+            )
+
+
           ],
         ),
       ),
