@@ -173,14 +173,22 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
         print(responseData);
         final dynamic nearestPharmacyValue = responseData['nearestPharmacyName'];
         // final pharmacyName = nearestPharmacyValue['pharmacy'];
-        if (nearestPharmacyValue is String) {
+        if (nearestPharmacyValue== null || nearestPharmacyValue is! String) {
+          setState(() {
+            nearestPharmacyName = '$medicineName is not available';
+            isLoading = false;
+          });
+          return;
+
+        }else{
           setState(() {
             nearestPharmacyName = nearestPharmacyValue;
             isLoading = false;
           });
-        } else {
-          throw Exception('Unexpected data type for nearestPharmacy');
-        }
+        };
+        // } else {
+        //   throw Exception('Unexpected data type for nearestPharmacy');
+        // }
       } else {
         throw Exception('Failed to load data');
       }
