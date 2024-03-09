@@ -132,6 +132,7 @@ class PharmacySearchPage extends StatefulWidget {
 class _PharmacySearchPageState extends State<PharmacySearchPage> {
   TextEditingController medicineNameController = TextEditingController();
   String nearestPharmacyName = '';
+  String mapLink = '';
   bool isLoading = false;
 
   Future<void> searchNearestPharmacy() async {
@@ -172,6 +173,7 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
         final Map<String, dynamic> responseData = jsonDecode(response.body);
         print(responseData);
         final dynamic nearestPharmacyValue = responseData['nearestPharmacyName'];
+        final dynamic mapLinkValue = responseData['mapLink'];
         // final pharmacyName = nearestPharmacyValue['pharmacy'];
         if (nearestPharmacyValue== null || nearestPharmacyValue is! String) {
           setState(() {
@@ -183,6 +185,7 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
         }else{
           setState(() {
             nearestPharmacyName = nearestPharmacyValue;
+            mapLink = mapLinkValue;
             isLoading = false;
           });
         };
@@ -225,7 +228,7 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
             ),
             SizedBox(height: 16.0),
             Text(
-              'Nearest Pharmacy: $nearestPharmacyName',
+              'Nearest Pharmacy: $nearestPharmacyName\nMap Link: $mapLink',
               style: TextStyle(fontSize: 16.0),
             ),
           ],
