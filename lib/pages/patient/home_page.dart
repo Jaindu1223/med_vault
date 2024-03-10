@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:med_vault/pages/patient/my_qr.dart';
 import 'package:med_vault/pages/patient/patient_profile.dart';
+import 'package:med_vault/pages/patient/pharmacy_spotter.dart';
+import 'package:med_vault/pages/patient/view_prescription.dart';
 
 
 class HomePage extends StatefulWidget {
