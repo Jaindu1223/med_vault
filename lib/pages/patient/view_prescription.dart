@@ -51,10 +51,26 @@ class _viewPrescriptionState extends State<viewPrescription> {
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseData = jsonDecode(response.body);
         print(responseData);
-        final dynamic patientNameValue = responseData['patient_name'];
+        final dynamic patientNameValue = responseData['patientName'];
         final dynamic ageValue = responseData['age'];
         final dynamic addressValue = responseData['address'];
-        final dynamic medicines = responseData['medicines'];
+
+        final dynamic medication1Value = responseData['medication1Name'];
+        final dynamic dosage1Value = responseData['dosage1'];
+        final dynamic moreDetails1Value = responseData['moreDetails1'];
+
+        final dynamic medication2Value = responseData['medication2Name'];
+        final dynamic dosage2Value = responseData['dosage2'];
+        final dynamic moreDetails2Value = responseData['moreDetails2'];
+
+        final dynamic medication3Value = responseData['medication3Name'];
+        final dynamic dosage3Value = responseData['dosage3'];
+        final dynamic moreDetails3Value = responseData['moreDetails3'];
+
+        final dynamic additionalValue = responseData['additional'];
+        final dynamic instructionsValue = responseData['instructions'];
+
+
 
         if (patientNameValue == null || patientNameValue is! String) {
           setState(() {
@@ -67,43 +83,22 @@ class _viewPrescriptionState extends State<viewPrescription> {
             patientName = patientNameValue;
             age = ageValue;
             address = addressValue;
-            // Initialize medication variables to empty strings
-            medication1Name = '';
-            dosage1 = 0;
-            moreDetails1 = '';
-            medication2Name = '';
-            dosage2 = 0;
-            moreDetails2 = '';
-            medication3Name = '';
-            dosage3 = 0;
-            moreDetails3 = '';
-            additional = responseData['additional_notes'];
-            instructions = responseData['instructions'];
+            medication1Name =medication1Value;
+            dosage1 = dosage1Value;
+            moreDetails1 = moreDetails1Value;
+            medication2Name = medication2Value;
+            dosage2 = dosage2Value;
+            moreDetails2 = moreDetails2Value;
+            medication3Name = medication3Value;
+            dosage3 = dosage3Value;
+            moreDetails3 = moreDetails3Value;
+            additional = additionalValue;
+            instructions = instructionsValue;
             isLoading = false;
           });
 
-          // Set medication variables from medicines array
-          if (medicines != null && medicines is List) {
-            if (medicines.isNotEmpty) {
-              final dynamic firstMedication = medicines[0];
-              medication1Name = firstMedication['name'];
-              dosage1 = firstMedication['dosage'];
-              moreDetails1 = firstMedication['details'];
-            }
-            if (medicines.length > 1) {
-              final dynamic secondMedication = medicines[1];
-              medication2Name = secondMedication['name'];
-              dosage2 = secondMedication['dosage'];
-              moreDetails2 = secondMedication['details'];
-            }
-            if (medicines.length > 2) {
-              final dynamic thirdMedication = medicines[2];
-              medication3Name = thirdMedication['name'];
-              dosage3 = thirdMedication['dosage'];
-              moreDetails3 = thirdMedication['details'];
-            }
-          }
-        }
+
+        };
       } else {
         throw Exception('Failed to load data');
       }
@@ -327,6 +322,7 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                               ),
                                             ),
                                             SizedBox(width: 16),
+
                                             Expanded(
                                               child: Container(
                                                 decoration: ShapeDecoration(
