@@ -59,7 +59,7 @@ class _CategoryState extends State<Category> {
                       if(_userType=='Doctor'){
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context)=> HomePageDoc()),
+                          MaterialPageRoute(builder: (context)=> SignInDoc()),
                         );
                       }//if
                     },
