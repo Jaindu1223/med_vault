@@ -15,6 +15,7 @@ class NewPrescription extends StatefulWidget {
 
 class _NewPrescriptionState extends State<NewPrescription> {
   final _patientNameController = TextEditingController();
+  final _patientNICController = TextEditingController();
   final _ageController = TextEditingController();
   final _addressController = TextEditingController();
 
@@ -35,6 +36,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
 
   Future<void> _submitForm() async {
     final patientName = _patientNameController.text;
+    final patientNIC = _patientNICController.text;
     final age = int.tryParse(_ageController.text);
     final address = _addressController.text;
 
@@ -67,6 +69,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
       },
       body: jsonEncode(<String, dynamic>{
         'patientName': patientName,
+        'patientNIC': patientNIC,
         'age': age,
         'address': address,
         'medication1Name': medication1Name,
@@ -240,6 +243,21 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                       controller: _patientNameController,
                                       decoration:  InputDecoration(
                                           labelText: 'Patient Name',
+                                        labelStyle: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 5),
+                                    TextField(
+                                      controller: _patientNICController,
+                                      decoration:  InputDecoration(
+                                        labelText: 'Patient NIC',
                                         labelStyle: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 15,

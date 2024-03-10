@@ -222,7 +222,7 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(height: 17),
                         InkWell(
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>ViewPrescription(id: '65e9ff45657c90d8286a9000',)));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>viewPrescription()));
                           },
                           child: Container(
                             padding: const EdgeInsets.all(4),
