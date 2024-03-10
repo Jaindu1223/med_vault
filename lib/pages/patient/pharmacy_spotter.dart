@@ -159,26 +159,32 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
     }
 
     Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    final double userLatitude = position.latitude;
-    final double userLongitude = position.longitude;
+    final double userLat = position.latitude;
+    final double userLong = position.longitude;
 
-    print('User latitude: $userLatitude, User longitude: $userLongitude');
+    print('User latitude: $userLat, User longitude: $userLong');
 
 
-    final Uri url = Uri.parse('http://10.0.2.2:9000/searchPharmacies?medicineName=$medicineName&latitude=$userLatitude&longitude=$userLongitude');
+    // final Uri url = Uri.parse('http://10.0.2.2:4000/searchPharmacies?userMedicine=$medicineName&latitude=$userLatitude&longitude=$userLongitude');
+
+    // final Uri url = Uri.parse('http://10.0.2.2:4000/searchPharmacies?userMedicine=$medicineName&userLatitude=$userLat&userLongitude=$userLong');
 
     try {
+
+      final Uri url = Uri.parse('http://10.0.2.2:4000/searchPharmacies?userMedicine=$medicineName&userLatitude=$userLat&userLongitude=$userLong');
+
       final http.Response response = await http.get(url);
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseData = jsonDecode(response.body);
         print(responseData);
         final dynamic nearestPharmacyValue = responseData['nearestPharmacyName'];
-        final dynamic mapLinkValue = responseData['mapLink'];
-        // final pharmacyName = nearestPharmacyValue['pharmacy'];
+        // final dynamic mapLinkValue = responseData['mapLink'];
+
         if (nearestPharmacyValue== null || nearestPharmacyValue is! String) {
           setState(() {
             nearestPharmacyName = '$medicineName is not available';
+            mapLink = '';
             isLoading = false;
           });
           return;
@@ -186,7 +192,7 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
         }else{
           setState(() {
             nearestPharmacyName = nearestPharmacyValue;
-            mapLink = mapLinkValue;
+            // mapLink = mapLinkValue!;
             isLoading = false;
           });
         };
