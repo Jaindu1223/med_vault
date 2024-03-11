@@ -1,82 +1,60 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'dart:convert';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:med_vault/pages/doctor/home_pageD.dart';
 import 'package:med_vault/pages/doctor/signup_doc.dart';
-import 'package:med_vault/pages/patient/fog_pw.dart';
-
-import 'package:med_vault/pages/patient/home_page.dart';
-import 'package:med_vault/pages/patient/sign_up.dart';
-
-import '../catergory.dart';
-//import 'package:med_vault/pages/doctor/fog_pw.dart';
-
-class homepage1 extends StatefulWidget {
-  const homepage1({super.key});
-
-  @override
-  State<homepage1> createState() => _homepage1State();
-}
-
-class _homepage1State extends State<homepage1> {
-
-  Future<FirebaseApp> _initializeFirebase() async {
-    FirebaseApp firebaseApp = await Firebase.initializeApp();
-    return firebaseApp;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder(
-        future: _initializeFirebase(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return SignInDoc();
-          }
-          return const Center(
-              child: CircularProgressIndicator(),
-          );
-        },
-      ),
-    );
-  }
-}
-
+import '../patient/fog_pw.dart';
+import 'package:http/http.dart' as http;
 
 class SignInDoc extends StatefulWidget {
   const SignInDoc({super.key});
 
   @override
-  _SignInDocState  createState() => _SignInDocState();
+  State<SignInDoc> createState() => _SignInState();
 }
 
-class _SignInDocState extends State<SignInDoc> {
+class _SignInState extends State<SignInDoc> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _isNotValidate = false;
 
 
+  void loginUser() async {
+    if (_emailController.text.isNotEmpty &&
+        _passwordController.text.isNotEmpty) {
 
-  static Future<User?> loggingUsingEmailPassword(
-      {required String email, required String password, required BuildContext context}) async {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    User? user;
-    try {
-      UserCredential userCredential = await auth.signInWithEmailAndPassword(
-          email: email, password: password);
-      user = userCredential.user;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == "user-not-found") {
-        print("No user found for that email.");
+      setState(() {
+        _isNotValidate = false;
+      });
+
+      var regBody = {
+        "email": _emailController.text,
+        "password": _passwordController.text
+      };
+
+      var response = await http.post(
+        Uri.parse('http://10.0.2.2:4000/doctorLogin'),
+        body: json.encode(regBody),
+        headers: {'Content-Type': 'application/json'},
+      );
+      var jsonResponse = jsonDecode(response.body);
+      // print(jsonResponse['status']);
+      if (jsonResponse['status']) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const HomePageDoc()));
+      } else {
+        print("Incorrect Email or Password ");
       }
+    } else {
+      setState(() {
+        _isNotValidate = true;
+      });
     }
-    return user;
   }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _emailController = TextEditingController();
-    TextEditingController _passwordController = TextEditingController();
-    return Scaffold(
+    return  Scaffold(
         body: Stack(
             children: [
               Image.asset(
@@ -93,8 +71,7 @@ class _SignInDocState extends State<SignInDoc> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 80.0),
-                        // Add padding at the top
+                        padding: const EdgeInsets.only(top: 60.0), // Add padding at the top
                         child: Center(
                           child: Image.asset(
                             'lib/images/welcome.png',
@@ -106,56 +83,50 @@ class _SignInDocState extends State<SignInDoc> {
 
 
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        // Add padding here
-                        child: TextField(
+                        padding: const EdgeInsets.only(top: 10.0), // Add padding here
+                        child:
+                        TextField(
                           controller: _emailController,
                           decoration: InputDecoration(
                             hintText: 'bla@gmail.com',
                             hintStyle: TextStyle(color: Colors.grey[500]),
-                            enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey),
-                            ),
-                            focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.blue),
-                            ),
+                            enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey),),
+                            focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue),),
                             fillColor: Colors.grey.shade100,
                             filled: true,
-                            contentPadding: const EdgeInsets.fromLTRB(
-                                16.0, 10.0, 16.0, 10.0),
+                            contentPadding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                            errorText: _isNotValidate ? "Email is required" : null,
+                            // errorText: _emailController.text.isEmpty ? 'Email is required' : null,
                           ),
                         ),
                       ),
-
-                      const SizedBox(height: 26),
+                      const SizedBox(height: 16),
 
                       TextField(
                         controller: _passwordController,
                         obscureText: true,
+                        keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                           hintText: 'Password',
                           hintStyle: TextStyle(color: Colors.grey[500]),
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
-                          ),
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.blue),
-                          ),
+                          enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey),),
+                          focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue),),
                           fillColor: Colors.grey.shade100,
                           filled: true,
-                          contentPadding: const EdgeInsets.fromLTRB(
-                              16.0, 10.0, 16.0, 10.0),
+                          contentPadding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                          errorText: _passwordController.text.isEmpty && _isNotValidate ? "Password is required" : null,
+                          errorStyle: const TextStyle(color: Colors.black),
                         ),
                       ),
                       const SizedBox(height: 16),
+
                       Align(
                         alignment: Alignment.bottomRight,
                         child: GestureDetector(
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) =>
-                                  ForgotPasswordPage()),
+                              MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
                             );
                           },
                           child: const Text(
@@ -166,43 +137,42 @@ class _SignInDocState extends State<SignInDoc> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 56),
-                      Container(
-                        width: double.infinity,
-                        child: RawMaterialButton(
-                          fillColor: const Color(0xFF0069FE),
-                          elevation: 0.0,
-                          padding: const EdgeInsets.symmetric(vertical: 20.0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),),
-                          onPressed: () async {
-                            User? user = await loggingUsingEmailPassword(
-                                email: _emailController.text,
-                                password: _passwordController.text,
-                                context: context);
-                            print(user);
-                            if (user != null) {
-                              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>HomePageDoc()));
-
+                      const SizedBox(height: 50),
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            loginUser();
+                            if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
+                              // Show error message or toast here
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text('Email and Password are required')),
+                              );
+                            } else {
+                              // Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage()));
                             }
                           },
-                          child: const Text('Sign in',
-                              style: TextStyle(
-                                color: Colors.blue,
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              fixedSize: const Size(260, 28),
+                              foregroundColor: Colors.white,
+                              textStyle: const TextStyle(
                                 fontSize: 18,
-                              )),
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                              )
+                          ),
+                          child: const Text('Sign in'),
                         ),
                       ),
-                      const SizedBox(height: 30),
-
+                      const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text('Don\'t have an account ?'),
                           TextButton(
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(
-                                  builder: (context) => const SignUpDoc()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignUpDoc()));
                             },
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.blue,
@@ -222,25 +192,10 @@ class _SignInDocState extends State<SignInDoc> {
                                   decoration: TextDecoration.underline,
                                 ),
                                 recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    //the link to the page
+                                  ..onTap=(){
+
                                   },
                               ),
-
-                              // TextSpan(
-                              //   text: ' and ',
-                              // ),
-                              //
-                              // TextSpan(
-                              //   text: 'Privacy Statement',
-                              //   style: TextStyle(
-                              //     decoration: TextDecoration.underline,
-                              //   ),
-                              //   recognizer: TapGestureRecognizer()
-                              //     ..onTap=(){
-                              //       //the link to the page
-                              //     },
-                              // ),
                             ]
                         ),
                         style: const TextStyle(
@@ -248,7 +203,7 @@ class _SignInDocState extends State<SignInDoc> {
                           color: Colors.black,
                         ),
                       ),
-                    ], //children
+                    ],//children
                   ),
                 ),
               ),
