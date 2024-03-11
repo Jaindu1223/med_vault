@@ -105,6 +105,7 @@ class _HomePageState extends State<HomePage> {
             ),
 
             Text('Welcome, ${widget.email}'),
+
             Padding(
               padding: const EdgeInsets.only(left: 0,top: 0,right: 30,bottom: 10),
               child: Row(
@@ -295,7 +296,7 @@ class _HomePageState extends State<HomePage> {
 
                         InkWell(
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>const MyQR()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>const MyQR(email: "")));
                           },
                           child: Container(
                             padding: const EdgeInsets.all(4),

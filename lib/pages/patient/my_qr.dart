@@ -7,7 +7,9 @@ import 'package:http/http.dart' as http;
 import 'dart:ui';
 
 class MyQR extends StatefulWidget {
-  const MyQR({super.key});
+  final String email;
+
+  const MyQR({Key? key, required this.email}):super(key:key);
 
   @override
   State<MyQR> createState() => _MyQRState();
@@ -170,7 +172,7 @@ class _MyQRState extends State<MyQR> {
                 padding: EdgeInsets.only(left: 16.0, right: 16.0),
                 child: TextField(
                   controller: _textController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     contentPadding: EdgeInsets.all(10),
                     labelText: 'Enter Text',
                     labelStyle: TextStyle(color: Colors.white),
