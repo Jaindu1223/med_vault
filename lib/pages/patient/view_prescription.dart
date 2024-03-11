@@ -16,7 +16,7 @@ class viewPrescription extends StatefulWidget {
 
 class _viewPrescriptionState extends State<viewPrescription> {
 
-  final _patientNICController = TextEditingController();
+  final _emailController = TextEditingController();
   bool isLoading = false;
   String patientName = '';
   int age =0;
@@ -39,12 +39,12 @@ class _viewPrescriptionState extends State<viewPrescription> {
       isLoading = true;
     });
 
-    final String patientNIC = _patientNICController.text.toLowerCase();
+    final String email = _emailController.text.toLowerCase();
 
-    print('prescription: $patientNIC');
+    print('prescription: $email');
     try {
 
-      final Uri url = Uri.parse('http://10.0.2.2:3000/patientNIC/$patientNIC');
+      final Uri url = Uri.parse('http://10.0.2.2:3000/email/$email');
 
       final http.Response response = await http.get(url);
 
@@ -74,7 +74,7 @@ class _viewPrescriptionState extends State<viewPrescription> {
 
         if (patientNameValue == null || patientNameValue is! String) {
           setState(() {
-            patientName = '$patientNIC is not available';
+            patientName = '$email is not available';
             isLoading = false;
           });
           return;
@@ -105,7 +105,7 @@ class _viewPrescriptionState extends State<viewPrescription> {
     } catch (error) {
       print('Error: $error');
       setState(() {
-        patientName = 'Error occurred';
+        //patientName = 'Error occurred';
         isLoading = false;
       });
     }
@@ -250,7 +250,7 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                     const SizedBox(height: 5),
 
                                     TextField(
-                                      controller: _patientNICController,
+                                      controller: _emailController,
                                       decoration:  InputDecoration(
                                         labelText: 'Enter your NIC',
                                         labelStyle: TextStyle(
@@ -278,14 +278,14 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                     const SizedBox(height: 5),
 
                                     Text(
-                                      'age: $age',
+                                      'Age: $age',
                                       style: TextStyle(fontSize: 16.0),
                                     ),
 
 
                                     const SizedBox(height: 20),
                                     Text(
-                                      'address: $address',
+                                      'Address: $address',
                                       style: TextStyle(fontSize: 16.0),
                                     ),
 
