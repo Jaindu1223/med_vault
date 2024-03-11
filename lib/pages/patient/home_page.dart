@@ -17,7 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  get email => "user@gmail.com";
+  // get email => "user@gmail.com";
 
 
   @override
@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
               ],),
             ),
 
-            Text('Welcome, $email'),
+            Text('Welcome, ${widget.email}'),
             Padding(
               padding: const EdgeInsets.only(left: 0,top: 0,right: 30,bottom: 10),
               child: Row(
