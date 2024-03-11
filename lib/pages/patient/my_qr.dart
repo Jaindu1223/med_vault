@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+// import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-// import 'package:http/http.dart' as http;
-// import 'dart:ui';
 import 'package:intl/intl.dart';
 
 class MyQR extends StatefulWidget {
@@ -20,35 +19,6 @@ class _MyQRState extends State<MyQR> {
   String data = '';
   final GlobalKey _qrkey = GlobalKey();
 
-  // Function to fetch user's email from backend
-  // Future<void> fetchUserEmail() async {
-  //
-  //   final response = await http.get(
-  //       //Uri.parse('https://your-backend-api/user/${userId}/email')); // Replace with your actual backend endpoint
-  //     Uri.parse('http://localhost:3000/users'),
-  //     headers: <String, String>{
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: jsonEncode(<String, String>{
-  //       'email': _medicineController.text,
-  //     }),
-  //   );
-  //
-  //   if (response.statusCode == 200) {
-  //     setState(() {
-  //       userEmail = response.body['email'];
-  //     });
-  //   } else {
-  //     print('Failed to fetch user email: ${response.reasonPhrase}');
-  //   }
-  // }
-  //
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   fetchUserEmail(); // Fetch user's email when the widget is initialized
-  // }
-
   @override
   Widget build(BuildContext context) {
     // Get current date and time
@@ -58,7 +28,7 @@ class _MyQRState extends State<MyQR> {
     String formattedTime = DateFormat.jm().format(now); // Format: 3:21:59 PM
 
     return Scaffold(
-        backgroundColor: Colors.white70,
+        backgroundColor: Colors.grey,
         body: SingleChildScrollView(
           child: Stack(
             children: [
@@ -92,7 +62,7 @@ class _MyQRState extends State<MyQR> {
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 29,
-                                color: Colors.black,
+                                color: Colors.white,
                               ),
                             ),
                             /*const Text(
@@ -115,16 +85,16 @@ class _MyQRState extends State<MyQR> {
                             Text(
                               formattedDate,
                               style: const TextStyle(
-                                fontSize: 15,
-                                color: Colors.black,
+                                fontSize: 13,
+                                color: Colors.white,
                               ),
                             ),
                             const SizedBox(height: 2),
                             Text(
                               formattedTime,
                               style: const TextStyle(
-                                fontSize: 13,
-                                color: Colors.black,
+                                fontSize: 10,
+                                color: Colors.white,
                               ),
                             ),
                           ],
@@ -138,73 +108,70 @@ class _MyQRState extends State<MyQR> {
                           child: Image.asset(
                             'lib/images/qr-code-blue.png',
                           ),
+
+                          //color: Colors.limeAccent,
                         ),
                       ],
                     ),
                   ),
 
-                  //search bar
-
-                  //categories(horizontal list)
-
                   const SizedBox(height: 25),
 
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(left: 16.0, right: 16.0),
-                    child: TextField(
-                      // controller: TextEditingController(text: widget.email),
-                      controller: _textController,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.all(10),
-                        labelText: 'Enter Text',
-                        labelStyle: TextStyle(color: Colors.black),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 0, 146, 20),
-                              width: 2.0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.grey, width: 2.0),
-                        ),
-                      ),
-                    ),
+                    // child: TextField(
+                    //   controller: _textController,
+                    //   decoration: const InputDecoration(
+                    //     contentPadding: EdgeInsets.all(10),
+                    //     labelText: 'Enter Text',
+                    //     labelStyle: TextStyle(color: Colors.white),
+                    //     focusedBorder: OutlineInputBorder(
+                    //       borderSide: BorderSide(
+                    //           color: Color.fromARGB(255, 0, 146, 20), width: 2.0),
+                    //     ),
+                    //     enabledBorder: OutlineInputBorder(
+                    //       borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                    //     ),
+                    //   ),
+                    // ),
                   ),
 
                   const SizedBox(
                     height: 15,
                   ),
 
-                  RawMaterialButton(
-                    onPressed: () {
-                      setState(() {
-                        data = _textController.text;
-                      });
-                    },
-                    fillColor: Colors.cyan,
-                    shape: const StadiumBorder(),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 36, vertical: 16),
-                    child: const Text(
-                      'View My QR',
-
-                      // 'Generate',
-
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
+                  // RawMaterialButton(
+                  //
+                  //
+                  //   onPressed: () {
+                  //     setState(() {
+                  //       // _textController.text = widget.email;
+                  //       data = widget.email;
+                  //     });
+                  //   },
+                  //
+                  //   fillColor: Colors.cyan,
+                  //   shape: const StadiumBorder(),
+                  //   padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
+                  //   child: const Text(
+                  //
+                  //     'generate',
+                  //
+                  //     // 'Generate',
+                  //
+                  //     style: TextStyle(
+                  //       color: Colors.white,
+                  //       fontSize: 18,
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 25,),
 
                   Center(
                       child: RepaintBoundary(
                     key: _qrkey,
                     child: QrImageView(
-                      data: data,
+                      data: widget.email,
                       version: QrVersions.auto,
                       size: 250.0,
                       gapless: true,

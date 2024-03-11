@@ -6,6 +6,8 @@ import 'package:med_vault/pages/patient/sign_up.dart';
 import 'fog_pw.dart';
 import 'package:http/http.dart' as http;
 
+import 'my_qr.dart';
+
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
 
@@ -40,8 +42,15 @@ class _SignInState extends State<SignIn> {
       var jsonResponse = jsonDecode(response.body);
       // print(jsonResponse['status']);
       if (jsonResponse['status']) {
+
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => HomePage(email: _emailController.text)));
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => MyQR(email: _emailController.text),
+        //   ),
+        // );
       } else {
         print("Incorrect Email or Password ");
       }

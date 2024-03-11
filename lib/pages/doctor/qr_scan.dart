@@ -274,7 +274,7 @@ class _QrScanState extends State<QrScan> {
     return Scaffold(
       appBar:AppBar(
 
-        title: Text("QR code scanner"),
+        title: const Text("QR code scanner"),
       ),
 
       body:Column(
@@ -291,7 +291,7 @@ class _QrScanState extends State<QrScan> {
             child: Center(
               child: Text(
                 "Scan Result: $result",
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                 ),
               ),
@@ -307,13 +307,13 @@ class _QrScanState extends State<QrScan> {
                     if(result.isNotEmpty){
                       Clipboard.setData(ClipboardData(text: result));
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
+                        const SnackBar(
                           content:Text("copied to the Clipboard"),
                         ),
                       );
                     }
                   },
-                  child: Text("View History"),
+                  child: const Text("View History"),
                 ),
                 ElevatedButton(
                   onPressed: ()async {
@@ -322,7 +322,7 @@ class _QrScanState extends State<QrScan> {
                       await launchUrl(_url);
                     }
                   },
-                  child: Text("Create a new prescription"),
+                  child: const Text("Create a new prescription"),
                 ),
 
               ],

@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:med_vault/pages/patient/sign_in.dart';
 import 'package:http/http.dart' as http;
 
+import 'my_qr.dart';
+
 class SignUpPage extends StatefulWidget {
   @override
   _SignUpPageState createState() => _SignUpPageState();
@@ -51,6 +53,9 @@ class _SignUpPageState extends State<SignUpPage> {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Registration successful')),
             );
+
+
+
             return true;
           } else {
             // Registration failed
