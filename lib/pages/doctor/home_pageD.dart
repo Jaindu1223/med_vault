@@ -1,13 +1,11 @@
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:med_vault/pages/doctor/customize_prescription.dart';
 import 'package:med_vault/pages/doctor/doctor_profile.dart';
 import 'package:med_vault/pages/doctor/qr_scan.dart';
-
-
-
 import '../patient/pharmacy_spotter.dart';
-import 'new_prescription.dart';
+// import 'new_prescription.dart';
 
 class HomePageDoc extends StatefulWidget {
   const HomePageDoc({Key? key}):super(key:key);
@@ -17,8 +15,15 @@ class HomePageDoc extends StatefulWidget {
 }
 
 class _HomePageDocState extends State<HomePageDoc> {
+
   @override
   Widget build(BuildContext context) {
+    // Get current date and time
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('EEEE d MMMM, y')
+        .format(now); // Format: Monday 23 July, 2022
+    String formattedTime = DateFormat.jm().format(now); // Format: 3:21:59 PM
+
     return Scaffold(
       body: Stack(
           children:[
@@ -64,17 +69,17 @@ class _HomePageDocState extends State<HomePageDoc> {
                               'lib/images/Group 2085662530.png'),
                         ),
                         const SizedBox(height: 1),
-                        const Text(
-                          'Monday 23rd, July, 2060',
-                          style: TextStyle(
+                        Text(
+                          formattedDate,
+                          style: const TextStyle(
                             fontSize: 13,
                             color: Colors.white,
                           ),
                         ),
                         const SizedBox(height: 2),
-                        const Text(
-                          '3:21:59pm',
-                          style: TextStyle(
+                        Text(
+                          formattedTime,
+                          style: const TextStyle(
                             fontSize: 10,
                             color: Colors.white,
                           ),

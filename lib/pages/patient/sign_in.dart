@@ -102,24 +102,6 @@ class _SignInState extends State<SignIn> {
                       ),
                       const SizedBox(height: 16),
 
-
-                      // TextField(
-                      //   controller: _passwordController,
-                      //   obscureText: true,
-                      //   decoration: InputDecoration(
-                      //     hintText: 'NIC',
-                      //     hintStyle: TextStyle(color: Colors.grey[500]),
-                      //     enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey),),
-                      //     focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue),),
-                      //     fillColor: Colors.grey.shade100,
-                      //     filled: true,
-                      //     contentPadding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
-                      //     errorText: _isNotValidate ? "NIC is required" : null,
-                      //   ),
-                      // ),
-                      // const SizedBox(height: 16),
-
-
                       TextField(
                         controller: _passwordController,
                         obscureText: true,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 // import 'package:http/http.dart' as http;
-import 'dart:ui';
+// import 'dart:ui';
 import 'package:intl/intl.dart';
 
 class MyQR extends StatefulWidget {
