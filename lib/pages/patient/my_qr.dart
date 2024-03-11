@@ -43,9 +43,6 @@ class _MyQRState extends State<MyQR> {
               Column(
                 children: [
                   Container(
-                    /*decoration: BoxDecoration(
-                  color: Colors.lightBlue
-                ),*/
                     padding: const EdgeInsets.only(
                         left: 20, top: 30, right: 3, bottom: 7),
                     child: Row(
@@ -65,21 +62,13 @@ class _MyQRState extends State<MyQR> {
                                 color: Colors.white,
                               ),
                             ),
-                            /*const Text(
-                        'MedVault',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 29,
-                          color: Colors.white,
-                        ),
-                      ),*/
+
                             SizedBox(
                               height: 60,
                               width: 20,
                               child: Image.asset(
                                   'lib/images/Group 2085662530.png'),
 
-                              //color: Colors.limeAccent,
                             ),
                             const SizedBox(height: 1),
                             Text(
@@ -108,8 +97,6 @@ class _MyQRState extends State<MyQR> {
                           child: Image.asset(
                             'lib/images/qr-code-blue.png',
                           ),
-
-                          //color: Colors.limeAccent,
                         ),
                       ],
                     ),

@@ -4,8 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:med_vault/pages/patient/sign_in.dart';
 import 'package:http/http.dart' as http;
 
-import 'my_qr.dart';
-
 class SignUpPage extends StatefulWidget {
   @override
   _SignUpPageState createState() => _SignUpPageState();
@@ -13,12 +11,14 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
-  late String fullName, email, nic, phoneNumber, password, confirmPassword;
+  late String fullName, birthdate, address, email, nic, phoneNumber, password, confirmPassword;
 
   final _nameController = TextEditingController();
+  final _birthdateController = TextEditingController();
+  final _addressController = TextEditingController();
   final _emailController = TextEditingController();
-  final _phoneNumberController = TextEditingController();
   final _nicController = TextEditingController();
+  final _phoneNumberController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   bool _isNotValidate = false;
@@ -33,9 +33,11 @@ class _SignUpPageState extends State<SignUpPage> {
 
       var regBody = {
         "name": _nameController.text,
+        "birthdate": _birthdateController,
+        "address": _addressController,
         "email": _emailController.text,
-        "phonenumber": _phoneNumberController.text,
         "NIC": _nicController.text,
+        "phonenumber": _phoneNumberController.text,
         "password": _passwordController.text
       };
 
@@ -53,9 +55,6 @@ class _SignUpPageState extends State<SignUpPage> {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Registration successful')),
             );
-
-
-
             return true;
           } else {
             // Registration failed
@@ -78,7 +77,6 @@ class _SignUpPageState extends State<SignUpPage> {
         _isNotValidate = true;
       });
     }
-
     return false;
   }
 
@@ -105,6 +103,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     TextStyle(fontSize: 34.0, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 30.0),
+
                   const Text('Full name'),
                   TextFormField(
                     controller: _nameController,
@@ -113,10 +112,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       errorText: _isNotValidate ? "Please enter your full name" : null,
                       hintText: 'Enter your full name',
                       hintStyle: TextStyle(color: Colors.grey[500]),
-                      enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey)),
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue)),
+                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
                       fillColor: Colors.grey.shade100,
                       filled: true,
                       contentPadding:
@@ -136,6 +133,67 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                   ),
                   const SizedBox(height: 20.0),
+
+                  const Text('Date of Birth'),
+                  TextFormField(
+                    controller: _birthdateController,
+                    decoration: InputDecoration(
+                      errorStyle: const TextStyle(color: Colors.black),
+                      errorText: _isNotValidate ? "Please enter your Date of Birth" : null,
+                      hintText: 'DD/MM/YYYY',
+                      hintStyle: TextStyle(color: Colors.grey[500]),
+                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
+                      fillColor: Colors.grey.shade100,
+                      filled: true,
+                      contentPadding:
+                      const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your date of birth';
+                      }
+                      // if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+                      //   return 'Please enter a valid date of birth';
+                      // }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      birthdate = value!;
+                    },
+                  ),
+                  const SizedBox(height: 20.0),
+
+                  const Text('Address'),
+                  TextFormField(
+                    controller: _addressController,
+                    decoration: InputDecoration(
+                      errorStyle: const TextStyle(color: Colors.black),
+                      errorText: _isNotValidate ? "Please enter your address" : null,
+                      hintText: 'Enter your address',
+                      hintStyle: TextStyle(color: Colors.grey[500]),
+                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
+                      fillColor: Colors.grey.shade100,
+                      filled: true,
+                      contentPadding:
+                      const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your address';
+                      }
+                      // if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+                      //   return 'Please enter a valid address';
+                      // }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      address = value!;
+                    },
+                  ),
+                  const SizedBox(height: 20.0),
+
                   const Text('Email Address'),
                   TextFormField(
                     controller: _emailController,
@@ -144,10 +202,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       errorText: _isNotValidate ? "Enter Proper Info" : null,
                       hintText: 'davidsmith@gmail.com',
                       hintStyle: TextStyle(color: Colors.grey[500]),
-                      enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey)),
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue)),
+                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
                       fillColor: Colors.grey.shade100,
                       filled: true,
                       contentPadding:
@@ -169,16 +225,15 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                   ),
                   const SizedBox(height: 20.0),
+
                   const Text('Phone Number'),
                   TextFormField(
                     controller: _phoneNumberController,
                     decoration: InputDecoration(
                       hintText: '+94 762 090 212',
                       hintStyle: TextStyle(color: Colors.grey[500]),
-                      enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey)),
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue)),
+                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
                       fillColor: Colors.grey.shade100,
                       filled: true,
                       contentPadding:
@@ -202,17 +257,15 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                   ),
                   const SizedBox(height: 20.0),
+
                   const Text('NIC'),
                   TextFormField(
                     controller: _nicController,
                     decoration: InputDecoration(
-                      //     labelText: 'NIC',
-                      hintText: 'Enter your NIC',
+                      hintText: '200468532944',
                       hintStyle: TextStyle(color: Colors.grey[500]),
-                      enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey)),
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue)),
+                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
                       fillColor: Colors.grey.shade100,
                       filled: true,
                       contentPadding:
@@ -246,6 +299,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                   ),
                   const SizedBox(height: 20.0),
+
                   const Text('Password'),
                   TextFormField(
                     controller: _passwordController,
@@ -255,10 +309,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       errorText: _isNotValidate ? "Enter Proper Info" : null,
                       hintText: 'Password',
                       hintStyle: TextStyle(color: Colors.grey[500]),
-                      enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey)),
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue)),
+                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
                       fillColor: Colors.grey.shade100,
                       filled: true,
                       contentPadding:
@@ -287,18 +339,16 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                   ),
                   const SizedBox(height: 20.0),
+
                   const Text('Confirm password'),
                   TextFormField(
                     controller: _confirmPasswordController,
                     obscureText: true,
                     decoration: InputDecoration(
-                      //  labelText: 'Confirm Password',
                       hintText: 'Confirm password',
                       hintStyle: TextStyle(color: Colors.grey[500]),
-                      enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey)),
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue)),
+                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
                       fillColor: Colors.grey.shade100,
                       filled: true,
                       contentPadding:
@@ -318,6 +368,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                   ),
                   const SizedBox(height: 30.0),
+
                   Padding(
                     padding: const EdgeInsets.only(right: 200),
                     child: Form(
@@ -330,7 +381,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               if (success) {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => SignIn()),
+                                  MaterialPageRoute(builder: (context) => const SignIn()),
                                 );
                               }
                             });
@@ -338,7 +389,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         },
                         child: Container(
                           padding: const EdgeInsets.all(10),
-                          width: 150,
+                          // width: 200,
                           decoration: BoxDecoration(
                             color: Colors.blue[200],
                             borderRadius: BorderRadius.circular(8),
@@ -387,9 +438,9 @@ class TelephoneInputFormatter extends TextInputFormatter {
   }
 }
 
-bool _isNumeric(String? value) {
-  if (value == null) {
-    return false;
-  }
-  return double.tryParse(value) != null;
-}
+// bool _isNumeric(String? value) {
+//   if (value == null) {
+//     return false;
+//   }
+//   return double.tryParse(value) != null;
+// }
