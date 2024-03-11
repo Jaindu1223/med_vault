@@ -213,7 +213,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                       ),
                                       child: const Center(
                                         child: Text(
-                                            'Save Details',
+                                            'Sign Out',
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 11)
