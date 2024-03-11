@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
 
-                    Text('Welcome, $email'),
+
                     SizedBox(
                       height: 40,
                       width: 20,
@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
               ],),
             ),
 
-
+            Text('Welcome, $email'),
             Padding(
               padding: const EdgeInsets.only(left: 0,top: 0,right: 30,bottom: 10),
               child: Row(
