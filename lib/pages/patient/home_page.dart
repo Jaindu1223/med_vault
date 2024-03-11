@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:med_vault/pages/patient/medical_record.dart';
+import 'package:intl/intl.dart';
+// import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:med_vault/pages/patient/my_qr.dart';
 import 'package:med_vault/pages/patient/patient_profile.dart';
 import 'package:med_vault/pages/patient/pharmacy_spotter.dart';
@@ -19,9 +20,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   // get email => "user@gmail.com";
 
-
   @override
   Widget build(BuildContext context) {
+    // Get current date and time
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('EEEE d MMMM, y')
+        .format(now); // Format: Monday 23 July, 2022
+    String formattedTime = DateFormat.jm().format(now); // Format: 3:21:59 PM
+
     return Scaffold(
       //backgroundColor: Colors.blue,
       body: Stack(
@@ -74,17 +80,17 @@ class _HomePageState extends State<HomePage> {
                           'lib/images/Group 2085662530.png'),
                     ),
                     const SizedBox(height: 1),
-                    const Text(
-                      'Monday 23rd, July, 2060',
-                      style: TextStyle(
+                    Text(
+                      formattedDate,
+                      style: const TextStyle(
                         fontSize: 13,
                         color: Colors.white,
                       ),
                     ),
                     const SizedBox(height: 2),
-                    const Text(
-                      '3:21:59pm',
-                      style: TextStyle(
+                    Text(
+                      formattedTime,
+                      style: const TextStyle(
                         fontSize: 10,
                         color: Colors.white,
                       ),
