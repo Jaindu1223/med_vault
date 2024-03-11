@@ -8,7 +8,10 @@ import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:http/http.dart' as http;
 
 class viewPrescription extends StatefulWidget {
-  const viewPrescription({super.key});
+
+  final String email;
+
+  const viewPrescription({Key? key, required this.email}):super(key:key);
 
   @override
   State<viewPrescription> createState() => _viewPrescriptionState();
@@ -39,7 +42,9 @@ class _viewPrescriptionState extends State<viewPrescription> {
       isLoading = true;
     });
 
-    final String email = _emailController.text.toLowerCase();
+    // final String email = _emailController.text.toLowerCase();
+
+    final String email = widget.email;
 
     print('prescription: $email');
     try {
@@ -249,20 +254,20 @@ class _viewPrescriptionState extends State<viewPrescription> {
 
                                     const SizedBox(height: 5),
 
-                                    TextField(
-                                      controller: _emailController,
-                                      decoration:  InputDecoration(
-                                        labelText: 'Enter your NIC',
-                                        labelStyle: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 15,
-                                        ),
-                                      ),
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 15,
-                                      ),
-                                    ),
+                                    // TextField(
+                                    //   controller: _emailController,
+                                    //   decoration:  InputDecoration(
+                                    //     labelText: 'Enter your NIC',
+                                    //     labelStyle: TextStyle(
+                                    //       fontWeight: FontWeight.w400,
+                                    //       fontSize: 15,
+                                    //     ),
+                                    //   ),
+                                    //   style: TextStyle(
+                                    //     fontWeight: FontWeight.w400,
+                                    //     fontSize: 15,
+                                    //   ),
+                                    // ),
                                     ElevatedButton(
                                       onPressed: isLoading ? null : searchPrescription,
                                       child: isLoading ? CircularProgressIndicator() : Text('Search prescrption'),
