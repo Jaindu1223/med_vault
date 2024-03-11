@@ -296,7 +296,12 @@ class _HomePageState extends State<HomePage> {
 
                         InkWell(
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>const MyQR(email: "")));
+                            Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                         builder: (context) => MyQR(email: widget.email),
+                                        ),
+                                      );;
                           },
                           child: Container(
                             padding: const EdgeInsets.all(4),

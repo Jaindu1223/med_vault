@@ -20,6 +20,7 @@ class _MyQRState extends State<MyQR> {
   // String? userEmail; // Store user's email fetched from the backend  *****
   final TextEditingController _textController = TextEditingController(text: '');
 
+
   String data = '';
   final GlobalKey _qrkey = GlobalKey();
 
@@ -170,56 +171,57 @@ class _MyQRState extends State<MyQR> {
 
               Padding(
                 padding: EdgeInsets.only(left: 16.0, right: 16.0),
-                child: TextField(
-                  controller: _textController,
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.all(10),
-                    labelText: 'Enter Text',
-                    labelStyle: TextStyle(color: Colors.white),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 0, 146, 20), width: 2.0),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                    ),
-                  ),
-                ),
+                // child: TextField(
+                //   controller: _textController,
+                //   decoration: const InputDecoration(
+                //     contentPadding: EdgeInsets.all(10),
+                //     labelText: 'Enter Text',
+                //     labelStyle: TextStyle(color: Colors.white),
+                //     focusedBorder: OutlineInputBorder(
+                //       borderSide: BorderSide(
+                //           color: Color.fromARGB(255, 0, 146, 20), width: 2.0),
+                //     ),
+                //     enabledBorder: OutlineInputBorder(
+                //       borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                //     ),
+                //   ),
+                // ),
               ),
 
               const SizedBox(height: 15,),
 
-              RawMaterialButton(
-
-
-                onPressed: () {
-                  setState(() {
-                    data = _textController.text;
-                  });
-                },
-
-                fillColor: Colors.cyan,
-                shape: const StadiumBorder(),
-                padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
-                child: const Text(
-
-                  'generate',
-
-                  // 'Generate',
-
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 25,),
+              // RawMaterialButton(
+              //
+              //
+              //   onPressed: () {
+              //     setState(() {
+              //       // _textController.text = widget.email;
+              //       data = widget.email;
+              //     });
+              //   },
+              //
+              //   fillColor: Colors.cyan,
+              //   shape: const StadiumBorder(),
+              //   padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
+              //   child: const Text(
+              //
+              //     'generate',
+              //
+              //     // 'Generate',
+              //
+              //     style: TextStyle(
+              //       color: Colors.white,
+              //       fontSize: 18,
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(height: 25,),
 
               Center(
                 child: RepaintBoundary(
                   key: _qrkey,
                   child: QrImageView(
-                    data: data,
+                    data: widget.email,
                     version: QrVersions.auto,
                     size: 250.0,
                     gapless: true,
