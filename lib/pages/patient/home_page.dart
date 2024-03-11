@@ -8,13 +8,18 @@ import 'package:med_vault/pages/patient/view_prescription.dart';
 
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}):super(key:key);
+  final String email;
+  
+  const HomePage({Key? key, required this.email}):super(key:key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  get email => "user@gmail.com";
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +34,7 @@ class _HomePageState extends State<HomePage> {
                 fit: BoxFit.cover,
             ),
             ),
+
           ),
 
         Column(
@@ -59,6 +65,8 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.white,
                       ),
                     ),
+
+                    Text('Welcome, $email'),
                     SizedBox(
                       height: 40,
                       width: 20,
@@ -102,6 +110,7 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+
                   Container(
                     child: InkWell(
                       onTap: (){

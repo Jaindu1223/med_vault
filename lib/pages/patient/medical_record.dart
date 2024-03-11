@@ -160,7 +160,7 @@ class _MedicalRecordsState extends State<MedicalRecords> {
                                 child: Center(
                                   child: InkWell(
                                     onTap: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage()));
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage(email: '',)));
                                     },
 
                                     child: Container(
