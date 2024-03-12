@@ -179,7 +179,7 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
         final Map<String, dynamic> responseData = jsonDecode(response.body);
         print(responseData);
         final dynamic nearestPharmacyValue = responseData['nearestPharmacyName'];
-        // final dynamic mapLinkValue = responseData['mapLink'];
+        final dynamic mapLinkValue = responseData['mapLink'];
 
         if (nearestPharmacyValue== null || nearestPharmacyValue is! String) {
           setState(() {
@@ -192,7 +192,7 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
         }else{
           setState(() {
             nearestPharmacyName = nearestPharmacyValue;
-            // mapLink = mapLinkValue!;
+            mapLink = mapLinkValue!;
             isLoading = false;
           });
         };
@@ -244,11 +244,30 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
             ),
             SizedBox(height: 16.0),
             GestureDetector(
+              // onTap: ()=> launchMapURL(mapLink),
+              // child: Text(
+              //   'Nearest Pharmacy: $nearestPharmacyName\nMap Link: $mapLink',
+              //   style: TextStyle(fontSize: 16.0),
+              // ),
+
               onTap: ()=> launchMapURL(mapLink),
-              child: Text(
-                'Nearest Pharmacy: $nearestPharmacyName\nMap Link: $mapLink',
-                style: TextStyle(fontSize: 16.0),
-              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Nearest Pharmacy : $nearestPharmacyName',
+                    style: TextStyle(fontSize: 16.0),
+                  ),
+                  SizedBox(height: 20.0),
+                  Center(
+                    child:
+                    ElevatedButton(
+                      onPressed: () => launchMapURL(mapLink),
+                      child: Text('Go to map')
+                  ),)
+                ],
+              )
+
             )
 
 
