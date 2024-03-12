@@ -270,7 +270,7 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                     // ),
                                     ElevatedButton(
                                       onPressed: isLoading ? null : searchPrescription,
-                                      child: isLoading ? CircularProgressIndicator() : Text('Search prescrption'),
+                                      child: isLoading ? CircularProgressIndicator() : Text('Update Prescription'),
                                     ),
                                     SizedBox(height: 16.0),
 
@@ -288,7 +288,7 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                     ),
 
 
-                                    const SizedBox(height: 20),
+                                    const SizedBox(height: 5),
                                     Text(
                                       'Address: $address',
                                       style: TextStyle(fontSize: 16.0),

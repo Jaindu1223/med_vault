@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.only(left: 20,top: 30, right: 3, bottom: 7),
               child: Row(children: [
 
-                const SizedBox(width:1,height: 190,),
+                const SizedBox(width:1,height: 180,),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -95,8 +95,20 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.white,
                       ),
                     ),
+
+                    const SizedBox(height: 2),
+                    Text(
+                      'User Name, ${widget.email}',
+                      style: const TextStyle(
+                        fontSize: 11,
+                        color: Colors.white,
+                      ),
+                    ),
                   ],
                 ),
+
+                //Text('User Name, ${widget.email}'),
+
                 const SizedBox(width: 86,),
 
 
@@ -110,7 +122,7 @@ class _HomePageState extends State<HomePage> {
               ],),
             ),
 
-            Text('Welcome, ${widget.email}'),
+            //Text('User Name, ${widget.email}'),
 
             Padding(
               padding: const EdgeInsets.only(left: 0,top: 0,right: 30,bottom: 10),
