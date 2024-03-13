@@ -273,7 +273,6 @@ class _QrScanState extends State<QrScan> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
-
         title: const Text("QR code scanner"),
       ),
 
@@ -297,52 +296,45 @@ class _QrScanState extends State<QrScan> {
               ),
             ),
           ),
-          Expanded(
-            flex: 1,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    if(result.isNotEmpty){
-                      Clipboard.setData(ClipboardData(text: result));
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content:Text("copied to the Clipboard"),
-                        ),
-                      );
-                    }
-                  },
-                  child: const Text("View History"),
-                ),
-                ElevatedButton(
-                  onPressed: ()async {
-                    if(result.isNotEmpty){
-                      final Uri _url= Uri.parse(result);
-                      await launchUrl(_url);
-                    }
-                  },
-                  child: const Text("Create a new prescription"),
-                ),
-
-              ],
-            ),
-          ),
+          const SizedBox(height: 30),
           Padding(
-            padding: const EdgeInsets.only(left: 50),
+            padding: const EdgeInsets.only(left: 0),
             child: Center(
               child: InkWell(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const NewPrescription()));
+                onTap: () async {
+                  // Assuming that the scanned NIC number is stored in the `result` variable
+                  //if (result != null && result.isNotEmpty) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NewPrescription(email: result),
+                      ),
+                    );
+                  //}
+                  // else {
+                  //   ScaffoldMessenger.of(context).showSnackBar(
+                  //     const SnackBar(content: Text('Please scan a valid QR of patient')),
+                  //   );
+                  // }
                 },
+                //should uncomment above things
 
+
+
+                // onTap: () {
+                //   Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //       builder: (context) => NewPrescription(result: result),
+                //     ),
+                //   );
+                // },
+                // onTap: (){
+                //   Navigator.push(context, MaterialPageRoute(builder: (context)=>const NewPrescription()));
+                // },
                 child: Container(
-
-                  //padding: const EdgeInsets.only(left: 20,top: 20,right: 20,bottom: 20),
                   padding: const EdgeInsets.all(6),
                   width: 150,
-
-
                   decoration: BoxDecoration(
                     color: Colors.blueAccent,
                     borderRadius: BorderRadius.circular(8),
@@ -353,10 +345,44 @@ class _QrScanState extends State<QrScan> {
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 11)
-
                     ),
                   ),
-                ),),),),
+                ),
+              ),),
+          ),
+          const SizedBox(height: 50),
+          // Expanded(
+          //   flex: 1,
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //     children: [
+          //       ElevatedButton(
+          //         onPressed: () {
+          //           if(result.isNotEmpty){
+          //             Clipboard.setData(ClipboardData(text: result));
+          //             ScaffoldMessenger.of(context).showSnackBar(
+          //               const SnackBar(
+          //                 content:Text("copied to the Clipboard"),
+          //               ),
+          //             );
+          //           }
+          //         },
+          //         child: const Text("View History"),
+          //       ),
+          //       ElevatedButton(
+          //         onPressed: ()async {
+          //           if(result.isNotEmpty){
+          //             final Uri _url= Uri.parse(result);
+          //             await launchUrl(_url);
+          //           }
+          //         },
+          //         child: const Text("Create a new prescription"),
+          //       ),
+          //
+          //     ],
+          //   ),
+          // ),
+
         ],
       ),
     );

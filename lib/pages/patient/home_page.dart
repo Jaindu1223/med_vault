@@ -80,6 +80,15 @@ class _HomePageState extends State<HomePage> {
                           'lib/images/Group 2085662530.png'),
                     ),
                     const SizedBox(height: 1),
+
+                    Text(
+                      'HI, ${widget.email}',
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
                     Text(
                       formattedDate,
                       style: const TextStyle(
@@ -95,15 +104,8 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.white,
                       ),
                     ),
-
                     const SizedBox(height: 2),
-                    Text(
-                      'User Name, ${widget.email}',
-                      style: const TextStyle(
-                        fontSize: 11,
-                        color: Colors.white,
-                      ),
-                    ),
+
                   ],
                 ),
 
