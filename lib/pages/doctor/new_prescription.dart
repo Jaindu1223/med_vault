@@ -264,7 +264,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                     TextField(
                                       controller: _patientNICController,
                                       decoration:  InputDecoration(
-                                        labelText: 'email',
+                                        labelText: 'email(nic)',
                                         labelStyle: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 15,
