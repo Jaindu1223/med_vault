@@ -33,8 +33,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
       var regBody = {
         "name": _nameController.text,
-        "birthdate": _birthdateController,
-        "address": _addressController,
+        "birthdate": _birthdateController.text,
+        "address": _addressController.text,
         "email": _emailController.text,
         "NIC": _nicController.text,
         "phonenumber": _phoneNumberController.text,
@@ -438,9 +438,9 @@ class TelephoneInputFormatter extends TextInputFormatter {
   }
 }
 
-// bool _isNumeric(String? value) {
-//   if (value == null) {
-//     return false;
-//   }
-//   return double.tryParse(value) != null;
-// }
+bool _isNumeric(String? value) {
+  if (value == null) {
+    return false;
+  }
+  return double.tryParse(value) != null;
+}

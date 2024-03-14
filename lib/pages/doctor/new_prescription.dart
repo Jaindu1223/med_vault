@@ -7,10 +7,11 @@ import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:http/http.dart' as http;
 
 class NewPrescription extends StatefulWidget {
-  const NewPrescription({super.key});
+  final String? email;
+  const NewPrescription({Key? key, this.email}) : super(key: key);
 
   @override
-  State<NewPrescription> createState() => _NewPrescriptionState();
+  _NewPrescriptionState  createState() => _NewPrescriptionState();
 }
 
 class _NewPrescriptionState extends State<NewPrescription> {
@@ -103,6 +104,12 @@ class _NewPrescriptionState extends State<NewPrescription> {
 
 
   @override
+  void initState() {
+    super.initState();
+    if (widget.email != null) {
+      _patientNICController.text = widget.email!;
+    }}
+
   Widget build(BuildContext context) {
     return Scaffold(
       //backgroundColor: Colors.blue[100],
@@ -257,7 +264,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                     TextField(
                                       controller: _patientNICController,
                                       decoration:  InputDecoration(
-                                        labelText: 'Patient NIC',
+                                        labelText: 'email(nic)',
                                         labelStyle: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 15,
