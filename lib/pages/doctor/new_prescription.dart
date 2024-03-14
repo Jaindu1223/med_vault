@@ -64,7 +64,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
     }
 
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:3000/saveprescription'),
+      Uri.parse('http://10.0.2.2:2000/saveprescription'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

@@ -35,7 +35,7 @@ class _SignInState extends State<SignIn> {
       };
 
       var response = await http.post(
-        Uri.parse('http://10.0.2.2:4000/userLogin'),
+        Uri.parse('http://10.0.2.2:2000/userLogin'),
         body: json.encode(regBody),
         headers: {'Content-Type': 'application/json'},
       );

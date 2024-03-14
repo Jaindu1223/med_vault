@@ -49,7 +49,7 @@ class _viewPrescriptionState extends State<viewPrescription> {
     print('prescription: $email');
     try {
 
-      final Uri url = Uri.parse('http://10.0.2.2:3000/email/$email');
+      final Uri url = Uri.parse('http://10.0.2.2:2000/email/$email');
 
       final http.Response response = await http.get(url);
 
