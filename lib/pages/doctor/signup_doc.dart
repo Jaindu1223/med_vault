@@ -292,6 +292,27 @@ class _SignUpDocState extends State<SignUpDoc> {
                 ],
               ),
 
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Signature'),
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Upload the image of the Signature',
+                      hintStyle: TextStyle(color: Colors.grey[500]),
+                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
+                      fillColor: Colors.grey.shade100,
+                      filled: true,
+                      contentPadding:
+                      const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                    ),
+                    obscureText: true,
+                  ),
+                  const SizedBox(height: 40.0),
+                ],
+              ),
+
                   Container(
                     child: Form(
                       key: _formKey,
