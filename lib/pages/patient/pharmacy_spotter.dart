@@ -17,6 +17,9 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
   TextEditingController medicineNameController = TextEditingController();
   String nearestPharmacyName = '';
   String mapLink = '';
+  String nearestPharmacyValue = '';
+  String cityValue = '';
+  String contactValue = '';
   bool isLoading = false;
 
   Future<void> searchNearestPharmacy() async {
@@ -61,8 +64,11 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseData = jsonDecode(response.body);
         print(responseData);
-        final dynamic nearestPharmacyValue = responseData['nearestPharmacyName'];
+        final dynamic nearestPharmacyValueResponse = responseData['nearestPharmacyName'];
         final dynamic mapLinkValue = responseData['mapLink'];
+        final dynamic cityValueResponse = responseData['city'];
+        final dynamic contactValueResponse = responseData['contact'];
+
 
         if (nearestPharmacyValue== null || nearestPharmacyValue is! String) {
           setState(() {
@@ -76,6 +82,9 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
           setState(() {
             nearestPharmacyName = nearestPharmacyValue;
             mapLink = mapLinkValue!;
+            nearestPharmacyValue =  nearestPharmacyValueResponse!;
+            cityValue = cityValueResponse!;
+            contactValue = contactValueResponse!;
             isLoading = false;
           });
 
@@ -125,6 +134,26 @@ class _PharmacySearchPageState extends State<PharmacySearchPage> {
                 ElevatedButton(
                   onPressed: isLoading ? null : searchNearestPharmacy,
                   child: isLoading ? CircularProgressIndicator() : Text('Search Nearest Pharmacy'),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Pharmacy Name: $nearestPharmacyValue',
+                  style: TextStyle(fontSize: 16.0),
+                ),
+                Text(
+                  'City: $cityValue',
+                  style: TextStyle(fontSize: 16.0),
+                ),
+                Text(
+                  'Contact: $contactValue',
+                  style: TextStyle(fontSize: 16.0),
                 ),
               ],
             ),
