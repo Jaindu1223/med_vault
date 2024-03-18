@@ -77,7 +77,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
         'dosage1': dosage1,
         'moreDetails1': moreDetails1,
         'medication2Name': medication2Name,
-        'dosage2': dosage2,
+        'dosage2':dosage2,
         'moreDetails2': moreDetails2,
         'medication3Name': medication3Name,
         'dosage3': dosage3,

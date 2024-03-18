@@ -61,7 +61,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                             ),
 
                           ),
-                          SizedBox(
+                          SizedBox (
                             height: 40,
                             width: 20,
                             child: Image.asset(
@@ -69,7 +69,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
 
                             //color: Colors.limeAccent,
                           ),
-                          const SizedBox(height: 1),
+                          const SizedBox (height: 1),
                           /*const Text(
                             'Monday 23rd, July, 2060',
                             style: TextStyle(
@@ -112,10 +112,10 @@ class _DoctorProfileState extends State<DoctorProfile> {
                   //box
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                    child: Container(
+                    child: Container (
 
                       padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(9)),
+                      decoration:BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(9)),
                       child: Row(children: [
 
                         /*SizedBox(
@@ -134,7 +134,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                             children: [
 
                               const Text(
-                                '<Edit......>',
+                                '<Edit...>',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 14,
@@ -142,7 +142,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                                 ),
                               ),
                               const Text(
-                                '<<Display Details>> ',
+                                '<<<Display Details>>> ',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 11,
@@ -204,7 +204,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
 
                                       //padding: const EdgeInsets.only(left: 20,top: 20,right: 20,bottom: 20),
                                       padding: const EdgeInsets.all(6),
-                                      width: 170,
+                                      width:170,
 
 
                                       decoration: BoxDecoration(
