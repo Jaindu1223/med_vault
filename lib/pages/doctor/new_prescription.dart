@@ -16,7 +16,7 @@ class NewPrescription extends StatefulWidget {
 
 class _NewPrescriptionState extends State<NewPrescription> {
   final _patientNameController = TextEditingController();
-  final _patientNICController = TextEditingController();
+  final _patientEmailController = TextEditingController();
   final _ageController = TextEditingController();
   final _addressController = TextEditingController();
 
@@ -37,7 +37,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
 
   Future<void> _submitForm() async {
     final patientName = _patientNameController.text;
-    final patientNIC = _patientNICController.text;
+    final patientEmail = _patientEmailController.text;
     final age = int.tryParse(_ageController.text);
     final address = _addressController.text;
 
@@ -70,7 +70,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
       },
       body: jsonEncode(<String, dynamic>{
         'patientName': patientName,
-        'patientNIC': patientNIC,
+        'patientEmail': patientEmail,
         'age': age,
         'address': address,
         'medication1Name': medication1Name,
@@ -107,7 +107,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
   void initState() {
     super.initState();
     if (widget.email != null) {
-      _patientNICController.text = widget.email!;
+      _patientEmailController.text = widget.email!;
     }}
 
   Widget build(BuildContext context) {
@@ -262,7 +262,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                     ),
                                     const SizedBox(height: 5),
                                     TextField(
-                                      controller: _patientNICController,
+                                      controller: _patientEmailController,
                                       decoration:  InputDecoration(
                                         labelText: 'email(nic)',
                                         labelStyle: TextStyle(
