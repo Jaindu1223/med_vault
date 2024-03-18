@@ -24,7 +24,12 @@ subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
 subprojects {
-    project.evaluationDependsOn(':app')
+    //project.evaluationDependsOn(':app')
+    afterEvaluate {
+        tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
+            kotlinOptions.jvmTarget = "1.8"
+        }
+    }
 }
 
 tasks.register("clean", Delete) {
