@@ -28,26 +28,26 @@ class MyApp extends StatelessWidget {
       home: SplashScreen(),
     );
     return Scaffold(
-      bottomNavigationBar: GNav(
-        tabs: const [
-          GButton(
-            icon; Icons.home,
-            text: 'Home',
-          ),
-          GButton(
-            icon; Icons.prescription,
-            text: 'Prescription',
-          ),
-          GButton(
-            icon; Icons.search,
-            text: 'Search',
-          ),
-          GButton(
-            icon; Icons.settings,
-            text: 'Settings',
-          ),
-        ]
-      )
+    //   bottomNavigationBar: GNav(
+    //     tabs: const [
+    //       GButton(
+    //         icon; Icons.home,
+    //         text: 'Home',
+    //       ),
+    //       GButton(
+    //         icon; Icons.prescription,
+    //         text: 'Prescription',
+    //       ),
+    //       GButton(
+    //         icon; Icons.search,
+    //         text: 'Search',
+    //       ),
+    //       GButton(
+    //         icon; Icons.settings,
+    //         text: 'Settings',
+    //       ),
+    //     ]
+    //   )
     );
   }
 }
