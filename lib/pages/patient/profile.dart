@@ -34,7 +34,7 @@ class LogoutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('User Profile'),
+        title: Text('User profile'),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
