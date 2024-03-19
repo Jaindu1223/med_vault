@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:med_vault/pages/doctor/new_prescription.dart';
+import 'package:med_vault/pages/patient/sign_in.dart';
 import 'package:med_vault/pages/patient/medical_record.dart';
+
 
 class PatientProfile extends StatefulWidget {
   const PatientProfile({super.key});
@@ -53,7 +55,7 @@ class _PatientProfileState extends State<PatientProfile> {
                             ),
                           ),*/
                           const Text(
-                            'Edit Profile',
+                            'Patient Profile',
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
                               fontSize: 29,
@@ -197,7 +199,7 @@ class _PatientProfileState extends State<PatientProfile> {
                                 child: Center(
                                   child: InkWell(
                                     onTap: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const NewPrescription()));
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>const NewPrescription()));
                                     },
 
                                     child: Container(
@@ -213,7 +215,7 @@ class _PatientProfileState extends State<PatientProfile> {
                                       ),
                                       child: const Center(
                                         child: Text(
-                                            'New Prescription',
+                                            'LogOut',
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 11)
