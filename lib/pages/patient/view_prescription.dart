@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:med_vault/pages/doctor/home_pageD.dart';
 import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:http/http.dart' as http;
+import 'package:med_vault/pages/patient/pharmacy_spotter.dart';
+import 'package:med_vault/pages/patient/prescribed_pharmacy_spotter.dart';
 
 class viewPrescription extends StatefulWidget {
 
@@ -114,6 +116,15 @@ class _viewPrescriptionState extends State<viewPrescription> {
         isLoading = false;
       });
     }
+  }
+  
+  void navigaetToPharmacySearch(String medicineName){
+    Navigator.push(
+        context, 
+        MaterialPageRoute(
+            builder: (context) => PrescribedPharmacySearchPage(medicineName: medicineName),
+        ),
+    );
   }
 
   @override
@@ -309,23 +320,48 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                       children: [
                                         Row(
                                           children: [
-                                            Expanded(
-                                              child: Container(
-                                                decoration: ShapeDecoration(
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(4.0),
-                                                    side: BorderSide(width: 1.0, color: Colors.black),
-                                                  ),
-                                                  //color: Colors.white,
-                                                ),
 
-                                                padding: const EdgeInsets.all(8.0),
+                                            GestureDetector(
+                                              onTap: () {
+                                                navigaetToPharmacySearch(medication1Name);
+                                              },
+                                              child: Container(
+                                                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                                                padding: EdgeInsets.all(8),
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      color: Colors.grey.withOpacity(0.5)
+                                                    )
+                                                  ],
+                                                  // border: Border.all(color: Colors.lightBlueAccent,width: 2),
+                                                  color: Colors.blue[50],
+                                                ),
                                                 child: Text(
-                                                  'Medicine Name: $medication1Name',
-                                                  style: TextStyle(fontSize: 12.0),
+                                                  'Medicine Name: \n$medication1Name',
+                                                  style: TextStyle(fontSize: 16),
                                                 ),
                                               ),
                                             ),
+
+                                            // Expanded(
+                                            //   child: Container(
+                                            //     decoration: ShapeDecoration(
+                                            //       shape: RoundedRectangleBorder(
+                                            //         borderRadius: BorderRadius.circular(4.0),
+                                            //         side: BorderSide(width: 1.0, color: Colors.black),
+                                            //       ),
+                                            //       //color: Colors.white,
+                                            //     ),
+                                            //
+                                            //     padding: const EdgeInsets.all(8.0),
+                                            //     child: Text(
+                                            //       'Medicine Name: $medication1Name',
+                                            //       style: TextStyle(fontSize: 12.0),
+                                            //     ),
+                                            //   ),
+                                            // ),
                                             SizedBox(width: 16),
 
                                             Expanded(
@@ -345,6 +381,9 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                                 ),
                                               ),
                                             ),
+
+
+
                                             SizedBox(width: 16),// Add some horizontal spacing between the two text fields
 
 
@@ -385,23 +424,43 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                       children: [
                                         Row(
                                           children: [
-                                            Expanded(
-                                              child: Container(
-                                                decoration: ShapeDecoration(
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(4.0),
-                                                    side: BorderSide(width: 1.0, color: Colors.black),
-                                                  ),
-                                                  //color: Colors.white,
-                                                ),
 
-                                                padding: const EdgeInsets.all(8.0),
+                                            GestureDetector(
+                                              onTap: () {
+                                                navigaetToPharmacySearch(medication2Name);
+                                              },
+                                              child: Container(
+                                                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                                                padding: EdgeInsets.all(10),
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  color: Colors.blue[50],
+                                                ),
                                                 child: Text(
-                                                  'Medicine Name: $medication2Name',
-                                                  style: TextStyle(fontSize: 12.0),
+                                                  'Medicine Name: \n$medication2Name',
+                                                  style: TextStyle(fontSize: 16),
                                                 ),
                                               ),
                                             ),
+
+                                            // Expanded(
+                                            //   child: Container(
+                                            //     decoration: ShapeDecoration(
+                                            //       shape: RoundedRectangleBorder(
+                                            //         borderRadius: BorderRadius.circular(4.0),
+                                            //         side: BorderSide(width: 1.0, color: Colors.black),
+                                            //       ),
+                                            //       //color: Colors.white,
+                                            //     ),
+                                            //
+                                            //     padding: const EdgeInsets.all(8.0),
+                                            //     child: Text(
+                                            //       'Medicine Name: $medication2Name',
+                                            //       style: TextStyle(fontSize: 12.0),
+                                            //     ),
+                                            //   ),
+                                            // ),
+
                                             SizedBox(width: 16),
                                             Expanded(
                                               child: Container(
@@ -460,23 +519,42 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                       children: [
                                         Row(
                                           children: [
-                                            Expanded(
-                                              child: Container(
-                                                decoration: ShapeDecoration(
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(4.0),
-                                                    side: BorderSide(width: 1.0, color: Colors.black),
-                                                  ),
-                                                  //color: Colors.white,
-                                                ),
 
-                                                padding: const EdgeInsets.all(8.0),
+                                            GestureDetector(
+                                              onTap: () {
+                                                navigaetToPharmacySearch(medication3Name);
+                                              },
+                                              child: Container(
+                                                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                                                padding: EdgeInsets.all(10),
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  color: Colors.blue[50],
+                                                ),
                                                 child: Text(
-                                                  'Medicine Name: $medication3Name',
-                                                  style: TextStyle(fontSize: 12.0),
+                                                  'Medicine Name: \n$medication3Name',
+                                                  style: TextStyle(fontSize: 16),
                                                 ),
                                               ),
                                             ),
+
+                                            // Expanded(
+                                            //   child: Container(
+                                            //     decoration: ShapeDecoration(
+                                            //       shape: RoundedRectangleBorder(
+                                            //         borderRadius: BorderRadius.circular(4.0),
+                                            //         side: BorderSide(width: 1.0, color: Colors.black),
+                                            //       ),
+                                            //       //color: Colors.white,
+                                            //     ),
+                                            //
+                                            //     padding: const EdgeInsets.all(8.0),
+                                            //     child: Text(
+                                            //       'Medicine Name: $medication3Name',
+                                            //       style: TextStyle(fontSize: 12.0),
+                                            //     ),
+                                            //   ),
+                                            // ),
                                             SizedBox(width: 16),
                                             Expanded(
                                               child: Container(
@@ -500,6 +578,7 @@ class _viewPrescriptionState extends State<viewPrescription> {
 
                                           ],
                                         ),
+
                                         // Add more rows for additional medications and dosages as needed
                                       ],
                                     ),
@@ -562,12 +641,24 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                             'Instructions: $instructions',
                                             style: TextStyle(fontSize: 14.0),
                                           ),
+
+
                                         ],
                                       ),
                                     ),
 
+                                    const SizedBox(height: 30),
 
-                                    const SizedBox(height: 50,),
+                                    Center(
+                                        child: Text(
+                                           'Click on medicine boxes to find \n the nearest pharmacy!!',
+                                            style: TextStyle(fontSize: 16.0, color: Colors.blue[800]),
+                                            textAlign: TextAlign.center,
+
+                                    ))
+
+
+                                    // const SizedBox(height: 50,),
 
                                   ],
                                 ),
