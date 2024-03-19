@@ -400,7 +400,7 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('lib/images/search1.png'),
-                      fit: BoxFit.cover,
+                      //xfit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -408,7 +408,7 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
             ),
             Padding(
               padding: const EdgeInsets.only(
-                  left: 0, top: 20, right: 220, bottom: 10),
+                  left: 0, top: 0, right: 220, bottom: 10),
               child: ElevatedButton(
                 onPressed: () => launchMapURL(mapLink),
                 style: ElevatedButton.styleFrom(
