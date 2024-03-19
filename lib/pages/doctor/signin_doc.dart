@@ -172,7 +172,7 @@ class _SignInState extends State<SignInDoc> {
                           const Text('Don\'t have an account ?'),
                           TextButton(
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignUpDoc()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> SignUpDoc()));
                             },
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.blue,

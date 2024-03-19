@@ -4,372 +4,386 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class SignUpDoc extends StatefulWidget {
-  const SignUpDoc({super.key});
+
+class CustomTextFormField extends StatelessWidget {
+  final String lable;
+  final TextEditingController controller;
+  final String hintText;
+  final bool isNotValidated;
+  final String? Function(String?)? validator;
+  final bool obscureText;
+  final TextInputType? keyboardType;
+  final int? maxLength;
+  final List<TextInputFormatter>? inputFormatters;
+  final String errorMessage;
+
+  const CustomTextFormField({
+    Key? key,
+    required this.lable,
+    required this.controller,
+    required this.hintText,
+    required this.isNotValidated,
+    required this.errorMessage,
+    this.validator,
+    this.obscureText = false,
+    this.keyboardType,
+    this.maxLength,
+    this.inputFormatters,
+  }) : super(key: key);
 
   @override
-  State<SignUpDoc> createState() => _SignUpDocState();
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          lable,
+          /* style: , */
+        ),
+        SizedBox(height: 5),
+        TextFormField(
+          style: const TextStyle(color: Colors.black), // text style ....!
+          controller: controller,
+          obscureText: obscureText,
+          keyboardType: keyboardType,
+          maxLength: maxLength,
+          inputFormatters: inputFormatters,
+          decoration: InputDecoration(
+            errorText: isNotValidated ? errorMessage : null,
+            errorStyle: TextStyle(fontSize: 13),
+            hintText: hintText,
+            hintStyle: TextStyle(color: Colors.grey[500]),
+            enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey),
+            ),
+            focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blue),
+            ),
+            fillColor: Colors.grey.shade100,
+            filled: true,
+            contentPadding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+          ),
+          validator: validator,
+        ),
+      ],
+    );
+  }
 }
 
-class _SignUpDocState extends State<SignUpDoc> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+class SignUpDoc extends StatefulWidget {
+  @override
+  State<SignUpDoc> createState() => _SignUpPageState();
+}
 
+class _SignUpPageState extends State<SignUpDoc> {
+  final _formKey = GlobalKey<FormState>();
 
-  // late String fullName, email, SLMCregiNo, nic, password, confirmPassword;
-  //
-  // final _nameController = TextEditingController();
-  // final _emailController = TextEditingController();
-  // final _SLMCregiNoControllerr = TextEditingController();
-  // final _nicController = TextEditingController();
-  // final _passwordController = TextEditingController();
-  // final _confirmPasswordController = TextEditingController();
-  // bool _isNotValidate = false;
-  //
-  // Future<bool> registerUser() async {
-  //   if (_formKey.currentState!.validate()) {
-  //     _formKey.currentState!.save();
-  //
-  //     setState(() {
-  //       _isNotValidate = false;
-  //     });
-  //
-  //     var regBody = {
-  //       "name": _nameController.text,
-  //       "email": _emailController.text,
-  //       "SLMCregiNo": _SLMCregiNoControllerr.text,
-  //       "NIC": _nicController.text,
-  //       "password": _passwordController.text
-  //     };
-  //     try {
-  //       var response = await http.post(
-  //         Uri.parse('http://10.0.2.2:4000/doctorRegistration'),
-  //         body: json.encode(regBody),
-  //         headers: {'Content-Type': 'application/json'},
-  //       );
-  //
-  //       if (response.statusCode == 200) {
-  //         // Registration successful
-  //         var jsonResponse = jsonDecode(response.body);
-  //         if (jsonResponse['status']) {
-  //           ScaffoldMessenger.of(context).showSnackBar(
-  //             const SnackBar(content: Text('Registration successful')),
-  //           );
-  //           return true;
-  //         } else {
-  //           // Registration failed
-  //           ScaffoldMessenger.of(context).showSnackBar(
-  //             SnackBar(
-  //                 content:
-  //                     Text('Registration failed: ${jsonResponse['message']}')),
-  //           );
-  //         }
-  //       } else {
-  //         ScaffoldMessenger.of(context).showSnackBar(
-  //           SnackBar(
-  //               content: Text(
-  //                   'Error ${response.statusCode}: ${response.reasonPhrase}')),
-  //         );
-  //       }
-  //     } catch (e) {
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         SnackBar(content: Text('Error: $e')),
-  //       );
-  //     }
-  //   } else {
-  //     setState(() {
-  //       _isNotValidate = true;
-  //     });
-  //   }
-  //   return false;
-  // }
+  late String fullName,
+      address,
+      email,
+      nic,
+      phoneNumber,
+      SLMCregiNo,
+      password,
+      confirmPassword;
 
-  late String name;
-  late String email;
-  late int NIC;
-  late String password;
-  late int SLMCregiNo;
+  bool _nameIsNotvalidate = false;
+  bool _addressIsNotvalidate = false;
+  bool _emailIsNotvalidate = false;
+  bool _nicIsNotvalidate = false;
+  bool _phoneNumberIsNotvalidate = false;
+  bool _SLMCregiNoIsNotvalidate = false;
+  bool _passwordIsNotvalidate = false;
+  bool _confirPasswordIsNotvalidate = false;
 
-  Widget _buildNameField() {
-    return TextFormField(
-      validator: (text) {
-        return HelperValidator.nameValidate(text!);
-      },
-      decoration:
-      InputDecoration(
-        hintText: 'Enter your full name',
-        hintStyle: TextStyle(color: Colors.grey[500]),
-        enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-        focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
-        fillColor: Colors.grey.shade100,
-        filled: true,
-        contentPadding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
-      ),
-      onSaved: (value) {
-        name = value!;
-      },
-    );
-  }
+  final _nameController = TextEditingController();
+  final _addressController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _nicController = TextEditingController();
+  final _phoneNumberController = TextEditingController();
+  final _SLMCregiNoController  = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
-  Widget _buildEmailField() {
-    return TextFormField(
-      validator: (text) {
-        if (text!.isEmpty) {
-          return "Please enter a valid email";
+  Future<bool> registerUser(BuildContext context) async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+
+      var regBody = {
+        "name": _nameController.text,
+        "address": _addressController.text,
+        "email": _emailController.text,
+        "NIC": _nicController.text,
+        "phonenumber": _phoneNumberController.text,
+        "SLMCregiNo": _SLMCregiNoController.text,
+        "password": _passwordController.text
+      };
+
+      try {
+        var response = await http.post(
+          Uri.parse('http://10.0.2.2:2000/doctorRegistration'),
+          body: json.encode(regBody),
+          headers: {'Content-Type': 'application/json'},
+        );
+
+        if (response.statusCode == 200) {
+          var jsonResponse = jsonDecode(response.body);
+          if (jsonResponse['status']) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Registration successful')),
+            );
+            return true;
+          } else {
+            // Display validation errors
+            List<dynamic> errors = jsonResponse['errors'];
+            String errorMessage = '';
+            errors.forEach((error) {
+              errorMessage += error['msg'] + '\n';
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(errorMessage)),
+            );
+          }
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+                content: Text(
+                    "An error occurred while processing your request." /* 'Error ${response.statusCode}: ${response.reasonPhrase}' */)),
+          );
         }
-        return null;
-      },
-      decoration:InputDecoration(
-      hintText: 'Enter the Email Address',
-    hintStyle: TextStyle(color: Colors.grey[500]),
-    enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-    focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
-    fillColor: Colors.grey.shade100,
-    filled: true,
-    contentPadding:
-    const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
-    )
-    );
-  }
-
-  Widget _buildPasswordField() {
-    return TextFormField(
-      obscureText: true,
-      maxLength: 10,
-      validator: (text) {
-        if (text!.isEmpty) {
-          return "Please enter a password";
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        hintText: 'Enter your password',
-        hintStyle: TextStyle(color: Colors.grey[500]),
-        enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-        focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
-        fillColor: Colors.grey.shade100,
-        filled: true,
-        contentPadding:
-        const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
-      ),
-      onSaved: (value) {
-        password = value!;
-      },
-    );
-  }
-
-  Widget _buildSLMCregiNoField() {
-    return TextFormField(
-      maxLength: 10,
-      keyboardType: TextInputType.number,
-      validator: (text) {
-        if (text!.isEmpty) {
-          return "Please enter SLMC Registration Number";
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        hintText: 'SLMC Registration No',
-        hintStyle: TextStyle(color: Colors.grey[500]),
-        enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-        focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
-        fillColor: Colors.grey.shade100,
-        filled: true,
-        contentPadding:
-        const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
-      ),
-      onSaved: (value) {
-        SLMCregiNo = int.parse(value!);
-      },
-    );
-  }
-
-  Widget _buildNICField() {
-    return TextFormField(
-      maxLength: 10,
-      keyboardType: TextInputType.number,
-      validator: (text) {
-        if (text!.isEmpty) {
-          return "Please enter the NIC";
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        hintText: 'Enter your NIC',
-        hintStyle: TextStyle(color: Colors.grey[500]),
-        enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-        focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
-        fillColor: Colors.grey.shade100,
-        filled: true,
-        contentPadding:
-        const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
-      ),
-      onSaved: (value) {
-        NIC = int.parse(value!);
-      },
-    );
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: $e')),
+        );
+      }
+    }
+    return false;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: [
-        Image.asset(
-          'lib/images/signup_img.png',
-          fit: BoxFit.cover,
-          height: double.infinity,
-          width: double.infinity,
-        ),
-        SingleChildScrollView(
+      body: Stack(
+        children: [
+          Image.asset(
+            'lib/images/signup_img.png',
+            fit: BoxFit.cover,
+            height: double.infinity,
+            width: double.infinity,
+          ),
+          SingleChildScrollView(
             child: Padding(
-          padding: const EdgeInsets.fromLTRB(
-              26.0, 50.0, 26.0, 26.0), // Add the padding here
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const Text(
-                'Sign Up',
-                style: TextStyle(fontSize: 34.0, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 30.0),
-
-              const Text('Full name'),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: _buildNameField(),
-              ),
-              // const SizedBox(height: 20.0),
-
-              const Text('Email Address'),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: _buildEmailField(),
-              ),
-              // const SizedBox(height: 20.0),
-
-              const Text('SLMC Registration No'),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: _buildSLMCregiNoField(),
-              ),
-              // const SizedBox(height: 10.0),
-
-
-              const Text('NIC'),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: _buildNICField(),
-              ),
-              // const SizedBox(height: 10.0),
-
-              const Text('Password'),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: _buildPasswordField(),
-              ),
-              // const SizedBox(height: 20.0),
-
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('Confirm password'),
-                  TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Enter your confirm password',
-                      hintStyle: TextStyle(color: Colors.grey[500]),
-                      enabledBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey)),
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue)),
-                      fillColor: Colors.grey.shade100,
-                      filled: true,
-                      contentPadding:
-                          const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+              padding: const EdgeInsets.fromLTRB(26.0, 50.0, 26.0, 26.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Sign Up',
+                      style: TextStyle(
+                          fontSize: 34.0, fontWeight: FontWeight.bold),
                     ),
-                    obscureText: true,
-                  ),
-                  const SizedBox(height: 40.0),
-                ],
-              ),
+                    const SizedBox(height: 30.0),
 
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('Signature'),
-                  TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Upload the image of the Signature',
-                      hintStyle: TextStyle(color: Colors.grey[500]),
-                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
-                      fillColor: Colors.grey.shade100,
-                      filled: true,
-                      contentPadding:
-                      const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                    CustomTextFormField(
+                      lable: "Full Name",
+                      controller: _nameController,
+                      hintText: 'Enter your full name',
+                      isNotValidated: _nameIsNotvalidate,
+                      errorMessage: "This field is required",
                     ),
-                    obscureText: true,
-                  ),
-                  const SizedBox(height: 40.0),
-                ],
-              ),
+                    const SizedBox(height: 20.0),
 
-                  Container(
-                    child: Form(
-                      key: _formKey,
+                    CustomTextFormField(
+                      lable: "Address",
+                      controller: _addressController,
+                      hintText: 'Enter your address',
+                      isNotValidated: _addressIsNotvalidate,
+                      errorMessage: "This field is required",
+                    ),
+                    const SizedBox(height: 20.0),
+
+                    CustomTextFormField(
+                      lable: "Email Address",
+                      controller: _emailController,
+                      hintText: 'davidsmith@gmail.com',
+                      isNotValidated: _emailIsNotvalidate,
+                      errorMessage: "This field is required",
+                    ),
+                    const SizedBox(height: 20.0),
+
+                    CustomTextFormField(
+                      lable: "Contact Number",
+                      controller: _phoneNumberController,
+                      isNotValidated: _phoneNumberIsNotvalidate,
+                      errorMessage: "This field is required",
+                      hintText: '+94 762 090 212',
+                      keyboardType: TextInputType.phone,
+                      maxLength: 14,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(11),
+                        FilteringTextInputFormatter.digitsOnly,
+                        TelephoneInputFormatter(),
+                      ],
+                    ),
+                    const SizedBox(height: 20.0),
+
+                    CustomTextFormField(
+                      lable: "NIC",
+                      controller: _nicController,
+                      hintText: '200468532944',
+                      isNotValidated: _nicIsNotvalidate,
+                      errorMessage: "This field is required",
+                    ),
+                    const SizedBox(height: 20.0),
+
+                    CustomTextFormField(
+                      lable: "SLMC Registration Number",
+                      controller: _SLMCregiNoController,
+                      hintText: '2546',
+                      isNotValidated: _SLMCregiNoIsNotvalidate,
+                      errorMessage: "This field is required",
+                    ),
+                    const SizedBox(height: 20.0),
+
+                    CustomTextFormField(
+                      lable: "Password",
+                      controller: _passwordController,
+                      hintText: 'Password',
+                      obscureText: true,
+                      isNotValidated: _passwordIsNotvalidate,
+                      errorMessage: "This field is required",
+                    ),
+                    const SizedBox(height: 20.0),
+
+                    CustomTextFormField(
+                      lable: "Confirm Password",
+                      controller: _confirmPasswordController,
+                      hintText: 'Confirm password',
+                      obscureText: true,
+                      isNotValidated: _confirPasswordIsNotvalidate,
+                      errorMessage: "This field is required",
+                    ),
+                    const SizedBox(height: 30.0),
+
+                    Padding(
+                      padding: const EdgeInsets.only(right: 200),
                       child: ElevatedButton(
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            _formKey.currentState!.save();
-                            registerUser().then((success) {
-                              if (success) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => SignInDoc()),
-                                );
-                              }
-                            }
-                            );
-                          }
+                          onTapContinue(context);
                         },
                         child: Container(
                           padding: const EdgeInsets.all(10),
-                          width: 150,
                           decoration: BoxDecoration(
                             color: Colors.blue[200],
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: const Center(
-                            child: Text('Continue', style: TextStyle(color: Colors.black, fontSize: 15)),
+                            child: Text('Continue',
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 15)),
                           ),
                         ),
                       ),
                     ),
-                  ),
-
-
-
-            ],
+                  ],
+                ),
+              ),
+            ),
           ),
-        ))
-      ],
-    ));
+        ],
+      ),
+    );
   }
 
-  registerUser() {}
+  void onTapContinue(BuildContext context) {
+    bool sendReq = true;
+    _nameIsNotvalidate = false;
+    _addressIsNotvalidate = false;
+    _emailIsNotvalidate = false;
+    _phoneNumberIsNotvalidate = false;
+    _SLMCregiNoIsNotvalidate = false;
+    _nicIsNotvalidate = false;
+    _passwordIsNotvalidate = false;
+    _confirPasswordIsNotvalidate = false;
+
+    setState(() {
+      if (_nameController.text.isEmpty) {
+        _nameIsNotvalidate = true;
+        sendReq = false;
+      }
+      if (_addressController.text.isEmpty) {
+        _addressIsNotvalidate = true;
+        sendReq = false;
+      }
+      if (_emailController.text.isEmpty) {
+        _emailIsNotvalidate = true;
+        sendReq = false;
+      }
+      if (_phoneNumberController.text.isEmpty) {
+        _phoneNumberIsNotvalidate = true;
+        sendReq = false;
+      }
+      if (_nicController.text.isEmpty) {
+        _nicIsNotvalidate = true;
+        sendReq = false;
+      }
+      if (_SLMCregiNoController.text.isEmpty) {
+        _SLMCregiNoIsNotvalidate = true;
+        sendReq = false;
+      }
+      if (_passwordController.text.isEmpty) {
+        _passwordIsNotvalidate = true;
+        sendReq = false;
+      }
+      if (_confirmPasswordController.text.isEmpty) {
+        _confirPasswordIsNotvalidate = true;
+        sendReq = false;
+      }
+      if (_passwordController.text != _confirmPasswordController.text) {
+        _confirmPasswordController.clear();
+        _confirPasswordIsNotvalidate = true;
+        sendReq = false;
+      }
+    });
+
+    if (sendReq) {
+      registerUser(context).then((success) {
+        if (success) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const SignInDoc()),
+          );
+        }
+      });
+    }
+  }
 }
 
-class HelperValidator {
-  static String? nameValidate(String value) {
-    if (value.isEmpty) {
-      return "Name can't be empty";
+class TelephoneInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    if (newValue.selection.baseOffset == 0) {
+      return newValue;
     }
-    if (value.length < 2) {
-      return "Name must be at least 2 characters long";
+
+    String value = newValue.text.replaceAll(RegExp(r'\s+'), '');
+    String formattedValue = '+94 ';
+
+    if (value.length > 4) {
+      formattedValue += value.substring(0, 3) + ' ';
+      value = value.substring(3);
     }
-    if (value.length > 50) {
-      return "Name must be less than 50 characters long";
+
+    if (value.isNotEmpty) {
+      formattedValue += value.substring(0, 7);
     }
-    return null;
+
+    return TextEditingValue(
+      text: formattedValue,
+      selection: TextSelection.collapsed(offset: formattedValue.length),
+    );
   }
 }

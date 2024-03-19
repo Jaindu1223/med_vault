@@ -4,14 +4,97 @@ import 'package:flutter/services.dart';
 import 'package:med_vault/pages/patient/sign_in.dart';
 import 'package:http/http.dart' as http;
 
+
+class CustomTextFormField extends StatelessWidget {
+  final String lable;
+  final TextEditingController controller;
+  final String hintText;
+  final bool isNotValidated;
+  final String? Function(String?)? validator;
+  final bool obscureText;
+  final TextInputType? keyboardType;
+  final int? maxLength;
+  final List<TextInputFormatter>? inputFormatters;
+  final String errorMessage;
+
+  const CustomTextFormField({
+    Key? key,
+    required this.lable,
+    required this.controller,
+    required this.hintText,
+    required this.isNotValidated,
+    required this.errorMessage,
+    this.validator,
+    this.obscureText = false,
+    this.keyboardType,
+    this.maxLength,
+    this.inputFormatters,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          lable,
+          /* style: , */
+        ),
+        const SizedBox(height: 5),
+        TextFormField(
+          style: const TextStyle(color: Colors.black), // text style ....!
+          controller: controller,
+          obscureText: obscureText,
+          keyboardType: keyboardType,
+          maxLength: maxLength,
+          inputFormatters: inputFormatters,
+          decoration: InputDecoration(
+            errorText: isNotValidated ? errorMessage : null,
+            errorStyle: const TextStyle(fontSize: 13),
+            hintText: hintText,
+            hintStyle: TextStyle(color: Colors.grey[500]),
+            enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey),
+            ),
+            focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blue),
+            ),
+            fillColor: Colors.grey.shade100,
+            filled: true,
+            contentPadding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+          ),
+          validator: validator,
+        ),
+      ],
+    );
+  }
+}
+
 class SignUpPage extends StatefulWidget {
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
-  late String fullName, birthdate, address, email, nic, phoneNumber, password, confirmPassword;
+
+  late String fullName,
+      birthdate,
+      address,
+      email,
+      nic,
+      phoneNumber,
+      password,
+      confirmPassword;
+
+  bool _nameIsNotvalidate = false;
+  bool _birthDateIsNotvalidate = false;
+  bool _addressIsNotvalidate = false;
+  bool _emailIsNotvalidate = false;
+  bool _nicIsNotvalidate = false;
+  bool _phoneNumberIsNotvalidate = false;
+  bool _passwordIsNotvalidate = false;
+  bool _confirPasswordIsNotvalidate = false;
 
   final _nameController = TextEditingController();
   final _birthdateController = TextEditingController();
@@ -21,15 +104,10 @@ class _SignUpPageState extends State<SignUpPage> {
   final _phoneNumberController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-  bool _isNotValidate = false;
 
-  Future<bool> registerUser() async {
+  Future<bool> registerUser(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-
-      setState(() {
-        _isNotValidate = false;
-      });
 
       var regBody = {
         "name": _nameController.text,
@@ -49,7 +127,6 @@ class _SignUpPageState extends State<SignUpPage> {
         );
 
         if (response.statusCode == 200) {
-          // Registration successful
           var jsonResponse = jsonDecode(response.body);
           if (jsonResponse['status']) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -57,14 +134,21 @@ class _SignUpPageState extends State<SignUpPage> {
             );
             return true;
           } else {
-            // Registration failed
+            // Display validation errors
+            List<dynamic> errors = jsonResponse['errors'];
+            String errorMessage = '';
+            errors.forEach((error) {
+              errorMessage += error['msg'] + '\n';
+            });
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Registration failed: ${jsonResponse['message']}')),
+              SnackBar(content: Text(errorMessage)),
             );
           }
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Error ${response.statusCode}: ${response.reasonPhrase}')),
+            const SnackBar(
+                content: Text(
+                    "An error occurred while processing your request." /* 'Error ${response.statusCode}: ${response.reasonPhrase}' */)),
           );
         }
       } catch (e) {
@@ -72,10 +156,6 @@ class _SignUpPageState extends State<SignUpPage> {
           SnackBar(content: Text('Error: $e')),
         );
       }
-    } else {
-      setState(() {
-        _isNotValidate = true;
-      });
     }
     return false;
   }
@@ -85,329 +165,189 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(
-            'lib/images/signup_img.png',
-            fit: BoxFit.cover,
-            height: double.infinity,
-            width: double.infinity,
-          ),
+      Image.asset(
+             'lib/images/signup_img.png',
+             fit: BoxFit.cover,
+             height: double.infinity,
+             width: double.infinity,
+           ),
           SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(26.0, 50.0, 26.0, 26.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Sign Up',
-                    style:
-                    TextStyle(fontSize: 34.0, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 30.0),
-
-                  const Text('Full name'),
-                  TextFormField(
-                    controller: _nameController,
-                    decoration: InputDecoration(
-                      errorStyle: const TextStyle(color: Colors.black),
-                      errorText: _isNotValidate ? "Please enter your full name" : null,
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Sign Up',
+                      style: TextStyle(
+                          fontSize: 34.0, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 30.0),
+                    CustomTextFormField(
+                      lable: "Full Name",
+                      controller: _nameController,
                       hintText: 'Enter your full name',
-                      hintStyle: TextStyle(color: Colors.grey[500]),
-                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
-                      fillColor: Colors.grey.shade100,
-                      filled: true,
-                      contentPadding:
-                      const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                      isNotValidated: _nameIsNotvalidate,
+                      errorMessage: "This field is required",
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your full name';
-                      }
-                      if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
-                        return 'Please enter a valid full name';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      fullName = value!;
-                    },
-                  ),
-                  const SizedBox(height: 20.0),
-
-                  const Text('Date of Birth'),
-                  TextFormField(
-                    controller: _birthdateController,
-                    decoration: InputDecoration(
-                      errorStyle: const TextStyle(color: Colors.black),
-                      errorText: _isNotValidate ? "Please enter your Date of Birth" : null,
+                    const SizedBox(height: 20.0),
+                    CustomTextFormField(
+                      lable: "Date of Birth",
+                      controller: _birthdateController,
                       hintText: 'DD/MM/YYYY',
-                      hintStyle: TextStyle(color: Colors.grey[500]),
-                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
-                      fillColor: Colors.grey.shade100,
-                      filled: true,
-                      contentPadding:
-                      const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                      isNotValidated: _birthDateIsNotvalidate,
+                      errorMessage: "This field is required",
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your date of birth';
-                      }
-                      // if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
-                      //   return 'Please enter a valid date of birth';
-                      // }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      birthdate = value!;
-                    },
-                  ),
-                  const SizedBox(height: 20.0),
-
-                  const Text('Address'),
-                  TextFormField(
-                    controller: _addressController,
-                    decoration: InputDecoration(
-                      errorStyle: const TextStyle(color: Colors.black),
-                      errorText: _isNotValidate ? "Please enter your address" : null,
+                    const SizedBox(height: 20.0),
+                    CustomTextFormField(
+                      lable: "Address",
+                      controller: _addressController,
                       hintText: 'Enter your address',
-                      hintStyle: TextStyle(color: Colors.grey[500]),
-                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
-                      fillColor: Colors.grey.shade100,
-                      filled: true,
-                      contentPadding:
-                      const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                      isNotValidated: _addressIsNotvalidate,
+                      errorMessage: "This field is required",
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your address';
-                      }
-                      // if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
-                      //   return 'Please enter a valid address';
-                      // }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      address = value!;
-                    },
-                  ),
-                  const SizedBox(height: 20.0),
-
-                  const Text('Email Address'),
-                  TextFormField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      errorStyle: const TextStyle(color: Colors.black),
-                      errorText: _isNotValidate ? "Enter Proper Info" : null,
+                    const SizedBox(height: 20.0),
+                    CustomTextFormField(
+                      lable: "Email Address",
+                      controller: _emailController,
                       hintText: 'davidsmith@gmail.com',
-                      hintStyle: TextStyle(color: Colors.grey[500]),
-                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
-                      fillColor: Colors.grey.shade100,
-                      filled: true,
-                      contentPadding:
-                      const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                      isNotValidated: _emailIsNotvalidate,
+                      errorMessage: "This field is required",
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your email address';
-                      }
-                      if (!RegExp(
-                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                          .hasMatch(value)) {
-                        return 'Please enter a valid email address';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      email = value!;
-                    },
-                  ),
-                  const SizedBox(height: 20.0),
-
-                  const Text('Phone Number'),
-                  TextFormField(
-                    controller: _phoneNumberController,
-                    decoration: InputDecoration(
+                    const SizedBox(height: 20.0),
+                    CustomTextFormField(
+                      lable: "Contact Number",
+                      controller: _phoneNumberController,
+                      isNotValidated: _phoneNumberIsNotvalidate,
+                      errorMessage: "This field is required",
                       hintText: '+94 762 090 212',
-                      hintStyle: TextStyle(color: Colors.grey[500]),
-                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
-                      fillColor: Colors.grey.shade100,
-                      filled: true,
-                      contentPadding:
-                      const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                      keyboardType: TextInputType.phone,
+                      maxLength: 14,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(11),
+                        FilteringTextInputFormatter.digitsOnly,
+                        TelephoneInputFormatter(),
+                      ],
                     ),
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(11),
-                      FilteringTextInputFormatter.digitsOnly,
-                      TelephoneInputFormatter(),
-                    ],
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your phone number';
-                      } else if (value.length != 11) {
-                        return 'Phone number must be 11 digits long';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      phoneNumber = value!;
-                    },
-                  ),
-                  const SizedBox(height: 20.0),
-
-                  const Text('NIC'),
-                  TextFormField(
-                    controller: _nicController,
-                    decoration: InputDecoration(
+                    CustomTextFormField(
+                      lable: "NIC",
+                      controller: _nicController,
                       hintText: '200468532944',
-                      hintStyle: TextStyle(color: Colors.grey[500]),
-                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
-                      fillColor: Colors.grey.shade100,
-                      filled: true,
-                      contentPadding:
-                      const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                      isNotValidated: _nicIsNotvalidate,
+                      errorMessage: "This field is required",
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your NIC';
-                      }
-                      // Check if NIC is old format (8 digits + 'V' at the end) or new format (12 digits)
-                      if (!((value.length == 9 && value.endsWith('V')) ||
-                          value.length == 12)) {
-                        return 'Enter a valid NIC number';
-                      }
-
-                      // Check if NIC is old format (8 digits + 'V' at the end)
-                      if (value.length == 9 &&
-                          !RegExp(r'^[0-9]{8}V$').hasMatch(value)) {
-                        return 'Enter a valid NIC number';
-                      }
-
-                      // Check if NIC is new format (12 digits)
-                      if (value.length == 12 &&
-                          !RegExp(r'^[0-9]{12}$').hasMatch(value)) {
-                        return 'Enter a valid NIC number';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      nic = value!;
-                    },
-                  ),
-                  const SizedBox(height: 20.0),
-
-                  const Text('Password'),
-                  TextFormField(
-                    controller: _passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      errorStyle: const TextStyle(color: Colors.white),
-                      errorText: _isNotValidate ? "Enter Proper Info" : null,
+                    const SizedBox(height: 20.0),
+                    CustomTextFormField(
+                      lable: "Password",
+                      controller: _passwordController,
                       hintText: 'Password',
-                      hintStyle: TextStyle(color: Colors.grey[500]),
-                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
-                      fillColor: Colors.grey.shade100,
-                      filled: true,
-                      contentPadding:
-                      const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                      obscureText: true,
+                      isNotValidated: _passwordIsNotvalidate,
+                      errorMessage: "This field is required",
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your password';
-                      }
-                      if (value.length < 8) {
-                        return 'Password must be at least 8 characters long';
-                      }
-                      if (!RegExp(r'[A-Z]').hasMatch(value)) {
-                        return 'Password must contain at least one uppercase letter';
-                      }
-                      if (!RegExp(r'[a-z]').hasMatch(value)) {
-                        return 'Password must contain at least one lowercase letter';
-                      }
-                      if (!RegExp(r'[0-9]').hasMatch(value)) {
-                        return 'Password must contain at least one digit';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      password = value!;
-                    },
-                  ),
-                  const SizedBox(height: 20.0),
-
-                  const Text('Confirm password'),
-                  TextFormField(
-                    controller: _confirmPasswordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
+                    const SizedBox(height: 20.0),
+                    CustomTextFormField(
+                      lable: "Confirm Password",
+                      controller: _confirmPasswordController,
                       hintText: 'Confirm password',
-                      hintStyle: TextStyle(color: Colors.grey[500]),
-                      enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
-                      fillColor: Colors.grey.shade100,
-                      filled: true,
-                      contentPadding:
-                      const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                      obscureText: true,
+                      isNotValidated: _confirPasswordIsNotvalidate,
+                      errorMessage: "This field is required",
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please confirm your password';
-                      }
-                      if (value != _passwordController.text) {
-                        return 'Passwords do not match';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      confirmPassword = value!;
-                    },
-                  ),
-                  const SizedBox(height: 30.0),
-
-                  Padding(
-                    padding: const EdgeInsets.only(right: 200),
-                    child: Form(
-                      key: _formKey,
+                    const SizedBox(height: 30.0),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 200),
                       child: ElevatedButton(
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            _formKey.currentState!.save();
-                            registerUser().then((success) {
-                              if (success) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => const SignIn()),
-                                );
-                              }
-                            });
-                          }
+                          onTapContinue(context);
                         },
                         child: Container(
                           padding: const EdgeInsets.all(10),
-                          // width: 200,
                           decoration: BoxDecoration(
                             color: Colors.blue[200],
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: const Center(
-                            child: Text('Continue', style: TextStyle(color: Colors.black, fontSize: 15)),
+                            child: Text('Continue',
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 15)),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  void onTapContinue(BuildContext context) {
+    bool sendReq = true;
+    _nameIsNotvalidate = false;
+    _birthDateIsNotvalidate = false;
+    _addressIsNotvalidate = false;
+    _emailIsNotvalidate = false;
+    _phoneNumberIsNotvalidate = false;
+    _nicIsNotvalidate = false;
+    _passwordIsNotvalidate = false;
+    _confirPasswordIsNotvalidate = false;
+
+    setState(() {
+      if (_nameController.text.isEmpty) {
+        _nameIsNotvalidate = true;
+        sendReq = false;
+      }
+      if (_birthdateController.text.isEmpty) {
+        _birthDateIsNotvalidate = true;
+        sendReq = false;
+      }
+      if (_addressController.text.isEmpty) {
+        _addressIsNotvalidate = true;
+        sendReq = false;
+      }
+      if (_emailController.text.isEmpty) {
+        _emailIsNotvalidate = true;
+        sendReq = false;
+      }
+      if (_phoneNumberController.text.isEmpty) {
+        _phoneNumberIsNotvalidate = true;
+        sendReq = false;
+      }
+      if (_nicController.text.isEmpty) {
+        _nicIsNotvalidate = true;
+        sendReq = false;
+      }
+      if (_passwordController.text.isEmpty) {
+        _passwordIsNotvalidate = true;
+        sendReq = false;
+      }
+      if (_confirmPasswordController.text.isEmpty) {
+        _confirPasswordIsNotvalidate = true;
+        sendReq = false;
+      }
+      if (_passwordController.text != _confirmPasswordController.text) {
+        _confirmPasswordController.clear();
+        _confirPasswordIsNotvalidate = true;
+        sendReq = false;
+      }
+    });
+
+    if (sendReq) {
+      registerUser(context).then((success) {
+        if (success) {
+           Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const SignIn()),
+      );
+        }
+      });
+    }
   }
 }
 
@@ -436,11 +376,4 @@ class TelephoneInputFormatter extends TextInputFormatter {
       selection: TextSelection.collapsed(offset: formattedValue.length),
     );
   }
-}
-
-bool _isNumeric(String? value) {
-  if (value == null) {
-    return false;
-  }
-  return double.tryParse(value) != null;
 }
