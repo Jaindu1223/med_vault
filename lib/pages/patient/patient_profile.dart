@@ -199,7 +199,7 @@ class _PatientProfileState extends State<PatientProfile> {
                                 child: Center(
                                   child: InkWell(
                                     onTap: (){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>const NewPrescription()));
+                                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const SignIn()));
                                     },
 
                                     child: Container(
