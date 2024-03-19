@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:med_vault/pages/patient/check.dart';
 // import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:med_vault/pages/patient/my_qr.dart';
 import 'package:med_vault/pages/patient/patient_profile.dart';
@@ -180,7 +181,7 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(height: 17),
                         InkWell(
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> PharmacySearchPage()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> PharmacySearchPage1()));
                           },
                           child: Container(
                             padding: const EdgeInsets.all(4),
