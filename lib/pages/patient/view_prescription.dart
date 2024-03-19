@@ -145,7 +145,7 @@ class _viewPrescriptionState extends State<viewPrescription> {
 
                                 children: [
                                   const Text(
-                                    'New Prescription',
+                                    'My Prescription',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w900,
                                       fontSize: 26,
@@ -270,7 +270,7 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                     // ),
                                     ElevatedButton(
                                       onPressed: isLoading ? null : searchPrescription,
-                                      child: isLoading ? CircularProgressIndicator() : Text('Update Prescription'),
+                                      child: isLoading ? CircularProgressIndicator() : Text('Receive Prescription'),
                                     ),
                                     SizedBox(height: 16.0),
 

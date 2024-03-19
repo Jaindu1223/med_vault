@@ -28,154 +28,152 @@ class _MyQRState extends State<MyQR> {
     String formattedTime = DateFormat.jm().format(now); // Format: 3:21:59 PM
 
     return Scaffold(
-        backgroundColor: Colors.grey,
-        body: SingleChildScrollView(
-          child: Stack(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('lib/images/6 Pharmacy locater-2.png'),
-                    fit: BoxFit.cover,
-                  ),
+        //backgroundColor: Colors.grey,
+        body: Stack(
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('lib/images/6 Pharmacy locater-2.png'),
+                  fit: BoxFit.cover,
                 ),
               ),
-              Column(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.only(
-                        left: 20, top: 30, right: 3, bottom: 7),
-                    child: Row(
-                      children: [
-                        const SizedBox(
-                          width: 6,
-                          height: 190,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'My QR',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 29,
-                                color: Colors.white,
-                              ),
+            ),
+            Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(
+                      left: 20, top: 30, right: 3, bottom: 7),
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 6,
+                        height: 190,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'My QR',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 29,
+                              color: Colors.white,
                             ),
-
-                            SizedBox(
-                              height: 60,
-                              width: 20,
-                              child: Image.asset(
-                                  'lib/images/Group 2085662530.png'),
-
-                            ),
-                            const SizedBox(height: 1),
-                            Text(
-                              formattedDate,
-                              style: const TextStyle(
-                                fontSize: 13,
-                                color: Colors.white,
-                              ),
-                            ),
-                            const SizedBox(height: 2),
-                            Text(
-                              formattedTime,
-                              style: const TextStyle(
-                                fontSize: 10,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 100,
-                        ),
-                        SizedBox(
-                          height: 120,
-                          width: 70,
-                          child: Image.asset(
-                            'lib/images/qr-code-blue.png',
                           ),
+
+                          SizedBox(
+                            height: 60,
+                            width: 20,
+                            child: Image.asset(
+                                'lib/images/Group 2085662530.png'),
+
+                          ),
+                          const SizedBox(height: 1),
+                          Text(
+                            formattedDate,
+                            style: const TextStyle(
+                              fontSize: 13,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            formattedTime,
+                            style: const TextStyle(
+                              fontSize: 10,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 100,
+                      ),
+                      SizedBox(
+                        height: 120,
+                        width: 70,
+                        child: Image.asset(
+                          'lib/images/qr-code-blue.png',
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
+                ),
 
-                  const SizedBox(height: 25),
+                const SizedBox(height: 25),
 
-                  const Padding(
-                    padding: EdgeInsets.only(left: 16.0, right: 16.0),
-                    // child: TextField(
-                    //   controller: _textController,
-                    //   decoration: const InputDecoration(
-                    //     contentPadding: EdgeInsets.all(10),
-                    //     labelText: 'Enter Text',
-                    //     labelStyle: TextStyle(color: Colors.white),
-                    //     focusedBorder: OutlineInputBorder(
-                    //       borderSide: BorderSide(
-                    //           color: Color.fromARGB(255, 0, 146, 20), width: 2.0),
-                    //     ),
-                    //     enabledBorder: OutlineInputBorder(
-                    //       borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                    //     ),
-                    //   ),
-                    // ),
-                  ),
-
-                  const SizedBox(
-                    height: 15,
-                  ),
-
-                  // RawMaterialButton(
-                  //
-                  //
-                  //   onPressed: () {
-                  //     setState(() {
-                  //       // _textController.text = widget.email;
-                  //       data = widget.email;
-                  //     });
-                  //   },
-                  //
-                  //   fillColor: Colors.cyan,
-                  //   shape: const StadiumBorder(),
-                  //   padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
-                  //   child: const Text(
-                  //
-                  //     'generate',
-                  //
-                  //     // 'Generate',
-                  //
-                  //     style: TextStyle(
-                  //       color: Colors.white,
-                  //       fontSize: 18,
+                const Padding(
+                  padding: EdgeInsets.only(left: 16.0, right: 16.0),
+                  // child: TextField(
+                  //   controller: _textController,
+                  //   decoration: const InputDecoration(
+                  //     contentPadding: EdgeInsets.all(10),
+                  //     labelText: 'Enter Text',
+                  //     labelStyle: TextStyle(color: Colors.white),
+                  //     focusedBorder: OutlineInputBorder(
+                  //       borderSide: BorderSide(
+                  //           color: Color.fromARGB(255, 0, 146, 20), width: 2.0),
+                  //     ),
+                  //     enabledBorder: OutlineInputBorder(
+                  //       borderSide: BorderSide(color: Colors.grey, width: 2.0),
                   //     ),
                   //   ),
                   // ),
-                  // const SizedBox(height: 25,),
+                ),
 
-                  Center(
-                      child: RepaintBoundary(
-                    key: _qrkey,
-                    child: QrImageView(
-                      data: widget.email,
-                      version: QrVersions.auto,
-                      size: 250.0,
-                      gapless: true,
-                      errorStateBuilder: (ctx, err) {
-                        return const Center(
-                          child: Text(
-                            'Something went wrong!',
-                            textAlign: TextAlign.center,
-                          ),
-                        );
-                      },
-                    ),
-                  )),
-                ],
-              ),
-            ],
-          ),
+                const SizedBox(
+                  height: 15,
+                ),
+
+                // RawMaterialButton(
+                //
+                //
+                //   onPressed: () {
+                //     setState(() {
+                //       // _textController.text = widget.email;
+                //       data = widget.email;
+                //     });
+                //   },
+                //
+                //   fillColor: Colors.cyan,
+                //   shape: const StadiumBorder(),
+                //   padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
+                //   child: const Text(
+                //
+                //     'generate',
+                //
+                //     // 'Generate',
+                //
+                //     style: TextStyle(
+                //       color: Colors.white,
+                //       fontSize: 18,
+                //     ),
+                //   ),
+                // ),
+                // const SizedBox(height: 25,),
+
+                Center(
+                    child: RepaintBoundary(
+                  key: _qrkey,
+                  child: QrImageView(
+                    data: widget.email,
+                    version: QrVersions.auto,
+                    size: 250.0,
+                    gapless: true,
+                    errorStateBuilder: (ctx, err) {
+                      return const Center(
+                        child: Text(
+                          'Something went wrong!',
+                          textAlign: TextAlign.center,
+                        ),
+                      );
+                    },
+                  ),
+                )),
+              ],
+            ),
+          ],
         ));
   }
 }
