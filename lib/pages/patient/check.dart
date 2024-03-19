@@ -343,7 +343,7 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40), // Set the border radius
                       ),
-                      minimumSize: Size(0, 50), // Set the minimum size of the button
+                      minimumSize: Size(0, 40), // Set the minimum size of the button
                     ),
                     child: isLoading
                         ? CircularProgressIndicator()
