@@ -263,11 +263,14 @@ class _SignUpPageState extends State<SignUpPage> {
                         onPressed: () {
                           onTapContinue(context);
                         },
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                        ),
                         child: Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: Colors.blue[200],
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(20),
                           ),
                           child: const Center(
                             child: Text('Continue',
