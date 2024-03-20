@@ -135,9 +135,8 @@ class _NewPrescriptionState extends State<NewPrescription> {
   @override
   void initState() {
     super.initState();
-    if (widget.email != null) {
-      _patientEmailController.text = widget.email!;
-    }}
+    _patientEmailController.text = widget.email;
+  }
 
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
