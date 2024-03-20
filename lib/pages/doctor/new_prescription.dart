@@ -44,6 +44,15 @@ class _NewPrescriptionState extends State<NewPrescription> {
 
       // if(res.statusCode == 200){
 
+      final Map<String, dynamic> responseData = jsonDecode(res.body);
+      print(responseData);
+      final dynamic patientName = responseData['patName'];
+      final dynamic patientAge = responseData['patAge'];
+      final dynamic patientAddress = responseData['patAddress'];
+
+      _patientNameController.text = patientName;
+      _ageController.text = patientAge.toString();
+      _addressController.text = patientAddress;
 
       // }else{
       //   throw Exception('Failed to load data');
