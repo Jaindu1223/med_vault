@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:med_vault/pages/patient/sign_in.dart';
+import 'package:http/http.dart' as http;
 
 class LogoutPage extends StatelessWidget {
   final String fullName;

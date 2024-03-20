@@ -234,12 +234,13 @@ class _QrScanState extends State<QrScan> {
 
 */
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:med_vault/pages/doctor/new_prescription.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../patient/view_prescription.dart';
 
 class QrScan extends StatefulWidget {
   const QrScan({super.key});
@@ -251,38 +252,36 @@ class QrScan extends StatefulWidget {
 class _QrScanState extends State<QrScan> {
   final GlobalKey qrKey = GlobalKey(debugLabel: "QR");
   QRViewController? controller;
-  String result ="";
+  String result = "";
 
   @override
-  void dispose(){
+  void dispose() {
     controller?.dispose();
     super.dispose();
   }
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
-    controller.scannedDataStream.listen((scanData){
+    controller.scannedDataStream.listen((scanData) {
       setState(() {
         result = scanData.code!;
       });
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
+      appBar: AppBar(
         title: const Text("QR code scanner "),
       ),
-
-      body:Column(
+      body: Column(
         children: [
           Expanded(
             flex: 1,
-            child:QRView(
+            child: QRView(
               key: qrKey,
-              onQRViewCreated:_onQRViewCreated,
+              onQRViewCreated: _onQRViewCreated,
             ),
           ),
           Expanded(
@@ -297,60 +296,117 @@ class _QrScanState extends State<QrScan> {
             ),
           ),
           const SizedBox(height: 30),
-          Padding(
-            padding: const EdgeInsets.only(left: 0),
-            child: Center(
-              child: InkWell(
-                onTap: () async {
-                  // Assuming that the scanned NIC number is stored in the `result` variable
-                  //if (result != null && result.isNotEmpty) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => NewPrescription(email: result),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 50,left: 20),
+                child: Center(
+                  child: InkWell(
+                    onTap: (){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder:
+                              (context)=>viewPrescription(email: result)));
+                    },
+
+                    // onTap: () async {
+                    //   // Assuming that the scanned NIC number is stored in the `result` variable
+                    //   //if (result != null && result.isNotEmpty) {
+                    //   Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => NewPrescription(email: result),
+                    //     ),
+                    //   );
+                    //   //}
+                    //   // else {
+                    //   //   ScaffoldMessenger.of(context).showSnackBar(
+                    //   //     const SnackBar(content: Text('Please scan a valid QR of patient')),
+                    //   //   );
+                    //   // }
+                    // },
+                    //should uncomment above things
+
+                    // onTap: () {
+                    //   Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => NewPrescription(result: result),
+                    //     ),
+                    //   );
+                    // },
+                    // onTap: (){
+                    //   Navigator.push(context, MaterialPageRoute(builder: (context)=>const NewPrescription()));
+                    // },
+                    child: Container(
+                      padding: const EdgeInsets.all(6),
+                      width: 150,
+                      decoration: BoxDecoration(
+                        color: Colors.blueAccent,
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                    );
-                  //}
-                  // else {
-                  //   ScaffoldMessenger.of(context).showSnackBar(
-                  //     const SnackBar(content: Text('Please scan a valid QR of patient')),
-                  //   );
-                  // }
-                },
-                //should uncomment above things
-
-
-
-                // onTap: () {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (context) => NewPrescription(result: result),
-                //     ),
-                //   );
-                // },
-                // onTap: (){
-                //   Navigator.push(context, MaterialPageRoute(builder: (context)=>const NewPrescription()));
-                // },
-                child: Container(
-                  padding: const EdgeInsets.all(6),
-                  width: 150,
-                  decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: const Center(
-                    child: Text(
-                        'New Prescription',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 11)
+                      child: const Center(
+                        child: Text('Previous Prescription',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 11)),
+                      ),
                     ),
                   ),
                 ),
-              ),),
+              ),
+
+              const SizedBox(width: 30),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 50),
+                child: Center(
+                  child: InkWell(
+                    onTap: () async {
+                      // Assuming that the scanned NIC number is stored in the `result` variable
+                      //if (result != null && result.isNotEmpty) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NewPrescription(email: result),
+                        ),
+                      );
+                      //}
+                      // else {
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     const SnackBar(content: Text('Please scan a valid QR of patient')),
+                      //   );
+                      // }
+                    },
+                    //should uncomment above things
+
+                    // onTap: () {
+                    //   Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => NewPrescription(result: result),
+                    //     ),
+                    //   );
+                    // },
+                    // onTap: (){
+                    //   Navigator.push(context, MaterialPageRoute(builder: (context)=>const NewPrescription()));
+                    // },
+                    child: Container(
+                      padding: const EdgeInsets.all(6),
+                      width: 150,
+                      decoration: BoxDecoration(
+                        color: Colors.blueAccent,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Center(
+                        child: Text('New Prescription',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 11)),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 50),
           // Expanded(
           //   flex: 1,
           //   child: Row(
@@ -382,10 +438,8 @@ class _QrScanState extends State<QrScan> {
           //     ],
           //   ),
           // ),
-
         ],
       ),
     );
   }
 }
-

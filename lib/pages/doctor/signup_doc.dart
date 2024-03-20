@@ -16,6 +16,7 @@ class CustomTextFormField extends StatelessWidget {
   final int? maxLength;
   final List<TextInputFormatter>? inputFormatters;
   final String errorMessage;
+  final Widget? child;
 
   const CustomTextFormField({
     Key? key,
@@ -24,6 +25,7 @@ class CustomTextFormField extends StatelessWidget {
     required this.hintText,
     required this.isNotValidated,
     required this.errorMessage,
+    this.child,
     this.validator,
     this.obscureText = false,
     this.keyboardType,
@@ -86,6 +88,7 @@ class _SignUpPageState extends State<SignUpDoc> {
       SLMCregiNo,
       password,
       confirmPassword;
+  late String? speciality = null;
 
   bool _nameIsNotvalidate = false;
   bool _addressIsNotvalidate = false;
@@ -93,8 +96,9 @@ class _SignUpPageState extends State<SignUpDoc> {
   bool _nicIsNotvalidate = false;
   bool _phoneNumberIsNotvalidate = false;
   bool _SLMCregiNoIsNotvalidate = false;
+  bool _specialityIsNotvalidate = false;
   bool _passwordIsNotvalidate = false;
-  bool _confirPasswordIsNotvalidate = false;
+  bool _confirmPasswordIsNotvalidate = false;
 
   final _nameController = TextEditingController();
   final _addressController = TextEditingController();
@@ -102,6 +106,7 @@ class _SignUpPageState extends State<SignUpDoc> {
   final _nicController = TextEditingController();
   final _phoneNumberController = TextEditingController();
   final _SLMCregiNoController  = TextEditingController();
+  // final _specialityController  = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
@@ -116,6 +121,7 @@ class _SignUpPageState extends State<SignUpDoc> {
         "NIC": _nicController.text,
         "phonenumber": _phoneNumberController.text,
         "SLMCregiNo": _SLMCregiNoController.text,
+        "speciality": speciality,
         "password": _passwordController.text
       };
 
@@ -227,7 +233,7 @@ class _SignUpPageState extends State<SignUpDoc> {
                         TelephoneInputFormatter(),
                       ],
                     ),
-                    const SizedBox(height: 20.0),
+                    // const SizedBox(height: 5.0),
 
                     CustomTextFormField(
                       lable: "NIC",
@@ -247,6 +253,25 @@ class _SignUpPageState extends State<SignUpDoc> {
                     ),
                     const SizedBox(height: 20.0),
 
+                   DropdownButtonFormField(
+                        value: speciality,
+                        hint: Text('Select Speciality'),
+                        onChanged: (newValue) {
+                          setState(() {
+                            speciality = newValue;
+                          });
+                        },
+                        items: ['Cardiologist', 'Dermatologist', 'Dentist','Gynaecologist','Neurologist','Nutritionist','Psychologist']
+                            .map((speciality) => DropdownMenuItem(
+                          child: Text(speciality!),
+                          value: speciality,
+                        ))
+                            .toList(),
+                      ),
+
+                    const SizedBox(height: 20.0),
+
+
                     CustomTextFormField(
                       lable: "Password",
                       controller: _passwordController,
@@ -262,7 +287,7 @@ class _SignUpPageState extends State<SignUpDoc> {
                       controller: _confirmPasswordController,
                       hintText: 'Confirm password',
                       obscureText: true,
-                      isNotValidated: _confirPasswordIsNotvalidate,
+                      isNotValidated: _confirmPasswordIsNotvalidate,
                       errorMessage: "This field is required",
                     ),
                     const SizedBox(height: 30.0),
@@ -273,11 +298,14 @@ class _SignUpPageState extends State<SignUpDoc> {
                         onPressed: () {
                           onTapContinue(context);
                         },
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                        ),
                         child: Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: Colors.blue[200],
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(20),
                           ),
                           child: const Center(
                             child: Text('Continue',
@@ -305,8 +333,9 @@ class _SignUpPageState extends State<SignUpDoc> {
     _phoneNumberIsNotvalidate = false;
     _SLMCregiNoIsNotvalidate = false;
     _nicIsNotvalidate = false;
+    _specialityIsNotvalidate = false;
     _passwordIsNotvalidate = false;
-    _confirPasswordIsNotvalidate = false;
+    _confirmPasswordIsNotvalidate = false;
 
     setState(() {
       if (_nameController.text.isEmpty) {
@@ -333,17 +362,21 @@ class _SignUpPageState extends State<SignUpDoc> {
         _SLMCregiNoIsNotvalidate = true;
         sendReq = false;
       }
+      // if (_specialityController.text.isEmpty) {
+      //   _specialityIsNotvalidate = true;
+      //   sendReq = false;
+      // }
       if (_passwordController.text.isEmpty) {
         _passwordIsNotvalidate = true;
         sendReq = false;
       }
       if (_confirmPasswordController.text.isEmpty) {
-        _confirPasswordIsNotvalidate = true;
+        _confirmPasswordIsNotvalidate = true;
         sendReq = false;
       }
       if (_passwordController.text != _confirmPasswordController.text) {
         _confirmPasswordController.clear();
-        _confirPasswordIsNotvalidate = true;
+        _confirmPasswordIsNotvalidate = true;
         sendReq = false;
       }
     });
