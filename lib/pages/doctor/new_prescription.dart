@@ -35,11 +35,28 @@ class _NewPrescriptionState extends State<NewPrescription> {
   final _additionalController = TextEditingController();
   final _instructionsController = TextEditingController();
 
+
+
   Future<void> _submitForm() async {
-    final patientName = _patientNameController.text;
+
+    // try{
+      final res = await http.get(Uri.parse('http://10.0.2.2:2000/getPatientData?email=$_patientEmailController'));
+
+      // if(res.statusCode == 200){
+
+
+      // }else{
+      //   throw Exception('Failed to load data');
+      // }
+
+    // }catch(error){
+    //   print('Error: $error');
+    // }
+    
+    // final patientName = _patientNameController.text;
     final patientEmail = _patientEmailController.text;
-    final age = int.tryParse(_ageController.text);
-    final address = _addressController.text;
+    // final age = int.tryParse(_ageController.text);
+    // final address = _addressController.text;
 
     final medication1Name = _medication1NameController.text;
     final dosage1 = int.tryParse(_dosage1Controller.text);
@@ -56,7 +73,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
     final additional = _additionalController.text;
     final instructions = _instructionsController.text;
 
-    if (patientName == null || age == null || address.isEmpty || medication1Name.isEmpty || dosage1 == null) {
+    if (patientName == null || patientAge == null || patientAddress.isEmpty || medication1Name.isEmpty || dosage1 == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please fill in all fields')),
       );
@@ -71,8 +88,8 @@ class _NewPrescriptionState extends State<NewPrescription> {
       body: jsonEncode(<String, dynamic>{
         'patientName': patientName,
         'patientEmail': patientEmail,
-        'age': age,
-        'address': address,
+        'age': patientAge,
+        'address': patientAddress,
         'medication1Name': medication1Name,
         'dosage1': dosage1,
         'moreDetails1': moreDetails1,
