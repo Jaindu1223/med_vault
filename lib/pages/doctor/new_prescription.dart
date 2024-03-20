@@ -8,8 +8,8 @@ import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:http/http.dart' as http;
 
 class NewPrescription extends StatefulWidget {
-  final String? email;
-  const NewPrescription({Key? key, this.email}) : super(key: key);
+  final String email;
+  const NewPrescription({Key? key, required this.email}):super(key:key);
 
   @override
   _NewPrescriptionState  createState() => _NewPrescriptionState();
@@ -62,9 +62,11 @@ class _NewPrescriptionState extends State<NewPrescription> {
     // }catch(error){
     //   print('Error: $error');
     // }
+
+      final String patientEmail = widget.email;
     
     // final patientName = _patientNameController.text;
-    final patientEmail = _patientEmailController.text;
+    // final patientEmail = _patientEmailController.text;
     // final age = int.tryParse(_ageController.text);
     // final address = _addressController.text;
 

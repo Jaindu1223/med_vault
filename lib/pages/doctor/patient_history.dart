@@ -196,9 +196,9 @@ class _PatientHistoryState extends State<PatientHistory> {
                                 padding: const EdgeInsets.only(left: 100),
                                 child: Center(
                                   child: InkWell(
-                                    onTap: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const NewPrescription()));
-                                    },
+                                    // onTap: (){
+                                    //   Navigator.push(context, MaterialPageRoute(builder: (context)=>const NewPrescription()));
+                                    // },
 
                                     child: Container(
 
