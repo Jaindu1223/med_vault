@@ -366,7 +366,7 @@ class _QrScanState extends State<QrScan> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => NewPrescription(email: result),
+                          builder: (context) => NewPrescription(email: result, docemail: '',),
                         ),
                       );
                       //}

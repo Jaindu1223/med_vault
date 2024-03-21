@@ -7,7 +7,8 @@ import '../patient/pharmacy_spotter.dart';
 // import 'new_prescription.dart';
 
 class HomePageDoc extends StatefulWidget {
-  const HomePageDoc({Key? key}) : super(key: key);
+  final String email;
+  const HomePageDoc({Key? key, required this.email}) : super(key: key);
 
   @override
   State<HomePageDoc> createState() => _HomePageDocState();
@@ -68,6 +69,14 @@ class _HomePageDocState extends State<HomePageDoc> {
                         child: Image.asset('lib/images/Group 2085662530.png'),
                       ),
                       const SizedBox(height: 1),
+                      Text(
+                        'HI, ${widget.email}',
+                        style: const TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
                       Text(
                         formattedDate,
                         style: const TextStyle(

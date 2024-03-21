@@ -9,7 +9,9 @@ import 'package:http/http.dart' as http;
 
 class NewPrescription extends StatefulWidget {
   final String email;
-  const NewPrescription({Key? key, required this.email}):super(key:key);
+  final String docemail;
+  // const NewPrescription({Key? key, required this.email}):super(key:key);
+  const NewPrescription({Key? key, required this.docemail, required this.email}):super(key:key);
 
   @override
   _NewPrescriptionState  createState() => _NewPrescriptionState();
@@ -42,6 +44,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
 
     // try{
       final res = await http.get(Uri.parse('http://10.0.2.2:2000/getPatientData?email=$_patientEmailController'));
+      final res2 = await http.get(Uri.parse('http://10.0.2.2:2000/getDoctorData?email=$_patientEmailController'));
 
       // if(res.statusCode == 200){
 
@@ -122,7 +125,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
       );
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const HomePageDoc()),
+        MaterialPageRoute(builder: (context) => HomePageDoc(email: '',)),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -280,7 +283,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                     const SizedBox(height: 5),
                                     TextField(
                                       controller: _patientNameController,
-                                      decoration:  InputDecoration(
+                                      decoration:  const InputDecoration(
                                           labelText: 'Patient Name',
                                         labelStyle: TextStyle(
                                           fontWeight: FontWeight.w400,
@@ -578,7 +581,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
 
                                     TextField(
                                       controller: _additionalController,
-                                      decoration:  InputDecoration(
+                                      decoration:  const InputDecoration(
                                           labelText: 'Additional Notes',
                                         border: OutlineInputBorder(),
                                         labelStyle: TextStyle(
@@ -586,7 +589,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                           fontSize: 15,
                                         ),
                                       ),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 11,
                                       ),
