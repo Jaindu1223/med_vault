@@ -18,6 +18,16 @@ class NewPrescription extends StatefulWidget {
 }
 
 class _NewPrescriptionState extends State<NewPrescription> {
+
+  String doctorName = "";
+  String doctorSLMC = '';
+  String doctorSpeciality = '';
+
+  final _doctorNameController = TextEditingController();
+  final _doctorEmailController = TextEditingController();
+  final _doctorSLMCController = TextEditingController();
+  final _doctorSpecialityController = TextEditingController();
+
   final _patientNameController = TextEditingController();
   final _patientEmailController = TextEditingController();
   final _ageController = TextEditingController();
@@ -38,13 +48,11 @@ class _NewPrescriptionState extends State<NewPrescription> {
   final _additionalController = TextEditingController();
   final _instructionsController = TextEditingController();
 
-
-
   Future<void> _submitForm() async {
 
     // try{
       final res = await http.get(Uri.parse('http://10.0.2.2:2000/getPatientData?email=$_patientEmailController'));
-      final res2 = await http.get(Uri.parse('http://10.0.2.2:2000/getDoctorData?email=$_patientEmailController'));
+      final res2 = await http.get(Uri.parse('http://10.0.2.2:2000/getDoctorData?email=$_doctorEmailController'));
 
       // if(res.statusCode == 200){
 
@@ -58,6 +66,16 @@ class _NewPrescriptionState extends State<NewPrescription> {
       _ageController.text = patientAge.toString();
       _addressController.text = patientAddress;
 
+      final Map<String, dynamic> responseData2 = jsonDecode(res2.body);
+      print(responseData2);
+      final dynamic doctorName = responseData['docName'];
+      final dynamic doctorSLMC = responseData['docSLMC'];
+      final dynamic doctorSpeciality = responseData['docSpeciality'];
+
+      _doctorNameController.text = doctorName;
+      _doctorSLMCController.text = doctorSLMC;
+      _doctorSpecialityController.text = doctorSpeciality;
+
       // }else{
       //   throw Exception('Failed to load data');
       // }
@@ -67,6 +85,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
     // }
 
       final String patientEmail = widget.email;
+
     
     // final patientName = _patientNameController.text;
     // final patientEmail = _patientEmailController.text;
