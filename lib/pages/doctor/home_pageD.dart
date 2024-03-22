@@ -7,8 +7,8 @@ import '../patient/pharmacy_spotter.dart';
 // import 'new_prescription.dart';
 
 class HomePageDoc extends StatefulWidget {
-  final String email;
-  const HomePageDoc({Key? key, required this.email}) : super(key: key);
+  final String docemail;
+  const HomePageDoc({Key? key, required this.docemail}) : super(key: key);
 
   @override
   State<HomePageDoc> createState() => _HomePageDocState();
@@ -70,7 +70,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                       ),
                       const SizedBox(height: 1),
                       Text(
-                        'HI, ${widget.email}',
+                        'HI, ${widget.docemail}',
                         style: const TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -173,7 +173,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const QrScan()));
+                                      builder: (context) =>  QrScan(email: widget.docemail, )));
                             },
                             child: Container(
                               padding: const EdgeInsets.all(4),

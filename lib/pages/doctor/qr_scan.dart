@@ -243,7 +243,9 @@ import 'package:url_launcher/url_launcher.dart';
 import '../patient/view_prescription.dart';
 
 class QrScan extends StatefulWidget {
-  const QrScan({super.key});
+  final String email;
+  const QrScan({Key? key, required this.email}):super(key:key);
+
 
   @override
   State<QrScan> createState() => _QrScanState();

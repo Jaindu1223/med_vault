@@ -317,7 +317,7 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
                     height: 140,
                     width: 100,
                     child: Image.asset(
-                      'lib/images/image 9326.png',
+                      'lib/images/hospital.png',
                     ),
                   ),
                 ],
@@ -330,11 +330,11 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
                 children: [
                   TextField(
                     controller: medicineNameController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Enter Medicine Name',
                     ),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
 
                   ElevatedButton(
                     onPressed: isLoading ? null : searchNearestPharmacy,
@@ -347,7 +347,7 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
                     ),
                     child: isLoading
                         ? CircularProgressIndicator()
-                        : Text(
+                        : const Text(
                       'Search Nearest Pharmacy',
                       style: TextStyle(
                           color: Colors.white,
@@ -369,7 +369,7 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
                 children: [
                   Text(
                     'Pharmacy Name: $nearestPharmacyValue',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 18,
                     ),
@@ -377,7 +377,7 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
                   const SizedBox(height: 6),
                   Text(
                     'City: $cityValue',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 15,
                     ),
@@ -385,7 +385,7 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
                   const SizedBox(height: 2),
                   Text(
                     'Contact: $contactValue',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 15,
                     ),
@@ -397,7 +397,7 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
               child: Padding(
                 padding: const EdgeInsets.only(right: 16.0),
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('lib/images/search1.png'),
                       //xfit: BoxFit.cover,
@@ -419,7 +419,7 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
                   minimumSize: Size(130, 40),
                   // Set the background color to blue
                 ),
-                child: Text('Go to map',
+                child: const Text('Go to map',
                   style: TextStyle(
                       color: Colors.white),
                 ),

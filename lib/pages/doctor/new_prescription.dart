@@ -19,10 +19,16 @@ class NewPrescription extends StatefulWidget {
 
 class _NewPrescriptionState extends State<NewPrescription> {
 
-  String doctorName = "";
-  String doctorSLMC = '';
-  String doctorSpeciality = '';
+  String _doctorName = "";
+  String _doctorSLMC = '';
+  String _doctorSpeciality = '';
 
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   fetchDoctorData();
+  // }
+  
   final _doctorNameController = TextEditingController();
   final _doctorEmailController = TextEditingController();
   final _doctorSLMCController = TextEditingController();
@@ -48,11 +54,38 @@ class _NewPrescriptionState extends State<NewPrescription> {
   final _additionalController = TextEditingController();
   final _instructionsController = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    _patientEmailController.text = widget.email;
+    fetchDoctorData();
+  }
+
+  Future<void> fetchDoctorData() async {
+    try {
+      final res2 = await http.get(Uri.parse('http://10.0.2.2:2000/getDoctorData?docEmail=${widget.docemail}'));
+
+      final Map<String, dynamic> responseData2 = jsonDecode(res2.body);
+      print(responseData2);
+      final dynamic doctorName = responseData2['docName'];
+      final dynamic doctorSLMC = responseData2['docSLMC'];
+      final dynamic doctorSpeciality = responseData2['docSpeciality'];
+
+      setState(() {
+        _doctorName = doctorName;
+        _doctorSLMC = doctorSLMC;
+        _doctorSpeciality = doctorSpeciality;
+      });
+    } catch (error) {
+      print('Error: $error');
+    }
+  }
+
   Future<void> _submitForm() async {
 
     // try{
       final res = await http.get(Uri.parse('http://10.0.2.2:2000/getPatientData?email=$_patientEmailController'));
-      final res2 = await http.get(Uri.parse('http://10.0.2.2:2000/getDoctorData?email=$_doctorEmailController'));
+      // final res2 = await http.get(Uri.parse('http://10.0.2.2:2000/getDoctorData?email=$_doctorEmailController'));
 
       // if(res.statusCode == 200){
 
@@ -66,15 +99,15 @@ class _NewPrescriptionState extends State<NewPrescription> {
       _ageController.text = patientAge.toString();
       _addressController.text = patientAddress;
 
-      final Map<String, dynamic> responseData2 = jsonDecode(res2.body);
-      print(responseData2);
-      final dynamic doctorName = responseData['docName'];
-      final dynamic doctorSLMC = responseData['docSLMC'];
-      final dynamic doctorSpeciality = responseData['docSpeciality'];
+      // final Map<String, dynamic> responseData2 = jsonDecode(res2.body);
+      // print(responseData2);
+      // final dynamic doctorName = responseData2['docName'];
+      // final dynamic doctorSLMC = responseData2['docSLMC'];
+      // final dynamic doctorSpeciality = responseData2['docSpeciality'];
 
-      _doctorNameController.text = doctorName;
-      _doctorSLMCController.text = doctorSLMC;
-      _doctorSpecialityController.text = doctorSpeciality;
+      // _doctorNameController.text = doctorName;
+      // _doctorSLMCController.text = doctorSLMC;
+      // _doctorSpecialityController.text = doctorSpeciality;
 
       // }else{
       //   throw Exception('Failed to load data');
@@ -144,7 +177,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
       );
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HomePageDoc(email: '',)),
+        MaterialPageRoute(builder: (context) => HomePageDoc(docemail: '',)),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -154,11 +187,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
   }
 
 
-  @override
-  void initState() {
-    super.initState();
-    _patientEmailController.text = widget.email;
-  }
+
 
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
@@ -268,7 +297,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     const Text(
-                                      'Medical Center',
+                                      'Medical Center ' ,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w600,
                                           fontSize: 14,
@@ -276,24 +305,25 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                       ),
                                     ),
                                     const SizedBox(height: 1),
-                                    const Text(
-                                      'MD.Amber Smith',
-                                      style: TextStyle(
+                                    Text(
+                                      // 'MD.Amber Smith',
+                                      'Name: $_doctorName',
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 11,
                                       ),
                                     ),
 
-                                    const Text(
-                                      'Physiotherapist',
-                                      style: TextStyle(
+                                    Text(
+                                      'Speciality: $_doctorSpeciality',
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 11,
                                       ),
                                     ),
-                                    const Text(
-                                      'ID NO.236678',
-                                      style: TextStyle(
+                                    Text(
+                                      'SLMC Registration No: $_doctorSLMC',
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 11,
                                       ),
@@ -309,7 +339,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                           fontSize: 15,
                                         ),
                                       ),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 15,
                                       ),
@@ -317,14 +347,14 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                     const SizedBox(height: 5),
                                     TextField(
                                       controller: _patientEmailController,
-                                      decoration:  InputDecoration(
+                                      decoration:  const InputDecoration(
                                         labelText: 'email(nic)',
                                         labelStyle: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 15,
                                         ),
                                       ),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 15,
                                       ),
@@ -332,14 +362,14 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                     const SizedBox(height: 5),
                                     TextField(
                                       controller: _ageController,
-                                      decoration:  InputDecoration(
+                                      decoration:  const InputDecoration(
                                           labelText: 'Age',
                                         labelStyle: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 15,
                                         ),),
                                       keyboardType: TextInputType.number,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 15,
                                       ),
@@ -348,7 +378,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                     const SizedBox(height: 5),
                                     TextField(
                                       controller: _addressController,
-                                      decoration:  InputDecoration(
+                                      decoration:  const InputDecoration(
                                           labelText: 'Address',
                                         labelStyle: TextStyle(
                                           fontWeight: FontWeight.w400,
@@ -356,7 +386,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                         ),
                                       ),
                                       maxLines: null,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 15,
                                       ),
@@ -380,7 +410,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                             Expanded(
                                               child: TextField(
                                                 controller: _medication1NameController,
-                                                decoration: InputDecoration(
+                                                decoration: const InputDecoration(
                                                   labelText: 'Medicine Name',
                                                   hintText: 'Enter the Name',
                                                   border: OutlineInputBorder(),
@@ -389,7 +419,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                                     fontSize: 13,
                                                   ),
                                                 ),
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 12,
                                                 ),
@@ -400,7 +430,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                             Expanded(
                                               child: TextField(
                                                 controller: _dosage1Controller,
-                                                decoration: InputDecoration(
+                                                decoration: const InputDecoration(
                                                   labelText: 'Dosage (mg)',
                                                   hintText: 'Enter the Dosage',
                                                   border: OutlineInputBorder(),
@@ -410,7 +440,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                                   ),
                                                 ),
                                                 keyboardType: TextInputType.number,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 12,
                                                 ),
@@ -425,7 +455,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                     const SizedBox(height: 5),
                                     TextField(
                                       controller: _moreDetails1Controller,
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         labelText: 'More details',
                                         hintText: 'Enter Additional Details',
                                         border: OutlineInputBorder(),
@@ -434,7 +464,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                           fontSize: 13,
                                         ),
                                       ),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12,
                                       ),
@@ -458,7 +488,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                             Expanded(
                                               child: TextField(
                                                 controller: _medication2NameController,
-                                                decoration: InputDecoration(
+                                                decoration: const InputDecoration(
                                                   labelText: 'Medicine Name',
                                                   hintText: 'Enter the Name',
                                                   border: OutlineInputBorder(),
@@ -467,7 +497,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                                     fontSize: 13,
                                                   ),
                                                 ),
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 12,
                                                 ),
@@ -478,7 +508,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                             Expanded(
                                               child: TextField(
                                                 controller: _dosage2Controller,
-                                                decoration: InputDecoration(
+                                                decoration: const InputDecoration(
                                                   labelText: 'Dosage (mg)',
                                                   hintText: 'Enter the Dosage',
                                                   border: OutlineInputBorder(),
@@ -488,7 +518,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                                   ),
                                                 ),
                                                 keyboardType: TextInputType.number,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 12,
                                                 ),
@@ -503,7 +533,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                     const SizedBox(height: 5),
                                     TextField(
                                       controller: _moreDetails2Controller,
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         labelText: 'More details',
                                         hintText: 'Enter Additional Details',
                                         border: OutlineInputBorder(),
@@ -512,7 +542,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                           fontSize: 13,
                                         ),
                                       ),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12,
                                       ),
@@ -536,7 +566,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                             Expanded(
                                               child: TextField(
                                                 controller: _medication3NameController,
-                                                decoration: InputDecoration(
+                                                decoration: const InputDecoration(
                                                   labelText: 'Medicine Name',
                                                   hintText: 'Enter the Name',
                                                   border: OutlineInputBorder(),
@@ -545,7 +575,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                                     fontSize: 13,
                                                   ),
                                                 ),
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 12,
                                                 ),
@@ -556,7 +586,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                             Expanded(
                                               child: TextField(
                                                 controller: _dosage3Controller,
-                                                decoration: InputDecoration(
+                                                decoration: const InputDecoration(
                                                   labelText: 'Dosage (mg)',
                                                   hintText: 'Enter the Dosage',
                                                   border: OutlineInputBorder(),
@@ -566,7 +596,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                                   ),
                                                 ),
                                                 keyboardType: TextInputType.number,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 12,
                                                 ),
@@ -581,7 +611,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                     const SizedBox(height: 5),
                                     TextField(
                                       controller: _moreDetails3Controller,
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         labelText: 'More details',
                                         hintText: 'Enter Additional Details',
                                         border: OutlineInputBorder(),
@@ -590,7 +620,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                           fontSize: 13,
                                         ),
                                       ),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12,
                                       ),
@@ -618,7 +648,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
 
                                     TextField(
                                       controller: _instructionsController,
-                                      decoration:  InputDecoration(
+                                      decoration:  const InputDecoration(
                                           labelText: 'Instructions',
                                         border: OutlineInputBorder(),
                                         labelStyle: TextStyle(
@@ -626,7 +656,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                           fontSize: 15,
                                         ),
                                       ),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 11,
                                       ),
@@ -714,10 +744,6 @@ class _NewPrescriptionState extends State<NewPrescription> {
 
 
                         const SizedBox(height: 25),
-
-
-
-
                       ],
                     ),
 
