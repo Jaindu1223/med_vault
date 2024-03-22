@@ -68,6 +68,17 @@ class _PatientProfileState extends State<PatientProfile> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Row(
+                        children: [
+
+                          const SizedBox(width: 15),
+                          CircleAvatar(
+                            radius: 40,
+                            backgroundImage: AssetImage('lib/images/profile_image.png'),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 15),
                       TextFormField(
                         decoration: InputDecoration(
                           labelText: 'Name',
