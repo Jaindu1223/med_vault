@@ -29,14 +29,14 @@ class _NewPrescriptionState extends State<NewPrescription> {
   String _patientEmail = '';
   String _patientAddress = '';
 
-  final _doctorNameController = TextEditingController();
-  final _doctorSLMCController = TextEditingController();
-  final _doctorSpecialityController = TextEditingController();
-
-  final _patientNameController = TextEditingController();
-  final _patientEmailController = TextEditingController();
-  final _ageController = TextEditingController();
-  final _addressController = TextEditingController();
+  // final _doctorNameController = TextEditingController();
+  // final _doctorSLMCController = TextEditingController();
+  // final _doctorSpecialityController = TextEditingController();
+  //
+  // final _patientNameController = TextEditingController();
+  // final _patientEmailController = TextEditingController();
+  // final _ageController = TextEditingController();
+  // final _addressController = TextEditingController();
 
   final _medication1NameController = TextEditingController();
   final _dosage1Controller = TextEditingController();
