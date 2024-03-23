@@ -158,7 +158,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
     }
 
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:2000/saveprescription'),
+      Uri.parse('https://medvault-backend-wv3ggtvglq-uc.a.run.app/saveprescription'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
