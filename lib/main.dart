@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:med_vault/pages/catergory.dart';
 // import 'package:flutter/services.dart';
 // import 'package:med_vault/pages/catergory.dart';
 // import 'package:med_vault/pages/doctor/qrScanner.dart';
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
       home: SplashScreen(),
     );
     return Scaffold(
+    );
+  }
+}
     //   bottomNavigationBar: GNav(
     //     tabs: const [
     //       GButton(
@@ -48,9 +52,7 @@ class MyApp extends StatelessWidget {
     //       ),
     //     ]
     //   )
-    );
-  }
-}
+
 
 
 

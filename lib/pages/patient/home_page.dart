@@ -19,6 +19,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
+  static List<Widget> _widgetOptions = <Widget>[
+    PharmacySearchPage1(),
+    //ViewPrescription(email: widget.email),
+    //MyQR(email: widget.email),
+    PatientProfile(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -353,7 +367,34 @@ class _HomePageState extends State<HomePage> {
         ),
         ]
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        //backgroundColor: Colors.lightBlue, // Set background color here
+        unselectedItemColor: Colors.black, // Set icon color here
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Pharmacy Finder',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assignment),
+            label: 'Medical Record',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.qr_code),
+            label: 'My QR',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blueAccent,
+        onTap: _onItemTapped,
+      ),
+
     );
+
   }
 }
 
