@@ -24,6 +24,9 @@ class _viewPrescriptionState extends State<viewPrescription> {
 
   final _emailController = TextEditingController();
   bool isLoading = false;
+  String doctorName = '';
+  String doctorSpeciality = '';
+  String doctorSLMC = '';
   String patientName = '';
   int age =0;
   String address = '';
@@ -59,6 +62,11 @@ class _viewPrescriptionState extends State<viewPrescription> {
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseData = jsonDecode(response.body);
         print(responseData);
+
+        final dynamic doctorNameValue = responseData['docName'];
+        final dynamic doctorSpecialityValue = responseData['docSpeciality'];
+        final dynamic doctorSLMCValue = responseData['docSLMC'];
+
         final dynamic patientNameValue = responseData['patientName'];
         final dynamic ageValue = responseData['age'];
         final dynamic addressValue = responseData['address'];
@@ -88,6 +96,9 @@ class _viewPrescriptionState extends State<viewPrescription> {
           return;
         } else {
           setState(() {
+            doctorName = doctorNameValue;
+            doctorSpeciality = doctorSpecialityValue;
+            doctorSLMC = doctorSLMCValue;
             patientName = patientNameValue;
             age = ageValue;
             address = addressValue;
@@ -237,54 +248,40 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                 child:Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Text(
-                                      'Medical Center',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 14,
-                                          color: Colors.black87
-                                      ),
-                                    ),
-                                    const SizedBox(height: 1),
-                                    const Text(
-                                      'MD.Amber Smith',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 11,
-                                      ),
-                                    ),
-
-                                    const Text(
-                                      'Physiotherapist',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 11,
-                                      ),
-                                    ),
-                                    const Text(
-                                      'ID NO.236678',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 11,
-                                      ),
-                                    ),
-
-                                    const SizedBox(height: 5),
-
-                                    // TextField(
-                                    //   controller: _emailController,
-                                    //   decoration:  InputDecoration(
-                                    //     labelText: 'Enter your NIC',
-                                    //     labelStyle: TextStyle(
-                                    //       fontWeight: FontWeight.w400,
-                                    //       fontSize: 15,
-                                    //     ),
-                                    //   ),
+                                    // const Text(
+                                    //   'Medical Center',
                                     //   style: TextStyle(
-                                    //     fontWeight: FontWeight.w400,
-                                    //     fontSize: 15,
+                                    //       fontWeight: FontWeight.w600,
+                                    //       fontSize: 14,
+                                    //       color: Colors.black87
                                     //   ),
                                     // ),
+                                    // const SizedBox(height: 1),
+                                    // Text(
+                                    //   'Name: Dr. $doctorName',
+                                    //   style: TextStyle(
+                                    //     fontWeight: FontWeight.w400,
+                                    //     fontSize: 11,
+                                    //   ),
+                                    // ),
+                                    //
+                                    // Text(
+                                    //   'Speciality: $doctorSpeciality',
+                                    //   style: TextStyle(
+                                    //     fontWeight: FontWeight.w400,
+                                    //     fontSize: 11,
+                                    //   ),
+                                    // ),
+                                    // Text(
+                                    //   'SLMC Registration No: $doctorSLMC',
+                                    //   style: TextStyle(
+                                    //     fontWeight: FontWeight.w400,
+                                    //     fontSize: 11,
+                                    //   ),
+                                    // ),
+                                    //
+                                    // const SizedBox(height: 5),
+
                                     ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.lightBlue,
@@ -301,6 +298,48 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                             color: Colors.white),),
                                     ),
                                     SizedBox(height: 16.0),
+
+                                    const Text(
+                                      'Medical Center',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 14,
+                                          color: Colors.black87
+                                      ),
+                                    ),
+                                    const SizedBox(height: 1),
+                                    Text(
+                                      'Name: Dr. $doctorName',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 11,
+                                      ),
+                                    ),
+
+                                    Text(
+                                      'Speciality: $doctorSpeciality',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 11,
+                                      ),
+                                    ),
+                                    Text(
+                                      'SLMC Registration No: $doctorSLMC',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 11,
+                                      ),
+                                    ),
+
+                                    const SizedBox(height: 5),
+
+                                    Text(
+                                      'Age: $age',
+                                      style: TextStyle(fontSize: 16.0),
+                                    ),
+
+
+                                    const SizedBox(height: 5),
 
                                     Text(
                                       'Patient Name: $patientName',
@@ -375,46 +414,9 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                                       style: TextStyle(fontSize: 14),
                                                      ),
                                               ),
-                                              // Container(
-                                              //   margin: EdgeInsets.symmetric(vertical: 5, horizontal: 0),
-                                              //   padding: EdgeInsets.all(20),
-                                              //   decoration: BoxDecoration(
-                                              //     borderRadius: BorderRadius.circular(10),
-                                              //
-                                              //
-                                              //     boxShadow: [
-                                              //       BoxShadow(
-                                              //         color: Colors.grey.withOpacity(0.2)
-                                              //       )
-                                              //     ],
-                                              //     // border: Border.all(color: Colors.lightBlueAccent,width: 2),
-                                              //     color: Colors.white70,
-                                              //
-                                              //   ),
-                                              //   child: Text(
-                                              //     'Medicine Name: \n$medication1Name',
-                                              //     style: TextStyle(fontSize: 12),
-                                              //   ),
-                                              // ),
+
                                             ),
 
-                                            // Expanded(
-                                            //   child: Container(
-                                            //     decoration: ShapeDecoration(
-                                            //       shape: RoundedRectangleBorder(
-                                            //         borderRadius: BorderRadius.circular(4.0),
-                                            //         side: BorderSide(width: 1.0, color: Colors.black),
-                                            //       ),
-                                            //       //color: Colors.white,
-                                            //     ),
-                                            //
-                                            //     padding: const EdgeInsets.all(8.0),
-                                            //     child: Text(
-                                            //       'Medicine Name: $medication1Name',
-                                            //       style: TextStyle(fontSize: 12.0),
-                                            //     ),
-                                            //   ),
-                                            // ),
                                             SizedBox(width: 16),
 
                                             Expanded(
