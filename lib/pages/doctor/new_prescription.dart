@@ -164,7 +164,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
       },
       body: jsonEncode(<String, dynamic>{
         'patientName': patientName,
-        'patientEmail': patientEmail,
+        'email': patientEmail,
         'age': patientAge,
         'address': patientAddress,
         'medication1Name': medication1Name,
