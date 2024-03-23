@@ -266,7 +266,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             child: const Center(
                               child: Text(
-                                  'View Record Book',
+                                  'View Prescription',
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 11)

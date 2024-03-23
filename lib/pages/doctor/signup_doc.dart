@@ -127,7 +127,7 @@ class _SignUpPageState extends State<SignUpDoc> {
 
       try {
         var response = await http.post(
-          Uri.parse('http://10.0.2.2:2000/doctorRegistration'),
+          Uri.parse('https://medvault-backend-wv3ggtvglq-uc.a.run.app/doctorRegistration'),
           body: json.encode(regBody),
           headers: {'Content-Type': 'application/json'},
         );

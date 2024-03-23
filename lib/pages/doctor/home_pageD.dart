@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:med_vault/pages/doctor/customize_prescription.dart';
 import 'package:med_vault/pages/doctor/doctor_profile.dart';
 import 'package:med_vault/pages/doctor/qr_scan.dart';
+import 'package:med_vault/pages/patient/check.dart';
 import '../patient/pharmacy_spotter.dart';
 // import 'new_prescription.dart';
 
@@ -239,7 +240,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          PharmacySearchPage()));
+                                          PharmacySearchPage1()));
                             },
                             child: Container(
                               padding: const EdgeInsets.all(4),

@@ -62,7 +62,7 @@ class _PrescribedPharmacySearchPage1State extends State<PrescribedPharmacySearch
 
     try {
       final Uri url = Uri.parse(
-          'http://10.0.2.2:2000/searchPharmacies?userMedicine=$medicineName&userLatitude=$userLat&userLongitude=$userLong');
+          'https://medvault-backend-wv3ggtvglq-uc.a.run.app/searchPharmacies?userMedicine=$medicineName&userLatitude=$userLat&userLongitude=$userLong');
 
       final http.Response response = await http.get(url);
 

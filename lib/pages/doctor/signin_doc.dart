@@ -33,7 +33,7 @@ class _SignInState extends State<SignInDoc> {
       };
 
       var response = await http.post(
-        Uri.parse('http://10.0.2.2:2000/doctorLogin'),
+        Uri.parse('https://medvault-backend-wv3ggtvglq-uc.a.run.app/doctorLogin'),
         body: json.encode(regBody),
         headers: {'Content-Type': 'application/json'},
       );

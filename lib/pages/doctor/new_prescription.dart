@@ -84,7 +84,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
   Future<void> _submitForm() async {
 
     // try{
-      final res = await http.get(Uri.parse('http://10.0.2.2:2000/getPatientData?email=$_patientEmailController'));
+      final res = await http.get(Uri.parse('https://medvault-backend-wv3ggtvglq-uc.a.run.app/getPatientData?email=$_patientEmailController'));
       // final res2 = await http.get(Uri.parse('http://10.0.2.2:2000/getDoctorData?email=$_doctorEmailController'));
 
       // if(res.statusCode == 200){
