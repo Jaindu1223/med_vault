@@ -29,6 +29,10 @@ class _NewPrescriptionState extends State<NewPrescription> {
   String _patientEmail = '';
   String _patientAddress = '';
 
+  final _doctorNameController = TextEditingController();
+  final _doctorSLMCController = TextEditingController();
+  final _doctorSpecialityController = TextEditingController();
+
   final _patientNameController = TextEditingController();
   final _patientEmailController = TextEditingController();
   final _ageController = TextEditingController();
@@ -48,6 +52,9 @@ class _NewPrescriptionState extends State<NewPrescription> {
 
   final _additionalController = TextEditingController();
   final _instructionsController = TextEditingController();
+
+  bool _isPatientDataLoaded = false;
+  bool _isDoctorDataLoaded = false;
 
   @override
   void initState() {
@@ -69,6 +76,8 @@ class _NewPrescriptionState extends State<NewPrescription> {
           _doctorName = responseData2['docName'];
           _doctorSLMC = responseData2['docSLMC'];
           _doctorSpeciality = responseData2['docSpeciality'];
+          _isDoctorDataLoaded = true;
+          _submitFormIfDataLoaded();
         });
       }else {
           print('Failed to fetch doctor data');
@@ -89,26 +98,36 @@ class _NewPrescriptionState extends State<NewPrescription> {
       Map<String, dynamic> data = jsonDecode(response.body);
       setState(() {
 
-        _patientAge = data['patAge'].toString();
+
+        _patientAge = (data['patAge'] ?? 0).toString();
         _patientEmail = patientEmail;
         _patientName = data['patName'];
         _patientAddress = data['patAddress'];
+        _isPatientDataLoaded = true;
+        _submitFormIfDataLoaded();
       });
     } else {
       print('Failed to fetch patient data');
     }
   }
 
+  void _submitFormIfDataLoaded() {
+    if (_isPatientDataLoaded && _isDoctorDataLoaded) {
+      _submitForm();
+    }
+  }
 
   Future<void> _submitForm() async {
 
     final String patientEmail = widget.email;
 
-    // final _patientEmailController = TextEditingController();
-    // _patientEmailController.text = widget.email;
-    String patientName = _patientNameController.text;
-    int patientAge = int.tryParse(_ageController.text) ?? 0; // Convert age to int
-    String patientAddress = _addressController.text;
+    // String doctorName = _doctorNameController.text;
+    // String doctorSpecial = _doctorSpecialityController.text;
+    // String doctorSlmc = _doctorSLMCController.text;
+    //
+    // String patientName = _patientNameController.text;
+    // int patientAge = int.tryParse(_ageController.text) ?? 0; // Convert age to int
+    // String patientAddress = _addressController.text;
 
 
     final medication1Name = _medication1NameController.text;
@@ -126,12 +145,21 @@ class _NewPrescriptionState extends State<NewPrescription> {
     final additional = _additionalController.text;
     final instructions = _instructionsController.text;
 
-    // if (patientName == null || patientAge == null || patientAddress.isEmpty || medication1Name.isEmpty || dosage1 == null) {
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     const SnackBar(content: Text('Please fill in all fields')),
-    //   );
-    //   return;
-    // }
+    if (_medication1NameController.text.isEmpty &&
+        _dosage1Controller.text.isEmpty &&
+        _moreDetails1Controller.text.isEmpty &&
+        _medication2NameController.text.isEmpty &&
+        _dosage2Controller.text.isEmpty &&
+        _moreDetails2Controller.text.isEmpty &&
+        _medication3NameController.text.isEmpty &&
+        _dosage3Controller.text.isEmpty &&
+        _moreDetails3Controller.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter at least one medicine detail')),
+      );
+      return; // Exit the method without saving the prescription
+    }
+
 
     final response = await http.post(
       Uri.parse('https://medvault-backend-wv3ggtvglq-uc.a.run.app/saveprescription'),
@@ -142,10 +170,10 @@ class _NewPrescriptionState extends State<NewPrescription> {
         'docName': _doctorName,
         'docSpeciality': _doctorSpeciality,
         'docSLMC': _doctorSLMC,
-        'patientName': patientName,
-        'email': patientEmail,
-        'age': patientAge,
-        'address': patientAddress,
+        'patientName': _patientName,
+        'email': _patientEmail,
+        'age': _patientAge,
+        'address': _patientAddress,
         'medication1Name': medication1Name,
         'dosage1': dosage1,
         'moreDetails1': moreDetails1,
