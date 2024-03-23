@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:med_vault/pages/doctor/home_pageD.dart';
+import 'package:med_vault/pages/doctor/qr_scan.dart';
 import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:http/http.dart' as http;
 
@@ -78,7 +79,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
       // });
 
       if (widget.docemail != null && widget.docemail.isNotEmpty) {
-        final res2 = await http.get(Uri.parse('http://10.0.2.2:2000/getDoctorData?docEmail=${widget.docemail}'));
+        final res2 = await http.get(Uri.parse('https://medvault-backend-wv3ggtvglq-uc.a.run.app/getDoctorData?docEmail=${widget.docemail}'));
 
         final Map<String, dynamic> responseData2 = jsonDecode(res2.body);
         print(responseData2);
@@ -217,6 +218,8 @@ class _NewPrescriptionState extends State<NewPrescription> {
         .format(now); // Format: Monday 23 July, 2022
     String formattedTime = DateFormat.jm().format(now); // Format: 3:21:59 PM
     return Scaffold(
+    //     appBar: AppBar(
+    // ),
       //backgroundColor: Colors.blue[100],
         body: Stack(
             children:[
@@ -229,6 +232,21 @@ class _NewPrescriptionState extends State<NewPrescription> {
                   ),
                 ),
               ),
+              Container(
+                padding: const EdgeInsets.only(left: 20,top: 40, right: 0, bottom:0),
+                child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>QrScan(email: widget.docemail, )));
+                    },
+                    child: const Icon(
+                      Icons.arrow_back_rounded,
+                      color: Colors.white,
+                    )),
+              ),
+
               SafeArea(
                   child:SingleChildScrollView(
                     child:Column(
@@ -242,6 +260,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
 
                                 children: [
+
                                   const Text(
                                     'New Prescription',
                                     style: TextStyle(
@@ -295,6 +314,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
 
                                 //color: Colors.limeAccent,
                               ),
+
 
 
                             ],),

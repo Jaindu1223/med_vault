@@ -239,7 +239,6 @@ import 'package:flutter/services.dart';
 import 'package:med_vault/pages/doctor/new_prescription.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../patient/view_prescription.dart';
 
 class QrScan extends StatefulWidget {
@@ -267,6 +266,10 @@ class _QrScanState extends State<QrScan> {
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         result = scanData.code!;
+        controller.stopCamera();
+      });
+      Future.delayed(const Duration(seconds: 30), () {
+        controller.resumeCamera();
       });
     });
   }
@@ -280,14 +283,29 @@ class _QrScanState extends State<QrScan> {
       body: Column(
         children: [
           Expanded(
-            flex: 1,
-            child: QRView(
-              key: qrKey,
-              onQRViewCreated: _onQRViewCreated,
+            flex: 4,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                QRView(
+                  key: qrKey,
+                  onQRViewCreated: _onQRViewCreated,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.red,
+                      width: 1.0,
+                    ),
+                  ),
+                  width: 230.0,
+                  height: 230.0,
+                ),
+              ],
             ),
           ),
           Expanded(
-            flex: 0,
+            flex: 1,
             child: Center(
               child: Text(
                 "Scan Result: $result",
@@ -311,35 +329,6 @@ class _QrScanState extends State<QrScan> {
                               (context)=>viewPrescription(email: result)));
                     },
 
-                    // onTap: () async {
-                    //   // Assuming that the scanned NIC number is stored in the `result` variable
-                    //   //if (result != null && result.isNotEmpty) {
-                    //   Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (context) => NewPrescription(email: result),
-                    //     ),
-                    //   );
-                    //   //}
-                    //   // else {
-                    //   //   ScaffoldMessenger.of(context).showSnackBar(
-                    //   //     const SnackBar(content: Text('Please scan a valid QR of patient')),
-                    //   //   );
-                    //   // }
-                    // },
-                    //should uncomment above things
-
-                    // onTap: () {
-                    //   Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (context) => NewPrescription(result: result),
-                    //     ),
-                    //   );
-                    // },
-                    // onTap: (){
-                    //   Navigator.push(context, MaterialPageRoute(builder: (context)=>const NewPrescription()));
-                    // },
                     child: Container(
                       padding: const EdgeInsets.all(6),
                       width: 150,
@@ -371,26 +360,9 @@ class _QrScanState extends State<QrScan> {
                           builder: (context) => NewPrescription(email: result, docemail: widget.email,),
                         ),
                       );
-                      //}
-                      // else {
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     const SnackBar(content: Text('Please scan a valid QR of patient')),
-                      //   );
-                      // }
-                    },
-                    //should uncomment above things
 
-                    // onTap: () {
-                    //   Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (context) => NewPrescription(result: result),
-                    //     ),
-                    //   );
-                    // },
-                    // onTap: (){
-                    //   Navigator.push(context, MaterialPageRoute(builder: (context)=>const NewPrescription()));
-                    // },
+                    },
+
                     child: Container(
                       padding: const EdgeInsets.all(6),
                       width: 150,
@@ -409,37 +381,6 @@ class _QrScanState extends State<QrScan> {
               ),
             ],
           ),
-          // Expanded(
-          //   flex: 1,
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //     children: [
-          //       ElevatedButton(
-          //         onPressed: () {
-          //           if(result.isNotEmpty){
-          //             Clipboard.setData(ClipboardData(text: result));
-          //             ScaffoldMessenger.of(context).showSnackBar(
-          //               const SnackBar(
-          //                 content:Text("copied to the Clipboard"),
-          //               ),
-          //             );
-          //           }
-          //         },
-          //         child: const Text("View History"),
-          //       ),
-          //       ElevatedButton(
-          //         onPressed: ()async {
-          //           if(result.isNotEmpty){
-          //             final Uri _url= Uri.parse(result);
-          //             await launchUrl(_url);
-          //           }
-          //         },
-          //         child: const Text("Create a new prescription"),
-          //       ),
-          //
-          //     ],
-          //   ),
-          // ),
         ],
       ),
     );
