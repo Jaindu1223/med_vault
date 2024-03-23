@@ -88,10 +88,6 @@ class _NewPrescriptionState extends State<NewPrescription> {
     if (response.statusCode == 200) {
       Map<String, dynamic> data = jsonDecode(response.body);
       setState(() {
-        // _patientNameController.text = data['patName'];
-        // _ageController.text = data['patAge'].toString();
-        // _addressController.text = data['patAddress'];
-        // _patientEmailController.text = patientEmail;
 
         _patientAge = data['patAge'].toString();
         _patientEmail = patientEmail;
@@ -130,12 +126,12 @@ class _NewPrescriptionState extends State<NewPrescription> {
     final additional = _additionalController.text;
     final instructions = _instructionsController.text;
 
-    if (patientName == null || patientAge == null || patientAddress.isEmpty || medication1Name.isEmpty || dosage1 == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please fill in all fields')),
-      );
-      return;
-    }
+    // if (patientName == null || patientAge == null || patientAddress.isEmpty || medication1Name.isEmpty || dosage1 == null) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     const SnackBar(content: Text('Please fill in all fields')),
+    //   );
+    //   return;
+    // }
 
     final response = await http.post(
       Uri.parse('https://medvault-backend-wv3ggtvglq-uc.a.run.app/saveprescription'),
@@ -143,6 +139,9 @@ class _NewPrescriptionState extends State<NewPrescription> {
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, dynamic>{
+        'docName': _doctorName,
+        'docSpeciality': _doctorSpeciality,
+        'docSLMC': _doctorSLMC,
         'patientName': patientName,
         'email': patientEmail,
         'age': patientAge,
