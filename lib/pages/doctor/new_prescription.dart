@@ -24,17 +24,10 @@ class _NewPrescriptionState extends State<NewPrescription> {
   String _doctorSLMC = '';
   String _doctorSpeciality = '';
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   fetchDoctorData();
-  // }
-  
-  final _doctorNameController = TextEditingController();
-  final _doctorEmailController = TextEditingController();
-  final _doctorSLMCController = TextEditingController();
-  final _doctorSpecialityController = TextEditingController();
-
+  String _patientAge = '';
+  String _patientName = '';
+  String _patientEmail = '';
+  String _patientAddress = '';
 
   final _patientNameController = TextEditingController();
   final _patientEmailController = TextEditingController();
@@ -95,10 +88,15 @@ class _NewPrescriptionState extends State<NewPrescription> {
     if (response.statusCode == 200) {
       Map<String, dynamic> data = jsonDecode(response.body);
       setState(() {
-        _patientNameController.text = data['patName'];
-        _ageController.text = data['patAge'].toString();
-        _addressController.text = data['patAddress'];
-        _patientEmailController.text = patientEmail;
+        // _patientNameController.text = data['patName'];
+        // _ageController.text = data['patAge'].toString();
+        // _addressController.text = data['patAddress'];
+        // _patientEmailController.text = patientEmail;
+
+        _patientAge = data['patAge'].toString();
+        _patientEmail = patientEmail;
+        _patientName = data['patName'];
+        _patientAddress = data['patAddress'];
       });
     } else {
       print('Failed to fetch patient data');
@@ -342,45 +340,71 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                     ),
 
                                     const SizedBox(height: 5),
-                                    TextField(
-                                      controller: _patientNameController,
-                                      decoration:  const InputDecoration(
-                                          labelText: 'Patient Name',
-                                        labelStyle: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 15,
-                                        ),
-                                      ),
+                                    // TextField(
+                                    //   controller: _patientNameController,
+                                    //   decoration:  const InputDecoration(
+                                    //       labelText: 'Patient Name',
+                                    //     labelStyle: TextStyle(
+                                    //       fontWeight: FontWeight.w400,
+                                    //       fontSize: 15,
+                                    //     ),
+                                    //   ),
+                                    //   style: const TextStyle(
+                                    //     fontWeight: FontWeight.w400,
+                                    //     fontSize: 15,
+                                    //   ),
+                                    // ),
+
+                                    Text(
+                                      // 'MD.Amber Smith',
+                                      'Name: $_patientName',
                                       style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 15,
                                       ),
                                     ),
                                     const SizedBox(height: 5),
-                                    TextField(
-                                      controller: _patientEmailController,
-                                      decoration:  const InputDecoration(
-                                        labelText: 'email(nic)',
-                                        labelStyle: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 15,
-                                        ),
-                                      ),
+                                    // TextField(
+                                    //   controller: _patientEmailController,
+                                    //   decoration:  const InputDecoration(
+                                    //     labelText: 'email(nic)',
+                                    //     labelStyle: TextStyle(
+                                    //       fontWeight: FontWeight.w400,
+                                    //       fontSize: 15,
+                                    //     ),
+                                    //   ),
+                                    //   style: const TextStyle(
+                                    //     fontWeight: FontWeight.w400,
+                                    //     fontSize: 15,
+                                    //   ),
+                                    // ),
+
+                                    Text(
+                                      // 'MD.Amber Smith',
+                                      'Email: $_patientEmail',
                                       style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 15,
                                       ),
                                     ),
                                     const SizedBox(height: 5),
-                                    TextField(
-                                      controller: _ageController,
-                                      decoration:  const InputDecoration(
-                                          labelText: 'Age',
-                                        labelStyle: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 15,
-                                        ),),
-                                      keyboardType: TextInputType.number,
+                                    // TextField(
+                                    //   controller: _ageController,
+                                    //   decoration:  const InputDecoration(
+                                    //       labelText: 'Age',
+                                    //     labelStyle: TextStyle(
+                                    //       fontWeight: FontWeight.w400,
+                                    //       fontSize: 15,
+                                    //     ),),
+                                    //   keyboardType: TextInputType.number,
+                                    //   style: const TextStyle(
+                                    //     fontWeight: FontWeight.w400,
+                                    //     fontSize: 15,
+                                    //   ),
+                                    // ),
+                                    Text(
+                                      // 'MD.Amber Smith',
+                                      'Age: $_patientAge',
                                       style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 15,
@@ -388,16 +412,24 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                     ),
 
                                     const SizedBox(height: 5),
-                                    TextField(
-                                      controller: _addressController,
-                                      decoration:  const InputDecoration(
-                                          labelText: 'Address',
-                                        labelStyle: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 15,
-                                        ),
-                                      ),
-                                      maxLines: null,
+                                    // TextField(
+                                    //   controller: _addressController,
+                                    //   decoration:  const InputDecoration(
+                                    //       labelText: 'Address',
+                                    //     labelStyle: TextStyle(
+                                    //       fontWeight: FontWeight.w400,
+                                    //       fontSize: 15,
+                                    //     ),
+                                    //   ),
+                                    //   maxLines: null,
+                                    //   style: const TextStyle(
+                                    //     fontWeight: FontWeight.w400,
+                                    //     fontSize: 15,
+                                    //   ),
+                                    // ),
+                                    Text(
+                                      // 'MD.Amber Smith',
+                                      'Address: $_patientAddress',
                                       style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 15,
