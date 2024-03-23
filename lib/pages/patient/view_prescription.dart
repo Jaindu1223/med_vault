@@ -323,13 +323,13 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                     ),
 
                                     const Text('-----------------------------------------------------------------'),
-                                    const Text(
-                                      'Click on medicine boxes to find the nearest pharmacy!',
+                                    Center(
+                                        child: Text(
+                                          'Click on medicine boxes to find the nearest pharmacy!!',
+                                          style: TextStyle(fontSize: 12.0, color: Colors.blue[800]),
+                                          textAlign: TextAlign.center,
 
-                                      style: TextStyle(fontSize: 11.0, color: Colors.blue),
-                                      //textAlign: TextAlign.center,
-
-                                    ),
+                                        )),
                                     const SizedBox(height: 20),
 
                                     const Text(

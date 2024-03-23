@@ -11,7 +11,7 @@ class NewPrescription extends StatefulWidget {
   final String email;
   final String docemail;
   // const NewPrescription({Key? key, required this.email}):super(key:key);
-  const NewPrescription({Key? key, required this.docemail, required this.email}):super(key:key);
+  const NewPrescription({Key? key,  required this.email,required this.docemail}):super(key:key);
 
   @override
   _NewPrescriptionState  createState() => _NewPrescriptionState();
@@ -63,19 +63,38 @@ class _NewPrescriptionState extends State<NewPrescription> {
 
   Future<void> fetchDoctorData() async {
     try {
-      final res2 = await http.get(Uri.parse('http://10.0.2.2:2000/getDoctorData?docEmail=${widget.docemail}'));
+      // final res2 = await http.get(Uri.parse('http://10.0.2.2:2000/getDoctorData?docEmail=${widget.docemail}'));
+      //
+      // final Map<String, dynamic> responseData2 = jsonDecode(res2.body);
+      // print(responseData2);
+      // final dynamic doctorName = responseData2['docName'];
+      // final dynamic doctorSLMC = responseData2['docSLMC'];
+      // final dynamic doctorSpeciality = responseData2['docSpeciality'];
+      //
+      // setState(() {
+      //   _doctorName = doctorName;
+      //   _doctorSLMC = doctorSLMC;
+      //   _doctorSpeciality = doctorSpeciality;
+      // });
 
-      final Map<String, dynamic> responseData2 = jsonDecode(res2.body);
-      print(responseData2);
-      final dynamic doctorName = responseData2['docName'];
-      final dynamic doctorSLMC = responseData2['docSLMC'];
-      final dynamic doctorSpeciality = responseData2['docSpeciality'];
+      if (widget.docemail != null && widget.docemail.isNotEmpty) {
+        final res2 = await http.get(Uri.parse('http://10.0.2.2:2000/getDoctorData?docEmail=${widget.docemail}'));
 
-      setState(() {
-        _doctorName = doctorName;
-        _doctorSLMC = doctorSLMC;
-        _doctorSpeciality = doctorSpeciality;
-      });
+        final Map<String, dynamic> responseData2 = jsonDecode(res2.body);
+        print(responseData2);
+        final dynamic doctorName = responseData2['docName'];
+        final dynamic doctorSLMC = responseData2['docSLMC'];
+        final dynamic doctorSpeciality = responseData2['docSpeciality'];
+
+        setState(() {
+          _doctorName = doctorName;
+          _doctorSLMC = doctorSLMC;
+          _doctorSpeciality = doctorSpeciality;
+        });
+      } else {
+        // Handle the case when docemail is null or empty
+        print('docemail is null or empty');
+      }
     } catch (error) {
       print('Error: $error');
     }
@@ -83,8 +102,10 @@ class _NewPrescriptionState extends State<NewPrescription> {
 
   Future<void> _submitForm() async {
 
+    final String patientEmail = widget.email;
+
     // try{
-      final res = await http.get(Uri.parse('https://medvault-backend-wv3ggtvglq-uc.a.run.app/getPatientData?email=$_patientEmailController'));
+      final res = await http.get(Uri.parse('https://medvault-backend-wv3ggtvglq-uc.a.run.app/getPatientData?email=$patientEmail'));
       // final res2 = await http.get(Uri.parse('http://10.0.2.2:2000/getDoctorData?email=$_doctorEmailController'));
 
       // if(res.statusCode == 200){
@@ -117,7 +138,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
     //   print('Error: $error');
     // }
 
-      final String patientEmail = widget.email;
+      // final String patientEmail = widget.email;
 
     
     // final patientName = _patientNameController.text;
@@ -190,6 +211,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
 
 
   Widget build(BuildContext context) {
+    print('docemail: ${widget.docemail}');
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('EEEE d MMMM, y')
         .format(now); // Format: Monday 23 July, 2022
