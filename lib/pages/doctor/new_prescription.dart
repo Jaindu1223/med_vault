@@ -35,6 +35,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
   final _doctorSLMCController = TextEditingController();
   final _doctorSpecialityController = TextEditingController();
 
+
   final _patientNameController = TextEditingController();
   final _patientEmailController = TextEditingController();
   final _ageController = TextEditingController();
@@ -58,8 +59,9 @@ class _NewPrescriptionState extends State<NewPrescription> {
   @override
   void initState() {
     super.initState();
-    _patientEmailController.text = widget.email;
+    // _patientEmailController.text = widget.email;
     fetchDoctorData();
+    fetchPatientData(widget.email);
   }
 
   Future<void> fetchDoctorData() async {
@@ -101,51 +103,37 @@ class _NewPrescriptionState extends State<NewPrescription> {
     }
   }
 
+
+  Future<void> fetchPatientData(String patientEmail) async {
+    final response = await http.get(
+      Uri.parse('https://medvault-backend-wv3ggtvglq-uc.a.run.app/getPatientData?email=$patientEmail'),
+    );
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = jsonDecode(response.body);
+      setState(() {
+        _patientNameController.text = data['patName'];
+        _ageController.text = data['patAge'].toString();
+        _addressController.text = data['patAddress'];
+        _patientEmailController.text = patientEmail;
+      });
+    } else {
+      // Handle error
+      print('Failed to fetch patient data');
+    }
+  }
+
+
   Future<void> _submitForm() async {
 
     final String patientEmail = widget.email;
 
-    // try{
-      final res = await http.get(Uri.parse('https://medvault-backend-wv3ggtvglq-uc.a.run.app/getPatientData?email=$patientEmail'));
-      // final res2 = await http.get(Uri.parse('http://10.0.2.2:2000/getDoctorData?email=$_doctorEmailController'));
+    // final _patientEmailController = TextEditingController();
+    // _patientEmailController.text = widget.email;
+    String patientName = _patientNameController.text;
+    int patientAge = int.tryParse(_ageController.text) ?? 0; // Convert age to int
+    String patientAddress = _addressController.text;
 
-      // if(res.statusCode == 200){
-
-      final Map<String, dynamic> responseData = jsonDecode(res.body);
-      print(responseData);
-      final dynamic patientName = responseData['patName'];
-      final dynamic patientAge = responseData['patAge'];
-      final dynamic patientAddress = responseData['patAddress'];
-
-      _patientNameController.text = patientName;
-      _ageController.text = patientAge.toString();
-      _addressController.text = patientAddress;
-
-      // final Map<String, dynamic> responseData2 = jsonDecode(res2.body);
-      // print(responseData2);
-      // final dynamic doctorName = responseData2['docName'];
-      // final dynamic doctorSLMC = responseData2['docSLMC'];
-      // final dynamic doctorSpeciality = responseData2['docSpeciality'];
-
-      // _doctorNameController.text = doctorName;
-      // _doctorSLMCController.text = doctorSLMC;
-      // _doctorSpecialityController.text = doctorSpeciality;
-
-      // }else{
-      //   throw Exception('Failed to load data');
-      // }
-
-    // }catch(error){
-    //   print('Error: $error');
-    // }
-
-      // final String patientEmail = widget.email;
-
-    
-    // final patientName = _patientNameController.text;
-    // final patientEmail = _patientEmailController.text;
-    // final age = int.tryParse(_ageController.text);
-    // final address = _addressController.text;
 
     final medication1Name = _medication1NameController.text;
     final dosage1 = int.tryParse(_dosage1Controller.text);
@@ -235,12 +223,12 @@ class _NewPrescriptionState extends State<NewPrescription> {
               Container(
                 padding: const EdgeInsets.only(left: 20,top: 40, right: 0, bottom:0),
                 child: InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>QrScan(email: widget.docemail, )));
-                    },
+                    // onTap: () {
+                    //   Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //           builder: (context) =>QrScan(email: widget.docemail, )));
+                    // },
                     child: const Icon(
                       Icons.arrow_back_rounded,
                       color: Colors.white,
@@ -704,47 +692,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                       ),
                                     ),
 
-
-
-
                                     const SizedBox(height: 50,),
-
-
-
-
-                                    /*Padding(
-                                padding: const EdgeInsets.only(left: 100),
-                                child: Center(
-                                  child: InkWell(
-                                    onTap: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const MedicalRecord()));
-                                    },
-
-                                    child: Container(
-
-                                      //padding: const EdgeInsets.only(left: 20,top: 20,right: 20,bottom: 20),
-                                      padding: const EdgeInsets.all(7),
-                                      width: 170,
-
-
-                                      decoration: BoxDecoration(
-                                        color: Colors.blueAccent,
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: const Center(
-                                        child: Text(
-                                            "Patient's History",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 11)
-
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 5),*/
 
                                     Padding(
                                       padding: const EdgeInsets.only(left: 100),
