@@ -6,6 +6,7 @@ import 'package:med_vault/pages/patient/check.dart';
 import 'package:med_vault/pages/patient/my_qr.dart';
 import 'package:med_vault/pages/patient/patient_profile.dart';
 import 'package:med_vault/pages/patient/pharmacy_spotter.dart';
+import 'package:med_vault/pages/patient/settings.dart';
 import 'package:med_vault/pages/patient/view_prescription.dart';
 
 
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> {
       case 3:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PatientProfile()),
+          MaterialPageRoute(builder: (context) => SettingsPage()),
         );
         break;
     }
