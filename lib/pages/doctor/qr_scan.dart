@@ -326,7 +326,7 @@ class _QrScanState extends State<QrScan> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(builder:
-                              (context)=>viewPrescription(email: result)));
+                              (context)=>viewPrescription(email: widget.email)));
                     },
 
                     child: Container(

@@ -30,13 +30,13 @@ class _HomePageState extends State<HomePage> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PharmacySearchPage1()),
+          MaterialPageRoute(builder: (context) => HomePage(email:widget.email)),
         );
         break;
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => viewPrescription(email: widget.email)),
+          MaterialPageRoute(builder: (context) => PharmacySearchPage1()),
         );
         break;
       case 2:
@@ -394,20 +394,20 @@ class _HomePageState extends State<HomePage> {
         unselectedItemColor: Colors.black, // Set icon color here
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Pharmacy Finder',
+            icon: Icon(Icons.home),
+            label: 'Home Page',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.assignment),
-            label: 'Medical Record',
+            icon: Icon(Icons.search_outlined),
+            label: 'Pharmacy Finder',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.qr_code),
             label: 'My QR',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
+            icon: Icon(Icons.settings),
+            label: 'Settings',
           ),
         ],
         currentIndex: _selectedIndex,

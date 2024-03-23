@@ -13,6 +13,41 @@ class MyQR extends StatefulWidget {
 }
 
 class _MyQRState extends State<MyQR> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    // switch (index) {
+    //   case 0:
+    //     Navigator.push(
+    //       context,
+    //       MaterialPageRoute(builder: (context) => PharmacySearchPage1()),
+    //     );
+    //     break;
+    //   case 1:
+    //     Navigator.push(
+    //       context,
+    //       MaterialPageRoute(builder: (context) => viewPrescription(email: widget.email)),
+    //     );
+    //     break;
+    //   case 2:
+    //     Navigator.push(
+    //       context,
+    //       MaterialPageRoute(builder: (context) => MyQR(email: widget.email)),
+    //     );
+    //     break;
+    //   case 3:
+    //     Navigator.push(
+    //       context,
+    //       MaterialPageRoute(builder: (context) => PatientProfile()),
+    //     );
+    //     break;
+    // }
+  }
+
   // String? userEmail; // Store user's email fetched from the backend  *****
   final TextEditingController _textController = TextEditingController(text: '');
 
@@ -174,6 +209,32 @@ class _MyQRState extends State<MyQR> {
               ],
             ),
           ],
-        ));
+        ),
+      bottomNavigationBar: BottomNavigationBar(
+      //backgroundColor: Colors.lightBlue, // Set background color here
+      unselectedItemColor: Colors.black, // Set icon color here
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home Page',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.search_outlined),
+          label: 'Pharmacy Finder',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.qr_code),
+          label: 'My QR',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.settings),
+          label: 'Settings',
+        ),
+      ],
+      currentIndex: _selectedIndex,
+      selectedItemColor: Colors.blueAccent,
+      onTap: _onItemTapped,
+    ),
+    );
   }
 }
