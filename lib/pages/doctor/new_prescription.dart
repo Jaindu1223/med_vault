@@ -230,7 +230,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
                                 children: [
 
                                   const Text(
-                                    'New Prescription',
+                                    'New Prescription.',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w900,
                                       fontSize: 26,
