@@ -306,15 +306,6 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                       style: TextStyle(fontSize: 14.0,),
                                     ),
 
-
-                                    const SizedBox(height: 2),
-
-                                    Text(
-                                      'Age: $age',
-                                      style: TextStyle(fontSize: 14.0),
-                                    ),
-
-
                                     const SizedBox(height: 2),
                                     Text(
                                       'Address: $address',
