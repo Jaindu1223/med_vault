@@ -60,44 +60,27 @@ class _NewPrescriptionState extends State<NewPrescription> {
   void initState() {
     super.initState();
     // _patientEmailController.text = widget.email;
-    fetchDoctorData();
+    fetchDoctorData(widget.docemail);
     fetchPatientData(widget.email);
   }
 
-  Future<void> fetchDoctorData() async {
+  Future<void> fetchDoctorData(String doctorEmail) async {
     try {
-      // final res2 = await http.get(Uri.parse('http://10.0.2.2:2000/getDoctorData?docEmail=${widget.docemail}'));
-      //
-      // final Map<String, dynamic> responseData2 = jsonDecode(res2.body);
-      // print(responseData2);
-      // final dynamic doctorName = responseData2['docName'];
-      // final dynamic doctorSLMC = responseData2['docSLMC'];
-      // final dynamic doctorSpeciality = responseData2['docSpeciality'];
-      //
-      // setState(() {
-      //   _doctorName = doctorName;
-      //   _doctorSLMC = doctorSLMC;
-      //   _doctorSpeciality = doctorSpeciality;
-      // });
 
-      if (widget.docemail != null && widget.docemail.isNotEmpty) {
-        final res2 = await http.get(Uri.parse('https://medvault-backend-wv3ggtvglq-uc.a.run.app/getDoctorData?docEmail=${widget.docemail}'));
+        final res2 = await http.get(Uri.parse('https://medvault-backend-wv3ggtvglq-uc.a.run.app/getDoctorData?email=$doctorEmail'));
 
-        final Map<String, dynamic> responseData2 = jsonDecode(res2.body);
-        print(responseData2);
-        final dynamic doctorName = responseData2['docName'];
-        final dynamic doctorSLMC = responseData2['docSLMC'];
-        final dynamic doctorSpeciality = responseData2['docSpeciality'];
-
+        if (res2.statusCode == 200)    {
         setState(() {
-          _doctorName = doctorName;
-          _doctorSLMC = doctorSLMC;
-          _doctorSpeciality = doctorSpeciality;
+          Map<String, dynamic> responseData2 = jsonDecode(res2.body);
+          print(responseData2);
+          _doctorName = responseData2['docName'];
+          _doctorSLMC = responseData2['docSLMC'];
+          _doctorSpeciality = responseData2['docSpeciality'];
         });
-      } else {
-        // Handle the case when docemail is null or empty
-        print('docemail is null or empty');
-      }
+      }else {
+          print('Failed to fetch doctor data');
+        }
+
     } catch (error) {
       print('Error: $error');
     }
@@ -118,7 +101,6 @@ class _NewPrescriptionState extends State<NewPrescription> {
         _patientEmailController.text = patientEmail;
       });
     } else {
-      // Handle error
       print('Failed to fetch patient data');
     }
   }
