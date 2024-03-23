@@ -21,18 +21,39 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
-  static List<Widget> _widgetOptions = <Widget>[
-    PharmacySearchPage1(),
-    //ViewPrescription(email: widget.email),
-    //MyQR(email: widget.email),
-    PatientProfile(),
-  ];
-
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PharmacySearchPage1()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => viewPrescription(email: widget.email)),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MyQR(email: widget.email)),
+        );
+        break;
+      case 3:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PatientProfile()),
+        );
+        break;
+    }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -365,8 +386,9 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        ]
-      ),
+    ]),
+
+
       bottomNavigationBar: BottomNavigationBar(
         //backgroundColor: Colors.lightBlue, // Set background color here
         unselectedItemColor: Colors.black, // Set icon color here
@@ -393,8 +415,9 @@ class _HomePageState extends State<HomePage> {
         onTap: _onItemTapped,
       ),
 
-    );
 
+
+    );
   }
 }
 
