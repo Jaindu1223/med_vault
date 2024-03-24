@@ -491,11 +491,12 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
               NavigationService.navigateTo(MyQR(email: widget.email), context);
               break;
             case 3:
-              NavigationService.navigateTo(SettingsPage(), context);
+              NavigationService.navigateTo(SettingsPage(email: widget.email), context);
               break;
           }
         },
       ),
+
       // bottomNavigationBar: BottomNavigationBar(
       //   //backgroundColor: Colors.lightBlue, // Set background color here
       //   unselectedItemColor: Colors.black, // Set icon color here

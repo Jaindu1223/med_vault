@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:med_vault/pages/patient/check.dart';
 import 'package:med_vault/pages/patient/home_page.dart';
+import 'package:med_vault/pages/patient/navigation_components.dart';
 import 'package:med_vault/pages/patient/patient_profile.dart';
+import 'package:med_vault/pages/patient/settings.dart';
 import 'package:med_vault/pages/patient/view_prescription.dart';
 // import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -18,39 +20,40 @@ class MyQR extends StatefulWidget {
 
 class _MyQRState extends State<MyQR> {
   int _selectedIndex = 0;
+  int _currentIndex = 2;
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-
-    switch (index) {
-      case 0:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage(email: widget.email)),
-        );
-        break;
-      case 1:
-        //Navigator.push(
-         // context,
-          //MaterialPageRoute(builder: (context) => PharmacySearchPage1()),
-       // );
-        break;
-      case 2:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => MyQR(email: widget.email)),
-        );
-        break;
-      case 3:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => PatientProfile()),
-        );
-        break;
-    }
-  }
+  // void _onItemTapped(int index) {
+  //   setState(() {
+  //     _selectedIndex = index;
+  //   });
+  //
+  //   switch (index) {
+  //     case 0:
+  //       Navigator.push(
+  //         context,
+  //         MaterialPageRoute(builder: (context) => HomePage(email: widget.email)),
+  //       );
+  //       break;
+  //     case 1:
+  //       Navigator.push(
+  //        context,
+  //         MaterialPageRoute(builder: (context) => PharmacySearchPage1(email: widget.email)),
+  //      );
+  //       break;
+  //     case 2:
+  //       Navigator.push(
+  //         context,
+  //         MaterialPageRoute(builder: (context) => MyQR(email: widget.email)),
+  //       );
+  //       break;
+  //     case 3:
+  //       Navigator.push(
+  //         context,
+  //         MaterialPageRoute(builder: (context) => PatientProfile()),
+  //       );
+  //       break;
+  //   }
+  // }
 
   // String? userEmail; // Store user's email fetched from the backend  *****
   final TextEditingController _textController = TextEditingController(text: '');
@@ -214,31 +217,58 @@ class _MyQRState extends State<MyQR> {
             ),
           ],
         ),
-      bottomNavigationBar: BottomNavigationBar(
-      //backgroundColor: Colors.lightBlue, // Set background color here
-      unselectedItemColor: Colors.black, // Set icon color here
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home Page',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.search_outlined),
-          label: 'Pharmacy Finder',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.qr_code),
-          label: 'My QR',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: 'Settings',
-        ),
-      ],
-      currentIndex: _selectedIndex,
-      selectedItemColor: Colors.blueAccent,
-      onTap: _onItemTapped,
-    ),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+
+          // Handle navigation based on the index
+          switch (index) {
+            case 0:
+              NavigationService.navigateTo(HomePage(email: widget.email), context);
+              break;
+            case 1:
+              NavigationService.navigateTo(PharmacySearchPage1(email: widget.email), context);
+              break;
+            case 2:
+              NavigationService.navigateTo(MyQR(email: widget.email), context);
+              break;
+            case 3:
+              NavigationService.navigateTo(SettingsPage(email: widget.email), context);
+              break;
+          }
+        },
+      ),
+
+    //   bottomNavigationBar: BottomNavigationBar(
+    //   //backgroundColor: Colors.lightBlue, // Set background color here
+    //   unselectedItemColor: Colors.black, // Set icon color here
+    //   items: const <BottomNavigationBarItem>[
+    //     BottomNavigationBarItem(
+    //       icon: Icon(Icons.home),
+    //       label: 'Home Page',
+    //     ),
+    //     BottomNavigationBarItem(
+    //       icon: Icon(Icons.search_outlined),
+    //       label: 'Pharmacy Finder',
+    //     ),
+    //     BottomNavigationBarItem(
+    //       icon: Icon(Icons.qr_code),
+    //       label: 'My QR',
+    //     ),
+    //     BottomNavigationBarItem(
+    //       icon: Icon(Icons.settings),
+    //       label: 'Settings',
+    //     ),
+    //   ],
+    //   currentIndex: _selectedIndex,
+    //   selectedItemColor: Colors.blueAccent,
+    //   onTap: _onItemTapped,
+    // ),
+
+
     );
   }
 }

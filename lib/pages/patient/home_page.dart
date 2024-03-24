@@ -33,13 +33,13 @@ class _HomePageState extends State<HomePage> {
         NavigationService.navigateTo(HomePage(email: widget.email), context);
         break;
       case 1:
-       // NavigationService.navigateTo(PharmacySearchPage1(), context);
+        NavigationService.navigateTo(PharmacySearchPage1(email: widget.email), context);
         break;
       case 2:
         NavigationService.navigateTo(MyQR(email: widget.email), context);
         break;
       case 3:
-        NavigationService.navigateTo(SettingsPage(), context);
+        NavigationService.navigateTo(SettingsPage(email: widget.email), context);
         break;
     }
     //

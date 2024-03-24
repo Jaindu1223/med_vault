@@ -30,7 +30,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
           label: 'Home Page',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.search_outlined),
+          icon: Icon(Icons.local_hospital_sharp),
           label: 'Pharmacy Finder',
         ),
         BottomNavigationBarItem(

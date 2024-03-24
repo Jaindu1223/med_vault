@@ -1,6 +1,23 @@
-import 'package:flutter/material.dart';
 
-class SettingsPage extends StatelessWidget {
+
+import 'package:flutter/material.dart';
+import 'package:med_vault/pages/patient/check.dart';
+import 'package:med_vault/pages/patient/home_page.dart';
+import 'package:med_vault/pages/patient/my_qr.dart';
+import 'package:med_vault/pages/patient/navigation_components.dart';
+
+class SettingsPage extends StatefulWidget {
+  final String email;
+
+  const SettingsPage({Key? key, required this.email}) : super(key: key);
+
+  @override
+  _SettingsPageState createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+  int _currentIndex = 3; // Initialize with the index of the SettingsPage
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,15 +61,37 @@ class SettingsPage extends StatelessWidget {
             width: 10,
           ),
           _buildSettingsSection(
-
             title: 'Security',
             icon: Icons.security,
             onTap: () {
               // Handle security section tap
             },
           ),
-
         ],
+      ),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+
+          // Handle navigation based on the index
+          switch (index) {
+            case 0:
+              NavigationService.navigateTo(HomePage(email: widget.email), context);
+              break;
+            case 1:
+              NavigationService.navigateTo(PharmacySearchPage1(email: widget.email), context);
+              break;
+            case 2:
+              NavigationService.navigateTo(MyQR(email: widget.email), context);
+              break;
+            case 3:
+              NavigationService.navigateTo(SettingsPage(email: widget.email), context);
+              break;
+          }
+        },
       ),
     );
   }
@@ -87,4 +126,5 @@ class SettingsPage extends StatelessWidget {
     );
   }
 }
+
 
