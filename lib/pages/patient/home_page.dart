@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
         NavigationService.navigateTo(HomePage(email: widget.email), context);
         break;
       case 1:
-        NavigationService.navigateTo(PharmacySearchPage1(), context);
+       // NavigationService.navigateTo(PharmacySearchPage1(), context);
         break;
       case 2:
         NavigationService.navigateTo(MyQR(email: widget.email), context);
@@ -232,9 +232,9 @@ class _HomePageState extends State<HomePage> {
                         ),
                         const SizedBox(height: 17),
                         InkWell(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> PharmacySearchPage1()));
-                          },
+                          //onTap: (){
+                            //Navigator.push(context, MaterialPageRoute(builder: (context)=> PharmacySearchPage1()));
+                          //},
                           child: Container(
                             padding: const EdgeInsets.all(4),
                             decoration: BoxDecoration(

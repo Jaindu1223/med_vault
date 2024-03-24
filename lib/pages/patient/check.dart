@@ -120,22 +120,30 @@ import 'package:flutter/widgets.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:med_vault/pages/patient/home_page.dart';
+import 'package:med_vault/pages/patient/my_qr.dart';
+import 'package:med_vault/pages/patient/navigation_components.dart';
+import 'package:med_vault/pages/patient/settings.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PharmacySearchPage1 extends StatefulWidget {
   // const PharmacySearchPage({super.key});
+
+  final String email;
+
+  const PharmacySearchPage1({Key? key, required this.email}):super(key:key);
 
   @override
   State<PharmacySearchPage1> createState() => _PharmacySearchPage1State();
 }
 
 class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  int _currentIndex = 1;
+  //
+  // void _onItemTapped(int index) {
+  //   setState(() {
+  //     _currentIndex = index;
+  //   });
 
     // switch (index) {
     //   case 0:
@@ -163,7 +171,7 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
     //     );
     //     break;
     // }
-  }
+  //}
 
   TextEditingController medicineNameController = TextEditingController();
   String nearestPharmacyName = '';
@@ -463,31 +471,56 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
           ],
         ),
       ]),
-      bottomNavigationBar: BottomNavigationBar(
-        //backgroundColor: Colors.lightBlue, // Set background color here
-        unselectedItemColor: Colors.black, // Set icon color here
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home Page',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search_outlined),
-            label: 'Pharmacy Finder',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.qr_code),
-            label: 'My QR',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blueAccent,
-        onTap: _onItemTapped,
+
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+
+          // Handle navigation based on the index
+          switch (index) {
+            case 0:
+              NavigationService.navigateTo(HomePage(email: widget.email), context);
+              break;
+            case 1:
+              NavigationService.navigateTo(PharmacySearchPage1(email: widget.email), context);
+              break;
+            case 2:
+              NavigationService.navigateTo(MyQR(email: widget.email), context);
+              break;
+            case 3:
+              NavigationService.navigateTo(SettingsPage(), context);
+              break;
+          }
+        },
       ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   //backgroundColor: Colors.lightBlue, // Set background color here
+      //   unselectedItemColor: Colors.black, // Set icon color here
+      //   items: const <BottomNavigationBarItem>[
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.home),
+      //       label: 'Home Page',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.search_outlined),
+      //       label: 'Pharmacy Finder',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.qr_code),
+      //       label: 'My QR',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.settings),
+      //       label: 'Settings',
+      //     ),
+      //   ],
+      //   currentIndex: _selectedIndex,
+      //   selectedItemColor: Colors.blueAccent,
+      //   onTap: _onItemTapped,
+      // ),
 
 
     );

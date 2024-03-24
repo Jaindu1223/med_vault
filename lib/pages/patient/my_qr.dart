@@ -32,10 +32,10 @@ class _MyQRState extends State<MyQR> {
         );
         break;
       case 1:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => PharmacySearchPage1()),
-        );
+        //Navigator.push(
+         // context,
+          //MaterialPageRoute(builder: (context) => PharmacySearchPage1()),
+       // );
         break;
       case 2:
         Navigator.push(
