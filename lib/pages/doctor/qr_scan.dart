@@ -236,14 +236,21 @@ class _QrScanState extends State<QrScan> {
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:med_vault/pages/doctor/doc_pharmacy_spotter.dart';
+import 'package:med_vault/pages/doctor/home_pageD.dart';
+import 'package:med_vault/pages/doctor/navigation_components_doc.dart';
 import 'package:med_vault/pages/doctor/new_prescription.dart';
+import 'package:med_vault/pages/patient/check.dart';
+import 'package:med_vault/pages/patient/settings.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../patient/view_prescription.dart';
+import 'doc_settings.dart';
 
 class QrScan extends StatefulWidget {
   final String email;
-  const QrScan({Key? key, required this.email}):super(key:key);
+  final String docemail;
+  const QrScan({Key? key, required this.email,required this.docemail}) : super(key: key);
 
 
   @override
@@ -251,6 +258,8 @@ class QrScan extends StatefulWidget {
 }
 
 class _QrScanState extends State<QrScan> {
+  int _currentIndexD = 2;
+
   final GlobalKey qrKey = GlobalKey(debugLabel: "QR");
   QRViewController? controller;
   String result = "";
@@ -326,7 +335,7 @@ class _QrScanState extends State<QrScan> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(builder:
-                              (context)=>viewPrescription(email: widget.email)));
+                              (context)=>viewPrescription(email: result)));
                     },
 
                     child: Container(
@@ -357,7 +366,7 @@ class _QrScanState extends State<QrScan> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => NewPrescription(email: result, docemail: widget.email,),
+                          builder: (context) => NewPrescription(email: result, docemail: widget.docemail,),
                         ),
                       );
 
@@ -383,6 +392,40 @@ class _QrScanState extends State<QrScan> {
           ),
         ],
       ),
+
+      bottomNavigationBar: CustomBottomNavigationBar2(
+        currentIndexD: _currentIndexD, // Pass the currentIndexD
+        onTap: (index) {
+          setState(() {
+            _currentIndexD = index; // Update currentIndexD when tapped
+          });
+
+          // Handle navigation based on the index
+          switch (index) {
+            case 0:
+              NavigationServiceDoc.navigateTo(
+                  HomePageDoc(email: widget.email, docemail: widget.docemail),
+                  context);
+              break;
+            case 1:
+              NavigationServiceDoc.navigateTo(
+                  PharmacySearchPage2(email: widget.email, docemail: widget.docemail),
+                  context);
+              break;
+            case 2:
+              NavigationServiceDoc.navigateTo(
+                  QrScan(email: widget.email,docemail: widget.docemail),
+                  context); // Already on QrScan page, no need to navigate
+              break;
+            case 3:
+              NavigationServiceDoc.navigateTo(
+                  docSettingsPage(email: widget.email, docemail: widget.docemail),
+                  context);
+              break;
+          }
+        },
+      ),
+
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class NavigationService {
+class NavigationServiceDoc {
   static Future<dynamic> navigateTo(Widget page, BuildContext context) {
     return Navigator.push(
       context,
@@ -9,13 +9,13 @@ class NavigationService {
   }
 }
 
-class CustomBottomNavigationBar extends StatelessWidget {
-  final int currentIndex;
+class CustomBottomNavigationBar2 extends StatelessWidget {
+  final int currentIndexD;
   final void Function(int) onTap;
 
-  const CustomBottomNavigationBar({
+  const CustomBottomNavigationBar2({
     Key? key,
-    required this.currentIndex,
+    required this.currentIndexD,
     required this.onTap,
   }) : super(key: key);
 
@@ -41,14 +41,14 @@ class CustomBottomNavigationBar extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.qr_code),
-            label: 'My QR',
+            label: 'Scan QR',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',
           ),
         ],
-        currentIndex: currentIndex,
+        currentIndex: currentIndexD,
         selectedFontSize: 14, // Adjust the font size for the selected icon
         unselectedFontSize: 12,
 

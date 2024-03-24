@@ -4,7 +4,10 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:med_vault/pages/doctor/doc_pharmacy_spotter.dart';
+import 'package:med_vault/pages/doctor/doc_settings.dart';
 import 'package:med_vault/pages/doctor/home_pageD.dart';
+import 'package:med_vault/pages/doctor/navigation_components_doc.dart';
 import 'package:med_vault/pages/doctor/qr_scan.dart';
 import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:http/http.dart' as http;
@@ -20,12 +23,12 @@ class NewPrescription extends StatefulWidget {
 }
 
 class _NewPrescriptionState extends State<NewPrescription> {
-  int _selectedIndex = 0;
+  int _currentIndexD = 2;
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  // void _onItemTapped(int index) {
+  //   setState(() {
+  //     _selectedIndex = index;
+  //   });
 
     // switch (index) {
     //   case 0:
@@ -53,7 +56,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
     //     );
     //     break;
     // }
-  }
+  // }
 
 
   String _doctorName = "";
@@ -230,7 +233,7 @@ class _NewPrescriptionState extends State<NewPrescription> {
       );
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HomePageDoc(docemail: '',)),
+        MaterialPageRoute(builder: (context) => HomePageDoc(email: widget.email,docemail: widget.docemail)),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -773,31 +776,39 @@ class _NewPrescriptionState extends State<NewPrescription> {
               )
             ]
         ),
-      bottomNavigationBar: BottomNavigationBar(
-      //backgroundColor: Colors.lightBlue, // Set background color here
-      unselectedItemColor: Colors.black, // Set icon color here
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home Page',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.search_outlined),
-          label: 'Pharmacy Finder',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.qr_code),
-          label: 'My QR',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: 'Settings',
-        ),
-      ],
-      currentIndex: _selectedIndex,
-      selectedItemColor: Colors.blueAccent,
-      onTap: _onItemTapped,
-    ),
+      bottomNavigationBar: CustomBottomNavigationBar2(
+        currentIndexD: _currentIndexD, // Pass the currentIndexD
+        onTap: (index) {
+          setState(() {
+            _currentIndexD = index; // Update currentIndexD when tapped
+          });
+
+          // Handle navigation based on the index
+          switch (index) {
+            case 0:
+              NavigationServiceDoc.navigateTo(
+                  HomePageDoc(email: widget.email, docemail: widget.docemail),
+                  context);
+              break;
+            case 1:
+              NavigationServiceDoc.navigateTo(
+                  PharmacySearchPage2(email: widget.email,docemail: widget.docemail),
+                  context);
+              break;
+            case 2:
+              NavigationServiceDoc.navigateTo(
+                  QrScan(email: widget.email,docemail: widget.docemail),
+                  context); // Already on QrScan page, no need to navigate
+              break;
+            case 3:
+              NavigationServiceDoc.navigateTo(
+                  docSettingsPage(email: widget.email,docemail: widget.docemail),
+                  context);
+              break;
+          }
+        },
+      ),
+
     );
 
   }

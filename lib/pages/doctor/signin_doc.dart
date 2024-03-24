@@ -41,7 +41,7 @@ class _SignInState extends State<SignInDoc> {
       // print(jsonResponse['status']);
       if (jsonResponse['status']) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomePageDoc(docemail: _emailController.text)));
+            context, MaterialPageRoute(builder: (context) => HomePageDoc(email:'',docemail: _emailController.text)));
       } else {
         print("Incorrect Email or Password ");
       }
