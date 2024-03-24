@@ -246,6 +246,7 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../patient/view_prescription.dart';
 import 'doc_settings.dart';
+import 'doc_view_prescription.dart';
 
 class QrScan extends StatefulWidget {
   final String email;
@@ -335,7 +336,7 @@ class _QrScanState extends State<QrScan> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(builder:
-                              (context)=>viewPrescription(email: result)));
+                              (context)=>docViewPrescription(email: result,docemail: widget.docemail)));
                     },
 
                     child: Container(
