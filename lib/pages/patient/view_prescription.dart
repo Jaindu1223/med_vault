@@ -174,6 +174,7 @@ class _viewPrescriptionState extends State<viewPrescription> {
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
     // Get current date and time
@@ -181,18 +182,24 @@ class _viewPrescriptionState extends State<viewPrescription> {
     String formattedDate = DateFormat('EEEE d MMMM, y')
         .format(now); // Format: Monday 23 July, 2022
     String formattedTime = DateFormat.jm().format(now); // Format: 3:21:59 PM
+    Color customBackgroundColor = Color(int.parse('0xFFE3E4E4'));
     return Scaffold(
+      backgroundColor: customBackgroundColor,
       //backgroundColor: Colors.blue[100],
         body: Stack(
             children:[
               Container(
+                //padding: const EdgeInsets.only(left: 20,top: 30, right: 3, bottom: 30),
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
-                        'lib/images/6 Pharmacy locater-2.png'),
-                    fit: BoxFit.cover,
+                        'lib/images/Rectangle 42126.png'),
+                    alignment: Alignment.topCenter,
+
+                    fit: BoxFit.fitWidth,
                   ),
                 ),
+
               ),
               SafeArea(
                   child:SingleChildScrollView(

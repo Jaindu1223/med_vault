@@ -19,8 +19,11 @@ class _SettingsPageState extends State<SettingsPage> {
   int _currentIndex = 3; // Initialize with the index of the SettingsPage
 
   @override
+
   Widget build(BuildContext context) {
+    Color customBackgroundColor = Color(int.parse('0xFFE3E4E4'));
     return Scaffold(
+      backgroundColor: customBackgroundColor,
       appBar: AppBar(
         title: Text('Settings'),
       ),

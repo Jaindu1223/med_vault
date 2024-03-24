@@ -80,17 +80,23 @@ class _HomePageState extends State<HomePage> {
         .format(now); // Format: Monday 23 July, 2022
     String formattedTime = DateFormat.jm().format(now); // Format: 3:21:59 PM
 
+    Color customBackgroundColor = Color(int.parse('0xFFE3E4E4'));
 
     return Scaffold(
-      //backgroundColor: Colors.blue,
+      backgroundColor: customBackgroundColor,
+      //backgroundColor: Colors.grey,
+
       body: Stack(
         children:[
           Container(
+            //padding: const EdgeInsets.only(left: 20,top: 30, right: 3, bottom: 30),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                    'lib/images/6 Pharmacy locater-2.png'),
-                fit: BoxFit.cover,
+                    'lib/images/Rectangle 42126.png'),
+                alignment: Alignment.topCenter,
+
+                fit: BoxFit.fitWidth,
             ),
             ),
 
@@ -98,13 +104,13 @@ class _HomePageState extends State<HomePage> {
 
         SingleChildScrollView(
           child: Column(
-          
+
             children: [
-          
+
               Container(
-                padding: const EdgeInsets.only(left: 20,top: 30, right: 3, bottom: 7),
+                padding: const EdgeInsets.only(left: 20,top: 21, right: 3, bottom: 30),
                 child: Row(children: [
-          
+
                   const SizedBox(width:1,height: 180,),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,8 +131,8 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.white,
                         ),
                       ),
-          
-          
+
+
                       SizedBox(
                         height: 40,
                         width: 20,
@@ -134,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                             'lib/images/Group 2085662530.png'),
                       ),
                       const SizedBox(height: 1),
-          
+
                       Text(
                         'HI, ${widget.email}',
                         style: const TextStyle(
@@ -159,16 +165,16 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       const SizedBox(height: 2),
-          
+
                     ],
                   ),
-          
+
                   //Text('User Name, ${widget.email}'),
-          
+
                   const SizedBox(width: 86,),
-          
-          
-          
+
+
+
                   SizedBox(
                     height: 140,
                     width: 100,
@@ -177,15 +183,15 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],),
               ),
-          
+
               //Text('User Name, ${widget.email}'),
-          
+
               Padding(
                 padding: const EdgeInsets.only(left: 0,top: 0,right: 30,bottom: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-          
+
                     Container(
                       child: InkWell(
                         onTap: (){
@@ -195,9 +201,9 @@ class _HomePageState extends State<HomePage> {
                     )],
                 ),
               ),
-          
+
               const SizedBox(height: 5),
-          
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 45.0),
                 child: Container(
@@ -211,7 +217,7 @@ class _HomePageState extends State<HomePage> {
                         'lib/images/pharmacy.png',),
                     ),
                     const SizedBox(width: 10,),
-          
+
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -260,8 +266,8 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               const SizedBox(height: 25),
-          
-          
+
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 45.0),
                 child: Container(
@@ -275,12 +281,12 @@ class _HomePageState extends State<HomePage> {
                         'lib/images/prescription.png',),
                     ),
                     const SizedBox(height: 35,width: 10,),
-          
+
                     Expanded(
                       child:Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-          
+
                           const Text(
                             'Medical Record',
                             style: TextStyle(
@@ -334,7 +340,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               const SizedBox(height: 25),
-          
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 45.0),
                 child: Container(
@@ -349,7 +355,7 @@ class _HomePageState extends State<HomePage> {
                       //color: Colors.green,
                     ),
                     const SizedBox(height: 35,width: 10,),
-          
+
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -370,7 +376,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           const SizedBox(height: 17),
-          
+
                           InkWell(
                             onTap: (){
                               Navigator.push(
