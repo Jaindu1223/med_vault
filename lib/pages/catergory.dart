@@ -30,7 +30,7 @@ class _CategoryState extends State<Category> {
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                    'lib/images/welc.png'),
+                    'lib/images/splash.png'),
                 fit: BoxFit.cover,
                 //height: double.infinity,
                 //width: double.infinity,
@@ -40,47 +40,74 @@ class _CategoryState extends State<Category> {
 
           SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(76.0,600.0,26.0,26.0),
+              padding: const EdgeInsets.only(left: 0,top: 420, right: 0, bottom:0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+
+                  const Text(
+                    'Tailor Your Experience',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 48,),
+                  const Text(
+                    'To provide you with a good \n experience, please select your \n role below:',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.indigo, // You can use the 'indigo' color for dark blue
+                    ),
+                  ),
+
+
                   const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10.0),
+                    padding: EdgeInsets.symmetric(vertical: 10.0,),
 
 
                   ),
-                  RadioListTile<String>(
-                    value: 'Doctor',
-                    groupValue: _userType,
-                    onChanged: (value){
-                      setState(() {
-                        _userType= value as String;
-                      });
-                      if(_userType=='Doctor'){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context)=> SignInDoc()),
-                        );
-                      }//if
-                    },
-                    title: const Text('Doctor'),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 100,top: 0, right: 0, bottom:0),
+                    child: RadioListTile<String>(
+                      value: 'Doctor',
+                      groupValue: _userType,
+                      onChanged: (value){
+                        setState(() {
+                          _userType= value as String;
+                        });
+                        if(_userType=='Doctor'){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context)=> SignInDoc()),
+                          );
+                        }//if
+                      },
+                      title: const Text('Doctor'),
+                    ),
                   ),
 
-                  RadioListTile<String>(
-                    value: 'Patient',
-                    groupValue: _userType,
-                    onChanged: (value){
-                      setState(() {
-                        _userType= value as String;
-                      });
-                      if(_userType=='Patient'){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context)=> SignIn()),
-                        );
-                      }//if
-                    },
-                    title: const Text('Patient'),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 100,top: 0, right: 0, bottom:0),
+                    child: RadioListTile<String>(
+                      value: 'Patient',
+                      groupValue: _userType,
+                      onChanged: (value){
+                        setState(() {
+                          _userType= value as String;
+                        });
+                        if(_userType=='Patient'){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context)=> SignIn()),
+                          );
+                        }//if
+                      },
+                      title: const Text('Patient'),
+                    ),
                   )
                 ],
               ),
