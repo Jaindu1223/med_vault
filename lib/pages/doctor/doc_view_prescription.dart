@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:med_vault/pages/doctor/doc_pharmacy_spotter.dart';
 import 'package:med_vault/pages/doctor/doc_settings.dart';
@@ -216,7 +217,7 @@ class _docViewPrescriptionState extends State<docViewPrescription> {
                   child:Column(
                     children: [
                       Container(
-                        padding: const EdgeInsets.only(left: 20,top: 30, right: 3, bottom: 7),
+                        padding: const EdgeInsets.only(left: 20,top: 15, right: 3, bottom: 7),
                         child: Row(
                           children: [
                             const SizedBox(width: 6,),
@@ -267,15 +268,17 @@ class _docViewPrescriptionState extends State<docViewPrescription> {
                                 ),
                               ],
                             ),
-                            const SizedBox(width: 46,),
+                            const SizedBox(width: 26,),
 
-                            SizedBox(
-                              height: 140,
-                              width: 100,
-                              child: Image.asset(
-                                'lib/images/doctor.png',),
-
-                              //color: Colors.limeAccent,
+                            Expanded(
+                              child: SizedBox(
+                                height: 100,
+                                //width: 10,
+                                child: Image.asset(
+                                  'lib/images/medical-report-5817916_1920.png',),
+                              
+                                //color: Colors.limeAccent,
+                              ),
                             ),
                           ],
                         ),
@@ -284,7 +287,7 @@ class _docViewPrescriptionState extends State<docViewPrescription> {
                       //search bar
 
                       //categories(horizontal list)
-                      const SizedBox(height: 25),
+                      const SizedBox(height: 35),
 
                       //box
                       Padding(
@@ -300,22 +303,20 @@ class _docViewPrescriptionState extends State<docViewPrescription> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
 
-                                  Center(
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.lightBlue,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(15), // Set the border radius
-                                        ),
-                                        minimumSize: Size(130, 40),
-                                        // Set the background color to blue
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.lightBlue,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(15), // Set the border radius
                                       ),
-                                      onPressed: isLoading ? null : searchPrescription,
-                                      child: isLoading ? CircularProgressIndicator() :
-                                      Text('Receive Prescription',
-                                        style: TextStyle(
-                                            color: Colors.white),),
+                                      minimumSize: Size(130, 40),
+                                      // Set the background color to blue
                                     ),
+                                    onPressed: isLoading ? null : searchPrescription,
+                                    child: isLoading ? CircularProgressIndicator() :
+                                    Text('Receive Prescription',
+                                      style: TextStyle(
+                                          color: Colors.white),),
                                   ),
                                   SizedBox(height: 16.0),
 
@@ -347,7 +348,7 @@ class _docViewPrescriptionState extends State<docViewPrescription> {
 
                                   Text(
                                     'Age: $age',
-                                    style: TextStyle(fontSize: 14.0),
+                                    style: TextStyle(fontSize: 13.0),
                                   ),
 
 
@@ -355,13 +356,13 @@ class _docViewPrescriptionState extends State<docViewPrescription> {
 
                                   Text(
                                     'Patient Name: $patientName',
-                                    style: TextStyle(fontSize: 14.0,),
+                                    style: TextStyle(fontSize: 13.0,),
                                   ),
 
                                   const SizedBox(height: 2),
                                   Text(
                                     'Address: $address',
-                                    style: TextStyle(fontSize: 14.0),
+                                    style: TextStyle(fontSize: 13.0),
                                   ),
 
                                   const Text('-----------------------------------------------------------------'),

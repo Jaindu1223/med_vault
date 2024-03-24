@@ -12,6 +12,7 @@ import 'package:med_vault/pages/patient/navigation_components.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../catergory.dart';
+import 'doctor_profile.dart';
 
 class docSettingsPage extends StatefulWidget {
   final String email;
@@ -42,7 +43,10 @@ class _docSettingsPageState extends State<docSettingsPage> {
             title: 'Profile',
             icon: Icons.person,
             onTap: () {
-              // Handle profile section tap
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DoctorProfile()),
+              );
             },
           ),
           const SizedBox(
@@ -77,6 +81,10 @@ class _docSettingsPageState extends State<docSettingsPage> {
             onTap: () {
               // Handle security section tap
             },
+          ),
+          const SizedBox(
+            height: 35,
+            width: 10,
           ),
           _buildSettingsSection(
             title: 'Logout',

@@ -71,7 +71,7 @@ class _CategoryState extends State<Category> {
 
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 100,top: 0, right: 0, bottom:0),
+                    padding: const EdgeInsets.only(left: 100,top: 20, right: 0, bottom:0),
                     child: RadioListTile<String>(
                       value: 'Doctor',
                       groupValue: _userType,

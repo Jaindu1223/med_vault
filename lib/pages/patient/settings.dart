@@ -1,5 +1,6 @@
 
 import 'package:med_vault/pages/catergory.dart';
+import 'package:med_vault/pages/patient/patient_profile.dart';
 import 'package:med_vault/pages/patient/sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -37,7 +38,10 @@ class _SettingsPageState extends State<SettingsPage> {
             title: 'Profile',
             icon: Icons.person,
             onTap: () {
-              // Handle profile section tap
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PatientProfile()),
+              );
             },
           ),
           const SizedBox(
@@ -72,6 +76,10 @@ class _SettingsPageState extends State<SettingsPage> {
             onTap: () {
               // Handle security section tap
             },
+          ),
+          const SizedBox(
+            height: 35,
+            width: 10,
           ),
           _buildSettingsSection(
             title: 'Logout',

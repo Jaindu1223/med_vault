@@ -271,7 +271,7 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
           children: [
             Container(
               padding: const EdgeInsets.only(
-                  left: 20, top: 15, right: 3, bottom: 7),
+                  left: 20, top: 25, right: 3, bottom: 7),
               child: Row(
                 children: [
                   const SizedBox(
@@ -327,13 +327,14 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
                   //Text('User Name, ${widget.email}'),
 
                   const SizedBox(
-                    width: 6,
+                    width: 30,
                   ),
+                  
                   SizedBox(
                     height: 140,
-                    width: 100,
+                    width: 80,
                     child: Image.asset(
-                      'lib/images/hospital.png',
+                      'lib/images/capsule-158568_1920.png',
                     ),
                   ),
                 ],

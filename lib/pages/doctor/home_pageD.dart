@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:med_vault/pages/doctor/customize_prescription.dart';
 import 'package:med_vault/pages/doctor/doc_pharmacy_spotter.dart';
@@ -51,38 +52,6 @@ class _HomePageDocState extends State<HomePageDoc> {
     }
   }
 
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     _selectedIndex = index;
-  //   });
-
-    // switch (index) {
-    //   case 0:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => PharmacySearchPage1()),
-    //     );
-    //     break;
-    //   case 1:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => viewPrescription(email: widget.email)),
-    //     );
-    //     break;
-    //   case 2:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => MyQR(email: widget.email)),
-    //     );
-    //     break;
-    //   case 3:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => PatientProfile()),
-    //     );
-    //     break;
-    // }
-  // }
   @override
   Widget build(BuildContext context) {
     // Get current date and time
@@ -135,7 +104,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                           'MedVault',
                           style: TextStyle(
                             fontWeight: FontWeight.w900,
-                            fontSize: 29,
+                            fontSize: 30,
                             color: Colors.white,
                           ),
                         ),
@@ -144,7 +113,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                           width: 20,
                           child: Image.asset('lib/images/Group 2085662530.png'),
                         ),
-                        const SizedBox(height: 1),
+                        const SizedBox(height: 0),
                         Text(
                           'HI, ${widget.docemail}',
                           style: const TextStyle(
@@ -156,7 +125,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                         Text(
                           formattedDate,
                           style: const TextStyle(
-                            fontSize: 13,
+                            fontSize: 12,
                             color: Colors.white,
                           ),
                         ),
@@ -171,17 +140,22 @@ class _HomePageDocState extends State<HomePageDoc> {
                       ],
                     ),
                     const SizedBox(
-                      width: 86,
+                      width: 80,
                     ),
-                    SizedBox(
-                      height: 140,
-                      width: 100,
-                      child: Image.asset(
-                        'lib/images/doctor.png',
+                    Expanded(
+                      child: SizedBox(
+                        height: 140,
+                        width: 100,
+                        child: Image.asset(
+                          'lib/images/doctor-2027615_1920.png',
+                        ),
                       ),
                     ),
                   ],
                 ),
+              ),
+              const SizedBox(
+                height: 3,
               ),
               Padding(
                 padding:
@@ -216,14 +190,14 @@ class _HomePageDocState extends State<HomePageDoc> {
                     children: [
                       SizedBox(
                         height: 100,
-                        width: 90,
+                        width: 55,
                         child: Image.asset(
-                          'lib/images/qr.png',
+                          'lib/images/qr-code-2816041_1920.png',
                         ),
                       ),
                       const SizedBox(
                         height: 35,
-                        width: 10,
+                        width: 20,
                       ),
                       Expanded(
                         child: Column(
@@ -257,7 +231,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                                     color: Colors.blueAccent,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: const Center(
-                                  child: Text('View QR Code',
+                                  child: Text('Scan QR & Provide',
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 11)),
                                 ),
@@ -270,7 +244,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                   ),
                 ),
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 40),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 45.0),
                 child: Container(
@@ -282,13 +256,13 @@ class _HomePageDocState extends State<HomePageDoc> {
                     children: [
                       SizedBox(
                         height: 100,
-                        width: 90,
+                        width: 61,
                         child: Image.asset(
-                          'lib/images/pharmacy.png',
+                          'lib/images/medicine-2801025_1920.png',
                         ),
                       ),
                       const SizedBox(
-                        width: 10,
+                        width: 20,
                       ),
                       Expanded(
                         child: Column(
@@ -336,7 +310,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                   ),
                 ),
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 40),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 45.0),
                 child: Container(
@@ -348,14 +322,14 @@ class _HomePageDocState extends State<HomePageDoc> {
                     children: [
                       SizedBox(
                         height: 100,
-                        width: 90,
+                        width: 58,
                         child: Image.asset(
-                          'lib/images/prescription.png',
+                          'lib/images/medical-5459661_1920.png',
                         ),
                       ),
                       const SizedBox(
                         height: 35,
-                        width: 10,
+                        width: 20,
                       ),
                       Expanded(
                         child: Column(

@@ -31,7 +31,6 @@ class MyApp extends StatelessWidget {
       home: SplashScreen(),
     );
     // Add the performance overlay flag here
-    debugShowPerformanceOverlay: true;
     return Scaffold(
     );
   }

@@ -272,507 +272,490 @@ class _NewPrescriptionState extends State<NewPrescription> {
                 ),
 
               ),
-              Container(
-                padding: const EdgeInsets.only(left: 20,top: 40, right: 0, bottom:0),
-                child: InkWell(
-                    // onTap: () {
-                    //   Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //           builder: (context) =>QrScan(email: widget.docemail, )));
-                    // },
-                    child: const Icon(
-                      Icons.arrow_back_rounded,
-                      color: Colors.white,
-                    )),
-              ),
+              SingleChildScrollView(
+                child:Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(left: 20,top: 50, right: 3, bottom: 7),
+                      child: Row(
+                        children: [
+                          const SizedBox(width: 6,),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
 
-              SafeArea(
-                  child:SingleChildScrollView(
-                    child:Column(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.only(left: 20,top: 30, right: 3, bottom: 7),
-                          child: Row(
                             children: [
-                              const SizedBox(width: 6,),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
 
-                                children: [
-
-                                  const Text(
-                                    'New Prescription.',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w900,
-                                      fontSize: 26,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  const Text(
-                                    'Digital',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 13,
-                                      color: Colors.white,
-                                    ),
-
-                                  ),
-                                  SizedBox(
-                                    height: 40,
-                                    width: 20,
-                                    child: Image.asset(
-                                        'lib/images/Group 2085662530.png'),
-
-                                    //color: Colors.limeAccent,
-                                  ),
-                                  const SizedBox(height: 1),
-                                  Text(
-                                    formattedDate,
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 2),
-                                  Text(
-                                    formattedTime,
-                                    style: const TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(width: 46,),
-
-                              Expanded(
-                                child: SizedBox(
-                                  height: 140,
-                                  width: 100,
-                                  child: Image.asset(
-                                    'lib/images/doctor.png',),
-                                
-                                  //color: Colors.limeAccent,
+                              const Text(
+                                'New Prescription.',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 26,
+                                  color: Colors.white,
                                 ),
                               ),
+                              const Text(
+                                'Digital',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 13,
+                                  color: Colors.white,
+                                ),
+
+                              ),
+                              SizedBox(
+                                height: 40,
+                                width: 20,
+                                child: Image.asset(
+                                    'lib/images/Group 2085662530.png'),
+
+                                //color: Colors.limeAccent,
+                              ),
+                              const SizedBox(height: 1),
+                              Text(
+                                formattedDate,
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              const SizedBox(height: 2),
+                              Text(
+                                formattedTime,
+                                style: const TextStyle(
+                                  fontSize: 10,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(width: 13,),
+
+                          Expanded(
+                            child: SizedBox(
+                              height: 140,
+                              width: 100,
+                              child: Image.asset(
+                                'lib/images/doctor-2027615_1920.png',),
+
+                              //color: Colors.limeAccent,
+                            ),
+                          ),
 
 
 
-                            ],),
-                        ),
+                        ],),
+                    ),
 
-                        //search bar
+                    //search bar
 
-                        //categories(horizontal list)
-                        const SizedBox(height: 25),
+                    //categories(horizontal list)
+                    const SizedBox(height: 25),
 
-                        //box
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                          child: Container(
-                            padding: const EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                                color: Colors.grey[100],
-                            borderRadius: BorderRadius.circular(9)),
-                            child: Row(children: [
-                              Expanded(
-                                child:Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                    //box
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                            color: Colors.grey[100],
+                        borderRadius: BorderRadius.circular(9)),
+                        child: Row(children: [
+                          Expanded(
+                            child:Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'Medical Center ' ,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14,
+                                      color: Colors.black87
+                                  ),
+                                ),
+                                const SizedBox(height: 1),
+                                Text(
+                                  // 'MD.Amber Smith',
+                                  'Name: Dr.$_doctorName',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 11,
+                                  ),
+                                ),
+
+                                Text(
+                                  'Speciality: $_doctorSpeciality',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                                Text(
+                                  'SLMC Registration No: $_doctorSLMC',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 11,
+                                  ),
+                                ),
+
+                                const SizedBox(height: 10),
+
+                                Text(
+                                  // 'MD.Amber Smith',
+                                  'Patient Name: $_patientName',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                const SizedBox(height: 2),
+
+
+                                Text(
+                                  // 'MD.Amber Smith',
+                                  'Patient Email: $_patientEmail',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                const SizedBox(height: 2),
+
+                                Text(
+                                  // 'MD.Amber Smith',
+                                  'Patient Age: $_patientAge',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                  ),
+                                ),
+
+                                const SizedBox(height: 2),
+
+                                Text(
+                                  // 'MD.Amber Smith',
+                                  'Patient Address: $_patientAddress',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                  ),
+                                ),
+
+                                const SizedBox(height: 20),
+                                const Text(
+                                  '1st Medicine',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14,
+                                      color: Colors.black87
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+
+                                Column(
                                   children: [
-                                    const Text(
-                                      'Medical Center ' ,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 14,
-                                          color: Colors.black87
-                                      ),
-                                    ),
-                                    const SizedBox(height: 1),
-                                    Text(
-                                      // 'MD.Amber Smith',
-                                      'Name: Dr.$_doctorName',
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 11,
-                                      ),
-                                    ),
-
-                                    Text(
-                                      'Speciality: $_doctorSpeciality',
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 11,
-                                      ),
-                                    ),
-                                    Text(
-                                      'SLMC Registration No: $_doctorSLMC',
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 11,
-                                      ),
-                                    ),
-
-                                    const SizedBox(height: 10),
-
-                                    Text(
-                                      // 'MD.Amber Smith',
-                                      'Patient Name: $_patientName',
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 2),
-
-
-                                    Text(
-                                      // 'MD.Amber Smith',
-                                      'Patient Email: $_patientEmail',
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 2),
-
-                                    Text(
-                                      // 'MD.Amber Smith',
-                                      'Patient Age: $_patientAge',
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-
-                                    const SizedBox(height: 2),
-
-                                    Text(
-                                      // 'MD.Amber Smith',
-                                      'Patient Address: $_patientAddress',
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-
-                                    const SizedBox(height: 20),
-                                    const Text(
-                                      '1st Medicine',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 14,
-                                          color: Colors.black87
-                                      ),
-                                    ),
-                                    const SizedBox(height: 5),
-
-                                    Column(
+                                    Row(
                                       children: [
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: TextField(
-                                                controller: _medication1NameController,
-                                                decoration: const InputDecoration(
-                                                  labelText: 'Medicine Name',
-                                                  hintText: 'Enter the Name',
-                                                  border: OutlineInputBorder(),
-                                                  labelStyle: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 13,
-                                                  ),
-                                                ),
-                                                style: const TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 12,
-                                                ),
+                                        Expanded(
+                                          child: TextField(
+                                            controller: _medication1NameController,
+                                            decoration: const InputDecoration(
+                                              labelText: 'Medicine Name',
+                                              hintText: 'Enter the Name',
+                                              border: OutlineInputBorder(),
+                                              labelStyle: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 13,
                                               ),
                                             ),
-                                            SizedBox(width: 16), // Add some horizontal spacing between the two text fields
-
-                                            Expanded(
-                                              child: TextField(
-                                                controller: _dosage1Controller,
-                                                decoration: const InputDecoration(
-                                                  labelText: 'Dosage (mg)',
-                                                  hintText: 'Enter the Dosage',
-                                                  border: OutlineInputBorder(),
-                                                  labelStyle: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 13,
-                                                  ),
-                                                ),
-                                                keyboardType: TextInputType.number,
-                                                style: const TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 12,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        // Add more rows for additional medications and dosages as needed
-                                      ],
-                                    ),
-
-                                    const SizedBox(height: 5),
-                                    TextField(
-                                      controller: _moreDetails1Controller,
-                                      decoration: const InputDecoration(
-                                        labelText: 'More details',
-                                        hintText: 'Enter Additional Details',
-                                        border: OutlineInputBorder(),
-                                        labelStyle: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 13,
-                                        ),
-                                      ),
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 12,
-                                      ),
-                                    ),
-
-                                    const SizedBox(height: 15),
-                                    const Text(
-                                      '2nd Medicine',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 14,
-                                          color: Colors.black87
-                                      ),
-                                    ),
-                                    const SizedBox(height: 5),
-
-                                    Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: TextField(
-                                                controller: _medication2NameController,
-                                                decoration: const InputDecoration(
-                                                  labelText: 'Medicine Name',
-                                                  hintText: 'Enter the Name',
-                                                  border: OutlineInputBorder(),
-                                                  labelStyle: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 13,
-                                                  ),
-                                                ),
-                                                style: const TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 12,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(width: 16), // Add some horizontal spacing between the two text fields
-
-                                            Expanded(
-                                              child: TextField(
-                                                controller: _dosage2Controller,
-                                                decoration: const InputDecoration(
-                                                  labelText: 'Dosage (mg)',
-                                                  hintText: 'Enter the Dosage',
-                                                  border: OutlineInputBorder(),
-                                                  labelStyle: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 13,
-                                                  ),
-                                                ),
-                                                keyboardType: TextInputType.number,
-                                                style: const TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 12,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        // Add more rows for additional medications and dosages as needed
-                                      ],
-                                    ),
-
-                                    const SizedBox(height: 5),
-                                    TextField(
-                                      controller: _moreDetails2Controller,
-                                      decoration: const InputDecoration(
-                                        labelText: 'More details',
-                                        hintText: 'Enter Additional Details',
-                                        border: OutlineInputBorder(),
-                                        labelStyle: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 13,
-                                        ),
-                                      ),
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 12,
-                                      ),
-                                    ),
-
-                                    const SizedBox(height: 15),
-                                    const Text(
-                                      '3rd Medicine',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 14,
-                                          color: Colors.black87
-                                      ),
-                                    ),
-                                    const SizedBox(height: 5),
-
-                                    Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: TextField(
-                                                controller: _medication3NameController,
-                                                decoration: const InputDecoration(
-                                                  labelText: 'Medicine Name',
-                                                  hintText: 'Enter the Name',
-                                                  border: OutlineInputBorder(),
-                                                  labelStyle: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 13,
-                                                  ),
-                                                ),
-                                                style: const TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 12,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(width: 16), // Add some horizontal spacing between the two text fields
-
-                                            Expanded(
-                                              child: TextField(
-                                                controller: _dosage3Controller,
-                                                decoration: const InputDecoration(
-                                                  labelText: 'Dosage (mg)',
-                                                  hintText: 'Enter the Dosage',
-                                                  border: OutlineInputBorder(),
-                                                  labelStyle: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 13,
-                                                  ),
-                                                ),
-                                                keyboardType: TextInputType.number,
-                                                style: const TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 12,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        // Add more rows for additional medications and dosages as needed
-                                      ],
-                                    ),
-
-                                    const SizedBox(height: 5),
-                                    TextField(
-                                      controller: _moreDetails3Controller,
-                                      decoration: const InputDecoration(
-                                        labelText: 'More details',
-                                        hintText: 'Enter Additional Details',
-                                        border: OutlineInputBorder(),
-                                        labelStyle: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 13,
-                                        ),
-                                      ),
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 12,
-                                      ),
-                                    ),
-
-                                    const SizedBox(height: 35),
-
-                                    TextField(
-                                      controller: _additionalController,
-                                      decoration:  const InputDecoration(
-                                          labelText: 'Additional Notes',
-                                        border: OutlineInputBorder(),
-                                        labelStyle: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 15,
-                                        ),
-                                      ),
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 11,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 15),
-
-
-                                    TextField(
-                                      controller: _instructionsController,
-                                      decoration:  const InputDecoration(
-                                          labelText: 'Instructions',
-                                        border: OutlineInputBorder(),
-                                        labelStyle: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 15,
-                                        ),
-                                      ),
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 11,
-                                      ),
-                                    ),
-
-                                    const SizedBox(height: 50,),
-
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 100),
-                                      child: Center(
-                                        child: InkWell(
-                                          onTap: () async {
-                                            await _submitForm();
-                                            // Navigator.push(
-                                            //   context,
-                                            //   MaterialPageRoute(
-                                            //     builder: (context) => const HomePageDoc(),
-                                            //   ),
-                                            // );
-                                          },
-                                          child: Container(
-                                            //padding: const EdgeInsets.only(left: 20,top: 20,right: 20,bottom: 20),
-                                            padding: const EdgeInsets.all(6),
-                                            width: 170,
-
-                                            decoration: BoxDecoration(
-                                              color: Colors.blueAccent,
-                                              borderRadius: BorderRadius.circular(8),
-                                            ),
-                                            child: const Center(
-                                              child: Text('Save and share',
-                                                  style: TextStyle(
-                                                      color: Colors.white, fontSize: 11)),
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 12,
                                             ),
                                           ),
                                         ),
-                                      ),
+                                        SizedBox(width: 16), // Add some horizontal spacing between the two text fields
+
+                                        Expanded(
+                                          child: TextField(
+                                            controller: _dosage1Controller,
+                                            decoration: const InputDecoration(
+                                              labelText: 'Dosage (mg)',
+                                              hintText: 'Enter the Dosage',
+                                              border: OutlineInputBorder(),
+                                              labelStyle: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                            keyboardType: TextInputType.number,
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
+                                    // Add more rows for additional medications and dosages as needed
                                   ],
                                 ),
-                              )
-                            ],),
-                          ),
-                        ),
+
+                                const SizedBox(height: 5),
+                                TextField(
+                                  controller: _moreDetails1Controller,
+                                  decoration: const InputDecoration(
+                                    labelText: 'More details',
+                                    hintText: 'Enter Additional Details',
+                                    border: OutlineInputBorder(),
+                                    labelStyle: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12,
+                                  ),
+                                ),
+
+                                const SizedBox(height: 15),
+                                const Text(
+                                  '2nd Medicine',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14,
+                                      color: Colors.black87
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+
+                                Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: TextField(
+                                            controller: _medication2NameController,
+                                            decoration: const InputDecoration(
+                                              labelText: 'Medicine Name',
+                                              hintText: 'Enter the Name',
+                                              border: OutlineInputBorder(),
+                                              labelStyle: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: 16), // Add some horizontal spacing between the two text fields
+
+                                        Expanded(
+                                          child: TextField(
+                                            controller: _dosage2Controller,
+                                            decoration: const InputDecoration(
+                                              labelText: 'Dosage (mg)',
+                                              hintText: 'Enter the Dosage',
+                                              border: OutlineInputBorder(),
+                                              labelStyle: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                            keyboardType: TextInputType.number,
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    // Add more rows for additional medications and dosages as needed
+                                  ],
+                                ),
+
+                                const SizedBox(height: 5),
+                                TextField(
+                                  controller: _moreDetails2Controller,
+                                  decoration: const InputDecoration(
+                                    labelText: 'More details',
+                                    hintText: 'Enter Additional Details',
+                                    border: OutlineInputBorder(),
+                                    labelStyle: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12,
+                                  ),
+                                ),
+
+                                const SizedBox(height: 15),
+                                const Text(
+                                  '3rd Medicine',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14,
+                                      color: Colors.black87
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+
+                                Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: TextField(
+                                            controller: _medication3NameController,
+                                            decoration: const InputDecoration(
+                                              labelText: 'Medicine Name',
+                                              hintText: 'Enter the Name',
+                                              border: OutlineInputBorder(),
+                                              labelStyle: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: 16), // Add some horizontal spacing between the two text fields
+
+                                        Expanded(
+                                          child: TextField(
+                                            controller: _dosage3Controller,
+                                            decoration: const InputDecoration(
+                                              labelText: 'Dosage (mg)',
+                                              hintText: 'Enter the Dosage',
+                                              border: OutlineInputBorder(),
+                                              labelStyle: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                            keyboardType: TextInputType.number,
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    // Add more rows for additional medications and dosages as needed
+                                  ],
+                                ),
+
+                                const SizedBox(height: 5),
+                                TextField(
+                                  controller: _moreDetails3Controller,
+                                  decoration: const InputDecoration(
+                                    labelText: 'More details',
+                                    hintText: 'Enter Additional Details',
+                                    border: OutlineInputBorder(),
+                                    labelStyle: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12,
+                                  ),
+                                ),
+
+                                const SizedBox(height: 35),
+
+                                TextField(
+                                  controller: _additionalController,
+                                  decoration:  const InputDecoration(
+                                      labelText: 'Additional Notes',
+                                    border: OutlineInputBorder(),
+                                    labelStyle: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                                const SizedBox(height: 15),
 
 
-                        const SizedBox(height: 25),
-                      ],
+                                TextField(
+                                  controller: _instructionsController,
+                                  decoration:  const InputDecoration(
+                                      labelText: 'Instructions',
+                                    border: OutlineInputBorder(),
+                                    labelStyle: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 11,
+                                  ),
+                                ),
+
+                                const SizedBox(height: 50,),
+
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 100),
+                                  child: Center(
+                                    child: InkWell(
+                                      onTap: () async {
+                                        await _submitForm();
+                                        // Navigator.push(
+                                        //   context,
+                                        //   MaterialPageRoute(
+                                        //     builder: (context) => const HomePageDoc(),
+                                        //   ),
+                                        // );
+                                      },
+                                      child: Container(
+                                        //padding: const EdgeInsets.only(left: 20,top: 20,right: 20,bottom: 20),
+                                        padding: const EdgeInsets.all(6),
+                                        width: 170,
+
+                                        decoration: BoxDecoration(
+                                          color: Colors.blueAccent,
+                                          borderRadius: BorderRadius.circular(8),
+                                        ),
+                                        child: const Center(
+                                          child: Text('Save and share',
+                                              style: TextStyle(
+                                                  color: Colors.white, fontSize: 11)),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],),
+                      ),
                     ),
 
 
-                  )
+                    const SizedBox(height: 25),
+                  ],
+                ),
+
+
               )
             ]
         ),
