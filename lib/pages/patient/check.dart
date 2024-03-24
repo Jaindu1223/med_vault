@@ -139,39 +139,6 @@ class PharmacySearchPage1 extends StatefulWidget {
 
 class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
   int _currentIndex = 1;
-  //
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     _currentIndex = index;
-  //   });
-
-    // switch (index) {
-    //   case 0:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => PharmacySearchPage1()),
-    //     );
-    //     break;
-    //   case 1:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => viewPrescription(email: widget.email)),
-    //     );
-    //     break;
-    //   case 2:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => MyQR(email: widget.email)),
-    //     );
-    //     break;
-    //   case 3:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => PatientProfile()),
-    //     );
-    //     break;
-    // }
-  //}
 
   TextEditingController medicineNameController = TextEditingController();
   String nearestPharmacyName = '';
@@ -501,33 +468,6 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
           }
         },
       ),
-
-      // bottomNavigationBar: BottomNavigationBar(
-      //   //backgroundColor: Colors.lightBlue, // Set background color here
-      //   unselectedItemColor: Colors.black, // Set icon color here
-      //   items: const <BottomNavigationBarItem>[
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.home),
-      //       label: 'Home Page',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.search_outlined),
-      //       label: 'Pharmacy Finder',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.qr_code),
-      //       label: 'My QR',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.settings),
-      //       label: 'Settings',
-      //     ),
-      //   ],
-      //   currentIndex: _selectedIndex,
-      //   selectedItemColor: Colors.blueAccent,
-      //   onTap: _onItemTapped,
-      // ),
-
 
     );
   }
