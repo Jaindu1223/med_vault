@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:med_vault/pages/patient/check.dart';
+import 'package:med_vault/pages/patient/home_page.dart';
+import 'package:med_vault/pages/patient/patient_profile.dart';
+import 'package:med_vault/pages/patient/view_prescription.dart';
 // import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:intl/intl.dart';
@@ -20,32 +24,32 @@ class _MyQRState extends State<MyQR> {
       _selectedIndex = index;
     });
 
-    // switch (index) {
-    //   case 0:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => PharmacySearchPage1()),
-    //     );
-    //     break;
-    //   case 1:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => viewPrescription(email: widget.email)),
-    //     );
-    //     break;
-    //   case 2:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => MyQR(email: widget.email)),
-    //     );
-    //     break;
-    //   case 3:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => PatientProfile()),
-    //     );
-    //     break;
-    // }
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage(email: widget.email)),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PharmacySearchPage1()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MyQR(email: widget.email)),
+        );
+        break;
+      case 3:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PatientProfile()),
+        );
+        break;
+    }
   }
 
   // String? userEmail; // Store user's email fetched from the backend  *****
