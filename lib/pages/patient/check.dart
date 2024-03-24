@@ -139,6 +139,7 @@ class PharmacySearchPage1 extends StatefulWidget {
 
 class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
   int _currentIndex = 1;
+  int _currenIndexD = 1;
 
   TextEditingController medicineNameController = TextEditingController();
   String nearestPharmacyName = '';
@@ -443,6 +444,7 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
           ],
         ),
       ]),
+
 
       bottomNavigationBar: CustomBottomNavigationBar(
         currentIndex: _currentIndex,

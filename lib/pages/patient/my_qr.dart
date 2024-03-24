@@ -19,7 +19,6 @@ class MyQR extends StatefulWidget {
 }
 
 class _MyQRState extends State<MyQR> {
-  int _selectedIndex = 0;
   int _currentIndex = 2;
 
   // void _onItemTapped(int index) {

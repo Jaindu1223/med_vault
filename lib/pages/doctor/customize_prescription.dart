@@ -197,7 +197,7 @@ class _DocPrescriptionState extends State<DocPrescription> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const HomePageDoc(docemail: '',)));
+                                            const HomePageDoc(email: '',docemail: '',)));
                               },
                               child: Container(
                                 //padding: const EdgeInsets.only(left: 20,top: 20,right: 20,bottom: 20),
@@ -248,6 +248,9 @@ class _DocPrescriptionState extends State<DocPrescription> {
           //doctor list
         ],
       ),
-    ]));
+    ])
+
+
+    );
   }
 }
