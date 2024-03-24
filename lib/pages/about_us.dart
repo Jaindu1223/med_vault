@@ -1,25 +1,12 @@
 import 'package:flutter/material.dart';
 
-class AboutUs extends StatelessWidget {
+class AboutUsPage extends StatelessWidget {
+  const AboutUsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('About Us'),
+        title: const Text('About Us'),
+        backgroundColor: Colors.deepPurple,
       ),
-      body: Column(
-        children: [
-          CircleAvatar(
-            radius: 50,
-            backgroundImage: AssetImage('images/aboutus/thihansa.jpg'),
-          ),
-          SizedBox(height: 16),
-          Text(
-            'Thihansa Akmeemana',
-            style: TextStyle(fontSize: 18),
-          ),
-        ],
-      ),
-    );
-  }
-}
