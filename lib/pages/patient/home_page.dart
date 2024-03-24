@@ -405,33 +405,37 @@ class _HomePageState extends State<HomePage> {
         ),
     ]),
 
-
-      bottomNavigationBar: BottomNavigationBar(
-        //backgroundColor: Colors.lightBlue, // Set background color here
-        unselectedItemColor: Colors.black, // Set icon color here
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home Page',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search_outlined),
-            label: 'Pharmacy Finder',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.qr_code),
-            label: 'My QR',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
+      bottomNavigationBar: CustomBottomNavigationBar(
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blueAccent,
         onTap: _onItemTapped,
       ),
-
+      //
+      // bottomNavigationBar: BottomNavigationBar(
+      //   //backgroundColor: Colors.lightBlue, // Set background color here
+      //   unselectedItemColor: Colors.black, // Set icon color here
+      //   items: const <BottomNavigationBarItem>[
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.home),
+      //       label: 'Home Page',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.search_outlined),
+      //       label: 'Pharmacy Finder',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.qr_code),
+      //       label: 'My QR',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.settings),
+      //       label: 'Settings',
+      //     ),
+      //   ],
+      //   currentIndex: _selectedIndex,
+      //   selectedItemColor: Colors.blueAccent,
+      //   onTap: _onItemTapped,
+      // ),
+      //
 
 
     );
