@@ -1,4 +1,7 @@
 
+import 'package:med_vault/pages/catergory.dart';
+import 'package:med_vault/pages/patient/sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter/material.dart';
 import 'package:med_vault/pages/patient/check.dart';
@@ -70,6 +73,15 @@ class _SettingsPageState extends State<SettingsPage> {
               // Handle security section tap
             },
           ),
+          _buildSettingsSection(
+            title: 'Logout',
+            icon: Icons.logout,
+            onTap: () {
+              // Handle logout section tap
+              _logout();
+            },
+          ),
+
         ],
       ),
       bottomNavigationBar: CustomBottomNavigationBar(
@@ -126,6 +138,18 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
         ),
       ),
+    );
+
+  }
+  void _logout() {
+    SharedPreferences.getInstance().then((prefs) {
+      prefs.remove('email'); // Remove email from SharedPreferences
+    });
+
+    // Navigate back to the login page
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => Category()),
+          (Route<dynamic> route) => false,
     );
   }
 }

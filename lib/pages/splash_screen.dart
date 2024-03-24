@@ -40,7 +40,6 @@ class _SplashScreenState extends State<SplashScreen> {
             right: 10,
             child: Container(
               padding: const EdgeInsets.all(8.0),
-
               child: const Text(
                 'MedVault',
                 style: TextStyle(

@@ -380,7 +380,7 @@ class _QrScanState extends State<QrScan> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Center(
-                        child: Text('New Prescription',
+                        child: Text('New Prescription ',
                             style:
                                 TextStyle(color: Colors.white, fontSize: 11)),
                       ),

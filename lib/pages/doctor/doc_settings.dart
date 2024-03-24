@@ -9,6 +9,9 @@ import 'package:med_vault/pages/patient/check.dart';
 import 'package:med_vault/pages/patient/home_page.dart';
 import 'package:med_vault/pages/patient/my_qr.dart';
 import 'package:med_vault/pages/patient/navigation_components.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../catergory.dart';
 
 class docSettingsPage extends StatefulWidget {
   final String email;
@@ -75,6 +78,14 @@ class _docSettingsPageState extends State<docSettingsPage> {
               // Handle security section tap
             },
           ),
+          _buildSettingsSection(
+            title: 'Logout',
+            icon: Icons.logout,
+            onTap: () {
+              // Handle logout section tap
+              _logout();
+            },
+          ),
         ],
       ),
       bottomNavigationBar: CustomBottomNavigationBar2(
@@ -139,6 +150,17 @@ class _docSettingsPageState extends State<docSettingsPage> {
           ),
         ),
       ),
+    );
+  }
+  void _logout() {
+    SharedPreferences.getInstance().then((prefs) {
+      prefs.remove('email'); // Remove email from SharedPreferences
+    });
+
+    // Navigate back to the login page
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => Category()),
+          (Route<dynamic> route) => false,
     );
   }
 }
