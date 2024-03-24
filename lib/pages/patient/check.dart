@@ -280,9 +280,7 @@ class _PharmacySearchPage1State extends State<PharmacySearchPage1> {
     String formattedTime = DateFormat.jm().format(now); // Format: 3:21:59 PM
 
     return Scaffold(
-      //appBar: AppBar(
-      //title: Text('Pharmacy Search'),
-      //),
+      resizeToAvoidBottomInset: false, // Prevents resizing when the keyboard is displayed
       body: Stack(
           children: [
         Container(

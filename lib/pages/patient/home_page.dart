@@ -233,9 +233,9 @@ class _HomePageState extends State<HomePage> {
                           ),
                           const SizedBox(height: 17),
                           InkWell(
-                            //onTap: (){
-                              //Navigator.push(context, MaterialPageRoute(builder: (context)=> PharmacySearchPage1()));
-                            //},
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> PharmacySearchPage1(email: widget.email)));
+                            },
                             child: Container(
                               padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(

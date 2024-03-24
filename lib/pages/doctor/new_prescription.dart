@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:med_vault/pages/doctor/home_pageD.dart';
@@ -336,13 +337,15 @@ class _NewPrescriptionState extends State<NewPrescription> {
                               ),
                               const SizedBox(width: 46,),
 
-                              SizedBox(
-                                height: 140,
-                                width: 100,
-                                child: Image.asset(
-                                  'lib/images/doctor.png',),
-
-                                //color: Colors.limeAccent,
+                              Expanded(
+                                child: SizedBox(
+                                  height: 140,
+                                  width: 100,
+                                  child: Image.asset(
+                                    'lib/images/doctor.png',),
+                                
+                                  //color: Colors.limeAccent,
+                                ),
                               ),
 
 
