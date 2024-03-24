@@ -148,7 +148,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
                 content: Text(
-                    "An error occurred while processing your request." /* 'Error ${response.statusCode}: ${response.reasonPhrase}' */)),
+                    "An error occurred while processing your request." )),
           );
         }
       } catch (e) {
@@ -185,6 +185,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           fontSize: 34.0, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 30.0),
+
                     CustomTextFormField(
                       lable: "Full Name",
                       controller: _nameController,
@@ -193,6 +194,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       errorMessage: "This field is required",
                     ),
                     const SizedBox(height: 20.0),
+
                     CustomTextFormField(
                       lable: "Date of Birth",
                       controller: _birthdateController,
@@ -201,6 +203,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       errorMessage: "This field is required",
                     ),
                     const SizedBox(height: 20.0),
+
                     CustomTextFormField(
                       lable: "Address",
                       controller: _addressController,
@@ -209,6 +212,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       errorMessage: "This field is required",
                     ),
                     const SizedBox(height: 20.0),
+
                     CustomTextFormField(
                       lable: "Email Address",
                       controller: _emailController,
@@ -217,6 +221,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       errorMessage: "This field is required",
                     ),
                     const SizedBox(height: 20.0),
+
                     CustomTextFormField(
                       lable: "Contact Number",
                       controller: _phoneNumberController,
@@ -231,6 +236,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         TelephoneInputFormatter(),
                       ],
                     ),
+
                     CustomTextFormField(
                       lable: "NIC",
                       controller: _nicController,
@@ -239,6 +245,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       errorMessage: "This field is required",
                     ),
                     const SizedBox(height: 20.0),
+
                     CustomTextFormField(
                       lable: "Password",
                       controller: _passwordController,
@@ -248,6 +255,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       errorMessage: "This field is required",
                     ),
                     const SizedBox(height: 20.0),
+
                     CustomTextFormField(
                       lable: "Confirm Password",
                       controller: _confirmPasswordController,
@@ -257,6 +265,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       errorMessage: "This field is required",
                     ),
                     const SizedBox(height: 30.0),
+
                     Padding(
                       padding: const EdgeInsets.only(right: 200),
                       child: ElevatedButton(
