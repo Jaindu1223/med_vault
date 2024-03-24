@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:med_vault/pages/patient/check.dart';
 // import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:med_vault/pages/patient/my_qr.dart';
+import 'package:med_vault/pages/patient/navigation_components.dart';
 import 'package:med_vault/pages/patient/patient_profile.dart';
 import 'package:med_vault/pages/patient/pharmacy_spotter.dart';
 import 'package:med_vault/pages/patient/settings.dart';
@@ -29,30 +30,45 @@ class _HomePageState extends State<HomePage> {
 
     switch (index) {
       case 0:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage(email:widget.email)),
-        );
+        NavigationService.navigateTo(HomePage(email: widget.email), context);
         break;
       case 1:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => PharmacySearchPage1()),
-        );
+        NavigationService.navigateTo(PharmacySearchPage1(), context);
         break;
       case 2:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => MyQR(email: widget.email)),
-        );
+        NavigationService.navigateTo(MyQR(email: widget.email), context);
         break;
       case 3:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => SettingsPage()),
-        );
+        NavigationService.navigateTo(SettingsPage(), context);
         break;
     }
+    //
+    // switch (index) {
+    //   case 0:
+    //     Navigator.push(
+    //       context,
+    //       MaterialPageRoute(builder: (context) => HomePage(email:widget.email)),
+    //     );
+    //     break;
+    //   case 1:
+    //     Navigator.push(
+    //       context,
+    //       MaterialPageRoute(builder: (context) => PharmacySearchPage1()),
+    //     );
+    //     break;
+    //   case 2:
+    //     Navigator.push(
+    //       context,
+    //       MaterialPageRoute(builder: (context) => MyQR(email: widget.email)),
+    //     );
+    //     break;
+    //   case 3:
+    //     Navigator.push(
+    //       context,
+    //       MaterialPageRoute(builder: (context) => SettingsPage()),
+    //     );
+    //     break;
+    // }
   }
 
 
