@@ -85,3 +85,47 @@ class AboutUsPage extends StatelessWidget {
   }
 }
 
+class TeamMember extends StatelessWidget {
+  final String name;
+  final String levelOfStudy;
+  final String image;
+
+  const TeamMember({
+    super.key,
+    required this.name,
+    required this.levelOfStudy,
+    required this.image,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 50.0,
+            backgroundImage: AssetImage(image),
+          ),
+          const SizedBox(height: 10.0),
+          Text(
+            name,
+            style: const TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 5.0),
+          Text(
+            levelOfStudy,
+            style: const TextStyle(
+              fontSize: 14.0,
+              fontStyle: FontStyle.italic,
+              color: Colors.grey,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
