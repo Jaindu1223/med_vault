@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       //debugShowPerformanceOverlay: true,
 
-      home: AboutUsPage(),
+      home: SplashScreen(),
     );
     // Add the performance overlay flag here
     return Scaffold(
