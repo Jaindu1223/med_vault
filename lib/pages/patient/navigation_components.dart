@@ -21,13 +21,19 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      //backgroundColor: Colors.lightBlue, // Set background color here
-      unselectedItemColor: Colors.black, // Set icon color here
-      items: const <BottomNavigationBarItem>[
+    return ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.0),
+          topRight: Radius.circular(20.0),
+        ),
+        child: BottomNavigationBar(
+          //backgroundColor: Colors.lightBlue, // Set background color here
+          unselectedItemColor: Colors.black,
+          selectedItemColor: Colors.blueAccent,// Set icon color here
+          items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
-          label: 'Home Page',
+          label: 'Home',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.local_hospital_sharp),
@@ -43,8 +49,12 @@ class CustomBottomNavigationBar extends StatelessWidget {
         ),
       ],
       currentIndex: currentIndex,
-      selectedItemColor: Colors.blueAccent,
+      selectedFontSize: 14, // Adjust the font size for the selected icon
+      unselectedFontSize: 12,
+
+      // selectedItemColor: Colors.blueAccent,
       onTap: onTap,
+    ),
     );
   }
 }

@@ -1,249 +1,22 @@
-/*
-
-import 'package:flutter/material.dart';
-import 'package:med_vault/pages/doctor/new_prescription.dart';
-import 'package:med_vault/pages/doctor/patient_history.dart';
-import 'package:med_vault/pages/patient/medical_record.dart';
-
-class QrScan extends StatefulWidget {
-  const QrScan({super.key});
-
-  @override
-  State<QrScan> createState() => _QrScanState();
-}
-
-class _QrScanState extends State<QrScan> {
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      //backgroundColor: Colors.blue[100],
-        body: Stack(
-            children:[
-              Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                        'lib/images/6 Pharmacy locater-2.png'),
-                    fit: BoxFit.cover,
-                    //height: double.infinity,
-                    //width: double.infinity,
-                  ),
-                ),
-              ),
-
-              Column(
-                children: [
-
-                  Container(
-                    padding: const EdgeInsets.only(left: 20,top: 30, right: 3, bottom: 7),
-                    child: Row(children: [
-
-                      const SizedBox(width: 6,height: 190,),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-
-                        children: [
-                          const Text(
-                            'Digital ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 20,
-                              color: Colors.white,
-                            ),
-                          ),
-                          const Text(
-                            'Prescription',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 29,
-                              color: Colors.white,
-                            ),
-
-                          ),
-                          SizedBox(
-                            height: 40,
-                            width: 20,
-                            child: Image.asset(
-                                'lib/images/Group 2085662530.png'),
-
-                            //color: Colors.limeAccent,
-                          ),
-                          const SizedBox(height: 1),
-                          const Text(
-                            'Monday 23rd, July, 2060',
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.white,
-                            ),
-                          ),
-                          const SizedBox(height: 2),
-                          const Text(
-                            '3:21:59pm',
-                            style: TextStyle(
-                              fontSize: 10,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(width: 86,),
-
-
-
-                      SizedBox(
-                        height: 140,
-                        width: 100,
-                        child: Image.asset(
-                          'lib/images/qr.png',),
-
-                        //color: Colors.limeAccent,
-                      ),
-
-
-                    ],),
-                  ),
-
-                  //search bar
-
-                  //categories(horizontal list)
-                  const SizedBox(height: 25),
-
-                  //box
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                    child: Container(
-
-                      padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(9)),
-                      child: Row(children: [
-
-                        //const SizedBox(height: 35,width: 10,),
-
-                        Expanded(
-                          child:Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-
-                              const Text(
-                                'Scanning....',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 14,
-                                    color: Colors.black87
-                                ),
-                              ),
-                              const Text(
-                                '<<Display Qr>> ',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 11,
-                                ),
-                              ),
-                              const SizedBox(height: 330,),
-
-                              const SizedBox(height: 17),
-
-                              Padding(
-                                padding: const EdgeInsets.only(left: 100),
-                                child: Center(
-                                  child: InkWell(
-                                    onTap: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const PatientHistory()));
-                                    },
-
-                                    child: Container(
-
-                                      //padding: const EdgeInsets.only(left: 20,top: 20,right: 20,bottom: 20),
-                                      padding: const EdgeInsets.all(7),
-                                      width: 170,
-
-
-                                      decoration: BoxDecoration(
-                                        color: Colors.blueAccent,
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: const Center(
-                                        child: Text(
-                                            "Patient's History",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 11)
-
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 5),
-
-                              Padding(
-                                padding: const EdgeInsets.only(left: 100),
-                                child: Center(
-                                  child: InkWell(
-                                    onTap: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const NewPrescription()));
-                                    },
-
-                                    child: Container(
-
-                                      //padding: const EdgeInsets.only(left: 20,top: 20,right: 20,bottom: 20),
-                                      padding: const EdgeInsets.all(6),
-                                      width: 170,
-
-
-                                      decoration: BoxDecoration(
-                                        color: Colors.blueAccent,
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: const Center(
-                                        child: Text(
-                                            'New Prescription',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 11)
-
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-
-                            ],
-                          ),
-                        )
-                      ],),
-                    ),
-                  ),
-
-                  const SizedBox(height: 25),
-
-
-                  //doctor list
-
-                ],
-              ),
-
-
-            ])
-    );
-  }
-}
-
-*/
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:med_vault/pages/doctor/doc_pharmacy_spotter.dart';
+import 'package:med_vault/pages/doctor/home_pageD.dart';
+import 'package:med_vault/pages/doctor/navigation_components_doc.dart';
 import 'package:med_vault/pages/doctor/new_prescription.dart';
+import 'package:med_vault/pages/patient/check.dart';
+import 'package:med_vault/pages/patient/settings.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../patient/view_prescription.dart';
+import 'doc_settings.dart';
+import 'doc_view_prescription.dart';
 
 class QrScan extends StatefulWidget {
   final String email;
-  const QrScan({Key? key, required this.email}):super(key:key);
+  final String docemail;
+  const QrScan({Key? key, required this.email,required this.docemail}) : super(key: key);
 
 
   @override
@@ -251,6 +24,8 @@ class QrScan extends StatefulWidget {
 }
 
 class _QrScanState extends State<QrScan> {
+  int _currentIndexD = 2;
+
   final GlobalKey qrKey = GlobalKey(debugLabel: "QR");
   QRViewController? controller;
   String result = "";
@@ -276,9 +51,11 @@ class _QrScanState extends State<QrScan> {
 
   @override
   Widget build(BuildContext context) {
+    Color customBackgroundColor = Color(int.parse('0xFFE3E4E4'));
     return Scaffold(
+      backgroundColor: customBackgroundColor,
       appBar: AppBar(
-        title: const Text("QR code scanner "),
+        title: const Text("Scan the QR Code "),
       ),
       body: Column(
         children: [
@@ -326,7 +103,7 @@ class _QrScanState extends State<QrScan> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(builder:
-                              (context)=>viewPrescription(email: widget.email)));
+                              (context)=>docViewPrescription(email: result,docemail: widget.docemail)));
                     },
 
                     child: Container(
@@ -357,7 +134,7 @@ class _QrScanState extends State<QrScan> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => NewPrescription(email: result, docemail: widget.email,),
+                          builder: (context) => NewPrescription(email: result, docemail: widget.docemail,),
                         ),
                       );
 
@@ -371,7 +148,7 @@ class _QrScanState extends State<QrScan> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Center(
-                        child: Text('New Prescription',
+                        child: Text('New Prescription ',
                             style:
                                 TextStyle(color: Colors.white, fontSize: 11)),
                       ),
@@ -383,6 +160,40 @@ class _QrScanState extends State<QrScan> {
           ),
         ],
       ),
+
+      bottomNavigationBar: CustomBottomNavigationBar2(
+        currentIndexD: _currentIndexD, // Pass the currentIndexD
+        onTap: (index) {
+          setState(() {
+            _currentIndexD = index; // Update currentIndexD when tapped
+          });
+
+          // Handle navigation based on the index
+          switch (index) {
+            case 0:
+              NavigationServiceDoc.navigateTo(
+                  HomePageDoc(email: widget.email, docemail: widget.docemail),
+                  context);
+              break;
+            case 1:
+              NavigationServiceDoc.navigateTo(
+                  PharmacySearchPage2(email: widget.email, docemail: widget.docemail),
+                  context);
+              break;
+            case 2:
+              NavigationServiceDoc.navigateTo(
+                  QrScan(email: widget.email,docemail: widget.docemail),
+                  context); // Already on QrScan page, no need to navigate
+              break;
+            case 3:
+              NavigationServiceDoc.navigateTo(
+                  docSettingsPage(email: widget.email, docemail: widget.docemail),
+                  context);
+              break;
+          }
+        },
+      ),
+
     );
   }
 }

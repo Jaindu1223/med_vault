@@ -3,12 +3,18 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:med_vault/pages/doctor/home_pageD.dart';
+import 'package:med_vault/pages/patient/check.dart';
+import 'package:med_vault/pages/patient/home_page.dart';
 import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:http/http.dart' as http;
+import 'package:med_vault/pages/patient/my_qr.dart';
+import 'package:med_vault/pages/patient/navigation_components.dart';
 import 'package:med_vault/pages/patient/pharmacy_spotter.dart';
 import 'package:med_vault/pages/patient/prescribed_pharmacy_spotter.dart';
+import 'package:med_vault/pages/patient/settings.dart';
 
 class viewPrescription extends StatefulWidget {
 
@@ -21,12 +27,12 @@ class viewPrescription extends StatefulWidget {
 }
 
 class _viewPrescriptionState extends State<viewPrescription> {
-  int _selectedIndex = 0;
+  int _currentIndex = 1;
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  // void _onItemTapped(int index) {
+  //   setState(() {
+  //     _selectedIndex = index;
+  //   });
 
     // switch (index) {
     //   case 0:
@@ -54,7 +60,7 @@ class _viewPrescriptionState extends State<viewPrescription> {
     //     );
     //     break;
     // }
-  }
+  // }
 
 
   final _emailController = TextEditingController();
@@ -206,7 +212,7 @@ class _viewPrescriptionState extends State<viewPrescription> {
                     child:Column(
                       children: [
                         Container(
-                          padding: const EdgeInsets.only(left: 20,top: 30, right: 3, bottom: 7),
+                          padding: const EdgeInsets.only(left: 20,top: 18, right: 3, bottom: 7),
                           child: Row(
                             children: [
                               const SizedBox(width: 6,),
@@ -257,15 +263,17 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                   ),
                                 ],
                               ),
-                              const SizedBox(width: 46,),
+                              const SizedBox(width: 26,),
 
-                              SizedBox(
-                                height: 140,
-                                width: 100,
-                                child: Image.asset(
-                                  'lib/images/doctor.png',),
+                              Expanded(
+                                child: SizedBox(
+                                  height: 94,
 
-                                //color: Colors.limeAccent,
+                                  child: Image.asset(
+                                    'lib/images/medical-report-5817916_1920.png'),
+
+                                  //color: Colors.limeAccent,
+                                ),
                               ),
                             ],
                           ),
@@ -274,11 +282,11 @@ class _viewPrescriptionState extends State<viewPrescription> {
                         //search bar
 
                         //categories(horizontal list)
-                        const SizedBox(height: 25),
+                        const SizedBox(height: 40),
 
                         //box
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 25.0),
                           child: Container(
                             padding: const EdgeInsets.all(20),
                             decoration: BoxDecoration(
@@ -289,9 +297,7 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                 child:Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-
-                                   Center(
-                                   child: ElevatedButton(
+                                    ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.lightBlue,
                                         shape: RoundedRectangleBorder(
@@ -306,7 +312,6 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                         style: TextStyle(
                                             color: Colors.white),),
                                     ),
-                                   ),
                                     SizedBox(height: 16.0),
 
                                     const SizedBox(height: 1),
@@ -337,7 +342,7 @@ class _viewPrescriptionState extends State<viewPrescription> {
 
                                     Text(
                                       'Age: $age',
-                                      style: TextStyle(fontSize: 14.0),
+                                      style: TextStyle(fontSize: 13.0),
                                     ),
 
 
@@ -345,13 +350,13 @@ class _viewPrescriptionState extends State<viewPrescription> {
 
                                     Text(
                                       'Patient Name: $patientName',
-                                      style: TextStyle(fontSize: 14.0,),
+                                      style: TextStyle(fontSize: 13.0,),
                                     ),
 
                                     const SizedBox(height: 2),
                                     Text(
                                       'Address: $address',
-                                      style: TextStyle(fontSize: 14.0),
+                                      style: TextStyle(fontSize: 13.0),
                                     ),
 
                                     const Text('-----------------------------------------------------------------'),
@@ -827,31 +832,57 @@ class _viewPrescriptionState extends State<viewPrescription> {
               )
             ]
         ),
-      bottomNavigationBar: BottomNavigationBar(
-      //backgroundColor: Colors.lightBlue, // Set background color here
-      unselectedItemColor: Colors.black, // Set icon color here
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home Page',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.search_outlined),
-          label: 'Pharmacy Finder',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.qr_code),
-          label: 'My QR',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: 'Settings',
-        ),
-      ],
-      currentIndex: _selectedIndex,
-      selectedItemColor: Colors.blueAccent,
-      onTap: _onItemTapped,
-    ),
+
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+
+          // Handle navigation based on the index
+          switch (index) {
+            case 0:
+              NavigationService.navigateTo(HomePage(email: widget.email), context);
+              break;
+            case 1:
+              NavigationService.navigateTo(PharmacySearchPage1(email: widget.email), context);
+              break;
+            case 2:
+              NavigationService.navigateTo(MyQR(email: widget.email), context);
+              break;
+            case 3:
+              NavigationService.navigateTo(SettingsPage(email: widget.email), context);
+              break;
+          }
+        },
+      ),
+
+    //   bottomNavigationBar: BottomNavigationBar(
+    //   //backgroundColor: Colors.lightBlue, // Set background color here
+    //   unselectedItemColor: Colors.black, // Set icon color here
+    //   items: const <BottomNavigationBarItem>[
+    //     BottomNavigationBarItem(
+    //       icon: Icon(Icons.home),
+    //       label: 'Home Page',
+    //     ),
+    //     BottomNavigationBarItem(
+    //       icon: Icon(Icons.search_outlined),
+    //       label: 'Pharmacy Finder',
+    //     ),
+    //     BottomNavigationBarItem(
+    //       icon: Icon(Icons.qr_code),
+    //       label: 'My QR',
+    //     ),
+    //     BottomNavigationBarItem(
+    //       icon: Icon(Icons.settings),
+    //       label: 'Settings',
+    //     ),
+    //   ],
+    //   currentIndex: _selectedIndex,
+    //   selectedItemColor: Colors.blueAccent,
+    //   onTap: _onItemTapped,
+    // ),
     );
 
   }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:med_vault/pages/patient/check.dart';
 import 'package:med_vault/pages/patient/home_page.dart';
@@ -19,43 +20,8 @@ class MyQR extends StatefulWidget {
 }
 
 class _MyQRState extends State<MyQR> {
-  int _selectedIndex = 0;
   int _currentIndex = 2;
 
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     _selectedIndex = index;
-  //   });
-  //
-  //   switch (index) {
-  //     case 0:
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(builder: (context) => HomePage(email: widget.email)),
-  //       );
-  //       break;
-  //     case 1:
-  //       Navigator.push(
-  //        context,
-  //         MaterialPageRoute(builder: (context) => PharmacySearchPage1(email: widget.email)),
-  //      );
-  //       break;
-  //     case 2:
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(builder: (context) => MyQR(email: widget.email)),
-  //       );
-  //       break;
-  //     case 3:
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(builder: (context) => PatientProfile()),
-  //       );
-  //       break;
-  //   }
-  // }
-
-  // String? userEmail; // Store user's email fetched from the backend  *****
   final TextEditingController _textController = TextEditingController(text: '');
 
   String data = '';
@@ -72,27 +38,25 @@ class _MyQRState extends State<MyQR> {
     Color customBackgroundColor = Color(int.parse('0xFFE3E4E4'));
     return Scaffold(
       backgroundColor: customBackgroundColor,
-        //backgroundColor: Colors.grey,
-        body: Stack(
-          children: [
-            Container(
-              //padding: const EdgeInsets.only(left: 20,top: 30, right: 3, bottom: 30),
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                      'lib/images/Rectangle 42126.png'),
-                  alignment: Alignment.topCenter,
-
-                  fit: BoxFit.fitWidth,
-                ),
+      //backgroundColor: Colors.grey,
+      body: Stack(
+        children: [
+          Container(
+            //padding: const EdgeInsets.only(left: 20,top: 30, right: 3, bottom: 30),
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('lib/images/Rectangle 42126.png'),
+                alignment: Alignment.topCenter,
+                fit: BoxFit.fitWidth,
               ),
-
             ),
-            Column(
+          ),
+          SingleChildScrollView(
+            child: Column(
               children: [
                 Container(
                   padding: const EdgeInsets.only(
-                      left: 20, top: 30, right: 3, bottom: 7),
+                      left: 20, top: 20, right: 3, bottom: 7),
                   child: Row(
                     children: [
                       const SizedBox(
@@ -106,17 +70,15 @@ class _MyQRState extends State<MyQR> {
                             'My QR',
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              fontSize: 29,
+                              fontSize: 27,
                               color: Colors.white,
                             ),
                           ),
-
                           SizedBox(
                             height: 60,
                             width: 20,
-                            child: Image.asset(
-                                'lib/images/Group 2085662530.png'),
-
+                            child:
+                                Image.asset('lib/images/Group 2085662530.png'),
                           ),
                           const SizedBox(height: 1),
                           Text(
@@ -141,67 +103,15 @@ class _MyQRState extends State<MyQR> {
                       ),
                       SizedBox(
                         height: 120,
-                        width: 70,
+                        width: 90,
                         child: Image.asset(
-                          'lib/images/qr-code-blue.png',
+                          'lib/images/qr-code-156717_1920.png',
                         ),
                       ),
                     ],
                   ),
                 ),
-
-                const SizedBox(height: 25),
-
-                const Padding(
-                  padding: EdgeInsets.only(left: 16.0, right: 16.0),
-                  // child: TextField(
-                  //   controller: _textController,
-                  //   decoration: const InputDecoration(
-                  //     contentPadding: EdgeInsets.all(10),
-                  //     labelText: 'Enter Text',
-                  //     labelStyle: TextStyle(color: Colors.white),
-                  //     focusedBorder: OutlineInputBorder(
-                  //       borderSide: BorderSide(
-                  //           color: Color.fromARGB(255, 0, 146, 20), width: 2.0),
-                  //     ),
-                  //     enabledBorder: OutlineInputBorder(
-                  //       borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                  //     ),
-                  //   ),
-                  // ),
-                ),
-
-                const SizedBox(
-                  height: 15,
-                ),
-
-                // RawMaterialButton(
-                //
-                //
-                //   onPressed: () {
-                //     setState(() {
-                //       // _textController.text = widget.email;
-                //       data = widget.email;
-                //     });
-                //   },
-                //
-                //   fillColor: Colors.cyan,
-                //   shape: const StadiumBorder(),
-                //   padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
-                //   child: const Text(
-                //
-                //     'generate',
-                //
-                //     // 'Generate',
-                //
-                //     style: TextStyle(
-                //       color: Colors.white,
-                //       fontSize: 18,
-                //     ),
-                //   ),
-                // ),
-                // const SizedBox(height: 25,),
-
+                const SizedBox(height: 75),
                 Center(
                     child: RepaintBoundary(
                   key: _qrkey,
@@ -222,8 +132,9 @@ class _MyQRState extends State<MyQR> {
                 )),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
       bottomNavigationBar: CustomBottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {
@@ -234,48 +145,23 @@ class _MyQRState extends State<MyQR> {
           // Handle navigation based on the index
           switch (index) {
             case 0:
-              NavigationService.navigateTo(HomePage(email: widget.email), context);
+              NavigationService.navigateTo(
+                  HomePage(email: widget.email), context);
               break;
             case 1:
-              NavigationService.navigateTo(PharmacySearchPage1(email: widget.email), context);
+              NavigationService.navigateTo(
+                  PharmacySearchPage1(email: widget.email), context);
               break;
             case 2:
               NavigationService.navigateTo(MyQR(email: widget.email), context);
               break;
             case 3:
-              NavigationService.navigateTo(SettingsPage(email: widget.email), context);
+              NavigationService.navigateTo(
+                  SettingsPage(email: widget.email), context);
               break;
           }
         },
       ),
-
-    //   bottomNavigationBar: BottomNavigationBar(
-    //   //backgroundColor: Colors.lightBlue, // Set background color here
-    //   unselectedItemColor: Colors.black, // Set icon color here
-    //   items: const <BottomNavigationBarItem>[
-    //     BottomNavigationBarItem(
-    //       icon: Icon(Icons.home),
-    //       label: 'Home Page',
-    //     ),
-    //     BottomNavigationBarItem(
-    //       icon: Icon(Icons.search_outlined),
-    //       label: 'Pharmacy Finder',
-    //     ),
-    //     BottomNavigationBarItem(
-    //       icon: Icon(Icons.qr_code),
-    //       label: 'My QR',
-    //     ),
-    //     BottomNavigationBarItem(
-    //       icon: Icon(Icons.settings),
-    //       label: 'Settings',
-    //     ),
-    //   ],
-    //   currentIndex: _selectedIndex,
-    //   selectedItemColor: Colors.blueAccent,
-    //   onTap: _onItemTapped,
-    // ),
-
-
     );
   }
 }

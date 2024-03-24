@@ -1,16 +1,21 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:med_vault/pages/doctor/new_prescription.dart';
-import 'package:med_vault/pages/patient/sign_in.dart';
-import 'package:med_vault/pages/patient/medical_record.dart';
 
 class PatientProfile extends StatefulWidget {
-  const PatientProfile({super.key});
+  const PatientProfile({Key? key}) : super(key: key);
 
   @override
-  State<PatientProfile> createState() => _PatientProfileState();
+  _PatientProfileState createState() => _PatientProfileState();
 }
 
 class _PatientProfileState extends State<PatientProfile> {
+  String name = "John Doe";
+  String address = "123 Main Street";
+  String birthday = "123 Main Street";
+  int age = 30;
+  String phoneNumber = "123-456-7890";
+  String email = "johndoe@example.com";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +40,7 @@ class _PatientProfileState extends State<PatientProfile> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          'Patient Profile',
+                          'My Profile',
                           style: TextStyle(
                             fontWeight: FontWeight.w900,
                             fontSize: 29,
@@ -50,11 +55,13 @@ class _PatientProfileState extends State<PatientProfile> {
                         const SizedBox(height: 1),
                       ],
                     ),
-                    const SizedBox(width: 86,),
-                    SizedBox(
-                      height: 140,
-                      width: 100,
-                      child: Image.asset('lib/images/doctor.png'),
+                    const SizedBox(width: 16,),
+                    Expanded(
+                      child: SizedBox(
+                        height: 90,
+
+                        child: Image.asset('lib/images/user-307993_1920.png'),
+                      ),
                     ),
                   ],
                 ),
@@ -68,69 +75,19 @@ class _PatientProfileState extends State<PatientProfile> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
+                      _buildProfileDetail('Name', name),
+                      const SizedBox(height: 25),
+                      _buildProfileDetail('birthday', birthday),
+                      const SizedBox(height: 25),
+                      _buildProfileDetail('Email', email),
+                      const SizedBox(height: 25),
+                      _buildProfileDetail('Address', address),
+                      const SizedBox(height: 25),
+                      _buildProfileDetail('Age', age.toString()),
+                      const SizedBox(height: 25),
+                      _buildProfileDetail('Phone Number', phoneNumber),
 
-                          const SizedBox(width: 15),
-                          CircleAvatar(
-                            radius: 40,
-                            backgroundImage: AssetImage('lib/images/profile_image.png'),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 15),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'Name',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'Address',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'Date of Birth',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'Email',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const SignIn()));
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.all(6),
-                              width: 170,
-                              decoration: BoxDecoration(
-                                color: Colors.blueAccent,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  'LogOut',
-                                  style: TextStyle(color: Colors.white, fontSize: 11),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+
                     ],
                   ),
                 ),
@@ -142,5 +99,35 @@ class _PatientProfileState extends State<PatientProfile> {
       ),
     );
   }
-}
 
+  Widget _buildProfileDetail(String label, String value) {
+    return Container(
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: const Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          Text(
+            value,
+            style: TextStyle(fontSize: 16),
+          ),
+        ],
+      ),
+    );
+  }
+}

@@ -1,56 +1,57 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:med_vault/pages/doctor/customize_prescription.dart';
+import 'package:med_vault/pages/doctor/doc_pharmacy_spotter.dart';
 import 'package:med_vault/pages/doctor/doctor_profile.dart';
+import 'package:med_vault/pages/doctor/navigation_components_doc.dart';
 import 'package:med_vault/pages/doctor/qr_scan.dart';
 import 'package:med_vault/pages/patient/check.dart';
+import 'package:med_vault/pages/patient/navigation_components.dart';
+import 'package:med_vault/pages/patient/settings.dart';
 import '../patient/pharmacy_spotter.dart';
+import 'doc_settings.dart';
 // import 'new_prescription.dart';
 
 class HomePageDoc extends StatefulWidget {
+  final String email;
   final String docemail;
-  const HomePageDoc({Key? key, required this.docemail}) : super(key: key);
+  const HomePageDoc({Key? key, required this.email,required this.docemail}) : super(key: key);
 
   @override
   State<HomePageDoc> createState() => _HomePageDocState();
 }
 
 class _HomePageDocState extends State<HomePageDoc> {
-  int _selectedIndex = 0;
+  int _selectedIndexD = 0;
 
-  void _onItemTapped(int index) {
+  void _onItemTapped(int indexD) {
     setState(() {
-      _selectedIndex = index;
+      _selectedIndexD = indexD;
     });
 
-    // switch (index) {
-    //   case 0:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => PharmacySearchPage1()),
-    //     );
-    //     break;
-    //   case 1:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => viewPrescription(email: widget.email)),
-    //     );
-    //     break;
-    //   case 2:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => MyQR(email: widget.email)),
-    //     );
-    //     break;
-    //   case 3:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => PatientProfile()),
-    //     );
-    //     break;
-    // }
+    switch (indexD) {
+      case 0:
+        NavigationServiceDoc.navigateTo(
+            HomePageDoc(email: widget.email, docemail: widget.docemail),
+            context);
+        break;
+      case 1:
+        NavigationServiceDoc.navigateTo(
+            PharmacySearchPage2(email: widget.email, docemail: widget.docemail,), context);
+        break;
+      case 2:
+        NavigationServiceDoc.navigateTo(
+            QrScan(email: widget.email,docemail: widget.docemail), context);
+        break;
+      case 3:
+        NavigationServiceDoc.navigateTo(
+            docSettingsPage(email: widget.email, docemail: widget.docemail,), context);
+        break;
+    }
   }
+
   @override
   Widget build(BuildContext context) {
     // Get current date and time
@@ -103,7 +104,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                           'MedVault',
                           style: TextStyle(
                             fontWeight: FontWeight.w900,
-                            fontSize: 29,
+                            fontSize: 30,
                             color: Colors.white,
                           ),
                         ),
@@ -112,7 +113,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                           width: 20,
                           child: Image.asset('lib/images/Group 2085662530.png'),
                         ),
-                        const SizedBox(height: 1),
+                        const SizedBox(height: 0),
                         Text(
                           'HI, ${widget.docemail}',
                           style: const TextStyle(
@@ -124,7 +125,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                         Text(
                           formattedDate,
                           style: const TextStyle(
-                            fontSize: 13,
+                            fontSize: 12,
                             color: Colors.white,
                           ),
                         ),
@@ -139,17 +140,22 @@ class _HomePageDocState extends State<HomePageDoc> {
                       ],
                     ),
                     const SizedBox(
-                      width: 86,
+                      width: 80,
                     ),
-                    SizedBox(
-                      height: 140,
-                      width: 100,
-                      child: Image.asset(
-                        'lib/images/doctor.png',
+                    Expanded(
+                      child: SizedBox(
+                        height: 140,
+                        width: 100,
+                        child: Image.asset(
+                          'lib/images/doctor-2027615_1920.png',
+                        ),
                       ),
                     ),
                   ],
                 ),
+              ),
+              const SizedBox(
+                height: 3,
               ),
               Padding(
                 padding:
@@ -184,14 +190,14 @@ class _HomePageDocState extends State<HomePageDoc> {
                     children: [
                       SizedBox(
                         height: 100,
-                        width: 90,
+                        width: 55,
                         child: Image.asset(
-                          'lib/images/qr.png',
+                          'lib/images/qr-code-2816041_1920.png',
                         ),
                       ),
                       const SizedBox(
                         height: 35,
-                        width: 10,
+                        width: 20,
                       ),
                       Expanded(
                         child: Column(
@@ -217,7 +223,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>  QrScan(email: widget.docemail, )));
+                                        builder: (context) =>  QrScan(email: widget.email,docemail: widget.docemail)));
                               },
                               child: Container(
                                 padding: const EdgeInsets.all(4),
@@ -225,7 +231,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                                     color: Colors.blueAccent,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: const Center(
-                                  child: Text('View QR Code',
+                                  child: Text('Scan QR & Provide',
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 11)),
                                 ),
@@ -238,7 +244,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                   ),
                 ),
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 40),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 45.0),
                 child: Container(
@@ -250,13 +256,13 @@ class _HomePageDocState extends State<HomePageDoc> {
                     children: [
                       SizedBox(
                         height: 100,
-                        width: 90,
+                        width: 61,
                         child: Image.asset(
-                          'lib/images/pharmacy.png',
+                          'lib/images/medicine-2801025_1920.png',
                         ),
                       ),
                       const SizedBox(
-                        width: 10,
+                        width: 20,
                       ),
                       Expanded(
                         child: Column(
@@ -283,7 +289,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            PharmacySearchPage1(email: "")));
+                                            PharmacySearchPage2(email: "",docemail: "",)));
                               },
                               child: Container(
                                 padding: const EdgeInsets.all(4),
@@ -304,7 +310,7 @@ class _HomePageDocState extends State<HomePageDoc> {
                   ),
                 ),
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 40),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 45.0),
                 child: Container(
@@ -316,14 +322,14 @@ class _HomePageDocState extends State<HomePageDoc> {
                     children: [
                       SizedBox(
                         height: 100,
-                        width: 90,
+                        width: 58,
                         child: Image.asset(
-                          'lib/images/prescription.png',
+                          'lib/images/medical-5459661_1920.png',
                         ),
                       ),
                       const SizedBox(
                         height: 35,
-                        width: 10,
+                        width: 20,
                       ),
                       Expanded(
                         child: Column(
@@ -375,31 +381,39 @@ class _HomePageDocState extends State<HomePageDoc> {
           ),
         ),
       ]),
-      bottomNavigationBar: BottomNavigationBar(
-        //backgroundColor: Colors.lightBlue, // Set background color here
-        unselectedItemColor: Colors.black, // Set icon color here
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home Page',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search_outlined),
-            label: 'Pharmacy Finder',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.qr_code),
-            label: 'My QR',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blueAccent,
+
+      bottomNavigationBar: CustomBottomNavigationBar2(
+        currentIndexD: _selectedIndexD,
         onTap: _onItemTapped,
       ),
+
+      // bottomNavigationBar: BottomNavigationBar(
+      //   //backgroundColor: Colors.lightBlue, // Set background color here
+      //   unselectedItemColor: Colors.black, // Set icon color here
+      //   items: const <BottomNavigationBarItem>[
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.home),
+      //       label: 'Home Page',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.search_outlined),
+      //       label: 'Pharmacy Finder',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.qr_code),
+      //       label: 'My QR',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.settings),
+      //       label: 'Settings',
+      //     ),
+      //   ],
+      //   currentIndex: _selectedIndex,
+      //   selectedItemColor: Colors.blueAccent,
+      //   onTap: _onItemTapped,
+      // ),
+
     );
   }
+
 }

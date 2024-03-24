@@ -1,26 +1,31 @@
 
-import 'package:med_vault/pages/catergory.dart';
-import 'package:med_vault/pages/patient/patient_profile.dart';
-import 'package:med_vault/pages/patient/sign_in.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter/material.dart';
+import 'package:med_vault/pages/doctor/doc_pharmacy_spotter.dart';
+import 'package:med_vault/pages/doctor/home_pageD.dart';
+import 'package:med_vault/pages/doctor/navigation_components_doc.dart';
+import 'package:med_vault/pages/doctor/qr_scan.dart';
 import 'package:med_vault/pages/patient/check.dart';
 import 'package:med_vault/pages/patient/home_page.dart';
 import 'package:med_vault/pages/patient/my_qr.dart';
 import 'package:med_vault/pages/patient/navigation_components.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class SettingsPage extends StatefulWidget {
+import '../catergory.dart';
+import 'doctor_profile.dart';
+
+class docSettingsPage extends StatefulWidget {
   final String email;
 
-  const SettingsPage({Key? key, required this.email}) : super(key: key);
+  final String docemail;
+  const docSettingsPage({Key? key, required this.email,required this.docemail}) : super(key: key);
 
   @override
-  _SettingsPageState createState() => _SettingsPageState();
+  _docSettingsPageState createState() => _docSettingsPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
-  int _currentIndex = 3; // Initialize with the index of the SettingsPage
+class _docSettingsPageState extends State<docSettingsPage> {
+  int _currentIndexD = 3; // Initialize with the index of the SettingsPage
 
   @override
 
@@ -40,7 +45,7 @@ class _SettingsPageState extends State<SettingsPage> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => PatientProfile()),
+                MaterialPageRoute(builder: (context) => DoctorProfile()),
               );
             },
           ),
@@ -89,29 +94,36 @@ class _SettingsPageState extends State<SettingsPage> {
               _logout();
             },
           ),
-
         ],
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(
-        currentIndex: _currentIndex,
+      bottomNavigationBar: CustomBottomNavigationBar2(
+        currentIndexD: _currentIndexD, // Pass the currentIndexD
         onTap: (index) {
           setState(() {
-            _currentIndex = index;
+            _currentIndexD = index; // Update currentIndexD when tapped
           });
 
           // Handle navigation based on the index
           switch (index) {
             case 0:
-              NavigationService.navigateTo(HomePage(email: widget.email), context);
+              NavigationServiceDoc.navigateTo(
+                  HomePageDoc(email: widget.email, docemail: widget.docemail),
+                  context);
               break;
             case 1:
-              NavigationService.navigateTo(PharmacySearchPage1(email: widget.email), context);
+              NavigationServiceDoc.navigateTo(
+                  PharmacySearchPage2(email: widget.email,docemail: widget.docemail),
+                  context);
               break;
             case 2:
-              NavigationService.navigateTo(MyQR(email: widget.email), context);
+              NavigationServiceDoc.navigateTo(
+                  QrScan(email: widget.email,docemail: widget.docemail),
+                  context); // Already on QrScan page, no need to navigate
               break;
             case 3:
-              NavigationService.navigateTo(SettingsPage(email: widget.email), context);
+              NavigationServiceDoc.navigateTo(
+                  docSettingsPage(email: widget.email,docemail: widget.docemail),
+                  context);
               break;
           }
         },
@@ -147,7 +159,6 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       ),
     );
-
   }
   void _logout() {
     SharedPreferences.getInstance().then((prefs) {

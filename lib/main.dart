@@ -26,8 +26,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
+      //debugShowPerformanceOverlay: true,
+
       home: SplashScreen(),
     );
+    // Add the performance overlay flag here
     return Scaffold(
     );
   }
