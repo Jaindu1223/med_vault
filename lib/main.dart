@@ -12,6 +12,7 @@ import 'package:med_vault/pages/security.dart';
 import 'package:med_vault/pages/splash_screen.dart';
 
 import 'pages/about_us.dart';
+import 'pages/privacy.dart';
 
 /*Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       //debugShowPerformanceOverlay: true,
 
-      home: SecurityPage(),
+      home: PrivacyPage(),
     );
     // Add the performance overlay flag here
     return Scaffold(
