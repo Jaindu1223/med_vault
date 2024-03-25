@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_vault/pages/catergory.dart';
+import 'package:med_vault/pages/security.dart';
 // import 'package:flutter/services.dart';
 // import 'package:med_vault/pages/catergory.dart';
 // import 'package:med_vault/pages/doctor/qrScanner.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       //debugShowPerformanceOverlay: true,
 
-      home: SplashScreen(),
+      home: SecurityPage(),
     );
     // Add the performance overlay flag here
     return Scaffold(
