@@ -25,38 +25,6 @@ class NewPrescription extends StatefulWidget {
 class _NewPrescriptionState extends State<NewPrescription> {
   int _currentIndexD = 2;
 
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     _selectedIndex = index;
-  //   });
-
-    // switch (index) {
-    //   case 0:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => PharmacySearchPage1()),
-    //     );
-    //     break;
-    //   case 1:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => viewPrescription(email: widget.email)),
-    //     );
-    //     break;
-    //   case 2:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => MyQR(email: widget.email)),
-    //     );
-    //     break;
-    //   case 3:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => PatientProfile()),
-    //     );
-    //     break;
-    // }
-  // }
 
 
   String _doctorName = "";
@@ -68,14 +36,6 @@ class _NewPrescriptionState extends State<NewPrescription> {
   String _patientEmail = '';
   String _patientAddress = '';
 
-  // final _doctorNameController = TextEditingController();
-  // final _doctorSLMCController = TextEditingController();
-  // final _doctorSpecialityController = TextEditingController();
-  //
-  // final _patientNameController = TextEditingController();
-  // final _patientEmailController = TextEditingController();
-  // final _ageController = TextEditingController();
-  // final _addressController = TextEditingController();
 
   final _medication1NameController = TextEditingController();
   final _dosage1Controller = TextEditingController();
@@ -159,14 +119,6 @@ class _NewPrescriptionState extends State<NewPrescription> {
   Future<void> _submitForm() async {
 
     final String patientEmail = widget.email;
-
-    // String doctorName = _doctorNameController.text;
-    // String doctorSpecial = _doctorSpecialityController.text;
-    // String doctorSlmc = _doctorSLMCController.text;
-    //
-    // String patientName = _patientNameController.text;
-    // int patientAge = int.tryParse(_ageController.text) ?? 0; // Convert age to int
-    // String patientAddress = _addressController.text;
 
 
     final medication1Name = _medication1NameController.text;

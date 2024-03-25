@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:med_vault/pages/doctor/doc_pharmacy_spotter.dart';
 import 'package:med_vault/pages/doctor/home_pageD.dart';

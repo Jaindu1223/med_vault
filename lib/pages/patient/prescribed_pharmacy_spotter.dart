@@ -56,10 +56,6 @@ class _PrescribedPharmacySearchPage1State extends State<PrescribedPharmacySearch
 
     print('User latitude: $userLat, User longitude: $userLong');
 
-    // final Uri url = Uri.parse('http://10.0.2.2:4000/searchPharmacies?userMedicine=$medicineName&latitude=$userLatitude&longitude=$userLongitude');
-
-    // final Uri url = Uri.parse('http://10.0.2.2:4000/searchPharmacies?userMedicine=$medicineName&userLatitude=$userLat&userLongitude=$userLong');
-
     try {
       final Uri url = Uri.parse(
           'https://medvault-backend-wv3ggtvglq-uc.a.run.app/searchPharmacies?userMedicine=$medicineName&userLatitude=$userLat&userLongitude=$userLong');
@@ -93,9 +89,6 @@ class _PrescribedPharmacySearchPage1State extends State<PrescribedPharmacySearch
           });
         }
         ;
-        // } else {
-        //   throw Exception('Unexpected data type for nearestPharmacy');
-        // }
       } else {
         throw Exception('Failed to load data');
       }

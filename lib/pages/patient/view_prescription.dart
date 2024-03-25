@@ -17,9 +17,7 @@ import 'package:med_vault/pages/patient/prescribed_pharmacy_spotter.dart';
 import 'package:med_vault/pages/patient/settings.dart';
 
 class viewPrescription extends StatefulWidget {
-
   final String email;
-
   const viewPrescription({Key? key, required this.email}):super(key:key);
 
   @override
@@ -28,41 +26,6 @@ class viewPrescription extends StatefulWidget {
 
 class _viewPrescriptionState extends State<viewPrescription> {
   int _currentIndex = 1;
-
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     _selectedIndex = index;
-  //   });
-
-    // switch (index) {
-    //   case 0:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => PharmacySearchPage1()),
-    //     );
-    //     break;
-    //   case 1:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => viewPrescription(email: widget.email)),
-    //     );
-    //     break;
-    //   case 2:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => MyQR(email: widget.email)),
-    //     );
-    //     break;
-    //   case 3:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => PatientProfile()),
-    //     );
-    //     break;
-    // }
-  // }
-
-
   final _emailController = TextEditingController();
   bool isLoading = false;
   String doctorName = '';
@@ -83,23 +46,16 @@ class _viewPrescriptionState extends State<viewPrescription> {
   String additional='';
   String instructions='';
 
-
   Future<void> searchPrescription() async {
     setState(() {
       isLoading = true;
     });
-
-    // final String email = _emailController.text.toLowerCase();
-
     final String email = widget.email;
-
     print('prescription: $email');
     try {
-
       final Uri url = Uri.parse('https://medvault-backend-wv3ggtvglq-uc.a.run.app/email/$email');
 
       final http.Response response = await http.get(url);
-
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseData = jsonDecode(response.body);
         print(responseData);
@@ -126,8 +82,6 @@ class _viewPrescriptionState extends State<viewPrescription> {
 
         final dynamic additionalValue = responseData['additional'];
         final dynamic instructionsValue = responseData['instructions'];
-
-
 
         if (patientNameValue == null || patientNameValue is! String) {
           setState(() {
@@ -156,8 +110,6 @@ class _viewPrescriptionState extends State<viewPrescription> {
             instructions = instructionsValue;
             isLoading = false;
           });
-
-
         };
       } else {
         throw Exception('Failed to load data');
@@ -191,21 +143,17 @@ class _viewPrescriptionState extends State<viewPrescription> {
     Color customBackgroundColor = Color(int.parse('0xFFE3E4E4'));
     return Scaffold(
       backgroundColor: customBackgroundColor,
-      //backgroundColor: Colors.blue[100],
         body: Stack(
             children:[
               Container(
-                //padding: const EdgeInsets.only(left: 20,top: 30, right: 3, bottom: 30),
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
                         'lib/images/Rectangle 42126.png'),
                     alignment: Alignment.topCenter,
-
                     fit: BoxFit.fitWidth,
                   ),
                 ),
-
               ),
               SafeArea(
                   child:SingleChildScrollView(
@@ -218,7 +166,6 @@ class _viewPrescriptionState extends State<viewPrescription> {
                               const SizedBox(width: 6,),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-
                                 children: [
                                   const Text(
                                     'My Prescription',
@@ -235,15 +182,12 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                       fontSize: 13,
                                       color: Colors.white,
                                     ),
-
                                   ),
                                   SizedBox(
                                     height: 40,
                                     width: 20,
                                     child: Image.asset(
                                         'lib/images/Group 2085662530.png'),
-
-                                    //color: Colors.limeAccent,
                                   ),
                                   const SizedBox(height: 1),
                                   Text(
@@ -268,23 +212,16 @@ class _viewPrescriptionState extends State<viewPrescription> {
                               Expanded(
                                 child: SizedBox(
                                   height: 94,
-
                                   child: Image.asset(
                                     'lib/images/medical-report-5817916_1920.png'),
-
-                                  //color: Colors.limeAccent,
                                 ),
                               ),
                             ],
                           ),
                         ),
 
-                        //search bar
-
-                        //categories(horizontal list)
                         const SizedBox(height: 40),
 
-                        //box
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 25.0),
                           child: Container(
@@ -303,21 +240,20 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(15), // Set the border radius
                                         ),
-                                        minimumSize: Size(130, 40),
-                                        // Set the background color to blue
+                                        minimumSize: const Size(130, 40),
                                       ),
                                       onPressed: isLoading ? null : searchPrescription,
-                                      child: isLoading ? CircularProgressIndicator() :
-                                      Text('Receive Prescription',
+                                      child: isLoading ? const CircularProgressIndicator() :
+                                      const Text('Receive Prescription',
                                         style: TextStyle(
                                             color: Colors.white),),
                                     ),
-                                    SizedBox(height: 16.0),
+                                    const SizedBox(height: 16.0),
 
                                     const SizedBox(height: 1),
                                     Text(
                                       'Name: Dr. $doctorName',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 11,
                                       ),
@@ -325,14 +261,14 @@ class _viewPrescriptionState extends State<viewPrescription> {
 
                                     Text(
                                       'Speciality: $doctorSpeciality',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 11,
                                       ),
                                     ),
                                     Text(
                                       'SLMC Registration No: $doctorSLMC',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 11,
                                       ),
@@ -342,30 +278,30 @@ class _viewPrescriptionState extends State<viewPrescription> {
 
                                     Text(
                                       'Age: $age',
-                                      style: TextStyle(fontSize: 13.0),
+                                      style: const TextStyle(fontSize: 13.0),
                                     ),
-
 
                                     const SizedBox(height: 2),
 
                                     Text(
                                       'Patient Name: $patientName',
-                                      style: TextStyle(fontSize: 13.0,),
+                                      style: const TextStyle(fontSize: 13.0,),
                                     ),
 
                                     const SizedBox(height: 2),
+
                                     Text(
                                       'Address: $address',
-                                      style: TextStyle(fontSize: 13.0),
+                                      style: const TextStyle(fontSize: 13.0),
                                     ),
 
                                     const Text('-----------------------------------------------------------------'),
+
                                     Center(
                                         child: Text(
                                           'Click on medicine boxes to find the nearest pharmacy!!',
                                           style: TextStyle(fontSize: 12.0, color: Colors.blue[800]),
                                           textAlign: TextAlign.center,
-
                                         )),
                                     const SizedBox(height: 20),
 
@@ -377,6 +313,7 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                           color: Colors.black87
                                       ),
                                     ),
+
                                     const SizedBox(height: 5),
 
                                     Column(
@@ -389,66 +326,53 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                                 navigaetToPharmacySearch(medication1Name);
                                               },
                                               child: Container(
-                                                constraints: BoxConstraints(
+                                                constraints: const BoxConstraints(
                                                   minHeight: 70,
                                                   minWidth: 180,
                                                   maxHeight:80,
                                                   maxWidth: 200,
                                                 ),
-                                                margin: EdgeInsets.symmetric(vertical: 5, horizontal: 0),
+                                                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 0),
 
                                                 decoration: ShapeDecoration(
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius: BorderRadius.circular(4.0),
-                                                    side: BorderSide(width: 1.0, color: Colors.black),
+                                                    side: const BorderSide(width: 1.0, color: Colors.black),
                                                   ),
-                                                  //color: Colors.white,
                                                 ),
-
-                                                //padding: const EdgeInsets.all(8),
                                                 padding: const EdgeInsets.only(bottom: 7,left: 7,top: 7,right: 7),
                                                 child: Text(
                                                       'Medicine Name: \n$medication1Name',
-                                                      style: TextStyle(fontSize: 14),
+                                                      style: const TextStyle(fontSize: 14),
                                                      ),
                                               ),
-
                                             ),
 
-                                            SizedBox(width: 16),
+                                            const SizedBox(width: 16),
 
                                             Expanded(
                                               child: Container(
-                                                constraints: BoxConstraints(
+                                                constraints: const BoxConstraints(
                                                   minHeight: 70,
                                                   minWidth: 50,
                                                   maxHeight:80,
                                                   maxWidth: 60,
                                                 ),
-                                                //margin: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
                                                 decoration: ShapeDecoration(
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius: BorderRadius.circular(4.0),
-                                                    side: BorderSide(width: 1.0, color: Colors.black),
+                                                    side: const BorderSide(width: 1.0, color: Colors.black),
                                                   ),
-                                                  //color: Colors.white,
                                                 ),
-                                                //padding: EdgeInsets.all(8),
-
-                                                //padding: const EdgeInsets.all(14.0),
                                                 padding: const EdgeInsets.only(bottom: 7,left: 7,top: 7,right: 7),
                                                 child: Text(
                                                   'Dosage: $dosage1 mg',
-                                                  style: TextStyle(fontSize: 12.0),
+                                                  style: const TextStyle(fontSize: 12.0),
                                                 ),
                                               ),
                                             ),
 
-
-
-                                            SizedBox(width: 16),// Add some horizontal spacing between the two text fields
-
-
+                                            const SizedBox(width: 16),// Add some horizontal spacing between the two text fields
                                           ],
                                         ),
                                         // Add more rows for additional medications and dosages as needed
@@ -457,24 +381,22 @@ class _viewPrescriptionState extends State<viewPrescription> {
 
                                     const SizedBox(height: 5),
                                     Container(
-                                      constraints: BoxConstraints(
+                                      constraints: const BoxConstraints(
                                         minHeight: 60,
                                         minWidth: 270,
                                         maxHeight:100,
                                         maxWidth: 270,
                                       ),
-
                                       decoration: ShapeDecoration(
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(4.0),
-                                          side: BorderSide(width: 1.0, color: Colors.black),
+                                          side: const BorderSide(width: 1.0, color: Colors.black),
                                         ),
-                                        //color: Colors.white,
                                       ),
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
                                         'More Details: $moreDetails1',
-                                        style: TextStyle(fontSize: 12.0),
+                                        style: const TextStyle(fontSize: 12.0),
                                       ),
                                     ),
 
@@ -493,73 +415,35 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                       children: [
                                         Row(
                                           children: [
-
                                             GestureDetector(
                                               onTap: () {
                                                 navigaetToPharmacySearch(medication2Name);
                                               },
                                               child: Container(
-                                                constraints: BoxConstraints(
+                                                constraints: const BoxConstraints(
                                                   minHeight: 70,
                                                   minWidth: 180,
                                                   maxHeight:80,
                                                   maxWidth: 200,
                                                 ),
-                                                //margin: EdgeInsets.symmetric(vertical: 5, horizontal: 0),
-
                                                 decoration: ShapeDecoration(
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius: BorderRadius.circular(4.0),
-                                                    side: BorderSide(width: 1.0, color: Colors.black),
+                                                    side: const BorderSide(width: 1.0, color: Colors.black),
                                                   ),
-                                                  //color: Colors.white,
                                                 ),
-
-                                                //padding: const EdgeInsets.all(8),
                                                 padding: const EdgeInsets.only(bottom: 7,left: 7,top: 7,right: 7),
                                                 child: Text(
                                                   'Medicine Name: \n$medication2Name',
-                                                  style: TextStyle(fontSize: 14),
+                                                  style: const TextStyle(fontSize: 14),
                                                 ),
                                               ),
-
-
-                                              // Container(
-                                              //   margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                                              //   padding: EdgeInsets.all(10),
-                                              //   decoration: BoxDecoration(
-                                              //     borderRadius: BorderRadius.circular(10),
-                                              //     color: Colors.blue[50],
-                                              //   ),
-                                              //   child: Text(
-                                              //     'Medicine Name: \n$medication2Name',
-                                              //     style: TextStyle(fontSize: 15),
-                                              //   ),
-                                              // ),
                                             ),
 
-                                            // Expanded(
-                                            //   child: Container(
-                                            //     decoration: ShapeDecoration(
-                                            //       shape: RoundedRectangleBorder(
-                                            //         borderRadius: BorderRadius.circular(4.0),
-                                            //         side: BorderSide(width: 1.0, color: Colors.black),
-                                            //       ),
-                                            //       //color: Colors.white,
-                                            //     ),
-                                            //
-                                            //     padding: const EdgeInsets.all(8.0),
-                                            //     child: Text(
-                                            //       'Medicine Name: $medication2Name',
-                                            //       style: TextStyle(fontSize: 12.0),
-                                            //     ),
-                                            //   ),
-                                            // ),
-
-                                            SizedBox(width: 16),
+                                            const SizedBox(width: 16),
                                             Expanded(
                                               child: Container(
-                                                constraints: BoxConstraints(
+                                                constraints: const BoxConstraints(
                                                   minHeight: 70,
                                                   minWidth: 30,
                                                   maxHeight:80,
@@ -568,30 +452,25 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                                 decoration: ShapeDecoration(
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius: BorderRadius.circular(4.0),
-                                                    side: BorderSide(width: 1.0, color: Colors.black),
+                                                    side: const BorderSide(width: 1.0, color: Colors.black),
                                                   ),
-                                                  //color: Colors.white,
                                                 ),
-
                                                 padding: const EdgeInsets.only(bottom: 7,left: 7,top: 7,right: 7),
                                                 child: Text(
                                                   'Dosage: $dosage2 mg',
-                                                  style: TextStyle(fontSize: 12.0),
+                                                  style: const TextStyle(fontSize: 12.0),
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(width: 16),// Add some horizontal spacing between the two text fields
-
-
+                                            const SizedBox(width: 16),// Add some horizontal spacing between the two text fields
                                           ],
                                         ),
-                                        // Add more rows for additional medications and dosages as needed
                                       ],
                                     ),
 
                                     const SizedBox(height: 5),
                                     Container(
-                                      constraints: BoxConstraints(
+                                      constraints: const BoxConstraints(
                                         minHeight: 60,
                                         minWidth: 270,
                                         maxHeight:100,
@@ -600,14 +479,13 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                       decoration: ShapeDecoration(
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(4.0),
-                                          side: BorderSide(width: 1.0, color: Colors.black),
+                                          side: const BorderSide(width: 1.0, color: Colors.black),
                                         ),
-                                        //color: Colors.white,
                                       ),
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
                                         'More Details: $moreDetails2',
-                                        style: TextStyle(fontSize: 14.0),
+                                        style: const TextStyle(fontSize: 14.0),
                                       ),
                                     ),
 
@@ -626,65 +504,30 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                       children: [
                                         Row(
                                           children: [
-
                                             GestureDetector(
                                               onTap: () {
                                                 navigaetToPharmacySearch(medication3Name);
                                               },
                                               child: Container(
-                                                margin: EdgeInsets.symmetric(vertical: 5, horizontal: 0),
-
+                                                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 0),
                                                 decoration: ShapeDecoration(
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius: BorderRadius.circular(4.0),
-                                                    side: BorderSide(width: 1.0, color: Colors.black),
+                                                    side: const BorderSide(width: 1.0, color: Colors.black),
                                                   ),
-                                                  //color: Colors.white,
                                                 ),
-
-                                                //padding: const EdgeInsets.all(8),
                                                 padding: const EdgeInsets.only(bottom: 20,left: 7,top: 7,right: 60),
                                                 child: Text(
                                                   'Medicine Name: \n$medication3Name',
-                                                  style: TextStyle(fontSize: 14),
+                                                  style: const TextStyle(fontSize: 14),
                                                 ),
                                               ),
                                             ),
-                                              // child: Container(
-                                              //   margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                                              //   padding: EdgeInsets.all(10),
-                                              //   decoration: BoxDecoration(
-                                              //     borderRadius: BorderRadius.circular(10),
-                                              //     color: Colors.blue[50],
-                                              //   ),
-                                              //   child: Text(
-                                              //     'Medicine Name: \n$medication3Name',
-                                              //     style: TextStyle(fontSize: 16),
-                                              //   ),
-                                              // ),
 
-
-                                            // Expanded(
-                                            //   child: Container(
-                                            //     decoration: ShapeDecoration(
-                                            //       shape: RoundedRectangleBorder(
-                                            //         borderRadius: BorderRadius.circular(4.0),
-                                            //         side: BorderSide(width: 1.0, color: Colors.black),
-                                            //       ),
-                                            //       //color: Colors.white,
-                                            //     ),
-                                            //
-                                            //     padding: const EdgeInsets.all(8.0),
-                                            //     child: Text(
-                                            //       'Medicine Name: $medication3Name',
-                                            //       style: TextStyle(fontSize: 12.0),
-                                            //     ),
-                                            //   ),
-                                            // ),
-                                            SizedBox(width: 16),
+                                            const SizedBox(width: 16),
                                             Expanded(
                                               child: Container(
-                                                constraints: BoxConstraints(
+                                                constraints: const BoxConstraints(
                                                   minHeight: 70,
                                                   minWidth: 30,
                                                   maxHeight:80,
@@ -693,31 +536,26 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                                 decoration: ShapeDecoration(
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius: BorderRadius.circular(4.0),
-                                                    side: BorderSide(width: 1.0, color: Colors.black),
+                                                    side: const BorderSide(width: 1.0, color: Colors.black),
                                                   ),
-                                                  //color: Colors.white,
                                                 ),
 
                                                 padding: const EdgeInsets.only(bottom: 7,left: 7,top: 7,right: 7),
                                                 child: Text(
                                                   'Dosage: $dosage3 mg',
-                                                  style: TextStyle(fontSize: 12.0),
+                                                  style: const TextStyle(fontSize: 12.0),
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(width: 16),// Add some horizontal spacing between the two text fields
-
-
+                                            const SizedBox(width: 16),// Add some horizontal spacing between the two text fields
                                           ],
                                         ),
-
-                                        // Add more rows for additional medications and dosages as needed
                                       ],
                                     ),
 
                                     const SizedBox(height: 5),
                                     Container(
-                                      constraints: BoxConstraints(
+                                      constraints: const BoxConstraints(
                                         minHeight: 60,
                                         minWidth: 270,
                                         maxHeight:100,
@@ -726,22 +564,20 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                       decoration: ShapeDecoration(
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(4.0),
-                                          side: BorderSide(width: 1.0, color: Colors.black),
+                                          side: const BorderSide(width: 1.0, color: Colors.black),
                                         ),
-                                        //color: Colors.white,
                                       ),
-
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
                                         'More Details: $moreDetails3',
-                                        style: TextStyle(fontSize: 14.0),
+                                        style: const TextStyle(fontSize: 14.0),
                                       ),
                                     ),
 
                                     const SizedBox(height: 35),
 
                                     Container(
-                                      constraints: BoxConstraints(
+                                      constraints: const BoxConstraints(
                                         minHeight: 100,
                                         minWidth: 300,
                                         maxHeight:120,
@@ -750,9 +586,8 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                       decoration: ShapeDecoration(
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(4.0),
-                                          side: BorderSide(width: 1.0, color: Colors.black),
+                                          side: const BorderSide(width: 1.0, color: Colors.black),
                                         ),
-                                        //color: Colors.white,
                                       ),
                                       padding: const EdgeInsets.only(left: 10,top: 10),
                                       child: Column(
@@ -761,16 +596,15 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                         children: [
                                           Text(
                                             'Additional Details: $additional',
-                                            style: TextStyle(fontSize: 14.0),
+                                            style: const TextStyle(fontSize: 14.0),
                                           ),
                                         ],
                                       ),
                                     ),
                                     const SizedBox(height: 15),
 
-
                                     Container(
-                                      constraints: BoxConstraints(
+                                      constraints: const BoxConstraints(
                                         minHeight: 100,
                                         minWidth: 300,
                                         maxHeight:120,
@@ -779,7 +613,7 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                       decoration: ShapeDecoration(
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(4.0),
-                                          side: BorderSide(width: 1.0, color: Colors.black),
+                                          side: const BorderSide(width: 1.0, color: Colors.black),
                                         ),
                                         //color: Colors.white,
                                       ),
@@ -790,7 +624,7 @@ class _viewPrescriptionState extends State<viewPrescription> {
                                         children: [
                                           Text(
                                             'Instructions: $instructions',
-                                            style: TextStyle(fontSize: 14.0),
+                                            style: const TextStyle(fontSize: 14.0),
                                           ),
 
 

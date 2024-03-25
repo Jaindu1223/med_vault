@@ -3,16 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:med_vault/pages/patient/check.dart';
 import 'package:med_vault/pages/patient/home_page.dart';
 import 'package:med_vault/pages/patient/navigation_components.dart';
-import 'package:med_vault/pages/patient/patient_profile.dart';
 import 'package:med_vault/pages/patient/settings.dart';
-import 'package:med_vault/pages/patient/view_prescription.dart';
-// import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:intl/intl.dart';
 
 class MyQR extends StatefulWidget {
   final String email;
-
   const MyQR({Key? key, required this.email}) : super(key: key);
 
   @override
@@ -21,28 +17,23 @@ class MyQR extends StatefulWidget {
 
 class _MyQRState extends State<MyQR> {
   int _currentIndex = 2;
-
   final TextEditingController _textController = TextEditingController(text: '');
-
   String data = '';
   final GlobalKey _qrkey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    // Get current date and time
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('EEEE d MMMM, y')
         .format(now); // Format: Monday 23 July, 2022
     String formattedTime = DateFormat.jm().format(now); // Format: 3:21:59 PM
-
     Color customBackgroundColor = Color(int.parse('0xFFE3E4E4'));
+
     return Scaffold(
       backgroundColor: customBackgroundColor,
-      //backgroundColor: Colors.grey,
       body: Stack(
         children: [
           Container(
-            //padding: const EdgeInsets.only(left: 20,top: 30, right: 3, bottom: 30),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('lib/images/Rectangle 42126.png'),

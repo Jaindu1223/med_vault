@@ -42,33 +42,7 @@ class _HomePageState extends State<HomePage> {
             SettingsPage(email: widget.email), context);
         break;
     }
-    //
-    // switch (index) {
-    //   case 0:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => HomePage(email:widget.email)),
-    //     );
-    //     break;
-    //   case 1:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => PharmacySearchPage1()),
-    //     );
-    //     break;
-    //   case 2:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => MyQR(email: widget.email)),
-    //     );
-    //     break;
-    //   case 3:
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => SettingsPage()),
-    //     );
-    //     break;
-    // }
+
   }
 
   @override
@@ -183,7 +157,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
-              //Text('User Name, ${widget.email}'),
 
               Padding(
                 padding: const EdgeInsets.only(
@@ -432,33 +405,7 @@ class _HomePageState extends State<HomePage> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),
-      //
-      // bottomNavigationBar: BottomNavigationBar(
-      //   //backgroundColor: Colors.lightBlue, // Set background color here
-      //   unselectedItemColor: Colors.black, // Set icon color here
-      //   items: const <BottomNavigationBarItem>[
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.home),
-      //       label: 'Home Page',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.search_outlined),
-      //       label: 'Pharmacy Finder',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.qr_code),
-      //       label: 'My QR',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.settings),
-      //       label: 'Settings',
-      //     ),
-      //   ],
-      //   currentIndex: _selectedIndex,
-      //   selectedItemColor: Colors.blueAccent,
-      //   onTap: _onItemTapped,
-      // ),
-      //
+
     );
   }
 }

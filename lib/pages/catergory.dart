@@ -1,29 +1,18 @@
-
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:med_vault/pages/doctor/home_pageD.dart';
-import 'package:med_vault/pages/doctor/new_prescription.dart';
-import 'package:med_vault/pages/doctor/patient_history.dart';
 import 'package:med_vault/pages/doctor/signin_doc.dart';
-
-import 'package:med_vault/pages/doctor/signup_doc.dart';
-import 'package:med_vault/pages/patient/medical_record.dart';
 import 'package:med_vault/pages/patient/sign_in.dart';
 
 class Category extends StatefulWidget {
   const Category({super.key});
-
   @override
   State<Category> createState() => _CategoryState();
 }
 
 class _CategoryState extends State<Category> {
-
   String? _userType;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.blue[100],
       body: Stack(
         children:[
           Container(
@@ -32,8 +21,6 @@ class _CategoryState extends State<Category> {
                 image: AssetImage(
                     'lib/images/splash.png'),
                 fit: BoxFit.cover,
-                //height: double.infinity,
-                //width: double.infinity,
               ),
             ),
           ),
@@ -44,7 +31,6 @@ class _CategoryState extends State<Category> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-
                   const Text(
                     'Tailor Your Experience',
                     style: TextStyle(
@@ -64,12 +50,10 @@ class _CategoryState extends State<Category> {
                     ),
                   ),
 
-
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 10.0,),
-
-
                   ),
+
                   Padding(
                     padding: const EdgeInsets.only(left: 100,top: 20, right: 0, bottom:0),
                     child: RadioListTile<String>(
@@ -113,13 +97,8 @@ class _CategoryState extends State<Category> {
               ),
             ),
           )
-
-
         ],
       ),
-
-
-      // ])
     );
   }
 }

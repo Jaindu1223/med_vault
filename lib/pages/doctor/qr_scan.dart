@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:med_vault/pages/doctor/doc_pharmacy_spotter.dart';
@@ -17,7 +16,6 @@ class QrScan extends StatefulWidget {
   final String email;
   final String docemail;
   const QrScan({Key? key, required this.email,required this.docemail}) : super(key: key);
-
 
   @override
   State<QrScan> createState() => _QrScanState();
@@ -137,8 +135,7 @@ class _QrScanState extends State<QrScan> {
                           builder: (context) => NewPrescription(email: result, docemail: widget.docemail,),
                         ),
                       );
-
-                    },
+                      },
 
                     child: Container(
                       padding: const EdgeInsets.all(6),
@@ -162,13 +159,11 @@ class _QrScanState extends State<QrScan> {
       ),
 
       bottomNavigationBar: CustomBottomNavigationBar2(
-        currentIndexD: _currentIndexD, // Pass the currentIndexD
+        currentIndexD: _currentIndexD,
         onTap: (index) {
           setState(() {
-            _currentIndexD = index; // Update currentIndexD when tapped
+            _currentIndexD = index;
           });
-
-          // Handle navigation based on the index
           switch (index) {
             case 0:
               NavigationServiceDoc.navigateTo(
@@ -193,7 +188,6 @@ class _QrScanState extends State<QrScan> {
           }
         },
       ),
-
     );
   }
 }

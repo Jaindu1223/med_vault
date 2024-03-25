@@ -24,9 +24,9 @@ import 'package:med_vault/pages/patient/sign_in.dart';
 import 'package:med_vault/pages/doctor/home_pageD.dart';
 import 'package:med_vault/pages/doctor/signup_doc.dart';
 import 'package:med_vault/pages/doctor/new_prescription.dart';
-import 'package:med_vault/pages/doctor/patient_history.dart';
+
 import 'package:med_vault/pages/patient/medical_record.dart';
-import 'package:med_vault/pages/doctor/patient_history.dart';
+
 
 //import 'package:med_vault/pages/category.dart';
 

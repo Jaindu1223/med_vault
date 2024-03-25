@@ -22,7 +22,8 @@ class _QrGeneratorState extends State<QrGenerator> {
 
   void _generateUniqueQRCode() {
     // Replace this with the actual user data from your system
-    String userData = '{"id":123,"name":"John Doe","email":"john.doe@example.com"}';
+    String userData =
+        '{"id":123,"name":"John Doe","email":"john.doe@example.com"}';
     String uniqueCode = '${DateTime.now().millisecondsSinceEpoch}';
     String qrCodeData = '$userData|$uniqueCode';
     setState(() {
@@ -40,14 +41,14 @@ class _QrGeneratorState extends State<QrGenerator> {
       body: Center(
         child: (_qrCodeData != null && _qrCodeData!.isNotEmpty)
             ? Container(
-          width: 200.0,
-          height: 200.0,
-          child: QrImageView(
-            data: _qrCodeData!,
-            version: QrVersions.auto,
-            size: 200.0,
-          ),
-        )
+                width: 200.0,
+                height: 200.0,
+                child: QrImageView(
+                  data: _qrCodeData!,
+                  version: QrVersions.auto,
+                  size: 200.0,
+                ),
+              )
             : CircularProgressIndicator(),
       ),
     );
