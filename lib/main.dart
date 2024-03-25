@@ -10,6 +10,8 @@ import 'package:med_vault/pages/catergory.dart';
 // import 'package:med_vault/pages/patient/sign_in.dart';
 import 'package:med_vault/pages/splash_screen.dart';
 
+import 'pages/about_us.dart';
+
 /*Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await MongoDatabase.connect();

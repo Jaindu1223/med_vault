@@ -106,7 +106,6 @@ class _SignUpPageState extends State<SignUpDoc> {
   final _nicController = TextEditingController();
   final _phoneNumberController = TextEditingController();
   final _SLMCregiNoController  = TextEditingController();
-  // final _specialityController  = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
@@ -233,7 +232,6 @@ class _SignUpPageState extends State<SignUpDoc> {
                         TelephoneInputFormatter(),
                       ],
                     ),
-                    // const SizedBox(height: 5.0),
 
                     CustomTextFormField(
                       lable: "NIC",
@@ -362,10 +360,6 @@ class _SignUpPageState extends State<SignUpDoc> {
         _SLMCregiNoIsNotvalidate = true;
         sendReq = false;
       }
-      // if (_specialityController.text.isEmpty) {
-      //   _specialityIsNotvalidate = true;
-      //   sendReq = false;
-      // }
       if (_passwordController.text.isEmpty) {
         _passwordIsNotvalidate = true;
         sendReq = false;
