@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 class SecurityPage extends StatelessWidget {
-  const SecurityPage({super.key});
+  const SecurityPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Security',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.deepPurple,
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

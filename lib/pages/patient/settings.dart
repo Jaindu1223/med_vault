@@ -2,6 +2,8 @@
 import 'package:med_vault/pages/catergory.dart';
 import 'package:med_vault/pages/patient/patient_profile.dart';
 import 'package:med_vault/pages/patient/sign_in.dart';
+import 'package:med_vault/pages/privacy.dart';
+import 'package:med_vault/pages/security.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter/material.dart';
@@ -9,6 +11,8 @@ import 'package:med_vault/pages/patient/check.dart';
 import 'package:med_vault/pages/patient/home_page.dart';
 import 'package:med_vault/pages/patient/my_qr.dart';
 import 'package:med_vault/pages/patient/navigation_components.dart';
+
+import '../about_us.dart';
 
 class SettingsPage extends StatefulWidget {
   final String email;
@@ -52,7 +56,10 @@ class _SettingsPageState extends State<SettingsPage> {
             title: 'About Us',
             icon: Icons.info,
             onTap: () {
-              // Handle about us section tap
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AboutUsPage()),
+              );
             },
           ),
           const SizedBox(
@@ -63,7 +70,10 @@ class _SettingsPageState extends State<SettingsPage> {
             title: 'Privacy',
             icon: Icons.lock,
             onTap: () {
-              // Handle privacy section tap
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PrivacyPage()),
+              );
             },
           ),
           const SizedBox(
@@ -74,7 +84,10 @@ class _SettingsPageState extends State<SettingsPage> {
             title: 'Security',
             icon: Icons.security,
             onTap: () {
-              // Handle security section tap
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SecurityPage()),
+              );
             },
           ),
           const SizedBox(

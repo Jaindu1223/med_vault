@@ -7,8 +7,11 @@ import 'package:med_vault/pages/patient/check.dart';
 import 'package:med_vault/pages/patient/home_page.dart';
 import 'package:med_vault/pages/patient/my_qr.dart';
 import 'package:med_vault/pages/patient/navigation_components.dart';
+import 'package:med_vault/pages/privacy.dart';
+import 'package:med_vault/pages/security.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../about_us.dart';
 import '../catergory.dart';
 import 'doctor_profile.dart';
 
@@ -55,7 +58,10 @@ class _docSettingsPageState extends State<docSettingsPage> {
             title: 'About Us',
             icon: Icons.info,
             onTap: () {
-              // Handle about us section tap
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AboutUsPage()),
+              );
             },
           ),
           const SizedBox(
@@ -66,7 +72,10 @@ class _docSettingsPageState extends State<docSettingsPage> {
             title: 'Privacy',
             icon: Icons.lock,
             onTap: () {
-              // Handle privacy section tap
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PrivacyPage()),
+              );
             },
           ),
           const SizedBox(
@@ -77,7 +86,10 @@ class _docSettingsPageState extends State<docSettingsPage> {
             title: 'Security',
             icon: Icons.security,
             onTap: () {
-              // Handle security section tap
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SecurityPage()),
+              );
             },
           ),
           const SizedBox(
@@ -101,8 +113,7 @@ class _docSettingsPageState extends State<docSettingsPage> {
             _currentIndexD = index; // Update currentIndexD when tapped
           });
 
-          // Handle navigation based on the index
-          switch (index) {
+          switch (index) { // Handle navigation based on the index
             case 0:
               NavigationServiceDoc.navigateTo(
                   HomePageDoc(email: widget.email, docemail: widget.docemail),

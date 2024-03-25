@@ -7,8 +7,12 @@ class AboutUsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('About Us'),
+        title: const Text('About Us',
+        style: TextStyle(
+          color: Colors.white,
+        ),),
         backgroundColor: Colors.deepPurple,
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -35,12 +39,15 @@ class AboutUsPage extends StatelessWidget {
                     'This innovation reduces errors and inefficiencies in healthcare. The app synchronizes '
                     'pharmaceutical availability in real-time, provides access to patient medical history for doctors, '
                     'and undergoes iterative updates based on user feedback to ensure it meets user needs effectively.',
+                textAlign: TextAlign.justify,
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: Colors.grey[700],
+                  color: Colors.grey[900],
                 ),
               ),
             ),
+
+
             const SizedBox(height: 20.0),
             const Center(
               child: Text(
@@ -55,27 +62,27 @@ class AboutUsPage extends StatelessWidget {
             const SizedBox(height: 10.0),
             const TeamMember(
               name: 'Jaindu Gajanayake',
-              levelOfStudy: 'L5 Undergraduate',
+              levelOfStudy: 'L5 Undergraduate, UOW',
               image: 'lib/images/aboutus/jaindu.jpg',
             ),
             const TeamMember(
               name: 'Kalani Amanda',
-              levelOfStudy: 'L5 Undergraduate',
+              levelOfStudy: 'L5 Undergraduate, UOW',
               image: 'lib/images/aboutus/kalani.jpg',
             ),
             const TeamMember(
               name: 'Thihansa Akmeemana',
-              levelOfStudy: 'L5 Undergraduate',
+              levelOfStudy: 'L5 Undergraduate, UOW',
               image: 'lib/images/aboutus/thihansa.jpg',
             ),
             const TeamMember(
               name: 'Irushika De Silva',
-              levelOfStudy: 'L5 Undergraduate',
+              levelOfStudy: 'L5 Undergraduate, UOW',
               image: 'lib/images/aboutus/irushika.jpg',
             ),
             const TeamMember(
               name: 'Krishan Rupasinghe',
-              levelOfStudy: 'L5 Undergraduate',
+              levelOfStudy: 'L5 Undergraduate, UOW',
               image: 'lib/images/aboutus/krishan.jpg',
             ),
           ],

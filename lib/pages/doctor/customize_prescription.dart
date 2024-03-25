@@ -135,13 +135,7 @@ class _DocPrescriptionState extends State<DocPrescription> {
                               fontSize: 14,
                               color: Colors.black87),
                         ),
-                        const Text(
-                          '<<edit>> ',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 11,
-                          ),
-                        ),
+
                         const SizedBox(
                           height: 330,
                         ),
